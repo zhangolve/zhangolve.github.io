@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="#自动洗衣机的电位器监测水位问题由于我们做的是自动洗衣机模型，基本的要求是让洗衣机能够实现流程化工作，之后需要的是接上变频器使洗衣机能够在稳定转速下运行，这时候，我们已经完成到此，下一步就是用电位器来监测水位的变化并将这个模拟量信号通过PLC内部的A&#x2F;D 转化成数字量在触摸屏上显示出来 可是在实际使用过程中，很多问题不能解释。于是： 加入了一个论坛：中国工控人论坛，发了这个帖子  大家好">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【PLC】进阶过程中问题梳理">
+<meta property="og:url" content="http://hktkdy.com/2015/05/29/201505/0511/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="#自动洗衣机的电位器监测水位问题由于我们做的是自动洗衣机模型，基本的要求是让洗衣机能够实现流程化工作，之后需要的是接上变频器使洗衣机能够在稳定转速下运行，这时候，我们已经完成到此，下一步就是用电位器来监测水位的变化并将这个模拟量信号通过PLC内部的A&#x2F;D 转化成数字量在触摸屏上显示出来 可是在实际使用过程中，很多问题不能解释。于是： 加入了一个论坛：中国工控人论坛，发了这个帖子  大家好">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-05-28T23:40:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.090Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="PLC">
+<meta property="article:tag" content="自动化">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hktkdy.com/2015/05/29/201505/0511/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【PLC】进阶过程中问题梳理 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2015/05/29/201505/0511/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【PLC】进阶过程中问题梳理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-05-29 07:40:49" itemprop="dateCreated datePublished" datetime="2015-05-29T07:40:49+08:00">2015-05-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/05/29/201505/0511/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2015/05/29/201505/0511/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>#自动洗衣机的电位器监测水位问题<br>由于我们做的是自动洗衣机模型，基本的要求是让洗衣机能够实现流程化工作，之后需要的是接上变频器使洗衣机能够在稳定转速下运行，这时候，我们已经完成到此，下一步就是用电位器来监测水位的变化并将这个模拟量信号通过PLC内部的A&#x2F;D 转化成数字量在触摸屏上显示出来</p>
+<p>可是在实际使用过程中，很多问题不能解释。于是：</p>
+<p>加入了一个论坛：中国工控人论坛，发了<a target="_blank" rel="noopener" href="http://www.chinakong.com/forum/disp.asp?id=436782&display=1">这个帖子</a></p>
+<blockquote>
+<p>大家好，这是我在这里的第一个帖子，我是一名在校大学生，现在在用GE的fanuc plc来进行课程设计，我的题目是自动洗衣机。现在遇到的问题是：我希望实现的目标是用5v的电源供电的电位器来监测洗衣机水位的变化，但是我虽然能够通过模拟量输入的模块（ALG600）来将电位器的输出电压给到PLC，但是这个值是一个定值。水位的监测理论上应该是一个变化的值，需要用到传感器，需要用到进水电磁阀，可是怎样来控制，我就不会了。</p>
+</blockquote>
+<blockquote>
+<p>其实最终目的还是用电位器来监测水位变化并将之显示在触摸屏上，谁能够给一个思路呢？</p>
+</blockquote>
+<p>无奈的是，这个论坛实际上并不活跃，我随意翻了翻论坛，就能够很随意地翻到几年前的帖子，每个帖子的回帖寥寥，这与我之前见到的众多讨论激烈的计算机方面相关论坛形成了鲜明的对比。当然，也可能是因为我自己表述的问题，总之，这个帖子到目前为止还没有人回帖。</p>
+<p>后来我甚至将洗衣机模块和机械手的模块拆开看，但是却只看到了里面的PCB板，铜线和几个和LEB接在一起的电阻，还有一个小的减速电机，这让我更有理由推测，这个洗衣机的模块内部，是没有传感器这么复杂的东西的。但是问题在于，机械手的程序，说明中提到了传感器，但是看例程，却发现，好像也只是加入了几个TMR的延时block而已。</p>
+<p>一个新的设想：既然洗衣机模块内部本身十分简单，它的模拟效果，只是通过LED灯来实现的，比如说是进水，但是其实从你看到角度来说，也只不过是你看到了进水灯亮了而已。它通过用这样的效果来给人模拟的效果。</p>
+<p>（20150510）于是，我放弃了用电位器来监测水位的方法，由于我的程序中，用到了计时器TMR tenths，所以可以考虑，将这个值的变化过程在触摸屏上用如柱状图的形式显示出来，看上去就像是在进水。仍然需要验证。</p>
+<p><strong>在这个时候，事实上我还是不太能够理解PLC梯形图中的I0001,I0002这些东东的意义的，我甚至不知道这些是数字量输入信号，I0001就是对应的数字量输入1号插槽，所以实际上到这个时候，梯形图程序我还没有完全看懂，直到后来，我将洗衣机模块和机械手模块连接的时候，才终于意识到原来梯形图中的I,Q这些值是与PLC上的插槽一一对应的</strong></p>
+<p>#洗衣机甩干问题</p>
+<p>在接下来的使用过程中，由于同学CLL的设计中加入了我们的洗衣机模块，我才发现，我们一直以来的洗衣机模块的设计都是错误的。我们最初对于洗衣机工作的流程其实并没有清晰的概念，只是经过测试，发现了‘按下启动按钮之后，洗衣机的进水灯开始亮，当再按下上限水位按钮的时候，进水灯灭与此同时，运行的绿色指示灯亮，而当正反转三圈之后，出水指示灯亮，’到了这里，其实是应当按下下限水位按钮的，来使洗衣机进行脱水甩干操作。我们往往是直接按下停止按钮。</p>
+<p>我们认为下限水位按钮没有用了，其实并非如此。这也告诉我，磨刀不误砍柴工。当然，我们也一直没能正确理解上限水位和下限水位的概念，这里还是CLL同学告诉的我，因为只是模拟（前面讲过，拆开之后只是简单的电阻和电机），没有传感器，所以需要上下限水位的按钮来操作。</p>
+<p>#机械手与洗衣机结合-对I,Q的再次理解</p>
+<p>后来，希望将机械手和洗衣机结合起来用。这个时候，发现了一个以前一直没有注意的问题，但却严重影响了我的进度。也就是在最初的时候，我们按照实验指导书来接线，完全不理会PLC的输入，输出规则，而当我们将两个模块结合在一起使用时，就不得不考虑这些了。由于之前的设定中，输入，输出点是有冲突的，所以需要修改这些量。这里还要特别注意的是,我误将I看成了1，也就是说我将数字量输入I1简单地看成了11，于是乎，我开始就不知所措了。后来又在实验指导书上得到启发，才发现我的理解是错误的。于是将冲突的输入输出点，进行了修改。以实现其功能。后来发现，其实不光是I,Q这些属性的变量存在这个问题，就连M,R这些属性的变量也存在这些问题，导致的一个基本的不正常的现象是：当洗衣机模块和机械手模块同时连接到PLC时，发现当按动机械手上某个按钮时，洗衣机模块上某个灯亮，而究其原因，其实就是因为虽然他们是以主程序和子程序的形式显示的，但是他们的变量是统一的，需要对之前单独的变量在重复时做一个修改。</p>
+<p><strong>知识点：从这里跌跌撞撞的学习可以看出，其实我们是在摸索中才理解了M,Q,I,R这些变量地址不能冲突这些知识点的，事实上早就应该想到，但是因为这些意识并不深刻，就像之前提到的共地的概念那样并不深刻，需要经过实践，告诉自己的大脑，看见没，理论正确，就是这么回事。</strong></p>
+<p>另外，已经从DL那里拿到了机械手自动实现的程序，于是就对之进行了修改，本来打算将机械手梯形图作为子程序，将洗衣机梯形图放到main程序里，但实际上，后来经过同学LSH的提示，发现，其实即便是两个模块组合在一个梯形图中，也不过只有3，4十行程序，完全可以省略掉子程序。</p>
+<p>于是接下来的工作是，对两者结合的程序进行调理，使之完成我们的需求。也就是：<strong>首先按动控制机械手的自动按钮，使机械手可以自动将衣物送入洗衣机中，这个时候提升或者下降都需要电机的转动作为配合，当机械手即将回到原位时，触发自动洗衣机开始工作，首先进水，然后是正转反转3次，接下来出水，甩干。这样的过程中需要保持模块上各个灯的显示正常，电机转动正常（实际连线之后是接入了6个继电器，4个继电器接机械手模块来控制机械手模块4个输出量接变频器，2个继电器接洗衣机模块来控制洗衣机模块上正转反转的两个输出接变频器）。达到从机械手开始工作到洗衣机完成洗衣机的全过程。当然还有必要保持单独的工作，互不影响，比如只用机械手提取衣物或只用洗衣机来洗衣物，无需机械手的操作</strong></p>
+<p>于是在以上的思想的指引下，开始对梯形图程序进行debug，截至到20150519仍然出现有几个问题，如：</p>
+<ul>
+<li><p>将程序下载到梯形图中后，第一次运行正常，第二次运行就乱了。<br>设想：由于程序做了很大的改动，缺少复位清零，导致在第一次运行之后，原来为0的，如M0001变为了1.这样使程序与之前程序不同，导致错乱。解决办法，加入必要的清零模块，如moov bool等。</p>
+</li>
+<li><p>在洗衣机运行到正反转结束之后，会出现进水灯和排水灯先后点亮的现象，经过了修改，也始终不能解决。<br>解决办法，调试。</p>
+</li>
+</ul>
+<h1 id="关于变频器的连线问题："><a href="#关于变频器的连线问题：" class="headerlink" title="关于变频器的连线问题："></a>关于变频器的连线问题：</h1><p>经过和JHG的讨论，原来理解并不深刻的变频器连线问题也有了更深刻的理解，首先PLC的模拟量输出模块会引出来接到变频器上，这里的作用是用PLC来控制变频器的输入电压，而变频器的输入电压又和他的输出频率有直接的联系。</p>
+<p>变频器的输出线接到电机上，可以控制电机的频率和转速。<br>变频器还会接继电器之后再接数字量的输入，来实现电机的正转和反转功能。</p>
+<h1 id="GE-工业触摸屏的小知识："><a href="#GE-工业触摸屏的小知识：" class="headerlink" title="GE 工业触摸屏的小知识："></a>GE 工业触摸屏的小知识：</h1><p>Quickpanel  windows ce 50M 内存，lifecycle生命周期将尽。<br>Qucikpanel+ 500M 内存</p>
+<p>Windows Embedded Compact,[6] formerly Windows Embedded CE and Windows CE, is an operating system subfamily developed by Microsoft as part of its Windows Embedded family of products. Unlike Windows Embedded Standard, which is based on Windows NT, Windows Embedded Compact uses an exclusive hybrid kernel.[7] Microsoft licenses Windows CE to original equipment manufacturers (OEMs), who can modify and create their own user interfaces and experiences, with Windows CE providing the technical foundation to do so.</p>
+<p>The current version of Windows Embedded Compact supports x86 and ARM processors with board support package (BSP) directly.[8] The MIPS and SHx architectures have kernel support.<br>Windows Embedded Compact（曾被稱為Microsoft Windows CE），為微軟研發的嵌入式作業系統，可以應用在各種嵌入式系統，或是硬體規格較低的電腦系統（例如很少的記憶體，較慢的中央處理器等）。微軟並未定義CE縮寫由來，一般解釋則有Compact Edition、Customer Embedded、Consumer Electronics等等。在2008年4月15日舉行的嵌入式系统大会上，微軟宣布將Windows CE更名為Windows Embedded Compact，與Windows Embedded Enterprise、Windows Embedded Standard和Windows Embedded POSReady組成Windows Embedded系列產品</p>
+<p>以上来自wkipedia。</p>
+<p>Windows Embedded Compact 7<br>Windows Embedded Compact 7 is a componentized, real-time operating system designed for small-footprint devices at the edge of enterprise networks. With support for x86 and ARM architectures, Windows Embedded Compact 7 allows devices to leverage the latest innovations in hardware, and equips developers and device manufacturers with the tools they need to create nimble, enterprise-class intelligent system solutions, while reducing time to market.</p>
+<p>来自微软官网： windows ed8<br>Windows Embedded 8<br>The Windows Embedded 8 family of platforms and tools helps companies extend their operational intelligence, using their existing IT infrastructure and industry devices that securely exchange data with back-end systems. Offering the same rich, multi-touch experience as Windows 8 and Windows Phone 8.1, Windows Embedded 8.1 delivers compelling user experiences on a range of industry devices.<br>When you standardize all your enterprise devices on the Windows platform, you make everything simpler with a single operating and development platform; extend the power and intuitive experience of Windows 8 to specialized devices and invest in the future with a technology partner who is committed to your success. You’ll also capitalize on your existing IT investments, lowering your cost of ownership by taking advantage of your existing infrastructure, integrating new device experiences with other Microsoft assets, right out of the box. Management is streamlined because your devices work smoothly alongside PCs and servers. By customizing device experiences for your users, you enable intuitive, rich interfaces and deliver a targeted and consistent device experience.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PLC/" rel="tag"># PLC</a>
+              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="tag"># 自动化</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2015/05/15/201505/0510/" rel="prev" title="给六个人写博客----独立博客一周年记">
+      <i class="fa fa-chevron-left"></i> 给六个人写博客----独立博客一周年记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2015/05/29/201505/0512/" rel="next" title="选择职业，我们真的需要兴趣吗？">
+      选择职业，我们真的需要兴趣吗？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%8F%98%E9%A2%91%E5%99%A8%E7%9A%84%E8%BF%9E%E7%BA%BF%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">关于变频器的连线问题：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GE-%E5%B7%A5%E4%B8%9A%E8%A7%A6%E6%91%B8%E5%B1%8F%E7%9A%84%E5%B0%8F%E7%9F%A5%E8%AF%86%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">GE 工业触摸屏的小知识：</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

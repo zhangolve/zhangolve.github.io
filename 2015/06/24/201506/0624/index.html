@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="此为我一项作业，本着互联网分享之精神，一并贴出，应网络变化要求，对原文稍作修改。 #一：国际标准 ##工业现场对现场总线要求  安装在生产过程区域的现场设备&#x2F;仪表与控制室内的自动控制装置&#x2F;系统之间的一种串行、数字式、多点通信的数据总线 现场总线是以单个分散的、数字化、智能化的测量和控制设备作为网络节点，用总线相连接，实现相互交换信息，共同完成自动控制功能的网络系统与控制系统。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我印象中的现场总线">
+<meta property="og:url" content="http://hktkdy.com/2015/06/24/201506/0624/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="此为我一项作业，本着互联网分享之精神，一并贴出，应网络变化要求，对原文稍作修改。 #一：国际标准 ##工业现场对现场总线要求  安装在生产过程区域的现场设备&#x2F;仪表与控制室内的自动控制装置&#x2F;系统之间的一种串行、数字式、多点通信的数据总线 现场总线是以单个分散的、数字化、智能化的测量和控制设备作为网络节点，用总线相连接，实现相互交换信息，共同完成自动控制功能的网络系统与控制系统。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-06-24T02:18:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.090Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="自动化">
+<meta property="article:tag" content="现场总线">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hktkdy.com/2015/06/24/201506/0624/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>我印象中的现场总线 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2015/06/24/201506/0624/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          我印象中的现场总线
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-06-24 10:18:49" itemprop="dateCreated datePublished" datetime="2015-06-24T10:18:49+08:00">2015-06-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/06/24/201506/0624/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2015/06/24/201506/0624/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>此为我一项作业，本着互联网分享之精神，一并贴出，应网络变化要求，对原文稍作修改。</p>
+<p>#一：国际标准</p>
+<p>##工业现场对现场总线要求</p>
+<ul>
+<li>安装在生产过程区域的现场设备&#x2F;仪表与控制室内的自动控制装置&#x2F;系统之间的一种串行、数字式、多点通信的数据总线</li>
+<li>现场总线是以单个分散的、数字化、智能化的测量和控制设备作为网络节点，用总线相连接，实现相互交换信息，共同完成自动控制功能的网络系统与控制系统。</li>
+<li>现场设备&#x2F;仪表指位于现场层的传感器、驱动器、执行机构等设备。 </li>
+<li>现场总线是面向工厂底层自动化及信息集成的数字化网络技术。</li>
+<li>基于现场总线技术的自动化系统称为FCS（Fieldbus Control System）。</li>
+</ul>
+<p> ##现场总线的技术概念</p>
+<ul>
+<li>现场总线是一个全数字化的现场通信网络</li>
+<li>现场总线网络是开放式互连网络</li>
+<li>所现场设备直接通过一对传输线（现场总线）互连</li>
+<li>增强了系统的自治性，系统控制功能更加分散</li>
+</ul>
+<p>##现场总线发展现状</p>
+<ul>
+<li>IEC61158</li>
+</ul>
+<p>2001年1月IEC61158 规范才最终获得通过。IEC61158标准包括了八种类型的现场总线，实际上也构成了八种现场总线控制系统体系结构：<br>Type1：IEC 61158技术规范<br>Type2：Control Net现场总线<br>Type3：PROFIBUS现场总线<br>Type4：P- Net现场总线<br>Type5：FF HSE（High Speed Ethernet）<br>Type6：Swift Net现场总线<br>Type7：World FIP现场总线<br>Type8：Interbus现场总线</p>
+<ul>
+<li>第三版本<br>2003年4月，IEC61158Ed.3现场总线标准第三版正式成为国际标准，该标准由IEC&#x2F;SC65C&#x2F;MT9小组负责修订。为了反映工业网络通信技术的最新发展，新版标准规定了10种类型现场总线，它们是：<br>Type1 TS61158现场总线<br>Type2 ControlNet和Ethernet&#x2F;IP现场总线<br>Type3 PROFIBUS现场总线<br>Type4 P-NET现场总线<br>Type5 FF HSE现场总线<br>Type6 SwiftNet现场总线<br>Type7 WorldFIP现场总线<br>Type8 INTERBUS现场总线<br>Type9 FF H1现场总线<br>Type10 PROFInet现场总线</li>
+</ul>
+<p>#二：与物联网的联系<br>##1 什么是网联网</p>
+<p>物联网(Internet of things，IoT)作为一种新兴的网络信息技术，其目的是使用网络将所有的物品连接起来，以便进行自动识别、集中控制和统一管理等。从而使物品获得一 定智能，实现人与物品以及物品与物品之间的交流互动。</p>
+<p>##2现场总线与物联网结合举例</p>
+<p>由于物联网具有使用网络将所有物品连接起来的功能，而现场总线是一个安装在生产过程区域的现场设备&#x2F;仪表与控制室内的自动控制装置&#x2F;系统之间的一种串行、数字式、多点通信的数据总线，因而二者是可以通过联系在一起组成更加强大的功能的。</p>
+<p>###楼宇物联网<br>具体来说，比如在楼宇物联网系统中，可以使用LonWorks总线技术来构建物联网。通过LonWorks节点组网和上位机监控来实现物联网系统的构建，大大减少了楼宇生产生活过程中的问题，并且实现了联网，降低了人力成本和时间成本。</p>
+<p>###火电厂</p>
+<p>再比如，在一些大型的火电厂中，现场总线技术也得到了很好的应用。在此，现场总线系统网络结构的设计过程中一般尽量采用总线型和树型的拓扑结构，或者将总线型和树型的拓扑结构混合起来使用总线型的拓扑，结构是由一条干线和连接在干线上不同点的若干支线所组成的。可见，现场总线技术的发展，也使得火电厂的火力发电过程更加高效，统筹更加合理，安全性方便性更高。</p>
+<p>从以上两个例子，我们可以看出，现场总线技术在物联网构建中起到了一个基础性的保障作用。物与物之间需要联网，而联网需要通信，而现场总线技术的使用，就解决了物联网中物与物通信的问题。解决了物联网的底层问题。在楼宇物联网系统中和火电厂中现场总线技术都有了这样的体现。</p>
+<p>#三 在智慧城市中的作用</p>
+<p>##智慧城市的概念<br>智慧城市（英语：Smart City），是把新一代信息技术充分运用在城市的各行各业之中的基于知识社会下一代创新（创新2.0）的城市信息化高级形态，实现信息化、工业化与城镇化深度融合，有助于缓解“大城市病”，提高城镇化质量，实现精细化和动态管理。智慧城市通过在人力和社会资本，以及在交通和信息通讯基础设置上的投资来推动可持续经济增长和高生活质量，并且通过参与式的管理对上面的资源及自然资源进行科学的管理。一些智慧城市建设的先行城市也越来越突出以人为本的可持续创新，比如欧盟启动了面向知识社会创新2.0的Living Lab计划，致力于围绕市民需求将城市建设为各方共同参与的开放创新空间，比如维也纳大学对城市体系评价的六个指标，即智慧的经济、智慧的运输业、智慧的环境、智慧的居民、智慧的生活和智慧的管理等六个方面。</p>
+<p>##现场总线在智慧城市中的应用实例</p>
+<p>###1轻轨列车<br>目前现场总线技术在国外的铁道车辆，地铁和城市轻轨车上得到广泛应用 , 我国进口 的地铁列车上也都采用了现场总线技术。如上海地铁明珠线采用WORLDFIP现场总线 ，广州地铁2号线采用TCN技术 ,TCN的列车网采用绞线式列车总线WTB ,车辆网采用多功能车辆总线MVB。</p>
+<p>###2楼宇自动化系统</p>
+<p>楼宇自动化系统是一个设备众多、功能各异、分布极广,极其复杂的系统。对它的控制与集成,以及它与上位信息网络的数据交换与融合的研究,自然而然就成为人们研究楼宇自控系统时的首选。在大中型建筑物的楼宇设备监控系统中引入现场总线控制技术,并实现一体化的集成管理体系(CIMS),这样的研究,是有着非常现实的意义的。结合之前提到过的现场总线在楼宇物联网系统中的发展建设实例，也可以看出现场总线在其中的重要性。</p>
+<p>###3城市污水处理系统<br>采用计算机控制技术与多层次的网络结构对污水处理全程生产工序进行无人值守全自动控制。生产过程控制中的各种信号通过相应变送器送入下位机，下位机采用可靠的 PLC 作为控制单元，运行先进的控制算法，实现现场设备的实时控制。作为上位机的工业控制计算机采用 TCP&#x2F;IP 协议和标准数据库，实现信息的集成管理和远程控制。上、下位机之间通过网络传送采集参数和远程控制参数。这种控制方式是自控技术的发展方向，国内外的大型污水处理厂都在使用。如安徽圣泉啤酒厂，日处理污水 7000 吨。其自控系统采用二级集散型控制系统，由上位 PC 机作为管理机，由三台 PLC 作为测控连锁机，并能对现场设备实施保护控制。如2001调试成功的上海松江污水处理厂自动控制系统，采用了 Siemens SIMATIC S7-300 PLC + PROFIBUS + PC 的结构，共有 5 个 PLC 控制器、6 个上位 PC 监控站（内装 Siemens  WinCC 视窗控制中心监控软件）。系统的网络采取双层网络结构，其中局域网部分采用 PROFIBUS 方式，用于各个从站之间和从站与主站之间的信息传送。</p>
+<p>##现场总线在智慧城市建设中的作用</p>
+<p>我们已经知道智慧城市是涉及即智慧的经济、智慧的运输业、智慧的环境、智慧的居民、智慧的生活和智慧的管理等六个方面。洛阳市也在紧锣密鼓地建设着智慧城市，由此可见，智慧城市正在从概念变为现实。智慧城市的发展所依赖的包括我们如今所耳熟能详的物联网，移动互联网，大数据，云计算，而这些技术的底层，是一大堆的协议，其中就有现场总线。如前面我对于现场总线对物联网的发展的意义类似，现场总线在智慧城市中的作用，也是底层的，基础的，不可获取的，以至于其他不了解相关技术，非相关专业人士甚至对此一无所知，事实也是如此，我在上大学之前，根本就不知道有现场总线这个概念，尽管这也许在工业上是一个很重要的概念。现场总线在技术中是底层的，就像是建筑中的砖瓦和水泥一样，但是如果没有了砖瓦和水泥，又绝对不可能建造出高楼来。现场总线的地位也是如此，对于需要学习和利用智慧城市的从业人员来说，应当也有必要对现场总线进行深入的了解。</p>
+<p>#四：企业和我新的机遇和挑战</p>
+<p>##4.1机遇<br>###4.1.1国家重视，政策支持<br>在前面的讨论之中，我们已经知道了：现场总线广泛应用于物联网，智慧城市之中，而无论是物联网还是智慧城市，最近几年来国家都下了很大的力度来推广和宣传，促进相关产业的发展，例如国家中长期科学与技术发展规划(2006-2020年)》和“ 新一代宽带移动无线通信网” 重大专项中将传感网列入重点研究领域 。在2011年，依据《中华人民共和国国民经济和社会发展第十二个五年规划纲要》、《国务院关于加快培育和发展战略性新兴产业的决定》，国家工业和信息化部制定了《物联网“十二五”发展规划》。该规划指出，当前的主要任务是攻克核心技术，提升感知技术水平（重点支持超高频和微波RFID标签、智能传感器、嵌入式软件的研发，支持位置感知技术、基于MEMS的传感器等关键设备的研制，推动二维码解码芯片研究。），推动传输技术突破，加强处理技术研究，巩固共性技术基础。针对企业，该规划指出，要协调推进产业发展，重点发展物联网感知制造业，积极发展物联网服务业，着力培养骨干企业，，做好一批“专、精、特、新”中小企业的孵化和扶持工作；加强产业联盟建设，逐步形成门类齐全、协同发展、影响力强的产业体系。</p>
+<p>2013年底，国家发改委又下发了于2014-2016年组织开展国家物联网重大应用示范工程区域试点工作的通知，而它的目的是支持各地结合经济社会发展实际需求，在工业、农业、节能环保、商贸流通、交通能源、公共安全、社会事业、城市管理、安全生产等领域，组织实施一批示范效果突出、产业带动性强、区域特色明显、推广潜力大的物联网重大应用示范工程区域试点项目，推动物联网产业有序健康发展。由此可见，企业如果想要屹立不倒，必须紧跟时代发展，技术发展，国家发展的潮流，企业和我应当依靠国家的这新一轮的经济转型，来谋求新的突破和发展。</p>
+<p>###4,1.2我国已具备物联网产业，智慧城市发展的条件</p>
+<p>前面已经提到，智慧城市及物联网已经逐渐从虚无缥缈的概念走向了现实生活中，物联网和智慧城市的基础是互联网，而互联网尤其是移动互联网最近几年来在我国发展也突飞猛进：根据中国互联网络信息中心（CNNIC）2015年2月3日发布的第35次《中国互联网络发展状况统计报告》显示，截至2014年12月，我国网民规模达6.49亿人，互联网普及率为47.9%，较2013年底提升2.1%，手机网民规模达5.57亿人，较2013年底增加5672万人，中国网民中城市居民又占了绝大部分，城市中网络基础设施已经较为完备，这些都使得物联网和智慧城市的发展不会遇到太大的障碍。</p>
+<p>###4.1.3我国物联网智慧城市发展水平总体较高<br>由于我国近些年来对于新技术的扶持，我国物联网及智慧城市的发展总体上在国际前沿，众多的高校和企业都投入到对这些技术的研究之中：全国已经有很多的高校包括北京理工大学，北京邮电大学，南开大学等985工程院校开设了物联网专业及相关课程，这使得那些想要凭借相关技术创业的企业能够得到更多的专业人才，页能够让他们通过与高校合作站在一个比较高的高度。</p>
+<p>##4.2挑战</p>
+<p>机遇与挑战向来是并存的，往往机遇背后也隐藏着挑战，下面再具体谈一谈新技术的发展过程中，企业与我所面临的挑战。</p>
+<p>###4.2.1缺乏统筹规划和顶层设计</p>
+<p>我国各地政府机构积极开展推动物联网相关产业发展工作 , 成立了有关园区，产业联盟 , 但是在全国范围内尚未进行统筹规划，部门之间，地区之间 、行业之间的分割情况较为普遍 , 产业缺乏顶层设计 ,资源共享不足 。 此外 , 规划意识与协调机制薄弱 , 凸显出难以形成产业规划 、研究成本过高 、资源利用率过低 ，无序重复建设现象严重的态势 。以上这些情况的出现，都使得企业和高校及我们在运用新技术时捉襟见肘，力不从心。</p>
+<p>###4.2.2发展快速的反面是淘汰率高<br>就像是近几年来出现的互联网（移动互联网）的大浪一样，物联网及智慧城市的发展也是在快速路上进行的，第一个冲出起跑线的也许并非是最后的赢家，而笑到最后的往往是那些紧跟住大队的人，这对于企业来说，意味着企业一刻也不应当放松，而需要步步为营，高校和我们自身也一样，绝对不应该自满，吃老本儿，在如今这个时代，如果一味地吃老本儿，无论是高校，企业，还是我们自己，都会付出惨重的代价。发展快速意味着行业在争相创新，所以企业必须参与到物联网智慧城市建设当中的企业必须具有危机意识，必须认识到需要不断地创新紧跟技术发展潮流。在今天几年时间就能够创造出一家上市公司，几年时间也可以让一家公司从辉煌走向没落（看一下诺基亚就知道了）除此之外，企业还要有好的管理理念才能够坚持下去，不被淘汰。</p>
+<p>###4.2.3缺乏统一的标准体系<br>我国在物联网标准制定方面启动得比较早，也取得了明显的效果，但我国现在的标准还比较零散、缺乏、缺失，而且不统一。这些都使得企业在开发物联网相关项目时遇到很多额外的问题，不便于企业进行突破。<br>.</p>
+<p>#参考文献：<br>黄天航，刘瑞霖，党安荣. 智慧城市发展与低碳经济. 北京规划建设. 2011, 2: 39–44.<br>浅谈现场总线控制系统在火电厂中的应用_赵阳   信息技术<br>现场总线技术及其应用(第2版) 阳宪惠 清华大学出版社<br>现场总线技术在楼宇自控系统中的应用及其系统集成研究_周竹<br>现场总线技术在城市轻轨和地铁车辆控制系统中的应用_赵红卫<br>基于现场总线的城市污水处理自动控制系统的设计与实现_崔宗超<br>试论物联网引入带来的机遇与挑战  武明虎 , 张 宇 我国物联网产业发展的机遇和挑战   吕建东  马睿翔<br>创新 2.0 视野下的智慧城市 城市发展研究 宋刚 邬伦<br>物联网“十二五”发展规划<br>国家发展改革委办公厅关于组织开展2014-2016年国家物联网重大应用示范工程区域试点工作的通知<br>中国互联网络发展状况统计报告</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="tag"># 自动化</a>
+              <a href="/tags/%E7%8E%B0%E5%9C%BA%E6%80%BB%E7%BA%BF/" rel="tag"># 现场总线</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2015/06/21/201506/0621/" rel="prev" title="全球付虚拟信用卡退款问题">
+      <i class="fa fa-chevron-left"></i> 全球付虚拟信用卡退款问题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2015/06/24/201506/062402/" rel="next" title="智能窗帘设计过程及感想">
+      智能窗帘设计过程及感想 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

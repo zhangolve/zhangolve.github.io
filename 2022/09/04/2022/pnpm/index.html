@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="pnpm初体验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pnpm初体验">
+<meta property="og:url" content="http://hktkdy.com/2022/09/04/2022/pnpm/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="pnpm初体验">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-03T22:41:16.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.102Z">
+<meta property="article:author" content="Zhangolve">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hktkdy.com/2022/09/04/2022/pnpm/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>pnpm初体验 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2022/09/04/2022/pnpm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          pnpm初体验
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-04 06:41:16" itemprop="dateCreated datePublished" datetime="2022-09-04T06:41:16+08:00">2022-09-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E8%B0%88/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/09/04/2022/pnpm/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/09/04/2022/pnpm/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <div class="post-description">pnpm初体验</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="pnpm"><a href="#pnpm" class="headerlink" title="pnpm"></a>pnpm</h1><p>想利用它的一些优势</p>
+<ul>
+<li>快速 pnpm i –prefer-offline</li>
+<li>workspace </li>
+<li>publishConfig</li>
+</ul>
+<p>整体体验很不错。</p>
+<p>之前遇到的问题，我们有一个私有的npm包，这个包里面目前看来，有两块大的内容。</p>
+<p>经过我的改造之后，将原来的一个包，改成了多个包，那么他的优势在哪里呢？</p>
+<h1 id="monorepo"><a href="#monorepo" class="headerlink" title="monorepo"></a>monorepo</h1><p>monoRepo 这个概念近几年还蛮流行的，几个包，甚至是几个项目，在同一个repo里面管理，共享同一份代码，彼此之间有一定的联系，但是这些项目间又彼此独立。</p>
+<p>说起来，我在刚刚来到这个公司大概半年多之后，就有过想要把两个项目放在同一个repo里这样的想法，只是当时没有想到这样的学术名词，也没有一些好的技术方案。</p>
+<p>借助pnpm，其实是可以梳理成章地完成这些的。</p>
+<p>我们之前要用刚刚说到那两块内容，比如A和B，我们的做法是在webpack里面写Alias，以及在tsconfig里面去做alias，将这两个用alias的方式去作为两个独立的内容去看待。这样做有什么问题呢？当然是有问题的，也就是说业务的项目已经对第三方的包有了感知，这种感知并不是优雅的。这也是我比较不太能够接受的。</p>
+<p>而经过我改造之后，虽然我分拆成了多个包，但是我最后还是将这些分拆的包，放在了一个影子包里面。</p>
+<p>monorepo借由pnpm的workspace方便地实现，同时也方便我们去进行开发和调试。包与包之间的相互引用，非常方便，我们可以指定直接使用当前workspace下的本地包，这样也方便我们进行开发。</p>
+<h1 id="分拆包之后，更多的新包出现"><a href="#分拆包之后，更多的新包出现" class="headerlink" title="分拆包之后，更多的新包出现"></a>分拆包之后，更多的新包出现</h1><p>原本在一个包里面只有两个包，A和B，但是经过对项目的分析，我又添加了几个新包。每个包，都因为这种monorepo的概念，而显得非常合适。比如新添加的C包，就是一个导出umd，去做微前端项目间进行通讯的包。再来说，新添加的D包，就是一个脚本包，这个脚本包，就能够把几个项目里都用到的脚本整合在这里，避免代码的重复，利于维护。当然，刚才也说了，由于加了这么几个新包，我们也不可能每次加新包，都要去改webpack，tsconfig，这样又再次说明了之前不是一个优雅的解决方案。</p>
+<h1 id="速度"><a href="#速度" class="headerlink" title="速度"></a>速度</h1><p>之前遇到的问题，大概有两点，一个是生成新包的过程略慢，当时测算了一下，每次新包build的过程，大概是6分钟。而通过pnpm去生成新包，这种缓存机制还是很明显的让速度加快的，现在大概一分多钟，就能够将包生成，当然前提是没有deps的更新等其他情况。</p>
+<p>另一个问题，当新包生成之后，想要安装这个新包。在 npm i的时候，发现这个过程也是比较慢，经常卡顿的，通过调整代码代码结构，改成monorepo这样，也能够一定程度加速这个过程，当然，需要说明的是，对这个过程改进更明显的，应该是使用 –prefer-offline，这个即便是原生npm也是支持这一参数的。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/19/2022/%E5%9B%9B%E9%83%8E%E6%8E%A2%E6%AF%8D/" rel="prev" title="四郎探母">
+      <i class="fa fa-chevron-left"></i> 四郎探母
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/17/2022/%E4%BA%8C%E5%A7%A8%E4%B8%80%E5%AE%B6/" rel="next" title="二姨一家">
+      二姨一家 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pnpm"><span class="nav-number">1.</span> <span class="nav-text">pnpm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#monorepo"><span class="nav-number">2.</span> <span class="nav-text">monorepo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%8B%86%E5%8C%85%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%9B%B4%E5%A4%9A%E7%9A%84%E6%96%B0%E5%8C%85%E5%87%BA%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">分拆包之后，更多的新包出现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9F%E5%BA%A6"><span class="nav-number">4.</span> <span class="nav-text">速度</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

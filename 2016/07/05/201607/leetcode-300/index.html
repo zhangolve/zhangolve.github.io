@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="问题描述：  Given an unsorted array of integers, find the length of longest increasing subsequence.   For example,Given [10, 9, 2, 5, 3, 7, 101, 18],The longest increasing subsequence is [2, 3, 7, 101], th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【LEETCODE-300】最长增加子序列问题">
+<meta property="og:url" content="http://hktkdy.com/2016/07/05/201607/leetcode-300/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="问题描述：  Given an unsorted array of integers, find the length of longest increasing subsequence.   For example,Given [10, 9, 2, 5, 3, 7, 101, 18],The longest increasing subsequence is [2, 3, 7, 101], th">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-07-05T08:40:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.090Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="动态规划">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hktkdy.com/2016/07/05/201607/leetcode-300/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【LEETCODE-300】最长增加子序列问题 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2016/07/05/201607/leetcode-300/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【LEETCODE-300】最长增加子序列问题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-07-05 16:40:49" itemprop="dateCreated datePublished" datetime="2016-07-05T16:40:49+08:00">2016-07-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2016/07/05/201607/leetcode-300/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2016/07/05/201607/leetcode-300/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>问题描述：</p>
+<blockquote>
+<p>Given an unsorted array of integers, find the length of longest increasing subsequence.</p>
+</blockquote>
+<blockquote>
+<p>For example,<br>Given [10, 9, 2, 5, 3, 7, 101, 18],<br>The longest increasing subsequence is [2, 3, 7, 101], therefore the length is 4. Note that there may be more than one LIS combination, it is only necessary for you to return the length.</p>
+</blockquote>
+<blockquote>
+<p>Your algorithm should run in O(n2) complexity.</p>
+</blockquote>
+<blockquote>
+<p>Follow up: Could you improve it to O(n log n) time complexity?</p>
+</blockquote>
+<span id="more"></span>
+
+<p>给定一个不规则的整数数组，找出最长的增加的子序列<br>比如给定数组为[10, 9, 2, 5, 3, 7, 101, 18]，最长增加子序列为 [2, 3, 7, 101，因此这个长度是4.这里所说的子序列，要求是值是一直在增加的。这时候可能会有多种方案，但是我们需要的只是这个子序列的长度值。</p>
+<p>算法的复杂度in O(n2)。</p>
+<p>分析：遍历</p>
+<p>来看一下使用Java实现的代码：</p>
+<pre><code>public class Solution &#123;  
+    public int lengthOfLIS(int[] nums) &#123;  
+        //[10, 2, 5, 3, 7],  
+        if(nums==null || nums.length&lt;1) return 0;  
+          
+        int [] d = new int[nums.length];  //动态规划中的数组，默认的长度是nums这个原数组的长度。
+        d[0] = 1;        
+        int max = 1;  
+        for(int i=1; i&lt;nums.length; i++) &#123;  
+            d[i] = 1;    
+            for(int j=0; j&lt;i; j++) &#123;  
+                if(nums[i] &gt; nums[j]) &#123;  
+                    d[i] = Math.max(d[i], d[j]+1);  
+                &#125;  
+            &#125;  
+            max = Math.max(max, d[i]);  
+        &#125;  
+        return max;  
+    &#125;  
+&#125;  
+</code></pre>
+<p>看网络上对这道题的分析，说是一道动态规划的问题。</p>
+<blockquote>
+<p>An easy dynamic programming problem.</p>
+</blockquote>
+<blockquote>
+<p>Given array arr, we can define another array dp, dp[i] means the length of longest increasing subsequence when the last item is arr[i]. How to get dp[i]? We can get it by enumerating from index&#x3D;0 to index&#x3D;i-1(for instance j), and check the value of arr[j] and arr[i], if arr[i] &gt; arr[j], then dp[i]&#x3D;max(dp[i],dp[j]+1).</p>
+</blockquote>
+<blockquote>
+<p>The algorithm above runs in O(n2) complexity, how to improve it to O(n log n) time complexity? Use binary search, see the code in detail. My runtime beats 100.00% of javascript submissions.</p>
+</blockquote>
+<p>我最初写的js代码：</p>
+<pre><code>/**
+ * @param &#123;number[]&#125; nums
+ * @return &#123;number&#125;
+ */
+var lengthOfLIS = function(nums) &#123;
+    var j=1;
+    var length=0;
+    var newArray=[0,0];
+    for(var m=2;m&lt;nums.length;m++)  //这是一个外嵌套
+    &#123;
+    for(var i=m;i&lt;nums.length;i++)
+    &#123;
+        if(nums[i]&lt;nums[i+j])
+        &#123;
+            newArray[i]=nums[i];
+            newArray[i+j]=nums[i+j];
+            
+        &#125;
+        
+        else&#123;
+            j++;
+            i--;
+            
+        &#125;
+        
+    &#125;
+     for(var k= 0 ;k&lt;newArray.length;k++)
+ &#123;
+             if(newArray[k] === &quot;&quot; || typeof(newArray[k]) === &quot;undefined&quot;)
+             &#123;
+                      newArray.splice(k,1);
+                      k= k-1;
+                  
+             &#125;
+              
+ &#125;
+     
+     if(length&lt;newArray.length)
+     &#123;
+         length=newArray.length;
+         return newArray;
+     &#125;
+    &#125;
+    
+
+&#125;;
+</code></pre>
+<p>在学习「动态规划」的过程中，也了解到<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/23995189/answer/35324479">什么是动态规划？动态规划的意义是什么?</a></p>
+<p>原来的英文解释稀里糊涂，在这个知乎回答中看到了对问题的重新解释：</p>
+<ul>
+<li>给定一个数列，长度为N，</li>
+<li>设F_{k}为：以数列中第k项结尾的最长递增子序列的长度.</li>
+<li>求F_{1}..F_{N} 中的最大值.</li>
+</ul>
+<p>显然，这个新问题与原问题等价。<br>而对于F_{k}来讲，F_{1} .. F_{k-1}都是F_{k}的子问题：因为以第k项结尾的最长递增子序列（下称LIS），包含着以第1..k-1中某项结尾的LIS。</p>
+<p>这里解释一下，比如原序列为[1,3,2,5,7,4],这里如果取k&#x3D;5的话，这个时候N&#x3D;6，代入进来看。给定的序列长度为6，F_{k}即为F_{5}&#x3D;4,这个子序列就是[1,3,5,7]，注意这个时候以第5项结尾（也就是以7结尾）的最长子序列是一个范围更大的序列，他也一定包含着小序列。当取k&#x3D;4的时候，这个时候最长子序列为[1,3,5]，而这个[1,3,5]是属于[1,3,5,7]这个序列的。</p>
+<p>这个时候问题就可以转化了（数学上说的状态转移方程）：</p>
+<p>以第k项结尾的LIS的长度是：保证第i项比第k项小的情况下，以第i项结尾的LIS长度加一的最大值，取遍i的所有值（i小于k）。<br>这个时候，就需要用到递归了。</p>
+<p>经过这样的理解之后，我自己又看了前面提到的Java版本的程序，写出了下面的程序：</p>
+<pre><code>/**
+ * @param &#123;number[]&#125; nums
+ * @return &#123;number&#125;
+ */
+var lengthOfLIS = function(nums) &#123;
+    
+    if(nums===null||nums.length&lt;1)
+    &#123;
+        return 0;
+    &#125;
+    
+    
+    
+    var dp=[];
+    dp[0]=1;
+    
+    for(var i=1;i&lt;nums.length;i++)
+    &#123;
+        dp[i]=1;
+        for(var j=0;j&lt;i;j++)
+        &#123;
+        if(nums[j]&lt;nums[i])
+        &#123;   
+            
+            dp[i]=Math.max(dp[j]+1,dp[i]);  //比较
+        &#125;
+        &#125;
+    &#125;
+    var max=1;
+    for(var k=0;k&lt;dp.length;k++)
+    &#123;
+        if(max&lt;dp[k])
+        &#123;
+            max=dp[k];
+        &#125;
+    &#125;
+    return max;
+&#125;;
+</code></pre>
+<p>上面的程序，总体设计思路是与前面的Java版本相同的，也是状态转移方程的思路。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 动态规划</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/06/14/201606/something-about-yaojianweng/" rel="prev" title="Y同学">
+      <i class="fa fa-chevron-left"></i> Y同学
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/07/05/201606/Craig%20Sager/" rel="next" title="那个穿花西装的男人--Craig Sager">
+      那个穿花西装的男人--Craig Sager <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

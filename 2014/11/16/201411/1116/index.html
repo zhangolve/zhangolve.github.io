@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="如果你不想听我废话，可以直接拉到下面的总结部分这件事折腾了我一天时间，总觉得要是不写点什么亏得慌，其实写了照样亏，哈哈。 #之所以要这么刷入Android 5.0理由如下： ##1不能收到OTA我之前用的rom是cm11，众所周知，cm11只能接到cm的更新，所以这意味着我不可能得到官方的ota，所以尽管ota有很多好处，比如可以不用再root，不用再开启google now，不用再开启位置信息，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nexus 4刷入Android 5.0初体验">
+<meta property="og:url" content="http://hktkdy.com/2014/11/16/201411/1116/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="如果你不想听我废话，可以直接拉到下面的总结部分这件事折腾了我一天时间，总觉得要是不写点什么亏得慌，其实写了照样亏，哈哈。 #之所以要这么刷入Android 5.0理由如下： ##1不能收到OTA我之前用的rom是cm11，众所周知，cm11只能接到cm的更新，所以这意味着我不可能得到官方的ota，所以尽管ota有很多好处，比如可以不用再root，不用再开启google now，不用再开启位置信息，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/63a3d9b7jw1embjn42jakj20ao0hsdg6.jpg">
+<meta property="og:image" content="http://hktkdy.qiniudn.com/lillipop1.png">
+<meta property="og:image" content="http://hktkdy.qiniudn.com/lillipop2.png">
+<meta property="og:image" content="http://hktkdy.qiniudn.com/lillipop3.png">
+<meta property="og:image" content="http://hktkdy.qiniudn.com/lillipop4.png">
+<meta property="og:image" content="http://hktkdy.qiniudn.com/lillipop5.png">
+<meta property="article:published_time" content="2014-11-16T01:59:16.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.086Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="手机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/63a3d9b7jw1embjn42jakj20ao0hsdg6.jpg">
+
+<link rel="canonical" href="http://hktkdy.com/2014/11/16/201411/1116/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>nexus 4刷入Android 5.0初体验 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2014/11/16/201411/1116/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          nexus 4刷入Android 5.0初体验
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-11-16 09:59:16" itemprop="dateCreated datePublished" datetime="2014-11-16T09:59:16+08:00">2014-11-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2014/11/16/201411/1116/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2014/11/16/201411/1116/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>如果你不想听我废话，可以直接拉到下面的<strong>总结部分</strong><br>这件事折腾了我一天时间，总觉得要是不写点什么亏得慌，其实写了照样亏，哈哈。</p>
+<p>#之所以要这么刷入Android 5.0理由如下：</p>
+<p>##1不能收到OTA<br>我之前用的rom是cm11，众所周知，cm11只能接到cm的更新，所以这意味着我不可能得到官方的ota，所以尽管ota有很多好处，比如可以不用再root，不用再开启google now，不用再开启位置信息，但是因为你的系统不是原生的，所以必须通过刷机来使用Android 5.0<br>##2Material design<br>随着之前一系列的google应用程序以及国外一些优秀的app用上了Material design，越来越感觉到cm11的整体界面与这些app的不相适应，所以为了更好的使用体验觉得有必要刷入Android 5.0.</p>
+<p>##3推迟的原因让你更加渴望<br>google官方在北京时间2014年11月15凌晨放出了nexus 4的Android 5.0镜像文件，而在前一天google的一位工作人员在google+上面写下了nexus 4的镜像文件也即将发布的消息，尽管nexus 4 Android 5.0的镜像文件的比nexus 5和nexus 7的发布得要晚，但是对于nexus 4用户，比如我还是足够激动的。<br>于是当我15号早上打开电脑，因为之前谷歌那个工作人员消息的原因，于是上了google+去看相关的东西，结果发现镜像文件已经放出，于是果断刷机。<br>##4单纯的想要体验一番Android 5.0，<br>虽然之前刷入过6月份android L刚刚放出来时的开发者预览版镜像，但是那个时候甚至连google自己的官方app也没有material design，整个系统ui不错，但是与app的搭配使用还很不友好。而这个时候，就如我在1中所说，基本上是大势所趋。<br>##5出现了问题<br>之前说过，我的nexus 4在拨打电话和接听电话方面出了点问题，有人说是软件问题，所以希望通过刷机来解决，毕竟5.0是最新的系统。<br>##顾虑：<br>当然是刷入Android 5.0之后的root，开启google now，以及安装一系列app的问题了，这些问题都会让我花费很长的时间来解决，说实话感觉像是挖了个坑。<br>#过程：<br>过程其实很简单，就像是之前我在刷入L 的文字中写下的那样，利用<a href="http://hktkdy.com/2014/09/08/201409/0908/">刷机精灵的一键刷机</a>，直接就能刷入，不过不知道为什么第一次刷入失败了，第二次才成功，可能是网络原因吧。<br>刷机后：<br>刷机之后开机非常得慢，大概十几分钟一直停留在那个开机动画上，当最后那个动画变成了ANDROID的时候，很激动有木有。</p>
+<p>然后是选择语言，选择wlan接入，选择自己的google账号，今时不同往日，当年我买这部手机的时候选择自己的google账号还能够正常的登录，现在却只有跳过这个步骤等到顺利开机之后翻墙之后才能登录了。说多了都是泪啊！</p>
+<p>开始最先想到的是同步联系人，联系人在google账号上面所以必须登录google了，于是就是翻墙的问题，选了之前用过的fqrouter翻墙路由器这个神器，结果它好像还不能够在Android5.0上面使用，于是又找了一个寻路，结果也是无效，经过google之后找到了一款名叫赛风的app，感觉还不错，速度与fqrouter差不多，不过不太稳定。（链接百度云）</p>
+<p>顺利登录google之后，同步了联系人等信息之后下载了几个常用的app，截了张lillipop棒棒糖的图到微博上晒了晒<br><img src="http://ww1.sinaimg.cn/large/63a3d9b7jw1embjn42jakj20ao0hsdg6.jpg"><br>然后就想到了我在理由5中提到的那件事情，结果经过拨打10010的试验，发现比之前的情况还要糟糕，我甚至考虑过刷入其他rom比如我一直笔记比较感兴趣的魔趣，很庆幸最后没有刷入。<br>我在网上 的一个<a target="_blank" rel="noopener" href="https://plus.google.com/100761412958725838270/posts/KcyvdJndFiy">求助帖</a>：</p>
+<blockquote>
+<p>android 5.0还有没有“按电源键挂断通话”的设置了？我的n4可能是传感器出了问题,刷过几个rom打电话时都是黑屏,上一个rom是cm11,打电话之后黑屏然后再按下电源键可以点亮屏幕,但是不能按动屏幕上上的键盘,这个5.0刷完之后就变成了打出去电话直接黑屏,按动电源键之后闪亮一次,不会常亮.好纠结啊,5.0其实很不错,只有这一个问题(应该不是软件的问题)让我很蛋疼，有什么方法吗？比如按电源键挂断通话，或者其他第三方的拨号软件。附上我上一次遇到这个情况的求助帖</p>
+</blockquote>
+<p>，于是我发现这才是最大的坑，就为了这件事情纠结了老长时间。</p>
+<p>经过google之后，看到一篇<a target="_blank" rel="noopener" href="http://www.xuexx.com/archives/3442">文章</a>，死马当活马医得把手机贴膜揭掉，问题才得以解决，这个问题也是纠结了我两个多月的问题。<br>#总结：<br>说是初体验，结果写着写着写成了因为刷机而有的各种事情。没有给其他人有用的信息，这真的好么？<br>所以现在总结一下对于读者可能有用的点：<br>1刷机精灵这个软件虽然有点流氓，但是刷机还是比较方便的，对于一些像我这样的小白可以使用。<br>2如果你的nexus 4像我的一样，拨打或者接听电话出现黑屏，请把膜揭掉。<br>3如果你有上google的愿望，想要翻墙，暂时还是推荐用用那个赛风软件，还不错。赛风下载：链接: <a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1bnix1vx">http://pan.baidu.com/s/1bnix1vx</a> 密码: w58a<br>4刷机之后的整体感觉就是非常流畅，但是就像某些人说的那样BAT这三家大厂的app真的很不给力。<br>5刷机是个坑，要做的事挺多的，刷前请谨慎考虑，对于上班族等比较忙的还是建议等ota吧，就是省事。<br>最后放几张截图吧：<br><img src="http://hktkdy.qiniudn.com/lillipop1.png" alt="好像充电速度还是很快的"><br><img src="http://hktkdy.qiniudn.com/lillipop2.png" alt="之前我遇到的问题就是向联通拨号后屏幕离开变暗，按电源键只会闪亮"><br><img src="http://hktkdy.qiniudn.com/lillipop3.png"><br><img src="http://hktkdy.qiniudn.com/lillipop4.png" alt="设置里面没有了按动电源键取消通话，也没有了按音量键切歌和唤醒屏幕"></p>
+<p><img src="http://hktkdy.qiniudn.com/lillipop5.png"><br>#2015年2月9日更新：<br>又看到自己这篇博客，补充点也许无关紧要的：<br>在升级完android 5.0大概一个月之后，谷歌就放出了android 5.0.1的包，但是因为我之前已经将手机root了（其目的其实也仅仅是为了开一个地理位置），于是导致机器人倒地的结果，最后是通过线刷时修改包里面的文件去 -t 解决的，当然这次刷入android 5.0.1之后，默认又取消了root，而我衡量之后，也觉得没有root的必要了，理由嘛，自然是因为google本身的升级频繁和我自己对手机root的要求不高。<br>另外因为买了一个vps，自己搭了shadowsocks，使用了shadowsocks的android 客户端，使用体验很不错，那个赛风也不需要了。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%89%8B%E6%9C%BA/" rel="tag"># 手机</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2014/11/09/201411/1109/" rel="prev" title="关于苹果产品中日美三国价格直观对比">
+      <i class="fa fa-chevron-left"></i> 关于苹果产品中日美三国价格直观对比
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2014/11/23/201411/1123/" rel="next" title="青联，那些人那些事">
+      青联，那些人那些事 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

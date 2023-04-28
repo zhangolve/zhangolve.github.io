@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="写在前面这些天在看朴灵的《node.js 深入浅出》 这本书，也对Javascript中的异步调用了有了更深入的一些理解。想起来我最早遇到的有关JS中的异步问题，应该就是在学习Ajax 的时候，当时对Ajax的概念甚至还不清楚，只是晓得Ajax能够用来接收后台API传过来的数据，后来也踩了几个坑，便有了想要梳理一番的想法，遂有此文吧。内容基础，倘若有不对之处，欢迎讨论。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ajax异步调用踩过的坑">
+<meta property="og:url" content="http://hktkdy.com/2016/12/23/201612/some-trouble-about-ajax/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="写在前面这些天在看朴灵的《node.js 深入浅出》 这本书，也对Javascript中的异步调用了有了更深入的一些理解。想起来我最早遇到的有关JS中的异步问题，应该就是在学习Ajax 的时候，当时对Ajax的概念甚至还不清楚，只是晓得Ajax能够用来接收后台API传过来的数据，后来也踩了几个坑，便有了想要梳理一番的想法，遂有此文吧。内容基础，倘若有不对之处，欢迎讨论。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/qianduan3.jpg">
+<meta property="article:published_time" content="2016-12-23T07:18:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.094Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="jQuery">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/qianduan3.jpg">
+
+<link rel="canonical" href="http://hktkdy.com/2016/12/23/201612/some-trouble-about-ajax/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Ajax异步调用踩过的坑 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2016/12/23/201612/some-trouble-about-ajax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ajax异步调用踩过的坑
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-23 15:18:49" itemprop="dateCreated datePublished" datetime="2016-12-23T15:18:49+08:00">2016-12-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2016/12/23/201612/some-trouble-about-ajax/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2016/12/23/201612/some-trouble-about-ajax/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/qianduan3.jpg"></p>
+<hr>
+<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>这些天在看朴灵的<a target="_blank" rel="noopener" href="https://book.douban.com/subject/25768396/">《node.js 深入浅出》</a> 这本书，也对Javascript中的异步调用了有了更深入的一些理解。想起来我最早遇到的有关JS中的异步问题，应该就是在学习Ajax 的时候，当时对Ajax的概念甚至还不清楚，只是晓得Ajax能够用来接收后台API传过来的数据，后来也踩了几个坑，便有了想要梳理一番的想法，遂有此文吧。内容基础，倘若有不对之处，欢迎讨论。</p>
+<span id="more"></span>
+
+
+<h1 id="Ajax的写法问题"><a href="#Ajax的写法问题" class="headerlink" title="Ajax的写法问题"></a>Ajax的写法问题</h1><p>曾经在网上看到有人发过帖子，去面试的时候面试官要求手写原生JS的Ajax格式，于是帖子下面纷纷在喷那位面试官。在这里，我说的Ajax 指是调用jQuery 库之后的Ajax写法了。</p>
+<p>首先，我说一下我自己最常用的一种<a target="_blank" rel="noopener" href="https://www.sitepoint.com/use-jquerys-ajax-function/">Ajax写法</a> </p>
+<pre><code>    $.ajax(&#123;
+       url: &#39;http://api.joind.in/v2.1/talks/10889&#39;,
+       data: &#123;
+          format: &#39;json&#39;
+       &#125;,
+       type: &#39;GET&#39;,
+       async:true,
+       error: function() &#123;
+          $(&#39;#info&#39;).html(&#39;&lt;p&gt;An error has occurred&lt;/p&gt;&#39;);
+       &#125;,
+       dataType: &#39;jsonp&#39;,
+       success: function(data) &#123;
+          var $title = $(&#39;&lt;h1&gt;&#39;).text(data.talks[0].talk_title);
+          var $description = $(&#39;&lt;p&gt;&#39;).text(data.talks[0].talk_description);
+          $(&#39;#info&#39;)
+             .append($title)
+             .append($description);
+       &#125;,
+       
+    &#125;);
+</code></pre>
+<h1 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h1><p>我曾经有一段时间弄不明白Ajax的同步和异步，就像是这个<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/14220321/how-do-i-return-the-response-from-an-asynchronous-call">问题中</a> 给出的写法那样写。</p>
+<pre><code>function foo() &#123;
+    var result;
+    $.ajax(&#123;
+        url: &#39;...&#39;,
+        type：&#39;GET&#39;,
+        success: function(response) &#123;
+            result = response;
+            // return response; // &lt;- I tried that one as well
+        &#125;
+    &#125;);
+    return result;
+&#125;
+var result = foo(); // It always ends up being `undefined`.
+//use result continue
+</code></pre>
+<p> 当发现不能实现自己想要的效果的时候，我通过网络搜索，也为了图省事，找到了这样一种写法。</p>
+<pre><code>    function foo() &#123;
+    var result;
+    $.ajax(&#123;
+        url: &#39;...&#39;,
+        async:false,
+        type:&#39;GET&#39;,
+        success: function(response) &#123;
+            result = response;
+            // return response; // &lt;- I tried that one as well
+        &#125;
+    &#125;);
+    return result;
+&#125;
+var result = foo(); // have the result value,not undefined
+//use result continue
+</code></pre>
+<p>上面的写法，相比于前面result为undefined 的情况，显然从结果上看是成功了，两种写法区别，只在于在$.ajax()函数内部添加了一个async:false 的条件，也就是将同步属性设置为了错，即此时调用Ajax之后实际上是走的同步流程。如果直接使用这样的写法，使用Chrome浏览器的话，打开浏览器的控制台后，调用Ajax的时候，控制台上会输出警告信息，不建议使用这种同步方法。然而，我当时以解决问题为目的，解决完这个问题很长一段时间，我也就没有再深入研究这个问题。</p>
+<h1 id="可以这样用"><a href="#可以这样用" class="headerlink" title="可以这样用"></a>可以这样用</h1><p>后来看了一些关于JS异步方面的博客和书籍，觉得既然JS的优势是他的异步，那么就应该充分发挥它的这种优势。然后在实际的项目中也发现，如果调用后台服务，数据量很大的话，使用同步机制的话，会造成页面的假卡死，而如果使用异步调用的话，我们可以在接收数据期间添加一些过渡动画来进行过渡，防止假死。在正式的项目中，当然也要避免使用async:false的情况了。</p>
+<p>然后就有了下面的Ajax写法</p>
+<pre><code>    function foo() &#123;
+    var result;
+    $.ajax(&#123;
+        url: &#39;...&#39;,
+        type:&#39;GET&#39;,
+        success: function(response) &#123;
+            result = response;
+            
+           //use result continue
+           console.log(result);
+           alert(result)
+        &#125;
+    &#125;);
+   
+&#125;
+</code></pre>
+<p>上面的Ajax 写法，乍一看，好像并没有什么不同。但是事实上，将Async:false去掉了，也就是使用了默认的异步方法。另外，也是最重要的，将需要使用 <code>result</code> 的流程放到了success响应函数内部，即可以等到success响应之后立刻执行。仍然是异步处理的。</p>
+<h1 id="再进一步"><a href="#再进一步" class="headerlink" title="再进一步"></a>再进一步</h1><p>我们可以把success 的响应函数单独提出来，下面的代码可以在<a target="_blank" rel="noopener" href="http://codepen.io/zhangolve/pen/XNQGGo">我的codepen</a> 找到，并无问题(jQuery 的ajax我倒是真的能纯手写了)。</p>
+<pre><code>let test =function(response)&#123;
+  console.log(response)
+&#125;
+$.ajax(&#123;
+  url:&#39;https://api.github.com/users&#39;,
+  type:&#39;GET&#39;,
+  datatype:&#39;JSON&#39;,
+  success:test
+&#125;)
+</code></pre>
+<h1 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h1><p>后来我又遇到了另外的一个问题，由于我最近的项目中使用了node.js+React+antd+webpack ，在项目中有一些函数需要在很多组件中频繁使用，因此我想到了可以对这些函数进行封装，这样不仅能够让每个组件中的代码量少很多，而且逻辑上也更加清晰了，还方便维护，很好。最初，我考虑到的是能不能使用React的一些特性来实现可复用函数，后来发现这种思路并不正确。实际上，node已经提供了引入导出的功能，我们完全可以将我们需要复用的文件写到一个模块里，然后只需要在合适的组件中引入模块即可。关于npm 的引入导出，可以看这篇<a target="_blank" rel="noopener" href="http://web.jobbole.com/87536/">文章</a> 。</p>
+<p>这个时候，就又用到了前面提到的调用github API例子中的方法了,下面以代码示例(我目前使用ES6 编写程序，示例也是ES6语法)。</p>
+<pre><code>let student=(name,age,func)=&gt;&#123;
+let url = &#39;www.example.com/v1&#39;;
+ $.ajax(&#123;
+   type: &#39;POST&#39;,
+   url:url,
+   dataType: &#39;json&#39;,
+   data: &#123;
+     &#39;age&#39;:age, // 年龄
+     &#39;name&#39;: name, //姓名
+   &#125;,
+   async:true,
+   success:func
+ &#125;);
+   &#125;
+export default student
+</code></pre>
+<p>这个时候当我们需要在我们的组件中使用上面的函数时，只需要在文件中引入student，并且传入相应的参数。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>正如我本文提到的那个示例，stackoverflow上那个关于这个这个话题的<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/14220321/how-do-i-return-the-response-from-an-asynchronous-call">问题</a>和相关回答给了我很大启发。有些so上面的大神也提出了使用ES6 的promise语法来实现，在这里我就不做讨论了。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+              <a href="/tags/jQuery/" rel="tag"># jQuery</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/12/21/201612/automation-to-frontend-4/" rel="prev" title="我一个自动化本科生怎么就做了前端呢？(4)">
+      <i class="fa fa-chevron-left"></i> 我一个自动化本科生怎么就做了前端呢？(4)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/12/28/201612/automation-to-frontend-5/" rel="next" title="我一个自动化本科生怎么就做了前端呢？(5)">
+      我一个自动化本科生怎么就做了前端呢？(5) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ajax%E7%9A%84%E5%86%99%E6%B3%95%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">Ajax的写法问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E5%92%8C%E5%BC%82%E6%AD%A5"><span class="nav-number">3.</span> <span class="nav-text">同步和异步</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%AF%E4%BB%A5%E8%BF%99%E6%A0%B7%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">可以这样用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%8D%E8%BF%9B%E4%B8%80%E6%AD%A5"><span class="nav-number">5.</span> <span class="nav-text">再进一步</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%81%E8%A3%85"><span class="nav-number">6.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-number">7.</span> <span class="nav-text">最后</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

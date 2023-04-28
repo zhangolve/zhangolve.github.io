@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="动机最近一直在用Spotify在线听歌，Spotify的好处在于能够发现更多好听的歌曲。然而，它的订阅实在是太贵了，因此也就不能够离线下载，而虽然我在用Spotify，但是也没有抛弃网易云音乐，用它来下载歌曲也很不错，网易云音乐的评论区也往往欢乐多多，因此，我就有了这个想法，想要将Spotify的歌单转到网易云音乐歌单。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="18行Python教你Spotify 歌单转网易云歌单">
+<meta property="og:url" content="http://hktkdy.com/2016/08/09/201608/spotify-to-easenet/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="动机最近一直在用Spotify在线听歌，Spotify的好处在于能够发现更多好听的歌曲。然而，它的订阅实在是太贵了，因此也就不能够离线下载，而虽然我在用Spotify，但是也没有抛弃网易云音乐，用它来下载歌曲也很不错，网易云音乐的评论区也往往欢乐多多，因此，我就有了这个想法，想要将Spotify的歌单转到网易云音乐歌单。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/exportify.jpg">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/csv2json.jpg">
+<meta property="article:published_time" content="2016-08-09T06:42:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.094Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="音乐">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/exportify.jpg">
+
+<link rel="canonical" href="http://hktkdy.com/2016/08/09/201608/spotify-to-easenet/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>18行Python教你Spotify 歌单转网易云歌单 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2016/08/09/201608/spotify-to-easenet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          18行Python教你Spotify 歌单转网易云歌单
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-09 14:42:49" itemprop="dateCreated datePublished" datetime="2016-08-09T14:42:49+08:00">2016-08-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%88%86%E4%BA%AB/" itemprop="url" rel="index"><span itemprop="name">分享</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2016/08/09/201608/spotify-to-easenet/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2016/08/09/201608/spotify-to-easenet/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h1><p>最近一直在用Spotify在线听歌，Spotify的好处在于能够发现更多好听的歌曲。然而，它的订阅实在是太贵了，因此也就不能够离线下载，而虽然我在用Spotify，但是也没有抛弃网易云音乐，用它来下载歌曲也很不错，网易云音乐的评论区也往往欢乐多多，因此，我就有了这个想法，想要将Spotify的歌单转到网易云音乐歌单。</p>
+<span id="more"></span>
+
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>上网google了一番之后，发现确实有很多的中文用户乃至于外国用户在纠结着怎样导出Spotify的歌单甚至是下载整个歌单的歌曲。我首先找到了<a target="_blank" rel="noopener" href="https://rawgit.com/watsonbox/exportify/master/exportify.html">Exportify</a> 这个网站，它是能够通过接入Spotify的API来将Spotify的歌单找到并支持导出为CSV格式的文件。</p>
+<p>而我们知道，网易云音乐也是支持导入歌单的，但仅限于酷狗或酷我的歌单，而酷狗的歌单文件是.kgl格式的，因此如果要想将Spotify歌单转到网易云音乐歌单，我们就首先需要将这种CSV格式的文件转成kgl格式的文件。</p>
+<p>本来我是想着用JS的，因为最近一段时间都在用JS，但是从操作文件的角度上讲，我觉得Python还是更有优势的。虽然Python已经很久没用了，但是还是想尝试一下。</p>
+<h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><h2 id="1-导出Spotify歌单"><a href="#1-导出Spotify歌单" class="headerlink" title="1.导出Spotify歌单"></a>1.导出Spotify歌单</h2><p>使用刚才提到的<a target="_blank" rel="noopener" href="https://rawgit.com/watsonbox/exportify/master/exportify.html">Exportify</a>  导出歌单，在此过程中，需要Spotify的授权。</p>
+<p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/exportify.jpg"></p>
+<p>授权之后经过分析会出现类似上面的界面，这个时候你只需要挑选你想要导出的歌单并导出之即可。</p>
+<h2 id="2-CSV转JSON（这是之前的思路）"><a href="#2-CSV转JSON（这是之前的思路）" class="headerlink" title="2.CSV转JSON（这是之前的思路）"></a><del>2.CSV转JSON（这是之前的思路）</del></h2><p><del>用记事本打开CSV文件(你也可以打开试试)，发现使用Python对它直接处理并不是很方便。因此，想到首先对之转化为JSON格式文件。</del></p>
+<p><del>用记事本(或其他文本编辑器均可)打开CSV文件，然后全选其中的内容,把内容复制到<a target="_blank" rel="noopener" href="http://www.csvjson.com/csv2json">csv2json</a>进行转换：</del></p>
+<p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/csv2json.jpg"></p>
+<p><del>转换完成之后如上图所示，这个时候我们看到已经出现了JSON。</del></p>
+<h2 id="3-Python文件操作"><a href="#3-Python文件操作" class="headerlink" title="3.Python文件操作"></a>3.Python文件操作</h2><h3 id="3-1-分析KGL-文件"><a href="#3-1-分析KGL-文件" class="headerlink" title="3.1 分析KGL 文件"></a>3.1 分析KGL 文件</h3><p>为了分析KGL文件，我从网络上下载了一个酷狗歌单，它的基本结构是：</p>
+<pre><code>    &lt;?xml version=&quot;1.0&quot; encoding=&quot;windows-1252&quot;?&gt;
+    &lt;List ListName=&quot;默认列表&quot;&gt;
+    &lt;File&gt;
+    &lt;MediaFileType&gt;0&lt;/MediaFileType&gt;
+    &lt;FileName&gt;邓紫棋 - 泡沫.mp3&lt;/FileName&gt;
+    &lt;FilePath&gt;.&lt;/FilePath&gt;
+    &lt;FileSize&gt;4186975&lt;/FileSize&gt;
+    &lt;Duration&gt;258000&lt;/Duration&gt;
+    &lt;Hash&gt;36542b20231db1633eea72f7d6b27492&lt;/Hash&gt;
+    &lt;Lyric&gt;F:\KuGou\Lyric\邓紫棋 - 泡沫-36542b20231db1633eea72f7d6b27492.krc&lt;/Lyric&gt;
+    &lt;Bitrate&gt;128000&lt;/Bitrate&gt;
+    &lt;MandatoryBitrate&gt;0&lt;/MandatoryBitrate&gt;
+&lt;/File&gt;
+&lt;File&gt;
+    &lt;MediaFileType&gt;0&lt;/MediaFileType&gt;
+    &lt;FileName&gt;灌篮高手 - 好想大声说我爱你.mp3&lt;/FileName&gt;
+    &lt;FilePath&gt;.&lt;/FilePath&gt;
+    &lt;FileSize&gt;1618124&lt;/FileSize&gt;
+    &lt;Duration&gt;231000&lt;/Duration&gt;
+    &lt;Hash&gt;34e31be84ce3d7c0cfad66e28c0b8220&lt;/Hash&gt;
+    &lt;Lyric&gt;F:\KuGou\Lyric\灌篮高手 - 好想大声说我爱你-34e31be84ce3d7c0cfad66e28c0b8220.krc&lt;/Lyric&gt;
+    &lt;Bitrate&gt;56000&lt;/Bitrate&gt;
+    &lt;MandatoryBitrate&gt;128000&lt;/MandatoryBitrate&gt;
+&lt;/File&gt;
+&lt;File&gt;
+    &lt;MediaFileType&gt;0&lt;/MediaFileType&gt;
+    &lt;FileName&gt;筷子兄弟 - 小苹果.mp3&lt;/FileName&gt;
+    &lt;FilePath&gt;.&lt;/FilePath&gt;
+    &lt;FileSize&gt;3382542&lt;/FileSize&gt;
+    &lt;Duration&gt;211000&lt;/Duration&gt;
+    &lt;Hash&gt;fcd49446e26461d95433e9eea5c7a790&lt;/Hash&gt;
+    &lt;Lyric&gt;F:\KuGou\Lyric\筷子兄弟 - 小苹果-fcd49446e26461d95433e9eea5c7a790.krc&lt;/Lyric&gt;
+    &lt;Bitrate&gt;128000&lt;/Bitrate&gt;
+    &lt;MandatoryBitrate&gt;128000&lt;/MandatoryBitrate&gt;
+&lt;/File&gt;
+&lt;/List&gt;
+</code></pre>
+<p>经过反复地修改并导入到网易云音乐中进行测试最终发现，一个简化的KGL文件需要是类似这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;windows-1252&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;List ListName=&quot;默认列表&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;FileName&gt;邓紫棋 - 泡沫.mp3&lt;/FileName&gt;</span><br><span class="line"></span><br><span class="line">&lt;FileName&gt;筷子兄弟 - 小苹果.mp3&lt;/FileName&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>甚至结尾的</List>也可以去掉了。</p>
+<h3 id="3-2-Python-编程"><a href="#3-2-Python-编程" class="headerlink" title="3.2 Python 编程"></a>3.2 Python 编程</h3><p>Python文件中写入以下代码(我使用的是Python2.7)</p>
+<p><del>首先将在第二步中转化出的JSON文本复制粘贴到一个空白的文本文件中，这里取名spotify.txt，新建一个Python文件(在这里我取名spotify.txt)，将spotify.txt与你的新的Python文件置于同一目录之下。</del></p>
+<h3 id="3-2-1-csv转xml"><a href="#3-2-1-csv转xml" class="headerlink" title="3.2.1 csv转xml"></a>3.2.1 csv转xml</h3><p>直接使用<a target="_blank" rel="noopener" href="http://code.activestate.com/recipes/577423-convert-csv-to-xml/">开源代码</a></p>
+<p>转换完成之后会生成一个.xml文件，这个文件是个中转文件，我在程序的最后对这个文件进行了删除操作。</p>
+<h3 id="3-2-2-xml转kgl"><a href="#3-2-2-xml转kgl" class="headerlink" title="3.2.2 xml转kgl"></a>3.2.2 xml转kgl</h3><p>使用正则表达式进行查找，新建一个.kgl文件对它进行写入操作。</p>
+<p>这个时候从该目录(在我的电脑上是C:\Python27\Lib)就能够找到你想要的.kgl格式的歌单了，为了方便我们把它放到桌面上。</p>
+<h2 id="4-导入到网易云音乐"><a href="#4-导入到网易云音乐" class="headerlink" title="4.导入到网易云音乐"></a>4.导入到网易云音乐</h2><p>打开并登录到网易云音乐首页，在右上角下拉菜单中选择导入歌单。将刚刚我们转化好的.kgl文件(在此例中为weekly.kgl)按照要求导入到网易云音乐中。顺利地话，就能够在「我的音乐」的歌单列表里看到我们刚刚导入的歌单了。</p>
+<p>不过这里需要说明的是，由于网易云音乐的曲库并不齐全，在我的测试中，以「 Discovery Weekly」歌单为例，它是Spotify官方根据你在Spotify上的听歌情况通过算法推荐出的一个含有30首歌曲的歌单，但是在导入到网易云音乐之后，<a target="_blank" rel="noopener" href="http://music.163.com/#/my/m/music/playlist?id=439913085">只有23首了。</a> </p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>此次总共导入了两个歌单，一个是<a target="_blank" rel="noopener" href="http://music.163.com/#/my/m/music/playlist?id=439913085">「Discovery Weekly」</a>一个是<a target="_blank" rel="noopener" href="http://music.163.com/#/my/m/music/playlist?id=439868832">「Liked from radio」</a>,总体效果还不错。整个过程总共三步，归纳起来第一步使用在线工具得到csv格式的歌单，第二步使用python一键转换，第三步登录网易云音乐导入歌单，熟练之后，导入到网易云音乐一个歌单可以在一分钟之内完成(代码你都写好了，只需要Run一下就OK)。，熟练之后，导入到网易云音乐一个歌单可以在一分钟之内完成(代码你都写好了，只需要Run一下就OK)。</p>
+<p>最后，此文既然是关于音乐的，便以一首歌曲告终吧。</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=35307069&auto=0&height=66"></iframe>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9F%B3%E4%B9%90/" rel="tag"># 音乐</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/08/08/201608/note-about-zhangxueliang/" rel="prev" title="《张学良口述历史》杂记">
+      <i class="fa fa-chevron-left"></i> 《张学良口述历史》杂记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/08/27/201608/free-code-camp-some-test-2/" rel="next" title="FreeCodeCamp JS算法题部分【2】">
+      FreeCodeCamp JS算法题部分【2】 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">动机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AF%BC%E5%87%BASpotify%E6%AD%8C%E5%8D%95"><span class="nav-number">3.1.</span> <span class="nav-text">1.导出Spotify歌单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-CSV%E8%BD%ACJSON%EF%BC%88%E8%BF%99%E6%98%AF%E4%B9%8B%E5%89%8D%E7%9A%84%E6%80%9D%E8%B7%AF%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">2.CSV转JSON（这是之前的思路）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">3.3.</span> <span class="nav-text">3.Python文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%88%86%E6%9E%90KGL-%E6%96%87%E4%BB%B6"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.1 分析KGL 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Python-%E7%BC%96%E7%A8%8B"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.2 Python 编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-csv%E8%BD%ACxml"><span class="nav-number">3.3.3.</span> <span class="nav-text">3.2.1 csv转xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-xml%E8%BD%ACkgl"><span class="nav-number">3.3.4.</span> <span class="nav-text">3.2.2 xml转kgl</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%AF%BC%E5%85%A5%E5%88%B0%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90"><span class="nav-number">3.4.</span> <span class="nav-text">4.导入到网易云音乐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.5.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

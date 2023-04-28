@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="序言感觉还是有必要对我掉进前端这个大坑（调侃的说）的经历做一个回顾的。毕竟多年以后，可能我自己都会忘记了：我一个自动化专业的本科生，怎么就跨行去做了前端呢？而要说起来，真正打算学习前端还是在16年的四月份，而在此之前，我仍然处于犹豫不决的状态。 友情提示：这个系列文章较长，整个系列共六篇，总计也有上万字了。推荐非985,211院校有志于投身IT行业的在校大学生在小黑屋里独自观看，当然如果您感兴趣的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我一个自动化本科生怎么就做了前端呢？(1)">
+<meta property="og:url" content="http://hktkdy.com/2016/09/25/201609/automation-to-frontend-1/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="序言感觉还是有必要对我掉进前端这个大坑（调侃的说）的经历做一个回顾的。毕竟多年以后，可能我自己都会忘记了：我一个自动化专业的本科生，怎么就跨行去做了前端呢？而要说起来，真正打算学习前端还是在16年的四月份，而在此之前，我仍然处于犹豫不决的状态。 友情提示：这个系列文章较长，整个系列共六篇，总计也有上万字了。推荐非985,211院校有志于投身IT行业的在校大学生在小黑屋里独自观看，当然如果您感兴趣的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-09-25T03:09:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.094Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="回忆记忆">
+<meta property="article:tag" content="自动化">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="改行记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hktkdy.com/2016/09/25/201609/automation-to-frontend-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>我一个自动化本科生怎么就做了前端呢？(1) | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2016/09/25/201609/automation-to-frontend-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          我一个自动化本科生怎么就做了前端呢？(1)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-09-25 11:09:49" itemprop="dateCreated datePublished" datetime="2016-09-25T11:09:49+08:00">2016-09-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%9E%E5%BF%86%E8%AE%B0%E5%BF%86/" itemprop="url" rel="index"><span itemprop="name">回忆记忆</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2016/09/25/201609/automation-to-frontend-1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2016/09/25/201609/automation-to-frontend-1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>感觉还是有必要对我掉进前端这个大坑（调侃的说）的经历做一个回顾的。毕竟多年以后，可能我自己都会忘记了：<strong>我一个自动化专业的本科生，怎么就跨行去做了前端呢？</strong>而要说起来，真正打算学习前端还是在16年的四月份，而在此之前，我仍然处于犹豫不决的状态。</p>
+<p>友情提示：这个系列文章较长，整个系列共六篇，总计也有上万字了。推荐非985,211院校有志于投身IT行业的在校大学生在小黑屋里独自观看，当然如果您感兴趣的话，其他人也可以当小说看，我并不承担故事情节不精彩而产生的一切后果。</p>
+<p>好吧，废话少说，这是第一章，姑且就叫他《关上一扇扇门》</p>
+<span id="more"></span>
+
+<h1 id="不考研"><a href="#不考研" class="headerlink" title="不考研"></a>不考研</h1><p>大概是知乎刷得太多了，让我这个<strong>自动化</strong>本科专业的学生总是想转到CS方向上去，在大三的时候考虑考研的时候，也是想要考CS方向的研究生，觉得自动化专业的本科课程就已然晦涩难懂，《自动控制原理》《运动控制系统》等这些专业课程中用到了大量的数学知识，况且我个人对这些理论并不兴趣，反倒是PLC、单片机的实践更让我感兴趣，然而我后来了解到自动化专业的研究生课程仍然以学术研究为主，这也让我很头疼。看到身边有很多选择考研的同学，还是想试一试，我在那个时候还写个一篇<a href="https://hktkdy.com/2014/10/02/201410/1002/">九月回顾</a> ，其中也提到了</p>
+<blockquote>
+<p>九月份有三十天，是开学的第一个月，在这一个月里面，学习上，应该算是一个学霸了。因为宿舍，因为前途方面等等的问题，使我最终成了一个每天在宿舍呆着不超过12个小时的人，其余的时候也大都是在教室，或者上课，或者上自习，尽管学校现在没有了自习，但是依然主动去上，甚至比大一大二的时候更加积极，我总是觉得没有人逼着你去做的事情做起来才是最舒服的，所以这一个月无所谓学习有多艰难，什么「学海无涯苦作舟」，其实真的没有什么。今天我这么说，将来我还会这么说。当然说半天，为什么要学习呢？前十五天大概是因为想学好专业课以找工作,后十五天大概是想到要考研，开始学习数学，英语了。</p>
+</blockquote>
+<p>可以说上面那段话，就是那个时候的心境了。我大概坚持了不到三个月的时间，选择放弃考研了。我有我自己的一套逻辑，我认为我一个自动化专业的学生，却不想考自动化相关专业的研究生，但如果我要考CS方向的研究生，那么这就是跨专业考研了，很多人学了四年考本专业都困难，何况是我要跨考呢？尽管自动化专业的课程与计算机课程有些思想是通的，我也的确看过《计算机组成原理》《计算机操作系统》这些书，但是说起来也只是浮光掠影地看，并没有深入的学习，这的确增加了我考研的难度。另外，我也在浏览知乎等网站的时候，看到了很多对中国研究生教育的消极评价，其中一点让我印象最深，是说中国的研究生多数沦为导师的廉价劳动力，另外我在查阅过计算机专业的细分方向后，也认识到这可能并不是我想要的，那个时候我心里面说不清楚自己想要什么，但大概明白自己不想要什么。那就是我<strong>不想搞理论研究</strong>，或者说也<strong>没有能力搞理论研究</strong>，当然我并不是说研究生一定是在搞理论，我也见过CS研究生毕业后去做前端，去做安卓的，但基本可以肯定的是，<strong>他们的前端或者安卓技能，都来自于自学</strong>。正是出于上面的逻辑，我选择了放弃考研。</p>
+<p>我放弃了考研，当然，还有一个借口，那就是备考的阶段实在是太无聊了，高数等课程学习起来实在是很困难，我没有做到我上面说的：<strong>什么「学海无涯苦作舟」，其实真的没有什么。今天我这么说，将来我还会这么说。</strong><br>我觉得，我不敢再那么说了。我以前在社交网络上看到过一张漫画(刚刚找了好久，没有找到)，说的是我们自己认为我们达到目标的路径是平坦的，但是实际上达到目标的路径却是陡峭的。我自己承认，我的确有这个问题，总是把问题想得简单化，觉得过程会很容易，但是只有真正的经历过，才会发现，并没有想象中那么容易。</p>
+<h1 id="摇摆摇摆"><a href="#摇摆摇摆" class="headerlink" title="摇摆摇摆"></a>摇摆摇摆</h1><p>当我放弃考研的时候，已经是大三上学期即将结束的时候了，而大三下学期，本来想自学一些计算机的东西的（当时我仍然也不知道方向，只是尝试着学习了Python），后来发生了两件事又将我的这种自学过程中断了，一件事是大三下学期由我们班主任(也就是我们系主任)亲自带课的PLC实训课程开课了，而且还真刀真枪，把我们放到一个实验室里面去搞PLC实训，最终要做出来真家伙。于是有三个多月的时间，几乎每天都要跑实验室，那段时间的PLC学习越深入，对PLC的兴趣也就越大，以至于后来我还写过一篇博文探讨<a href="http://hktkdy.com/2015/05/29/201505/0512/">兴趣与职业</a>的问题。那个时候，由于有很大的兴趣在PLC上面，由于老师的鼓励，让我觉得我自己做PLC工程师也不会很差，让我<strong>再次摇摆</strong>，原来说好的要<strong>自学计算机</strong>也早就抛到了脑后。另外一件事，则是在那年买了一台Kindle，Kindle本来是好东西，结果用上了瘾，甚至还专门写过博客讲 <a href="https://hktkdy.com/2015/03/31/201503/0331/">kindle小知识</a> ，我忘记了自己的方向，虽然读的也都是正经书，但现在回想起来，可能那段时间如果能够用来看更多计算机基础类的书籍会更好一点。但是，倒也没什么可后悔的，我还是挺喜欢那个时候的自己的，看了那么多书，那么多电影，现在让我看书看电影都没有心情了。</p>
+<p>可以说，<strong>我大学阶段有很多种选择，我其实是一步步地把通向一条条路的门关掉。只走向其中的一条路。</strong>到了这个时候，我仍然给自己留了很多路。要命的是，每一条路如果一直坚持走下去，可能都会光明，但就是需要你关掉一闪闪的门。这个过程，并不好受。</p>
+<h1 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h1><p>下回书讲我怎么把通向自动化的路的门关掉</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%9E%E5%BF%86%E8%AE%B0%E5%BF%86/" rel="tag"># 回忆记忆</a>
+              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="tag"># 自动化</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+              <a href="/tags/%E6%94%B9%E8%A1%8C%E8%AE%B0/" rel="tag"># 改行记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/09/15/201609/bicycle/" rel="prev" title="自行车">
+      <i class="fa fa-chevron-left"></i> 自行车
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/09/25/201609/automation-to-frontend-2/" rel="next" title="我一个自动化本科生怎么就做了前端呢？(2)">
+      我一个自动化本科生怎么就做了前端呢？(2) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%8F%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">序言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8D%E8%80%83%E7%A0%94"><span class="nav-number">2.</span> <span class="nav-text">不考研</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%91%87%E6%91%86%E6%91%87%E6%91%86"><span class="nav-number">3.</span> <span class="nav-text">摇摆摇摆</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%85%E7%BB%AD"><span class="nav-number">4.</span> <span class="nav-text">待续</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

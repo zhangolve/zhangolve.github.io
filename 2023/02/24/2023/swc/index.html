@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="踩了坑，是幸福呢，还是不幸呢">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端项目使用swc踩坑">
+<meta property="og:url" content="http://hktkdy.com/2023/02/24/2023/swc/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="踩了坑，是幸福呢，还是不幸呢">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/7566337/221146215-d2dda329-fd6b-4dc5-b6d5-d99f8a6e386d.png">
+<meta property="article:published_time" content="2023-02-24T06:41:16.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.102Z">
+<meta property="article:author" content="Zhangolve">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/7566337/221146215-d2dda329-fd6b-4dc5-b6d5-d99f8a6e386d.png">
+
+<link rel="canonical" href="http://hktkdy.com/2023/02/24/2023/swc/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>前端项目使用swc踩坑 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2023/02/24/2023/swc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          前端项目使用swc踩坑
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-24 14:41:16" itemprop="dateCreated datePublished" datetime="2023-02-24T14:41:16+08:00">2023-02-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/02/24/2023/swc/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/02/24/2023/swc/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <div class="post-description">踩了坑，是幸福呢，还是不幸呢</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://user-images.githubusercontent.com/7566337/221146215-d2dda329-fd6b-4dc5-b6d5-d99f8a6e386d.png" alt="图片"></p>
+<h1 id="从rust说起"><a href="#从rust说起" class="headerlink" title="从rust说起"></a>从rust说起</h1><p>大概是一个多月以前，我刷推特的时候，偶然说到一条推文，大概内容是讲<code>rust</code>语言在前端开发中的应用的。</p>
+<blockquote>
+<p>Rust语言经过多年的不懈努力终于找到自己最擅长的领域：重写命令行小工具。<br>之后再接再厉，进一步找到自己最擅长并可以实现降维打击的细分领域：重写前端开发命令行小工具。(<a target="_blank" rel="noopener" href="https://twitter.com/disksing/status/1613388069876674561">象牙山刘能</a>)</p>
+</blockquote>
+<p>后来就简单了解了一下，rust，发现确实有点东西。</p>
+<p>比如这个：</p>
+<blockquote>
+<p>依托于WebAssembly，Rust可以运行在浏览器上，在某些场景（如视频直播或需要大量运算）具有卓越的性能，例如我们经常用的figma就有使用到WebAssembly</p>
+</blockquote>
+<p>当然也有另外一个用法，也就是使用<code>rust</code>语言去写前端命令行工具，也就是这个推文里所提到的，后来就进一步探索，发现了另外一个工具<code>swc</code></p>
+<h1 id="swc"><a href="#swc" class="headerlink" title="swc"></a>swc</h1><p>经过了解，发现<a target="_blank" rel="noopener" href="https://swc.rs/">swc</a>也有点东西，借助AI问答了一下。</p>
+<blockquote>
+<p>对比一下babel和swc？</p>
+</blockquote>
+<blockquote>
+<p>Babel是一个JavaScript编译器，可以将ES6，ES7和JSX等新特性转换为浏览器可以理解的JavaScript代码。它还可以将ES2015模块转换为其他模块系统，如CommonJS或AMD。</p>
+</blockquote>
+<blockquote>
+<p>Swc是一个快速的JavaScript编译器，它使用Rust语言开发，旨在提供最佳的性能。它可以将ES6，ES7和JSX代码转换为浏览器可以理解的JavaScript代码。它还可以将ES2015模块转换为CommonJS或UMD格式。此外，Swc还具有静态分析功能，可用于找出错误并生成错误信息。</p>
+</blockquote>
+<blockquote>
+<p>总之，Babel是一个功能强大的JavaScript编译器，而Swc则是一个快速而高效的JavaScript编译器。</p>
+</blockquote>
+<p>可以看到swc最显著的特殊就是<code>快速</code></p>
+<p>这是一个韩国小哥开发的开源程序，使用<code>rust</code>语言编写。虽然没有中文文档，但是英文文档写得还是比较简洁清晰的，于是试着在公司项目中使用了一下，结果发现效果确实不错，什么效果？当时是速度，构建速度。</p>
+<p>这里就还要说几句题外话了。公司的项目结构比较复杂，说简单点是用微前端的结构去处理页面。微前端当然意味着每个小组有自己相对独立的一块工作，一些项目，可以不用去影响其他小组的工作，然而代价就是很多东西是我自己很难去处理的，这里就包括了项目构建这一块，目前的通用方案仍然是使用webpack去做项目构建，并且我们还在使用webpack 的module federation去进行微前端项目之间的通信，不能去动webpack这个大的框架，所以我当时去测试，就只能小改，也就是使用<code>swc-loader</code>去替换<code>babel-loader</code>，在webpack中loader是很重要的一个概念，每一种loader都能够去处理一些文件类型的资源，之前我们使用<code>babel-loader</code>去处理<code>js</code>,<code>ts</code>资源，但是现在在我的测试中，我用了<code>swc-loader</code>去替换掉他，经过测试，整个完整的webpack项目的启动时间缩小了一半！从我的电脑来看，大概是从60s，缩短到了30s，如果考虑到整个webpack构建的时间，并不光光只是处理js，ts文件，那么这个速度相对于之前使用babel，优势就更大了。</p>
+<h1 id="是否有意义替换babel"><a href="#是否有意义替换babel" class="headerlink" title="是否有意义替换babel"></a>是否有意义替换babel</h1><p>我做完测试之后，紧接着遇到一个问题，是否有意义替换babel。首先在我看来，babel有点太复杂了。我之前写过一篇博文，讲了很多babel相关的概念（FYI 2）。这种复杂度也体现在我们的项目中安装有很多babel的插件，babel的config文件也比较复杂，<code>package.json</code>里面很多babel相关的包，印象中之前做过两次升级的工作，babel及其插件挨个地升级也是实在很烦人(FYI3)。当然你也可以说，你直接进一步封装一下不就好了，当然也可以，但目前我们没有这么做。</p>
+<p>我的另外一个问题是，时间已经来到了2023年，到底还有没有必要使用一个最初目的是为浏览器上能够跑ES2015写的代码而准备的库？我想是没有太大目的的，当然其实babel还有别的目的，比如说可以转化一些还处于stage阶段的语法规范，这种情况，如果用的不多，甚至不需要，完全可以忽略掉。当然，我也相信随着swc生态的完善，swc也会支持更多插件，实现类似的目的。（事实是，swc的开源项目里，也的确已经有了几个官方的插件）</p>
+<p>总结而言我对babel有几点不满</p>
+<ul>
+<li>2023年了，babel存在意义不大</li>
+<li>babel配置复杂</li>
+</ul>
+<h1 id="swc-替换踩坑"><a href="#swc-替换踩坑" class="headerlink" title="swc 替换踩坑"></a>swc 替换踩坑</h1><p>使用swc乍一看还很完美，我搜了下公司代码库，发现已经有其他组正在用了。然而再仔细推敲一下，发现还有些不完美。当时发现两点问题。</p>
+<p>一个问题比较好解决，当时我在测试的时候，很快就发现，我们的某些页面打不开，结果debug之后发现是因为有些变量未声明就先使用了，这个之前使用babel并不会报错，因为我们在babel配置中将target定位到了es5，es5不关心这些，但是使用swc的时候，就有问题了，因为使用swc我们将target定位到了es6，问题就出现了。我的解决办法，就是使用eslint去做检查，把出错的语法一条条修改。</p>
+<p>一个问题是我们使用了一个比较小众的babel插件，也就是<a target="_blank" rel="noopener" href="https://github.com/QuickBase/babel-plugin-styled-components-css-namespace">babel-plugin-styled-components-css-namespace</a> ,这个插件是我最早引入到项目当中的，目的是解决styled components写的css与其他css同时作用于一个元素时，有些样式标识不符合预期的问题（不符合预期的原因时，其他css的权重更高，造成styled 没表现）。如果去掉babel的话，就意味着这样一个插件不能用了，这些权重的设置也无法表现，会有很多潜在的bug出现。针对这个问题，当时我的应对办法是写一个<code>swc</code>插件，通过看<code>swc</code>官方文档，我了解到<code>swc</code>也是支持写插件的，通过写插件，也能实现和babel类似的效果，一来我对<code>rust</code>很感兴趣，二来也想使用类chatgpt bot去看看写代码的表现，于是花了一些时间写了个插件，还真实现了类似的效果，但是我自己仍然对这个插件不是非常满意。原因也有一些：</p>
+<p>首先，这个<code>rust</code>语言的插件，会让其他同事看起来很痛苦，我在学习<code>rust</code>的过程中，也发现这个门槛比较高。另外，我也卡在了npm包的发布上，<code>rust</code>写的npm包与我们项目中之前用的npm包有很大不同，于是由此另外引入一套npm包打包发布流程，这是我不是很满意的。（参见<code>swc</code>官方插件库）</p>
+<p>正当我犹豫不决之时，又迎来了一些转机，我们项目由于要支持阿拉伯语，也就需要应对<code>rtl</code>布局，之前这一块一直做的不太好，需要手动去写一些变量替换，比如<code>padding-left</code>要写成<code>$pos(&#39;padding-left&#39;)</code> ,否则原来的代码就会在<code>rtl</code>布局下有问题，因为这个<code>pos</code>方法就是为了应对<code>rtl</code>去做变量转换的。每次都要手写变量实在太麻烦，刚好那些天不是很忙，我就自告奋勇接过了这个活，结果新的路径就打开了。</p>
+<p>长话短说，不卖关子了。在styled component v5引入了插件的概念，他甚至在官方文档里推荐了<a target="_blank" rel="noopener" href="https://github.com/styled-components/stylis-plugin-rtl">stylis-plugin-rtl</a>这个插件，去实现rtl的效果。通过阅读文档，当时就有一种柳暗花明的感觉，既然可以使用插件来实现<code>rtl</code>，当然也可以使用插件来实现权重提升，况且这个插件还都是使用js编写，前面说的两个问题就都不存在了。</p>
+<p>后来的事情，就是在项目中引入了styled components 的插件，同时在我们的npm monorepo里写了一个styled components 插件来实现权重提升，去替换掉babel的对应插件。</p>
+<p>解决完以上的两个问题之后，本以为就没有什么能够阻止我们使用<code>swc</code>了。然而，还是有些意外。</p>
+<h1 id="替换成swc-插曲"><a href="#替换成swc-插曲" class="headerlink" title="替换成swc 插曲"></a>替换成swc 插曲</h1><p>本来以为一切顺利的，结果发现还是有些问题，主要问题出在依赖上。前面已经提到的，我司使用微前端架构，我们平时开发会服务两个网站，这两个网站都有一个base的项目，一些常用的依赖，比如<code>react</code>,<code>react-dom</code>,<code>styled-components</code>是这些base项目直接以<code>umd</code>的方式暴露到window对象上的，结果就是我最早替换的A网站没有问题，但是后来准备替换的B网站，base项目中的<code>styled-components</code>版本还是<code>v4</code>版本，根本不能使用<code>v5</code>的plugin新特性。我当然也是可以改这个base项目的依赖，给它升级，但是由于发布时间的关系，如果我在我的项目中，贸然使用v5的新特性，就有可能有问题。</p>
+<p>最终，由于要处理依赖关系，我最终没有在B项目中使用<code>swc</code>。当然，一旦B网站新版本上线之后，我就可以放开去替换了，这也是后话了。</p>
+<h1 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h1><p>回顾整个过程，其实还蛮好玩的，整个过程历时一个多月，从一开始以为这件事很简单，到后来发现有坑，再后来寻求不同的解决方案，最后还是将方案落地，施行，期间也在思考怎样将影响降到最小，怎样对这样的替换过程更有自信。当然，有自信也有一些原因，有一部分原因来自于项目当中的E2E，由于有了E2E，的确发现了一些问题，我写的<code>styled-components</code>插件是有问题的，通过E2E发现了问题，后来又修复了问题，整个过程也再次让我意识到前端工程化的好处，工程化，当然要有前端测试喽。</p>
+<p>FYI:</p>
+<ul>
+<li>1 <a target="_blank" rel="noopener" href="https://juejin.cn/post/6995518096576348173"> 一文带你走进 Rust 和 WebAssembly 的世界 </a></li>
+<li>2 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/bb0621101308">babel 与 polyfill两三事.md</a></li>
+<li>3 <a href="https://hktkdy.com/2022/01/14/2022/fe_upgrade/">前端项目依赖升级踩的坑</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/12/28/2022/2022/" rel="prev" title="2022年度回顾">
+      <i class="fa fa-chevron-left"></i> 2022年度回顾
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/03/08/2023/authy-audo/" rel="next" title="剪贴板内容自动拼接">
+      剪贴板内容自动拼接 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8Erust%E8%AF%B4%E8%B5%B7"><span class="nav-number">1.</span> <span class="nav-text">从rust说起</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#swc"><span class="nav-number">2.</span> <span class="nav-text">swc</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%98%AF%E5%90%A6%E6%9C%89%E6%84%8F%E4%B9%89%E6%9B%BF%E6%8D%A2babel"><span class="nav-number">3.</span> <span class="nav-text">是否有意义替换babel</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#swc-%E6%9B%BF%E6%8D%A2%E8%B8%A9%E5%9D%91"><span class="nav-number">4.</span> <span class="nav-text">swc 替换踩坑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2%E6%88%90swc-%E6%8F%92%E6%9B%B2"><span class="nav-number">5.</span> <span class="nav-text">替换成swc 插曲</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9E%E9%A1%BE"><span class="nav-number">6.</span> <span class="nav-text">回顾</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

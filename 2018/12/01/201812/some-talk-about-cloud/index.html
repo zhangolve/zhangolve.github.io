@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="缘起最近的工作，接触了很多云计算相关的皮毛知识，虽然是皮毛，但也毕竟让我对此多了几分认识。于是就再整理整理思路，写下来吧。 发展历史曾经有段时间，哪怕是一点都不了解互联网的人，也能够经常听到“云计算”，“大数据”这样的词汇，他们的热门程度，类似于较早之前的“AI”,”VR”，“人工智能”。不过作为一个搞计算机的，“AI”和“VR”其实我一直也从没有能够从技术上应用过他们，以至于一直觉得十分遥远。但">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从个人工作实践聊聊云计算">
+<meta property="og:url" content="http://hktkdy.com/2018/12/01/201812/some-talk-about-cloud/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="缘起最近的工作，接触了很多云计算相关的皮毛知识，虽然是皮毛，但也毕竟让我对此多了几分认识。于是就再整理整理思路，写下来吧。 发展历史曾经有段时间，哪怕是一点都不了解互联网的人，也能够经常听到“云计算”，“大数据”这样的词汇，他们的热门程度，类似于较早之前的“AI”,”VR”，“人工智能”。不过作为一个搞计算机的，“AI”和“VR”其实我一直也从没有能够从技术上应用过他们，以至于一直觉得十分遥远。但">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/48180-cec0cfd7578c277f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/48180-cb28b2acfabffc8f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2018-12-01T02:24:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.094Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="云计算">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/48180-cec0cfd7578c277f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+<link rel="canonical" href="http://hktkdy.com/2018/12/01/201812/some-talk-about-cloud/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>从个人工作实践聊聊云计算 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2018/12/01/201812/some-talk-about-cloud/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从个人工作实践聊聊云计算
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-12-01 10:24:49" itemprop="dateCreated datePublished" datetime="2018-12-01T10:24:49+08:00">2018-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">后端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/12/01/201812/some-talk-about-cloud/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/12/01/201812/some-talk-about-cloud/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h1><p>最近的工作，接触了很多云计算相关的皮毛知识，虽然是皮毛，但也毕竟让我对此多了几分认识。于是就再整理整理思路，写下来吧。</p>
+<h1 id="发展历史"><a href="#发展历史" class="headerlink" title="发展历史"></a>发展历史</h1><p>曾经有段时间，哪怕是一点都不了解互联网的人，也能够经常听到“云计算”，“大数据”这样的词汇，他们的热门程度，类似于较早之前的“AI”,”VR”，“人工智能”。不过作为一个搞计算机的，“AI”和“VR”其实我一直也从没有能够从技术上应用过他们，以至于一直觉得十分遥远。但”云计算“却随着了解地越来越多，觉得不再那么高山仰止了。</p>
+<p>亚马逊应该是最早布局和应用云计算的。他从02年正式发布了AWS,之后这个业务也给他带来了很高的回报，股价一路飙升。后来微软和谷歌也紧随其后，开始布局云计算。国内云计算的发展稍晚了一下，但是也是很牛的。前一段时间，有篇《阿里云的这群疯子》的文章，讲了阿里云从初创到繁荣的历史转变，一时间也刷爆了朋友圈。阿里云诞生自09年，腾讯云诞生自10年，两个巨头也是你争我赶,虽然在我们外人看来已经很牛了吧，但毕竟亚马逊云计算发展的比较早，还是亚马逊的AWS更加给力一点。</p>
+<p>发展历史终究只是浮云，对于开发者来说重要的是能够实际应用这些云计算技术，并为自己创造价值。</p>
+<h1 id="saas-paas-laas"><a href="#saas-paas-laas" class="headerlink" title="saas, paas, laas"></a>saas, paas, laas</h1><p>关于这三者其实网上已经有很多人在科普了，比如我文章下面参考链接里的阮一峰大大。但是我还是想将我的理解表达出来，给自己一个回顾。</p>
+<h2 id="saas"><a href="#saas" class="headerlink" title="saas"></a>saas</h2><p>按照我的理解，这三种服务面向的群体实际上并不是重合的。</p>
+<h3 id="什么是基础设施"><a href="#什么是基础设施" class="headerlink" title="什么是基础设施"></a>什么是基础设施</h3><p>我先说说我自己觉得最好理解的，laas，Infrastructure-as-a-service, 也就是基础设施即是服务。那么问题来了，什么是基础设施呢，我们试想假如你已经有了一个好点子，要建立一个面向全国范围内的电商网站，这个网站一旦投入使用，立刻就会成为行业前十，但是你没有太多的投资。这个时候你需要自己在万网或者<a target="_blank" rel="noopener" href="http://www.godaddy.com/">狗爹(goaddy)</a>买一个<strong>域名</strong>，如果是面向国内用户的站点，你要对你的域名进行备案，这些过程都还算简单。</p>
+<p>接下来你需要买一台<strong>服务器</strong>，如果你自己有一些特别的需求，你还可以定制你的服务器。有了服务器，有了IP，你需要你所购买的域名能够指向你的IP,你又需要<strong>DNS服务</strong>。</p>
+<p>你要给服务器装上系统，装上合适的<strong>数据库</strong>，之后你的程序能够在你的服务器上面跑起来了。但是即便如此，可能还是会有很多问题，比如为了容灾的需要，你可能有不止一台服务器，比如3台，但是你只能把这3台服务器放在一起，于是面临的第一个问题，那就是你可能只能保证你服务器所在地的访问速度，而其他区域则保证不了访问速度。但是你只是个小的创业者，根本没有能力在全国范围内，搭建多个服务器来满足全国高效的需要。于是你陷入了苦恼，感慨原来创业并不只是”就缺一个程序员了”。</p>
+<p>然后你姑且容忍了没有CDN的问题，你考虑到你的站点虽然面向全国，但是一半的用户来自北京，于是你把那几台服务器放到了北京的联通机房。除此之外，你还需要大量时间来做运维，来支持你的服务器的正常运转。我曾经见过公司从服务器选型到网站服务安全稳定运行的整个过程，的确是需要大量的时间成本以及很高的知识储备的。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>有了需求，接下来就要有人来做了。就拿亚马逊来说，他很早就做成了全美最大的电子商务平台，而他的站点规模，决定了他一定要使用上大规模的服务器，以及应用上CDN等技术。这个时候，亚马逊说，我想把我的空余的服务器租出去，注意，我不是像dell公司那样把服务器买给你再做做售后服务工作那么简单，我是把服务器租给你，如果你愿意的话，我还可以给你一整套的<strong>解决方案</strong>。也就是说，你服务器上安装的数据库也可以从我这里来租，数据库的配置我都可以预先给你配置好，保证是一个最佳实践，你无须再为此付出大量时间精力。</p>
+<p>我也可以把我自己成熟的<strong>CDN技术</strong>分享给你，让你的网站也能够无论在哪里，都能够有一个很快速的访问速度。如果你的网站上有大量的多媒体资源（图片，视频等等），你也可以把这些多媒体资源存放在我这里。我保证，你的多媒体资源的访问速度，与我们亚马逊自己的多媒体资源访问速度相当。凡此种种，还有很多。由此，其实我们不难看出来，当今互联网以及计算机发展的一大潮流，就是从原来的购买转变为后来的租用，类似的情况，单就美国来说，还有租用影片的netflix, 以及微软的office虽然也在卖，但也有更多的用户选择了office365。</p>
+<h3 id="租用的好处与坏处"><a href="#租用的好处与坏处" class="headerlink" title="租用的好处与坏处"></a>租用的好处与坏处</h3><p>让我们暂时岔开一下话题，聊一聊究竟这种租用的方式能够带来哪些好处呢？为了不岔开得太远，我们还是以云计算服务为例，我们来算一笔帐，假设一家小公司初创，为了自己的网站能够安全稳定的上线，他需要服务器以及上面提到的一套解决方案，他为此要付出很大的成本，而又由于是初创企业，自己无法准确估计自己的需求，可能最后买到了合适的服务器，以及应用上了一套解决方案，一旦业务突飞猛进，他又要对此进行升级，相应地，又要花费大量的时间人力成本。而租用的方式，则是能够在一定规模内，<strong>实现付出最小，利益最大。</strong>当然，我也说到了是一定规模内，我们看到公司一旦达到了一定规模，租用的成本要远远大于直接买的方式，因此我们也看到像dropbox就离放弃了AWS转而自建基础设施和网路。</p>
+<h3 id="都有哪些基础设施"><a href="#都有哪些基础设施" class="headerlink" title="都有哪些基础设施"></a>都有哪些基础设施</h3><p>为了方便，我们这次把视线瞄准国内，看看阿里云是怎么做的。下图是阿里云的产品一览</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/48180-cec0cfd7578c277f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="阿里云产品一览"></p>
+<p>我们也可以看到，就我们刚才所说的例子来看，用到了弹性计算(云服务器)、存储服务(oss等)、CDN技术以及数据库这些基础设施。阿里云将这些服务拆分成一个个的产品进行出售，我们可以根据自己的需要进行量身定制。</p>
+<p>感兴趣的同学，可以通过参考链接，进入阿里云的观望去瞅一瞅。</p>
+<h3 id="laas-的好处"><a href="#laas-的好处" class="headerlink" title="laas 的好处"></a>laas 的好处</h3><p>所以回过头来再来看云计算中的laas，能够看到他是有很大的优势的。主要表现在：</p>
+<ul>
+<li>租用的方式能够让付出最少，收益最大。前面已经提到过</li>
+<li>快速完成基础设施的应用,专注业务核心</li>
+<li>运维成本降到最低</li>
+</ul>
+<h2 id="saas-1"><a href="#saas-1" class="headerlink" title="saas"></a>saas</h2><p>软件即服务</p>
+<p>这个其实按照我的理解，并没有laas复杂。想对于laas而言，我认为主要区别在于：</p>
+<p>对于购买laas的使用者，他对于在基础设施之上所搭建起来的应用程序有非常高度的掌控权，毕竟laas只是提供了基础设施的服务，真正的应用程序，还是需要自己来开发。但是saas则并非如此，他聚焦在了更高的层次上，直接为你提供了应用程序，因此你对应用程序本身的掌控力非常差，如果让我举一个例子的话，我会说当今很流行的微商城服务，比如微盟，你通过购买他的这个微商城服务，然后再在自己的微信公众号后台进行一些简单的配置，可以快速地建立起一个微商城来，如果你有需要，当然也可以快速完成微信小程序的创建。相比laas而言， 这种方式更加高效了。只是，会更加受制于人。他有点像是曾经经常被讨论的自有商城和天猫店铺的区别，在这里就不再多做阐述了。</p>
+<h2 id="paas"><a href="#paas" class="headerlink" title="paas"></a>paas</h2><p>paas，也就是“平台即服务”，我接触的比较少，也就简单说一下我的理解。我自己用过的是，2013年左右的GAE,当时通过一些简单的配置，完成了一个应用，也就是goagent的开发（相信经历过那个年代科学上网的朋友，对此定会不陌生）。为了写这篇文，我也找到了一篇2014年其他人的博文，介绍goagent的原理，感兴趣的朋友，可以通过参考链接过去看看。我用goagent 的时候，还对云计算这一块毫无所知，完全是根据网上的傻瓜教程来搭建服务的。现在会过头来看，就像是阮一峰博文中所述的那样，paas是正好介于laas与saas之间的一种服务</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/48180-cb28b2acfabffc8f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="阮一峰博文图片"></p>
+<p>还就goagent所使用的GAE为例，他并不只是给你基础设施，他也给了你一个应用程序所必须的环境（在这里是python环境），他也不同于saas，他没有给你一个完整的软件服务，让你直接就能够使用，他还是要让你自己来写程序，来实现某些功能的。其实写到这里，我又想起了当年玩贴吧的时候，也有朋友基于百度的BAE(与GAE类似)，实现了百度贴吧的自动签订功能，当时依然觉得有趣，也仍不知所言。只是照猫画虎，但这照猫画虎，却让我对计算机有了更深的兴趣。</p>
+<h1 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h1><p>其实说起来，我最早用的云服务是个人服务，百度云。后来，又用了很多其他的个人云服务，我早在4年多以前，我就说过要<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8fc2994e1cf8">构建一个个人云端信息库</a>。我就表态过，自己对于“云”这件事很乐观。我想既然2c是这样的，2b也应该不无例外。包括前面我的许多分析，也都表明，我自己是支持云计算的，即便从社会分工的角度来说，<strong>让专业的人做专业的事，这件事，从来也没有错。</strong></p>
+<h1 id="注"><a href="#注" class="headerlink" title="注"></a>注</h1><p>标题说的个人工作实践指所见到的公司从服务器选型到网站服务安全稳定运行的整个过程，准备上云计算的过程，使用微盟微商城的体验，使用goagent的体验等等。</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://yq.aliyun.com/articles/653511">阿里云的这群疯子</a></li>
+<li><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%85%BE%E8%AE%AF%E4%BA%91">腾讯云历史</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Amazon_Web_Services">AWS介绍</a></li>
+<li><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%98%BF%E9%87%8C%E4%BA%91">阿里云介绍</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2017/07/iaas-paas-saas.html">阮一峰iaas-paas-saas</a></li>
+<li><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1578702416065871092&wfr=spider&for=pc">为什么Dropbox决定放弃AWS，打造自己的基础设施和网络？</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.aliyun.com/product/list?spm=5176.8789780.1146454.17.66eb57a8iZROV9">阿里云产品列表</a></li>
+<li><a target="_blank" rel="noopener" href="http://daemon369.github.io/network/2014/06/01/use-goagent">使用GoAgent代理</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag"># 云计算</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/12/01/201812/oauth/" rel="prev" title="闲话OAUTH">
+      <i class="fa fa-chevron-left"></i> 闲话OAUTH
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/17/2020/%E7%9B%B8%E5%A3%B0/" rel="next" title="相声">
+      相声 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%98%E8%B5%B7"><span class="nav-number">1.</span> <span class="nav-text">缘起</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2"><span class="nav-number">2.</span> <span class="nav-text">发展历史</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#saas-paas-laas"><span class="nav-number">3.</span> <span class="nav-text">saas, paas, laas</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#saas"><span class="nav-number">3.1.</span> <span class="nav-text">saas</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD"><span class="nav-number">3.1.1.</span> <span class="nav-text">什么是基础设施</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.1.2.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%9F%E7%94%A8%E7%9A%84%E5%A5%BD%E5%A4%84%E4%B8%8E%E5%9D%8F%E5%A4%84"><span class="nav-number">3.1.3.</span> <span class="nav-text">租用的好处与坏处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD"><span class="nav-number">3.1.4.</span> <span class="nav-text">都有哪些基础设施</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#laas-%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-number">3.1.5.</span> <span class="nav-text">laas 的好处</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#saas-1"><span class="nav-number">3.2.</span> <span class="nav-text">saas</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#paas"><span class="nav-number">3.3.</span> <span class="nav-text">paas</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%BC%E8%BF%B0"><span class="nav-number">4.</span> <span class="nav-text">综述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8"><span class="nav-number">5.</span> <span class="nav-text">注</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

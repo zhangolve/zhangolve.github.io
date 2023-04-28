@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="#写在前边这还是大一的时候暑假的时候学习这个软件时记的笔记呢，今天又在电脑上找到了它，总觉得不应该让他尘封在我的硬盘上，于是挂了出来。温馨提示：比较乱，写给自己看的，看不下去，按ctrl+W #笔记  基本释义cad   abbr. 计算机辅助设计（Computer - Aided Design）  autocad 快捷键图形单位的设置。。行业中对尺寸单位是非常敏感的。格式–单位。  ctrl+n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AutoCad学习笔记">
+<meta property="og:url" content="http://hktkdy.com/2015/05/15/201505/0501/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="#写在前边这还是大一的时候暑假的时候学习这个软件时记的笔记呢，今天又在电脑上找到了它，总觉得不应该让他尘封在我的硬盘上，于是挂了出来。温馨提示：比较乱，写给自己看的，看不下去，按ctrl+W #笔记  基本释义cad   abbr. 计算机辅助设计（Computer - Aided Design）  autocad 快捷键图形单位的设置。。行业中对尺寸单位是非常敏感的。格式–单位。  ctrl+n">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://hktkdy.qiniudn.com/slogan.jpg">
+<meta property="article:published_time" content="2015-05-14T23:29:41.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.086Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hktkdy.qiniudn.com/slogan.jpg">
+
+<link rel="canonical" href="http://hktkdy.com/2015/05/15/201505/0501/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>AutoCad学习笔记 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2015/05/15/201505/0501/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AutoCad学习笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-05-15 07:29:41" itemprop="dateCreated datePublished" datetime="2015-05-15T07:29:41+08:00">2015-05-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/05/15/201505/0501/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2015/05/15/201505/0501/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>#写在前边<br>这还是大一的时候暑假的时候学习这个软件时记的笔记呢，今天又在电脑上找到了它，总觉得不应该让他尘封在我的硬盘上，于是挂了出来。<br><strong>温馨提示：比较乱，写给自己看的，看不下去，按ctrl+W</strong></p>
+<p>#笔记</p>
+<ul>
+<li><p>基本释义<br>cad   abbr. 计算机辅助设计（Computer - Aided Design）</p>
+</li>
+<li><p>autocad 快捷键<br>图形单位的设置。。<br>行业中对尺寸单位是非常敏感的。格式–单位。</p>
+</li>
+<li><p>ctrl+n新建图纸，不能选择英制的单位。。</p>
+</li>
+<li><p>十字光标的调整。。调成最长。。工具-选项-显示-光标调成最大</p>
+</li>
+<li><p>最上一行，倒三角，单击，出来一个可以隐藏菜单栏的选项。</p>
+</li>
+<li><p>正交模式F8，可以控制是他沿着坐标轴。。</p>
+</li>
+<li><p>delete选中以删除。。。</p>
+</li>
+<li><p>对象捕捉。。测量长度的时候利用对象捕捉。捕捉两点快捷键F3.单击打开或者关闭。<br>对象捕捉屏幕最下面有对象捕捉的图标，这时候右击他，打开设置，可以对  对象捕捉进行设置。。<br>使用对象捕捉可以</p>
+</li>
+<li><p>画出一条线后中断，捕捉一个端点，可以继续完成一个图形。。。</p>
+</li>
+<li><p>ctrl+z  恢复。。撤销。。。</p>
+</li>
+<li><p>直线的独特操作。。</p>
+</li>
+</ul>
+<p>直线的快捷键是l</p>
+<ul>
+<li><p>点的快捷键是po<br>点样式<br>格式-点样式<br>在cad中一张图纸中只能允许存在一种点样式<br>等分点 div加空格+3+空格表示对线段三等分</p>
+</li>
+<li><p>等距点等距点 me<br>、me+空格+<br>绘图命令圆。快捷键c  circle。<br>c+空格 指定圆的圆心，指定圆的半径或直径。。</p>
+</li>
+<li><p>任意画出三点  可以确定一个圆<br>规则 3p画圆<br>任意画出三点   c+空格 +3p空格 指定三个点<br>两点画圆，指定的是圆上的直径。</p>
+</li>
+</ul>
+<p>先画一个长度确定的直线，c+空格+2p画圆。。看屏幕下面有命令提示。。<br>建筑行业等 正多边形来做内切圆，外接圆等。。</p>
+<ul>
+<li>缩放命令z+空格<br>e+空格</li>
+<li>绘制矩形<br>快捷键 rec<br>rectangle矩形单词前三个字母。。<br>如果四个角均为直角，该图为矩形。</li>
+</ul>
+<p>It is a rectangle if the four angles square<br>abbr. 草图；工程图，结构图（drawing</p>
+<p>分解命令<br>测量工具的使用</p>
+<p>di快捷键 可以测量长度。。<br>绝对坐标，相对坐标<br>下次学第13节。。<br>CAD中测量工具。<br>测量圆的面积<br>快捷键  aa空格<br>+o空格  可以得到圆的面积。。<br>分解<br>线形物体分解<br>x+空格 +选择要被分解的对象<br>一般使用相对坐标作图。类似于重新建立坐标轴。<br>相对坐标 找到他的长度，宽度。<br>rec+空格<br>@a，b 可以确定一个矩形<br>倒角矩形  圆角矩形<br>倒角距离<br>指定第一个倒角距离+第二个倒角距离+第一个角点<br>倒角矩形制作方法<br>以倒角为100<em>100，矩形500</em>500为例<br>先做出倒角来<br>rec空格  c 空格 输入100，,100，再单击鼠标 d<br> 输入500,500.。。</p>
+<ul>
+<li><p>移动命令 快捷键 为 M 。<br>例子 先画一个圆    把圆心标出来 m空格<br>基点的选择，移动到指定的未知<br>选择对象三种方式 ，点选，左框选，右框选。。<br>象限点重合 左侧移动 距离<br>相对坐标画矩形。</p>
+</li>
+<li><p>复制命令 。快捷键co  。把一个对象变成两个或多个对象。。使用一种命令完成，可以使用其他的方法也能够完成。<br>文字命令时，先复制文字，然后修改文字如复制五个红字，再把红字改成其他你希望的字。</p>
+</li>
+<li><p>圆弧  是一个复杂的命令<br>a+空格 +三点 作图。最简单的画圆弧的方式。（角度，半径都不确定）<br>弦长不能大于直径的长度。。<br>cad与角度相关 逆时针出图。。<br>利用圆弧绘制太极图。</p>
+</li>
+</ul>
+<p>步骤<br>半径为五百的圆，a+空格 +圆弧起点+端点+</p>
+<ul>
+<li><p>正多边形<br>pol空格+边的条数+最少输入三条边，最多输入1024条边。提示电脑边的绘制完毕。。<br>选择边的第一个端点。。一个边长为多少的多边形指定。。<br>利用圆心。<br>椭圆快捷键为el+空格  两种方法<br>1   指定端点 轴<br>2  圆心<br>3  圆弧<br>椭圆弧命令 快捷键 el 空格+a<br>co复制命令<br>旋转ro<br>镜像  mi<br>拉伸  ex<br>偏移 o<br>pr  裁剪   栏选点<br>tr<br>延伸ex<br>打断 br   break<br>打断于点  br<br>合并j<br>样条曲线 spl  用于绘制不规则的图形。。。找 几个点画出样条曲线，点击三次空格可以关闭。<br>修订云线。revcloud     利用修订云线可以进行圈阅，修改，绘制指定区域。绘制湖的形状等。样条曲线。实际需求。<br>对样条曲线最好用co复制命令。<br>创建块：b<br>需要一组图形整体操作。。</p>
+</li>
+<li><p>图像填充操作。<br>闭合空间点击鼠标左键，按下空格键，空间选择完毕。<br>选择图案，图案样例，一一对应。单色，样例改变了，颜色选择。。快捷键  h。。图像填充。。图案填充</p>
+</li>
+</ul>
+<p>渐变色  未闭合的区域进行闭合。。<br>倒角cha<br>圆角f<br>阵列  对行和列同时输入数字，行的方向是正的。这个是阵列的操作。非常有用的操作。库房位置的摆放。环形阵列，首先画圆（为例）ar选择环形阵列操作。需要阵列的对象选择完毕，围绕着一个中心点进行设置，。选择你需要圆的模型。填充的角度是多少，确定。四个圆。做出。<br>利用辅助线，阵列可以操作，环形阵列，找中心点，选择的对象，<br>利用圆弧命令，4<br><strong><strong>cad逆时针出图</strong></strong>**<br><em><strong>8阵列</strong></em> 快捷键 ar  矩形阵列 环形阵列。、<br>刚才的操作时竖向的操作，行的方向上增加了。则列的方向上是1不变。</p>
+<p>#结语<br>说来惭愧，从那个夏天之后，就再也没有碰过AutoCad。</p>
+<p>————————————–分割线——————————<br>如果您喜欢本文，可以点下面的喜欢按钮，也可以关注<a target="_blank" rel="noopener" href="http://www.jianshu.com/users/1c26e9e36267/latest_articles">本人简书</a><br>或简书专题：<a target="_blank" rel="noopener" href="http://www.jianshu.com/collection/7b424559990a">我们在自己的世界里独自狂欢</a></p>
+<p>也可以阅读我的独立博客，了解更多内容。</p>
+<p><a href="http://hktkdy.com/"><img src="http://hktkdy.qiniudn.com/slogan.jpg"></a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2015/04/29/201504/042904/" rel="prev" title="【科学上网】VPN Gate简单体验简记">
+      <i class="fa fa-chevron-left"></i> 【科学上网】VPN Gate简单体验简记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2015/05/15/201505/0502/" rel="next" title="PHOTOSHOP学习笔记">
+      PHOTOSHOP学习笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

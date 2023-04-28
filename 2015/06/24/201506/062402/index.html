@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="#最初 本学期开学的第一周，计算机控制课程的老师张老师就布置下来了留在期末的课程设计，当时她留给我们两周的时间自己查论文找资料选择题目，并且给出了相关的一些信息，比如达到的要求，从现在已经结束了这件事情的时间看，这些要求，我们很多都没有达到。尽管如此，当时还是在查论文，找灵感，找题目，在此之前也已经分好了组，我仍然和WWH以及YJG一组，我们自从上学期在一起做电子工程设计课程设计便是一组好基友，只">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能窗帘设计过程及感想">
+<meta property="og:url" content="http://hktkdy.com/2015/06/24/201506/062402/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="#最初 本学期开学的第一周，计算机控制课程的老师张老师就布置下来了留在期末的课程设计，当时她留给我们两周的时间自己查论文找资料选择题目，并且给出了相关的一些信息，比如达到的要求，从现在已经结束了这件事情的时间看，这些要求，我们很多都没有达到。尽管如此，当时还是在查论文，找灵感，找题目，在此之前也已经分好了组，我仍然和WWH以及YJG一组，我们自从上学期在一起做电子工程设计课程设计便是一组好基友，只">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/nowicandieinpeace.jpg">
+<meta property="article:published_time" content="2015-06-24T02:19:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.090Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="自动化">
+<meta property="article:tag" content="单片机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/nowicandieinpeace.jpg">
+
+<link rel="canonical" href="http://hktkdy.com/2015/06/24/201506/062402/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>智能窗帘设计过程及感想 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2015/06/24/201506/062402/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          智能窗帘设计过程及感想
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-06-24 10:19:49" itemprop="dateCreated datePublished" datetime="2015-06-24T10:19:49+08:00">2015-06-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/06/24/201506/062402/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2015/06/24/201506/062402/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>#最初</p>
+<p>本学期开学的第一周，计算机控制课程的老师张老师就布置下来了留在期末的课程设计，当时她留给我们两周的时间自己查论文找资料选择题目，并且给出了相关的一些信息，比如达到的要求，从现在已经结束了这件事情的时间看，这些要求，我们很多都没有达到。尽管如此，当时还是在查论文，找灵感，找题目，在此之前也已经分好了组，我仍然和WWH以及YJG一组，我们自从上学期在一起做电子工程设计课程设计便是一组好基友，只是上学期表现也并不佳，直到上学期的设计即将考核时才草草地做出来一个作品，交了上去。但我仍然愿意和他俩在一起合作，如果非说要有什么原因，主要原因还是，在这个组里面我能成为领导，能够有更多自己的想法。</p>
+<p>我们先是选择了一个基于蓝牙的通信系统，但是后来在第五周左右，老师要求答辩的时候，就发现这个题目与老师之前的要求差别很大，完全对不上。后来我们三个人商量了一下，觉得还是更改题目比较好，正赶上这个时候老师的要求提高了，要求我们如果有能力，一定要做出实物来，于是我们自己掂量了一下自己的实力，认为这个蓝牙通信的设计一来不像是计算机控制的课程（我们这个时候也看了其他组是怎样选题的，发现他们大都是基于单片机的），二来便是我们确实觉得没有能力做出蓝牙系统的实物。</p>
+<p>于是某一天晚上，去实验室查论文，我和WWH二人在路上走着，我望着旁边住宅楼，说了句，「你说，如果咱们做一个智能窗帘怎么样」，于是开始具体谈到了我的想法。起初我只是希望根据室外的光照来自动地带动电机正反转，以实现窗帘的上升或者下降，以及窗帘在规定的时间如早上起床或晚上睡觉的时间点自动上升或者下降，后来WWH又提出了几点疑问，又一一补充了，我的思维又进一步拓宽了。于是来到实验室之后，直奔主题，查了窗帘相关的论文。后来我们三个人一商量，索性就选择了这个题目。</p>
+<p>#攥写论文</p>
+<p>选择了题目之后，要有一个具体的设计实现方法，这个时候，我查到的论文就派上用场了。我查了大概十篇相关的论文，然后把它们这些中有用的部分攒到一块，作为我们的初稿，以提供思路，因为老师没有要求参考文献等相关信息，所以后来很多东西也一直从上面copy了。这样一个大体的轮廓就出来了，但是也仅仅限于大体轮廓，很多细节的部分是没有的，比如窗帘的软件设计部分，窗帘的电路硬件部分，事实上，几乎所有已经查到的论文都没有对此有过详细的描述，于是我也很自然地忽略掉了。这个时候，就显示出WWH的作用了，他是一个熟悉硬件的家伙，指出我们硬件部分细节不够，但在这个时候，由于我一直在做另外一个设计（集散控制），所以对攥写论文这件事放了一个多月。</p>
+<p>老师要求12周要交论文或者说是报告，同时要进行一个简单的答辩，而在11周的时候，我们才终于能够有时间赶出来一个凑合着看的论文，这其中仅仅有8页的文字叙述，程序部分占了另外的10页，而程序部分则是从我曾经买过的单片机配套资料里面摘出来的。当然，如今检讨一下的话，的确我们并没有形成很有效的沟通，这一点在全程一直存在着，只是最后大家都总还说得过去。</p>
+<p>值得一提的是，在那次撰写论文的过程中，我希望能够通过合作完成，于是索性地WWH电脑上装上chrome科学上网，用Google docs来完成在线同步编辑，这东西以前没有用过，这时候用着觉得确实很方便。</p>
+<p>于是在第12周开始答辩，老师并没有为难我们，问了几个简单的问题，设计思路，谁是主力，设计中应当考虑的问题等，我们都如实作答了。只是因为后来才知道三个人的论文不能够雷同，所以必须有两个人拿回去重新写，这件事我一直耿耿于怀，这学期做了三四个课程设计，每一个都有类似的要求，如果三个人一组的话，合作完成同一个论文有什么不对吗？但是，大概是为了应付学校里面的检查，所以老师也只能这样要求了。</p>
+<p>#制作实物</p>
+<p>12周的答辩之后，又是一个月没有理会这件事情，对，我说的不仅仅是我自己，还有我的两位队友，我继续在忙着我的集散控制的设计，而我的两位队友，一位YJG在忙于考研的复习，一位WWH在忙于￥%……￥%……%，好吧我也不知道他忙个啥，总之，我们仍然没有把时间或者说心思分给这个设计。但中间毕竟开过几次会，讨论过几次这个问题，觉得这个时候，最差的其实就是软件部分的程序了，而我自己作为过了二级C的人，被他们推选出来作为此部分的负责人。但是我那个时候，早就快将C忘得一干二净了，于是每次想要尝试做程序，总是进入不了状态，只好没几分钟，自己就放弃了。其实后来发现，经过我这两年学其他的计算机语言，包括JAVA,PYTHON，很多程序设计上的技巧和思路，我还是有的。只是语言上的格式，我确实忘记了很多。我觉得缺少监督，更不想一个人在那里苦逼地调程序，于是又一直没有进度。</p>
+<p>老师要求16周末交出实物，而我们事实上也只是到了16周，才终于有时间有决心要做出东西来，因为自知不能实现预期的效果，所以退而求其次，觉得只要做出核心的功能，周边等的功能就暂时不实现了，跟老师商量的结果也是这样，能做到哪里做到哪里！这让我有了信息，于是自己背上书包，放上单片机和电脑，来到实验室调单片机的程序，这个时候，静下心来看，发现其实并不难，很多东西都有现成的子程序可以直接调用的，于是仅仅经过了两三天时间的调试，我们的核心功能，也就是通过光照传感器来测量室内光照照度，通过LCD1602来显示光照照度，达到光照照度下限时，电机反转，达到光照照度上限时，电机正转。在光照照度上下限之间时在自动状态电机不工作，而可以通过手动地调节来使电机正反转。只是说归说，实际上，一些细节的东西处理地并不好，但是时间紧迫，就顾不得许多了，便草草收场了。</p>
+<p>其实，也是在后来，才知道原来老师的要求是自己焊电路板，自己设计制作。但是我们没有理会这些，直接使用的大一暑假时买的51单片机开发板进行设计开发的，这确实也减少了我们的工作量，只是我到现在也仍然对硬件不是太熟悉，索性WWH这个人对硬件很熟悉，后来老师又要求手写一个20页的课程设计报告，虽然可以与之前的打印版类似，但是我们打印版缺乏细节，所以仍然要大幅度地修改，这个时候WWH派上了用场，他详细地说明了要用到的实际元件，电路应当怎样连接，我看了他的这些东西，也让我有了很多新的思路。后来，我们在一起调侃还说起这事，我比较喜欢软件，他则比较喜欢硬件，真应该在一起合作了。</p>
+<p>终于要交实物了，过程仍然比我想象的要顺利，老师问了几个问题，我们又亲手演示，老师没有问道为何其他功能没有实现，我们也就没有提，总之很顺利地交代了过去。期间又有一个小插曲，我们系主任，也是带我们集散控制的葛老师过来找张老师，交代完任务，顺便看了我们的演示，葛老师觉得我们的实现还是过于简单，张老师笑着说这比起你那个确实简单点，葛老师便提议以后可以让学生用arm的板子来做设计，当然，估计这也仅仅是个提议了。</p>
+<p>最后制作出来的实物效果如下视频所示（需翻墙）：<br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=HSFQrQ5tWPI">https://www.youtube.com/watch?v=HSFQrQ5tWPI</a></p>
+<p>程序部分在此：<br><a target="_blank" rel="noopener" href="https://github.com/zhangolve/autocurtain">https://github.com/zhangolve/autocurtain</a></p>
+<p>#感想</p>
+<p>我们三个人从上学期做电子工程设计就在一起工作，虽然实际上真正拿来认真干活的时间并不多，但交情从这里面确实提升了。但交情归交情，彼此间的默契和沟通还是不够，尤其是在正事上，团队合作是个很大的问题，这一点，我一直想在我的博客上谈一下，但总觉得自己理解不深，实践太少，所以这次也不想过多地谈，将来可能还会说。我们上学期的电子工程设计的实物多少有些应付的成分，但这学期相对来说还是比较理想的。以后，我们三个人也很难再聚在一起工作了，考研的考研，实习的实习，这一年，算作个纪念吧。</p>
+<p>可以说，从一开始我自己就没有对此事投入足够多的时间精力，以至于很多的信息是错误的，这一点的确需要反省，不知道怎样写论文，不知道要自己焊板子，不知道怎样填写设计报告前几页，都能够看出来一些端倪了，所以，这一点，以后也需要尽量改正吧。</p>
+<p>单片机并不是很难，只不过是结合了软件和硬件而已，如果只是将硬件那部分模型化，看作是一堆地址的话，也是so esay的，只是说归说，还是要多实践的，我说的不难，是没有我们想象中难，只要脚踏实地，并不难。我三天时间做出一个凑合的作品，已然能够证明了吧。</p>
+<p>好，暂时就这么多吧，我并不想稀里糊涂地度过这个学期，事实上这个学期重要工作在我看来只有两件事，一是集散控制设计，二是这个计算机控制设计，两件事都已经较为满意地结束了，挺开心的。记得那天答辩完成之后，啥都不想做，一个人躺在床上，疏疏懒懒，无欲无求一般，玩会手机听会歌，都累了就睡会觉，简直赛过活神仙，那一刻想到了曾经看过的一本书的书名</p>
+<p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/nowicandieinpeace.jpg" alt="NOW ,I CAN DIE IN PEACE"></p>
+<p>只是后来才发现，原来生活还是要继续，那么，就继续吧。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="tag"># 自动化</a>
+              <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag"># 单片机</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2015/06/24/201506/0624/" rel="prev" title="我印象中的现场总线">
+      <i class="fa fa-chevron-left"></i> 我印象中的现场总线
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2015/06/24/201506/062403/" rel="next" title="CSS-屏蔽元素（以微博屏蔽为例）">
+      CSS-屏蔽元素（以微博屏蔽为例） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

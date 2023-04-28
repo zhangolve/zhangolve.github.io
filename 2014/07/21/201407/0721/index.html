@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="#手机样式NEXUS 416G ROM 2G RAM系统：Android 4.4.4已经root#刷机过程本来是想借助这个教程http:&#x2F;&#x2F;bbs.gfan.com&#x2F;android-5482625-1-1.html 上面说的方法来手动刷机，由于手机已经root而且装了xposed，系统里面的东西好像已经被破坏了，导致手机连结usb线之后不能够被电脑识别（前提当然是已经开启了开发者模式调试），装个驱">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nexus 4 刷入Android L体验报告">
+<meta property="og:url" content="http://hktkdy.com/2014/07/21/201407/0721/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="#手机样式NEXUS 416G ROM 2G RAM系统：Android 4.4.4已经root#刷机过程本来是想借助这个教程http:&#x2F;&#x2F;bbs.gfan.com&#x2F;android-5482625-1-1.html 上面说的方法来手动刷机，由于手机已经root而且装了xposed，系统里面的东西好像已经被破坏了，导致手机连结usb线之后不能够被电脑识别（前提当然是已经开启了开发者模式调试），装个驱">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2014-07-21T13:10:48.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.082Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="谷歌">
+<meta property="article:tag" content="翻墙">
+<meta property="article:tag" content="手机">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hktkdy.com/2014/07/21/201407/0721/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Nexus 4 刷入Android L体验报告 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2014/07/21/201407/0721/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Nexus 4 刷入Android L体验报告
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-07-21 21:10:48" itemprop="dateCreated datePublished" datetime="2014-07-21T21:10:48+08:00">2014-07-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2014/07/21/201407/0721/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2014/07/21/201407/0721/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>#手机样式<br>NEXUS 4<br>16G ROM 2G RAM<br>系统：Android 4.4.4<br>已经root<br>#刷机过程<br>本来是想借助这个教程<a target="_blank" rel="noopener" href="http://bbs.gfan.com/android-5482625-1-1.html">http://bbs.gfan.com/android-5482625-1-1.html</a> 上面说的方法来手动刷机，由于手机已经root而且装了xposed，系统里面的东西好像已经被破坏了，导致手机连结usb线之后不能够被电脑识别（前提当然是已经开启了开发者模式调试），装个驱动就遇到了问题，于是一怒之下，直接将手机恢复出厂设置了（那个钛备份白备份了，之间内存清零了）。<br>恢复出厂设置之后，手机可以被电脑识别了，倒懒得手动刷机了，于是利用刷机精灵直接一键刷机了，（看了下，好像最新版的移植版N4 Android L 是beta4 ，而刷机精灵上面的是beta 2.但是当然没管太多，因为太懒？）<br>刷机精灵刷机真的很简单，自己几乎是一遍看着电影，一遍进行刷机的。全过程没有超过半个小时。（如果想用刷机精灵刷入android L的，可以自行google其方法）。<br>#刷机后问题<br>##开机<br>刷入Android L beta2之后，首先看到的是开机动画变得更加好看了，因为是第一次开机，这个动画过程也十分漫长，大概有十分钟。过了动画，接入wlan，然后是登入google帐号，鉴于天朝的网络状况，按照之前网友的作为跳过了这一步，开机过程虽然不太顺利，但是毕竟还是开机了。<br>##登录google帐号<br>之前就听说了刷入L 之后，翻墙是个大问题，甚至都不能用VPN翻墙，经过google搜索，找到了改hosts的方法，索性的是这个版本的移植版L 已经自带了root，所以下载了一个synchosts，改过hosts重启之后就能登录谷歌了。当然这也并不是说这个hosts有多好，twitter之类还是不能光靠改hosts上去的，play可以打开但是想要下载基本上就是拼人品了，很慢，很慢。我的play book里面有几本书还在读，结果一直到现在还有一本书没有下载成功，估计要重启才能停止。因为这个进程根本不能杀掉。（可能是我不会）<br>##联系人同步<br>这个问题我搞了半个小时，本来以为谷歌会自动同步联系人的，结果却并没有直接在联系人中显示我之前同步过的联系人，于是想到了我之前也在我的百度云里面备份过联系人，但是开启恢复同步之后竟然不能同步过来，我怀疑是对L 的支持问题。最后的解决还是手机的设置上了。同步联系人也是需要手动设置勾选滴。<br>#开启google now<br><del>还没有开启，哪天有必要开启的。这东西用习惯了，就真的习惯了。</del><br>最终还是开启了google now，如果说android 4.x时代开启google now还需要<a target="_blank" rel="noopener" href="http://www.zhihu.com/question/21486890/answer/20548296">这样做的话</a>，整个开启步骤长达十几步，熟练了也需要十几二十分钟，那么Android L（开发者预览版）开启google now仅仅是需要三分钟即可搞定，颤抖吧，少年。具体方法：<br><strong>1系统语言改为英文</strong><br><strong>2退除google帐号</strong><br><strong>3将google play service设置为disabled，如果要求卸载，卸载之</strong><br><strong>4重新登录google帐号</strong>，这个时候就已经能够出现<strong>I’M IN</strong>了，点击之，即可成功开启。<br><strong>5将google play service设置为enable</strong><br>（此方法来自机锋论坛网友，感谢）</p>
+<p>#其他<br>当然其实刷机之后的问题未必比刷机之前问题少，比如有大量的软件不能用，比如要重新安装好多app。比如翻墙的问题。当然毕竟这是一个新的系统，权重之下还是能够比较让我满意的，毕竟在家电脑翻一样的翻。手机快才是重要的。<br>#刷机后评价<br>这个Android L还是很有趣的，我在手机上装了大概20几个app之后还能保持特别顺滑的手感，与刷机之前形成了鲜明的对比。色调和之前的4.4反差特别大，material design还是很给力的，很美妙的是那些阴影，可以看出来是花了功夫的，真的很细腻。正常使用的话，对我而言基本上没什么问题，刚才也有提到，最常上的是社交类app，除了twitter，ins不能用有些遗憾之外，其他的都能够让你玩的很爽，比4.4的时候还要快。</p>
+<p>Android L 的图片就不传了，大家在网上看到的还没有看够吗？<br><em><strong><strong><strong><strong><strong><strong>N4刷入Android L体验报告到此为止，一下为个人吐槽，可选看</strong></strong></strong></strong></strong></strong></em>**</p>
+<p>#刷机前吐槽<br>首先是手机的问题不少</p>
+<p> 1 xposed里面的instagram图片下载不能正常使用了，这个让我这个最近喜欢上玩ins的娃有点蛋疼，能刷不能玩，还总是强迫症似的想要下载，摆弄半天也没有用。<br> 2最近手机反映特别慢，是我买来以后最慢的时候了。当然之前并没有刷过机，安卓机又一直有这样一个毛病，使用时间越长，用起来越卡。尤其是我那天尝试着用了钛备份把自己手机上七十多个自装app（xposed框架中的插件也算在内）备份之后，又浪费掉将近两个G的容量，致使手机的16G(当然，实际为12.x）ROM,最后只剩下了1G多一点（我觉得这也是手机变卡的原因）。<br> 3 <a target="_blank" rel="noopener" href="https://plus.google.com/100761412958725838270/posts/4eVS5nAD5ry">google play即使用fqrouter也不能打开</a>，但是却可以下载应用。<br> 4因为在家里，和学校里的网络状况不一样，不太清楚，但是很郁闷的是，最近向google+，微博带有图片的post都不能正常发送，根据我的流量监控软件显示，发送的时候几乎就没有网速。</p>
+<p>5昨天晚上，把手机开着外放音乐睡着了（屋里面就我一个人，结果半夜十二点醒来发现手机显示没有信号，然后播放音乐没有声音，其他所有涉及声音的也都无效，重启之后依然无效当时没有无线网，直到早上连上wifi之后才能够恢复正常。<br>6就在前两天，电量还剩1%的时候我去充电，没去管他，等我一个小时后回来看手机，发现手机上显示红色的”download  mode”下面还有一行小字，搜索解决方案后没有解决，最终是等电量全部放光之后再充电恢复正常的。<br> 7 最近也确实看到很多网友在N4上面刷入Android L,这让我这个半小白也有了兴趣，虽然知道九月份就能等到更新，但是最近也确实没啥事，于是想了想，刷就刷呗。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%B0%B7%E6%AD%8C/" rel="tag"># 谷歌</a>
+              <a href="/tags/%E7%BF%BB%E5%A2%99/" rel="tag"># 翻墙</a>
+              <a href="/tags/%E6%89%8B%E6%9C%BA/" rel="tag"># 手机</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2014/07/17/201407/0717/" rel="prev" title="我的室友之C4-226">
+      <i class="fa fa-chevron-left"></i> 我的室友之C4-226
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2014/07/22/201407/0722/" rel="next" title="博客加载速度太慢，伤不起">
+      博客加载速度太慢，伤不起 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

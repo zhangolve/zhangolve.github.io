@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文转载自：众成翻译译者：zhangolve链接：http:&#x2F;&#x2F;www.zcfy.cc&#x2F;article&#x2F;1980原文：https:&#x2F;&#x2F;medium.com&#x2F;@housecor&#x2F;react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc#.7lv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】九个你忽略的React 无状态组件的优势">
+<meta property="og:url" content="http://hktkdy.com/2016/12/13/201612/react-stateless-functional-components-nine-wins-you-might-have-overlooked/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="本文转载自：众成翻译译者：zhangolve链接：http:&#x2F;&#x2F;www.zcfy.cc&#x2F;article&#x2F;1980原文：https:&#x2F;&#x2F;medium.com&#x2F;@housecor&#x2F;react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc#.7lv">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/react-stateless.png">
+<meta property="article:published_time" content="2016-12-13T13:18:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.094Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/react-stateless.png">
+
+<link rel="canonical" href="http://hktkdy.com/2016/12/13/201612/react-stateless-functional-components-nine-wins-you-might-have-overlooked/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【译】九个你忽略的React 无状态组件的优势 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2016/12/13/201612/react-stateless-functional-components-nine-wins-you-might-have-overlooked/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【译】九个你忽略的React 无状态组件的优势
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-13 21:18:49" itemprop="dateCreated datePublished" datetime="2016-12-13T21:18:49+08:00">2016-12-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2016/12/13/201612/react-stateless-functional-components-nine-wins-you-might-have-overlooked/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2016/12/13/201612/react-stateless-functional-components-nine-wins-you-might-have-overlooked/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>本文转载自：<a target="_blank" rel="noopener" href="http://www.zcfy.cc/">众成翻译</a><br>译者：<a target="_blank" rel="noopener" href="http://www.zcfy.cc/@zhangolve">zhangolve</a><br>链接：<a target="_blank" rel="noopener" href="http://www.zcfy.cc/article/1980">http://www.zcfy.cc/article/1980</a><br>原文：<a target="_blank" rel="noopener" href="https://medium.com/@housecor/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc#.7lv7ick6a">https:&#x2F;&#x2F;medium.com&#x2F;@housecor&#x2F;react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc#.7lv7ick6a</a></p>
+</blockquote>
+<p>React 0.14 引进了一种更简单的方式来定义组件，也就是无状态组件。这种组件使用了原生Javascript 函数，下图就是在用ES6的情况下，React 0.14 之前版本的组件写法和它之后对应的组件写法。</p>
+<span id="more"></span>
+
+<p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/react-stateless.png"></p>
+<p>前者用了27行代码来实现，而后者只用了21行，这当然也没有什么了不起的。需要说明的是，由于性能方面的原因，右边代码中的<code>sayHi</code> 函数应该尽量避免这样使用。（原因见文末评论）</p>
+<p>匆匆一览，上面左右两种代码形式似乎并没有太大区别，但是能够把<strong>噪音</strong>去掉就是<strong>伟大</strong>的胜利。（译者注：本文中所说的噪音(noise)和信号(signal)是来自于物理学中的概念。下文中其他处遇到这两个词，也是如此，不再解释。）</p>
+<p>下面就是原因了。</p>
+<h3 id="Class并无必要"><a href="#Class并无必要" class="headerlink" title="Class并无必要"></a>Class并无必要</h3><p>诚然，我认为<a target="_blank" rel="noopener" href="https://medium.com/@housecor/in-defense-of-javascript-classes-e50bf2270a95#.92qa3ous7">围绕着ES6 的类的讨论已经太多了</a>。但是，我仍然认为纯函数是更加合理的，把讨厌的结构体和继承关系去掉无疑是件好事，体现了它的优势。</p>
+<h3 id="没有this关键字"><a href="#没有this关键字" class="headerlink" title="没有this关键字"></a>没有<strong>this</strong>关键字</h3><p>就如上面的例子所示，无状态组件只是一个函数。因此，所有与Javascript语言中<strong>this</strong> 关键字有关的让人疑惑，使人讨厌的情况都会避免。没有了<strong>this</strong> 关键字之后，整个组件就会更加容易让人理解。只需要比较一下上例中的click 事件处理器，就能明白了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">onClick=&#123;this.sayHi.bind(this)&#125;&gt;Say Hi&lt;/a&gt;</span><br><span class="line">onClick=&#123;sayHi&#125;&gt;Say Hi&lt;/a&gt; </span><br></pre></td></tr></table></figure>
+
+
+<p>需要说明的是，对于无状态组件而言，<strong>bind</strong>这个关键字并非必须的。将<strong>Class</strong> 去掉之后，我们也无需通过绑定来将<strong>this</strong>关键字与上下文联系起来。 Javascript 中的 <strong>this</strong> 关键字给如此多的开发者造成了困惑，能够尽量不用<strong>this</strong> 是无状态组件的另一个优势。</p>
+<h3 id="被迫使用最好的方法"><a href="#被迫使用最好的方法" class="headerlink" title="被迫使用最好的方法"></a>被迫使用最好的方法</h3><p>无状态组件是非常有用的<a target="_blank" rel="noopener" href="https://gist.github.com/chantastic/fc9e3853464dffdb1e3c">表现类组件</a>。表现类组件应该专注于UI层面而不是交互，应该避免在表现类组件中使用状态。状态应当通过更高水平的容器类组件，或者是通过FLUX&#x2F;Redux 等等来管理。无状态组件不支持状态或者生命周期。<strong>这是一件好事。</strong>为什么这么说呢？因为它迫使你不再懒惰，让你不得不把容器类组件和表现类组件分离开来。</p>
+<p>当然，你总是很愿意将状态添加到表现类组件之中，这也的确是一种很快的方法来实现一个功能。然而，无状态组件并不支持本地状态，你并不能够轻而易举地实现状态。因此，无状态组件就自动迫使当前组件保持纯函数形式。你也要被迫把状态管理放到它相应的位置：在更高水平的容器类组件中。</p>
+<h3 id="高信噪比"><a href="#高信噪比" class="headerlink" title="高信噪比"></a>高信噪比</h3><p>正如上图所示，无状态组件写起来代码量更少，这也就减少了噪音干扰。正如我在“<a target="_blank" rel="noopener" href="https://www.pluralsight.com/courses/writing-clean-code-humans">Writing Code for Humans 课程</a>” 中所讨论过的那样，好代码把信噪比（signal-to-noise ratio）最大化，27行代码的组件变成了21行，缩减了大约20%的代码量。如果你使用ES6 结构来处理属性(props)，那么结果是几乎所有的信号（signal）都是有用的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import React from ‘react’; </span><br><span class="line">const HelloWorld = (&#123;name&#125;) =&gt; ( </span><br><span class="line">  &lt;div&gt;&#123;`Hi $&#123;name&#125;`&#125;&lt;/div&gt; </span><br><span class="line"> ); </span><br><span class="line"> export default HelloWorld; </span><br></pre></td></tr></table></figure>
+
+
+<p>看见了吧，只用了一个函数，有一个参数，返回了一个标记(markup)。是不是很Nice ！那么，还能不能让代码量更少呢？</p>
+<h3 id="代码自动补全"><a href="#代码自动补全" class="headerlink" title="代码自动补全"></a>代码自动补全</h3><p>如果你就像是我上面例子中那样，用ES6 拆解你的属性(props) ，那么你现在用到的所有的数据都只是作为一个简单的函数参数而已。这也就意味着，相较于基于类(class-based)的组件,你也得到了很好的自动补全代码支持。</p>
+<h3 id="很容易找出来臃肿的组件和低劣的数据结构"><a href="#很容易找出来臃肿的组件和低劣的数据结构" class="headerlink" title="很容易找出来臃肿的组件和低劣的数据结构"></a>很容易找出来臃肿的组件和低劣的数据结构</h3><p>众所周知，如果<a target="_blank" rel="noopener" href="http://app.pluralsight.com/courses/writing-clean-code-humans">一个函数有很多参数，那它就是有代码异味的</a> 。当你使用ES6 架构来组织你的无状态组件时，这个参数列表已经清晰地传递了你组件的依赖关系。因此，也就很容易找到需要更改的组件。在上面的例子中，你也可以打破这个组件结构或者重新思考你正传递的数据结构。有时候，你并不需要传递一长串属性，而只需要传递一个对象。但是如果这些属性不仅仅与单独的一个对象相匹配，那么你就需要重构你的组件，把这个组件化整为零，分成若干个单独的组件。</p>
+<h3 id="便于理解"><a href="#便于理解" class="headerlink" title="便于理解"></a>便于理解</h3><p>正如我们所见，当你看到一个无状态组件的时候，你就知道这其实就是一个简单的函数，它有相应的属性，可以生成HTML。即便在它的render 函数内部嵌套了很多其他的函数，它在概念上仍然是很简单的。这又是无状态组件的一个很大的优势所在。</p>
+<h3 id="便于测试"><a href="#便于测试" class="headerlink" title="便于测试"></a>便于测试</h3><p>因为无状态组件只是一个纯函数，你的实现是非常直接的。给这些值对应的属性(props),我期望它返回这个标记（markup）。因此对于上面的示例 HelloWorld 组件而言，我可以把’Cory’ 这个值传递给 props.name ，这样这个组件就可以返回一个内部含有’Hi Cory’ 的 div 了。</p>
+<blockquote>
+<p>由于有了React 的无状态组件，每一个组件都可以单独进行测试。无需模拟，也无需状态的操作，或者安装用于测试的特定的库。</p>
+</blockquote>
+<h3 id="表现"><a href="#表现" class="headerlink" title="表现"></a>表现</h3><p>最后，无状态组件会在不久之后的将来提供更加优秀的性能表现。由于针对无状态组件，无需考虑状态或者生命周期，React 团队也计划在将来的版本中去掉不必要的检查和内存分配。而伴随更加优秀的性能表现而来的，是更好的语法规则，代码更加可读化，代码更加易于测试。怎么样，这么好的东西，赶紧用起来吧！</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>基于以上这些原因，我们应该在可用之处尽量使用无状态组件。这也让我<a target="_blank" rel="noopener" href="https://www.pluralsight.com/courses/react-flux-building-applications">热爱教授React 课程</a> 有了一个新的原因。<strong>在当今流行的框架中，React 的无状态组件是我见过的最优雅的实现可复用组件的方式，没有之一。</strong> 是的，甚至<a target="_blank" rel="noopener" href="https://medium.freecodecamp.com/angular-2-versus-react-there-will-be-blood-66595faafd51#.19cm9gx8c">包括 Angular 2</a>在内，通通不在话下。</p>
+<p>你们发现我有什么疏漏的地方？可以在下面评论框里留言哦！</p>
+<p>注：</p>
+<p><strong>来自原文下评论：</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://medium.com/@satya164/it-s-kinda-like-defining-your-functions-inside-the-render-method-535038b30ec3#.i1jjspjga">Felipe Amorim</a> :如果在render 方法中定义你的函数的话，你不必再考虑绑定了。但是 由于无状态组件并不提供 shouldComponentUpdate 方法，当创建新的函数的时候，你也就不能阻止不必要的重新渲染了。这也就造成了性能上的问题。</p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://medium.com/@whymclovin/you-should-really-avoid-having-function-allocations-inside-statelless-components-43eb3b056818#.ucggqwnpl">Satyajit Sahoo</a>: 应该尽量避免在无状态组件内部使用其他函数，完全可以将这些函数放到无状态组件之外，通过传递属性值的方式来实现，这将给性能带来很大提升。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+              <a href="/tags/React/" rel="tag"># React</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/12/06/201612/why-you-should-full-stack/" rel="prev" title="为什么你需要成为一个全栈开发工程师？">
+      <i class="fa fa-chevron-left"></i> 为什么你需要成为一个全栈开发工程师？
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/12/21/201612/automation-to-frontend-4/" rel="next" title="我一个自动化本科生怎么就做了前端呢？(4)">
+      我一个自动化本科生怎么就做了前端呢？(4) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Class%E5%B9%B6%E6%97%A0%E5%BF%85%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">Class并无必要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B2%A1%E6%9C%89this%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">2.</span> <span class="nav-text">没有this关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A2%AB%E8%BF%AB%E4%BD%BF%E7%94%A8%E6%9C%80%E5%A5%BD%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">被迫使用最好的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E4%BF%A1%E5%99%AA%E6%AF%94"><span class="nav-number">4.</span> <span class="nav-text">高信噪比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="nav-number">5.</span> <span class="nav-text">代码自动补全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%88%E5%AE%B9%E6%98%93%E6%89%BE%E5%87%BA%E6%9D%A5%E8%87%83%E8%82%BF%E7%9A%84%E7%BB%84%E4%BB%B6%E5%92%8C%E4%BD%8E%E5%8A%A3%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">6.</span> <span class="nav-text">很容易找出来臃肿的组件和低劣的数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%BF%E4%BA%8E%E7%90%86%E8%A7%A3"><span class="nav-number">7.</span> <span class="nav-text">便于理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%BF%E4%BA%8E%E6%B5%8B%E8%AF%95"><span class="nav-number">8.</span> <span class="nav-text">便于测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E7%8E%B0"><span class="nav-number">9.</span> <span class="nav-text">表现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">10.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

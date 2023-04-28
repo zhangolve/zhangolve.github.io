@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="序言这是我自己在 Freecode.camp 上做的几道算法题目，基本上是边做边写，写的过程是为了厘清楚解题的思路，加深对原有题目的印象，后来就想着干脆发到博客上。但因为是边做边写的，有些时候思路清晰的，往往就一笔带过了，而没有思路的，却着了很多的笔墨。另外，也由于是边做边写，原文的排版并不是非常友好，此稿也是我经过了很多改正之后的结果，想着这也就是作为自己的笔记日后来看，若是能够帮上其他朋友，也">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FreeCodeCamp JS算法题部分【1】">
+<meta property="og:url" content="http://hktkdy.com/2016/08/03/201608/free-code-camp-some-test/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="序言这是我自己在 Freecode.camp 上做的几道算法题目，基本上是边做边写，写的过程是为了厘清楚解题的思路，加深对原有题目的印象，后来就想着干脆发到博客上。但因为是边做边写的，有些时候思路清晰的，往往就一笔带过了，而没有思路的，却着了很多的笔墨。另外，也由于是边做边写，原文的排版并不是非常友好，此稿也是我经过了很多改正之后的结果，想着这也就是作为自己的笔记日后来看，若是能够帮上其他朋友，也">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-08-03T05:42:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.094Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hktkdy.com/2016/08/03/201608/free-code-camp-some-test/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>FreeCodeCamp JS算法题部分【1】 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2016/08/03/201608/free-code-camp-some-test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          FreeCodeCamp JS算法题部分【1】
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-03 13:42:49" itemprop="dateCreated datePublished" datetime="2016-08-03T13:42:49+08:00">2016-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2016/08/03/201608/free-code-camp-some-test/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2016/08/03/201608/free-code-camp-some-test/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>这是我自己在 Freecode.camp 上做的几道算法题目，基本上是边做边写，写的过程是为了厘清楚解题的思路，加深对原有题目的印象，后来就想着干脆发到博客上。但因为是边做边写的，有些时候思路清晰的，往往就一笔带过了，而没有思路的，却着了很多的笔墨。另外，也由于是边做边写，原文的排版并不是非常友好，此稿也是我经过了很多改正之后的结果，想着这也就是作为自己的笔记日后来看，若是能够帮上其他朋友，也是非常高兴的。</p>
+<p><del>全文共记述了15道算法题的答案，大多有解题的思路和过程，全文较长，然而此文中痛点在于没有目录，皆因我是用的Markdown编辑，这也是Markdown的一大短板，在本地的Typora是能够看到目录的(只需要添加一条[TOC])，但这个hexo 主题并不具有此功能，以后有时间，再做更改。（说以后有时间，估计就没有以后了。笑cry）</del></p>
+<p>然而，刚刚写完上面的那段话，立刻就反应过来：可不就是主题的问题。于是搜索了一番，果然是有针对yilia主题添加目录的配置和方法：<a target="_blank" rel="noopener" href="https://github.com/iblogc/hexo-theme-yilia/tree/add-toc">https://github.com/iblogc/hexo-theme-yilia/tree/add-toc</a></p>
+<span id="more"></span>
+
+
+
+
+
+
+<h1 id="Sorted-Union"><a href="#Sorted-Union" class="headerlink" title="Sorted Union"></a>Sorted Union</h1><p>来自：<a target="_blank" rel="noopener" href="https://www.freecodecamp.com/challenges/sorted-union">https://www.freecodecamp.com/challenges/sorted-union</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">uniteUnique</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">uniteUnique</span>([<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>], [<span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>], [<span class="number">2</span>, <span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>最初的代码是这样的，那么现在所要解决的第一个问题是，明明在uniteUnique 这个function中有三个参数array的，但是在这里只能够调用一个。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">uniteUnique</span>(<span class="params">arr,arr2,arr3</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> arr.<span class="title function_">concat</span>(arr2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">uniteUnique</span>([<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>], [<span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>], [<span class="number">2</span>, <span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>这就解决了第一个问题，就是参数。但是事实上，我们并不知道究竟有几个参数，比如给定的还可以是类似于[1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8]，这时候就是有4个参数了，所以说，这个问题，还是没有根本解决，但是在这里打算先实现[1, 3, 2], [5, 2, 1, 4], [2, 1]这个的特例。</p>
+<p>这里的思路是遍历，将重复的元素去除掉，将新的数组与原数组结合。</p>
+<p>这里首先牵扯到一个问题：<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/12116326/javascript-simple-way-to-check-if-variable-is-equal-to-two-or-more-values">如何判断一个值不等于另外一个数组中的任何一个值</a>。</p>
+<p>可以用类似如下代码实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>].<span class="title function_">indexOf</span>(x) &gt; -<span class="number">1</span>) </span><br><span class="line"></span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>如果x在[5,6,7,8]这个数组之中，则符合要求。这是判断一个值等于另外一个数组中的某一个值。</p>
+<p>后来觉得还是直接使用splice()方法将重复的元素删除掉比较好一些。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">uniteUnique</span>(<span class="params">arr,arr2,arr3</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr2.<span class="property">length</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;arr.<span class="property">length</span>;j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arr2[i]==arr[j])&#123;   <span class="comment">//要求是对于所有的都不等于</span></span><br><span class="line">         <span class="keyword">var</span> removed =arr2.<span class="title function_">splice</span>(i,<span class="number">1</span>); </span><br><span class="line">         <span class="keyword">return</span> removed;</span><br><span class="line">         </span><br><span class="line">        &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     <span class="comment">// return arr.concat(arr2)</span></span><br><span class="line">      &#125;&#125;</span><br><span class="line">    <span class="title function_">uniteUnique</span>([<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>], [<span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>], [<span class="number">2</span>, <span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>仍然是个失败的尝试。这个返回的是2.这说明能找出来重复值了。</p>
+<p>这里要注意，没有arr[-1]这样的用法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">uniteUnique</span>(<span class="params">arr,arr2,arr3</span>) &#123;</span><br><span class="line"> <span class="keyword">return</span> arr[-<span class="number">1</span>];</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">uniteUnique</span>([<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>], [<span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>], [<span class="number">2</span>, <span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>没有返回值。</p>
+<blockquote>
+<p>网络上的解法：<br>Problem Explanation:</p>
+<p>   The program has to return a new array of unique values from two original arrays in the order they show up. So there is not sorting required, and no duplicates.<br>没有排序要求</p>
+<p>Hint: 1</p>
+<p>   Since you have no idea how many parameters were passed, it would be best to loop through the arguments before looping through the arrays.<br>由于不知道有多少个参数，所以可以在遍历数组之前遍历所有的参数<br>Hint: 2</p>
+<p>   I used loops, you can use something else like map, reduce or others if you want.<br>使用循环遍历<br>Hint: 3</p>
+<p>   You will have to check if the current value is already on the array to be returned for every value.<br>检查</p>
+</blockquote>
+<p>代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">unite</span>(<span class="params">arr1, arr2, arr3</span>) &#123;</span><br><span class="line">  <span class="comment">// Creates an empty array to store our final result.</span></span><br><span class="line">  <span class="keyword">var</span> finalArray = [];</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Loop through the arguments object to truly made the program work with two or more arrays</span></span><br><span class="line">  <span class="comment">// instead of 3.</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="variable language_">arguments</span>.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> arrayArguments = <span class="variable language_">arguments</span>[i];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Loops through the array at hand</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; arrayArguments.<span class="property">length</span>; j++) &#123;</span><br><span class="line">      <span class="keyword">var</span> indexValue = arrayArguments[j];</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Checks if the value is already on the final array.</span></span><br><span class="line">      <span class="keyword">if</span> (finalArray.<span class="title function_">indexOf</span>(indexValue) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        finalArray.<span class="title function_">push</span>(indexValue);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> finalArray;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个解决方案的思路是先将所有参数找出来，所有的参数就是所有的数组，我们不管究竟哪一个元素是哪一个数组里的，只判断这个元素是否在新的数组之中，如果不在的话，就push到数组里。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">finalArray.<span class="title function_">indexOf</span>(indexValue) &lt; <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>当然是很巧妙的啊。</p>
+<p>我自己的解法是这样的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">uniteUnique</span>(<span class="params">arr,arr2,arr3</span>) &#123;</span><br><span class="line"><span class="keyword">var</span> finalArr=[];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="variable language_">arguments</span>.<span class="property">length</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;<span class="variable language_">arguments</span>[i].<span class="property">length</span>;j++)</span><br><span class="line">        &#123;</span><br><span class="line">      <span class="keyword">if</span>(finalArr.<span class="title function_">indexOf</span>(<span class="variable language_">arguments</span>[i][j])&lt;<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          finalArr.<span class="title function_">push</span>(<span class="variable language_">arguments</span>[i][j]);</span><br><span class="line">          </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">   <span class="keyword">return</span> finalArr;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">uniteUnique</span>([<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>], [<span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>], [<span class="number">2</span>, <span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h1 id="Convert-HTML-Entities"><a href="#Convert-HTML-Entities" class="headerlink" title="Convert HTML Entities"></a>Convert HTML Entities</h1><p>很显然又用的了正则表达式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&amp;：&amp;amp;</span><br><span class="line"><span class="string">&#x27;：&amp;apos;</span></span><br><span class="line"><span class="string">&lt;:&amp;lt; </span></span><br><span class="line"><span class="string">&gt;:&amp;gt;</span></span><br><span class="line"><span class="string">&gt;&quot;:&amp;quot;.</span></span><br><span class="line"><span class="string">空格:&amp;nbsp; </span></span><br></pre></td></tr></table></figure>
+
+<p>首先搞清楚什么是HTML实体</p>
+<p>我们可以看出来，在HTML中&lt;&gt;是标记符，让他们显示他们原本的意思，因此就有了html实体。</p>
+<pre><code>&lt;p&gt;
+2&amp;lt;4&amp;#60;6
+&lt;/p&gt;
+</code></pre>
+<p>他就相当于是</p>
+<p>
+2&lt;4&#60;6
+</p>
+
+<p>使用这种entities的好处就是方便记忆，方便检查。比较完整的<a target="_blank" rel="noopener" href="https://dev.w3.org/html5/html-author/charref">charref</a></p>
+<h1 id="Spinal-Tap-Case"><a href="#Spinal-Tap-Case" class="headerlink" title="Spinal Tap Case"></a><a target="_blank" rel="noopener" href="https://www.freecodecamp.com/challenges/spinal-tap-case#">Spinal Tap Case</a></h1><p>这个题目提示可以使用正则表达式，但是我还是没有用。题目的要求就是将原来无论怎样格式的句子改写成中间用-连接。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">spinalCase</span>(<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> newArr=str.<span class="title function_">split</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;newArr.<span class="property">length</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span>(newArr[i]===<span class="string">&#x27; &#x27;</span>||newArr[i]===<span class="string">&#x27;_&#x27;</span>)&#123;</span><br><span class="line">        newArr[i]=<span class="string">&#x27;-&#x27;</span>;</span><br><span class="line">        <span class="comment">//将空格和下划线替换成减号。</span></span><br><span class="line">          </span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">if</span>(newArr[i].<span class="title function_">charCodeAt</span>(<span class="number">0</span>)&gt;<span class="number">64</span>&amp;&amp;newArr[i].<span class="title function_">charCodeAt</span>(<span class="number">0</span>)&lt;<span class="number">91</span>&amp;&amp;i!==<span class="number">0</span>)</span><br><span class="line">      &#123;</span><br><span class="line">      </span><br><span class="line">      newArr[i]=<span class="string">&#x27;-&#x27;</span>+newArr[i];</span><br><span class="line">      &#125;      </span><br><span class="line">      newArr[i]=newArr[i].<span class="title function_">toLowerCase</span>();</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  str=newArr.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> finalArr=str.<span class="title function_">split</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;finalArr.<span class="property">length</span>;j++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span>(finalArr[j]===<span class="string">&#x27;-&#x27;</span>&amp;&amp;finalArr[j+<span class="number">1</span>]===<span class="string">&#x27;-&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          finalArr[j+<span class="number">1</span>]=<span class="string">&#x27;&#x27;</span>;</span><br><span class="line">          </span><br><span class="line">        &#125;  &#125;</span><br><span class="line">         <span class="keyword">var</span> newstr=finalArr.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> newstr;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">spinalCase</span>(<span class="string">&#x27;This Is Spinal Tap&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Sum-All-Odd-Fibonacci-Numbers"><a href="#Sum-All-Odd-Fibonacci-Numbers" class="headerlink" title="Sum All Odd Fibonacci Numbers"></a><a target="_blank" rel="noopener" href="https://www.freecodecamp.com/challenges/sum-all-odd-fibonacci-numbers">Sum All Odd Fibonacci Numbers</a></h1><p>这个题目的要求是找出所有奇数的费内巴切数的和。</p>
+<p>思路是首先要找到费内巴切数列，这就是一个很简单的一个问题了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sumFibs</span>(<span class="params">num</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> <span class="title class_">Fib</span>=[<span class="number">1</span>,<span class="number">1</span>];</span><br><span class="line">  <span class="keyword">var</span> sum=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">  <span class="title class_">Fib</span>[i+<span class="number">2</span>]=<span class="title class_">Fib</span>[i]+<span class="title class_">Fib</span>[i+<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//找出一个费内巴切数列，实际上这已经是一个很大的数列了。</span></span><br><span class="line">  <span class="keyword">var</span> end=<span class="number">0</span>;</span><br><span class="line"><span class="comment">//将截至的数字定为end</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;<span class="number">100</span>;j++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="title class_">Fib</span>[j+<span class="number">1</span>]&gt;num)</span><br><span class="line">      &#123;</span><br><span class="line">         end=j;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//找到截至的那个数字</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> k=<span class="number">0</span>;k&lt;end+<span class="number">1</span>;k++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="title class_">Fib</span>[k]%<span class="number">2</span>==<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          sum+=<span class="title class_">Fib</span>[k];</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//通过取余的操作来判断出奇数</span></span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">sumFibs</span>(<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Sum-All-Primes"><a href="#Sum-All-Primes" class="headerlink" title="Sum All Primes"></a><a target="_blank" rel="noopener" href="https://www.freecodecamp.com/challenges/sum-all-primes">Sum All Primes</a></h1><p>题目要求：所有质数相加</p>
+<p>我们先来看一个程序，<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/11966520/how-to-find-prime-numbers-between-0-100">找出来一个数是否为质数</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">isPrime</span>(<span class="params">num</span>) &#123;</span><br><span class="line"><span class="keyword">if</span>(num &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">2</span>; i &lt; num; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(num%i==<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是一个可以用来判断是否为质数的方法，我们可以利用它。</p>
+<p>​	</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sumPrimes</span>(<span class="params">num</span>) &#123;</span><br><span class="line"><span class="keyword">var</span> sum=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> array=[];</span><br><span class="line"><span class="keyword">var</span> end;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isprime</span>(<span class="params">addNum</span>)&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">2</span>;i&lt;addNum;i++)</span><br><span class="line"> &#123;</span><br><span class="line"> <span class="keyword">if</span>(addNum%i===<span class="number">0</span>)&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">2</span>;j&lt;<span class="number">1000</span>;j++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="title function_">isprime</span>(j))</span><br><span class="line">        &#123;</span><br><span class="line">          array.<span class="title function_">push</span>(j);</span><br><span class="line">        &#125;</span><br><span class="line">            &#125;</span><br><span class="line">             <span class="keyword">for</span>(<span class="keyword">var</span> k=<span class="number">0</span>;k&lt;array.<span class="property">length</span>;k++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span>(array[k]&gt;num)</span><br><span class="line">      &#123;</span><br><span class="line">        end=k-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> h=<span class="number">0</span>;h&lt;end+<span class="number">1</span>;h++)</span><br><span class="line">    &#123;</span><br><span class="line">      sum+=array[h];</span><br><span class="line">      	    &#125;</span><br><span class="line">      	    	  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">sumPrimes</span>(<span class="number">10</span>);	</span><br></pre></td></tr></table></figure>
+
+<p>​	 </p>
+<h1 id="Smallest-Common-Multiple"><a href="#Smallest-Common-Multiple" class="headerlink" title="Smallest Common Multiple"></a><a target="_blank" rel="noopener" href="https://www.freecodecamp.com/challenges/smallest-common-multiple">Smallest Common Multiple</a></h1><p>题目要求：最小公倍数问题，要求是甚至这个最小公倍数能够被这个范围内的数字整除。也就是说，同时也是这个范围内数字的公倍数。</p>
+<p>​	</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">function</span> <span class="title function_">smallestCommons</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">   <span class="keyword">var</span> newArr=[];</span><br><span class="line">    <span class="keyword">var</span> sum=<span class="number">1</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// it is a prime num?</span></span><br><span class="line">   <span class="keyword">function</span> <span class="title function_">isprime</span>(<span class="params">addNum</span>)&#123;</span><br><span class="line">	  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">2</span>;i&lt;addNum;i++)</span><br><span class="line">	    &#123;</span><br><span class="line">	      <span class="keyword">if</span>(addNum%i===<span class="number">0</span>)&#123;</span><br><span class="line">	        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	        </span><br><span class="line">	      &#125;</span><br><span class="line">	    </span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//have common div</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">havecom</span>(<span class="params">first,second</span>)</span><br><span class="line">  &#123;</span><br><span class="line">        <span class="keyword">var</span> common=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">2</span>;i&lt;second;i++)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_">isprime</span>(i))</span><br><span class="line">          &#123;</span><br><span class="line">        <span class="keyword">if</span>(first%i===<span class="number">0</span>&amp;&amp;second%i===<span class="number">0</span>)</span><br><span class="line">          &#123;</span><br><span class="line">            common*=i;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">       &#125;</span><br><span class="line">    <span class="keyword">return</span> common;</span><br><span class="line">   </span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">sort</span>(<span class="params">a,b</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">var</span> mid;</span><br><span class="line">  <span class="keyword">if</span> (a&gt;b)</span><br><span class="line">    &#123;</span><br><span class="line">       newArr[<span class="number">0</span>]=b;</span><br><span class="line">       newArr[<span class="number">1</span>]=a;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">      newArr[<span class="number">0</span>]=a;</span><br><span class="line">      newArr[<span class="number">1</span>]=b;</span><br><span class="line">    &#125;</span><br><span class="line">      &#125;</span><br><span class="line">       <span class="title function_">sort</span>(arr[<span class="number">0</span>],arr[<span class="number">1</span>]);</span><br><span class="line">  <span class="keyword">var</span> min=newArr[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">var</span> max=newArr[<span class="number">1</span>];</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> j=min;j&lt;max+<span class="number">1</span>;j++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="title function_">havecom</span>(sum,j)==<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          sum=sum*j;</span><br><span class="line">          </span><br><span class="line">        &#125;</span><br><span class="line">      <span class="keyword">else</span>&#123;</span><br><span class="line">        sum=sum*j/<span class="title function_">havecom</span>(sum,j);</span><br><span class="line">        </span><br><span class="line">      &#125;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  for(var j=min;j&lt;max;j++)</span></span><br><span class="line"><span class="comment">    for(var k=j+1;k&lt;max;k++)</span></span><br><span class="line"><span class="comment">      &#123;</span></span><br><span class="line"><span class="comment">        if(havecom(j,k)!==1)</span></span><br><span class="line"><span class="comment">          &#123;</span></span><br><span class="line"><span class="comment">            sum=sum/havecom(j,k);</span></span><br><span class="line"><span class="comment">            </span></span><br><span class="line"><span class="comment">          &#125;</span></span><br><span class="line"><span class="comment">        </span></span><br><span class="line"><span class="comment">      &#125;</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">smallestCommons</span>([<span class="number">1</span>,<span class="number">8</span>]);</span><br></pre></td></tr></table></figure>
+
+
+<p>​	            </p>
+<p>我最初的程序是这样的，它的主要问题是计算两个数的最大公约数的方法havecom() 其实是错误的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">function</span> <span class="title function_">smallestCommons</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> newArr=[];</span><br><span class="line">  <span class="keyword">var</span> sum=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// it is a prime num?</span></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"> <span class="keyword">function</span> <span class="title function_">isprime</span>(<span class="params">addNum</span>)&#123;</span><br><span class="line"> <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">2</span>;i&lt;addNum;i++)</span><br><span class="line">   &#123;</span><br><span class="line">     <span class="keyword">if</span>(addNum%i===<span class="number">0</span>)&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">       </span><br><span class="line">     &#125;</span><br><span class="line">   </span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//have common div</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">havecom</span>(<span class="params">first,second</span>)</span><br><span class="line">&#123;</span><br><span class="line">   </span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=second;i&lt;<span class="number">8000000</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">if</span>(i%first===<span class="number">0</span>&amp;&amp;i%second===<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sort</span>(<span class="params">a,b</span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">var</span> mid;</span><br><span class="line"><span class="keyword">if</span> (a&gt;b)</span><br><span class="line">  &#123;</span><br><span class="line">     newArr[<span class="number">0</span>]=b;</span><br><span class="line">     newArr[<span class="number">1</span>]=a;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    newArr[<span class="number">0</span>]=a;</span><br><span class="line">    newArr[<span class="number">1</span>]=b;</span><br><span class="line">  &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="title function_">sort</span>(arr[<span class="number">0</span>],arr[<span class="number">1</span>]);</span><br><span class="line"><span class="keyword">var</span> min=newArr[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">var</span> max=newArr[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> j=min;j&lt;max+<span class="number">1</span>;j++)</span><br><span class="line">  &#123;</span><br><span class="line">    sum=<span class="title function_">havecom</span>(j,sum);   </span><br><span class="line">    &#125;</span><br><span class="line">          <span class="keyword">return</span> sum;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">smallestCommons</span>([<span class="number">18</span>,<span class="number">22</span>]);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>这个求两个数的最小公倍数的方法，实际上要求的时间很大，因为在</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=second;i&lt;<span class="number">8000000</span>;i++)</span><br></pre></td></tr></table></figure>
+
+<p>这一步之中，使用到的并不是一个特别好的方法.i每增加1，相应的计算机就执行一次运算。也正因此，计算机运算很大，添加了&#x2F;&#x2F;noprotect 这个loop保护解除。</p>
+<h1 id="Finders-Keepers"><a href="#Finders-Keepers" class="headerlink" title="Finders Keepers"></a><a target="_blank" rel="noopener" href="https://www.freecodecamp.com/challenges/finders-keepers">Finders Keepers</a></h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">findElement</span>(<span class="params">arr, func</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.<span class="property">length</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="title function_">func</span>(arr[i]))</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">return</span> arr[i];</span><br><span class="line">          &#125;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">findElement</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], <span class="keyword">function</span>(<span class="params">num</span>)&#123; <span class="keyword">return</span> num % <span class="number">2</span> === <span class="number">0</span>; &#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Drop-it"><a href="#Drop-it" class="headerlink" title="Drop it"></a><a target="_blank" rel="noopener" href="https://www.freecodecamp.com/challenges/drop-it#">Drop it</a></h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">dropElements</span>(<span class="params">arr, func</span>) &#123;</span><br><span class="line">  <span class="comment">// Drop them elements.</span></span><br><span class="line">  <span class="keyword">var</span> end;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.<span class="property">length</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="title function_">func</span>(arr[i]))&#123;</span><br><span class="line">        end=i;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> end===<span class="string">&#x27;number&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">  <span class="keyword">return</span> arr.<span class="title function_">slice</span>(end);</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [];</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">dropElements</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], <span class="keyword">function</span>(<span class="params">n</span>) &#123;<span class="keyword">return</span> n &gt; <span class="number">5</span>;&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>仍然比较简单，只需要记住  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> end===<span class="string">&#x27;number&#x27;</span>) </span><br></pre></td></tr></table></figure>
+
+<p>其中需要将number用引号引起来，并且要求是小写而不是Number这样的首字母大写。</p>
+<h1 id="Steamroller"><a href="#Steamroller" class="headerlink" title="Steamroller"></a><a target="_blank" rel="noopener" href="https://www.freecodecamp.com/challenges/steamroller#">Steamroller</a></h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">steamrollArray</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> newArr=[];</span><br><span class="line">  <span class="comment">// I&#x27;m a steamroller, baby</span></span><br><span class="line">  <span class="keyword">var</span> digout=<span class="keyword">function</span> <span class="title function_">dig</span>(<span class="params">a</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="title class_">Array</span>.<span class="title function_">isArray</span>(a))</span><br><span class="line">      &#123;</span><br><span class="line">        newArr.<span class="title function_">push</span>(a);</span><br><span class="line">      &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> b <span class="keyword">in</span> a)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="title function_">digout</span>(a[b]);</span><br><span class="line">        &#125;</span><br><span class="line">         &#125;    </span><br><span class="line">  &#125;;</span><br><span class="line">     </span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> arr)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="title function_">digout</span>(arr[i]);</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">steamrollArray</span>([<span class="number">1</span>, [<span class="number">2</span>], [<span class="number">3</span>, [[<span class="number">4</span>]]]]);</span><br></pre></td></tr></table></figure>
+
+<p>这里面用到了递归，只要找到的是数组类型的值，就继续往里挖，直到找到所有的非数组类型的值。</p>
+<h1 id="Binary-Agents"><a href="#Binary-Agents" class="headerlink" title="Binary Agents"></a><a target="_blank" rel="noopener" href="https://www.freecodecamp.com/challenges/binary-agents">Binary Agents</a></h1><p>关于<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/10258828/how-to-convert-binary-string-to-decimal">二进制到十进制的转换</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">binaryAgent</span>(<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> arr=str.<span class="title function_">split</span>(<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> newArr=[];</span><br><span class="line">  <span class="keyword">var</span> secArr=[];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> arr)</span><br><span class="line">    &#123;</span><br><span class="line">  newArr.<span class="title function_">push</span>(<span class="built_in">parseInt</span>(arr[i], <span class="number">2</span>));</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//return String.fromCharCode(newArr[0]);</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> j <span class="keyword">in</span> newArr)</span><br><span class="line">    &#123;</span><br><span class="line">     secArr.<span class="title function_">push</span>(<span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(newArr[j]));</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">return</span> secArr.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">binaryAgent</span>(<span class="string">&quot;01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+<p>针对这个测试的结果是：Aren’t bonfires fun!?</p>
+<p>熟练地使用join()方法和push()方法等。<br>熟练地使用for in这样的表达，而不再使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span> ;i&lt;arr.<span class="property">length</span>;i++）</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Everything-Be-True"><a href="#Everything-Be-True" class="headerlink" title="Everything Be True"></a><a target="_blank" rel="noopener" href="https://www.freecodecamp.com/challenges/everything-be-true">Everything Be True</a></h1><p>题目要求：第二个参数作为属性，判断这个属性是否对于collection中每一个对象都存在，如果都存在，则返回true，否则是返回false。在实际写代码的过程中，发现判断false相对来说更加简单。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">truthCheck</span>(<span class="params">collection, pre</span>) &#123;</span><br><span class="line">  <span class="comment">// Is everyone being true?</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> collection)</span><br><span class="line">    &#123;</span><br><span class="line">       <span class="keyword">if</span>(!collection[i][pre])</span><br><span class="line">         &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">           </span><br><span class="line">         &#125;</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">truthCheck</span>([&#123;<span class="string">&quot;user&quot;</span>: <span class="string">&quot;Tinky-Winky&quot;</span>, <span class="string">&quot;sex&quot;</span>: <span class="string">&quot;male&quot;</span>&#125;, &#123;<span class="string">&quot;user&quot;</span>: <span class="string">&quot;Dipsy&quot;</span>, <span class="string">&quot;sex&quot;</span>: <span class="string">&quot;male&quot;</span>&#125;, &#123;<span class="string">&quot;user&quot;</span>: <span class="string">&quot;Laa-Laa&quot;</span>, <span class="string">&quot;sex&quot;</span>: <span class="string">&quot;female&quot;</span>&#125;, &#123;<span class="string">&quot;user&quot;</span>: <span class="string">&quot;Po&quot;</span>, <span class="string">&quot;sex&quot;</span>: <span class="string">&quot;female&quot;</span>&#125;], <span class="string">&quot;sex&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>也是个比较简单的问题了。还是对JSON的复习。</p>
+<h1 id="Arguments-Optional"><a href="#Arguments-Optional" class="headerlink" title="Arguments Optional"></a><a target="_blank" rel="noopener" href="https://www.freecodecamp.com/challenges/arguments-optional">Arguments Optional</a></h1><p>​	</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">addTogether</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> sum=<span class="number">0</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(<span class="variable language_">arguments</span>.<span class="property">length</span>==<span class="number">2</span>&amp;&amp;<span class="keyword">typeof</span> <span class="variable language_">arguments</span>[<span class="number">0</span>]==<span class="string">&#x27;number&#x27;</span>&amp;&amp;<span class="keyword">typeof</span> <span class="variable language_">arguments</span>[<span class="number">1</span>]==<span class="string">&#x27;number&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      </span><br><span class="line">    sum=<span class="variable language_">arguments</span>[<span class="number">0</span>]+<span class="variable language_">arguments</span>[<span class="number">1</span>];</span><br><span class="line">      <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(<span class="variable language_">arguments</span>.<span class="property">length</span>==<span class="number">1</span>&amp;&amp;<span class="keyword">typeof</span> <span class="variable language_">arguments</span>==<span class="string">&#x27;number&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">var</span> c=<span class="variable language_">arguments</span>;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">arg2</span>)</span><br><span class="line">      &#123;</span><br><span class="line">      <span class="keyword">if</span>(args!==<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          sum=c+arg2;</span><br><span class="line">          <span class="keyword">return</span> sum;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#125;</span><br><span class="line"><span class="title function_">addTogether</span>(<span class="number">2</span>)(<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>没有解决，网络上的解法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// Function to check if a number is actually a number</span></span><br><span class="line">  <span class="comment">// and return undefined otherwise.</span></span><br><span class="line">  <span class="keyword">var</span> checkNum = <span class="keyword">function</span>(<span class="params">num</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> num !== <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">      <span class="keyword">return</span> num;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Check if we have two parameters, check if they are numbers</span></span><br><span class="line">  <span class="comment">// handle the case where one is not</span></span><br><span class="line">  <span class="comment">// returns the addition.</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="variable language_">arguments</span>.<span class="property">length</span> &gt; <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="title function_">checkNum</span>(<span class="variable language_">arguments</span>[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">var</span> b = <span class="title function_">checkNum</span>(<span class="variable language_">arguments</span>[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">if</span> (a === <span class="literal">undefined</span> || b === <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// If only one parameter was found, returns a new function that expects two</span></span><br><span class="line">    <span class="comment">// Store first argument before entering the new function scope</span></span><br><span class="line">    <span class="keyword">var</span> c = <span class="variable language_">arguments</span>[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Check the number again, must be outside the function to about returning an object</span></span><br><span class="line">    <span class="comment">// instead of undefined.</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">checkNum</span>(c)) &#123;</span><br><span class="line">      <span class="comment">// Return function that expect a second argument.</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">arg2</span>) &#123;</span><br><span class="line">        <span class="comment">// Check for non-numbers</span></span><br><span class="line">        <span class="keyword">if</span> (c === <span class="literal">undefined</span> || <span class="title function_">checkNum</span>(arg2) === <span class="literal">undefined</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="comment">// if numbers then add them.</span></span><br><span class="line">          <span class="keyword">return</span> c + arg2;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>多少还是有些不能理解的地方，等以后再看吧。</p>
+<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">telephoneCheck</span>(<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="comment">// Good luck!</span></span><br><span class="line">  <span class="keyword">var</span> re= <span class="regexp">/5/g</span>;</span><br><span class="line">  <span class="comment">//var re = /apples/gi;</span></span><br><span class="line"> newStr= str.<span class="title function_">replace</span>(re,<span class="string">&#x27;6&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> newStr;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">telephoneCheck</span>(<span class="string">&quot;555-555-5555&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p>这里要注意使用replace()方法的时候，要注意的是要replace()方法不改变原字符串，需要新建一个新的字符串，在这里是字符串newStr</p>
+<p>如果一个字符串str&#x3D;[22448848]，针对typeof str[0]，我想当然地以为是number类型，但其实是string。</p>
+<h1 id="Validate-US-Telephone-Numbers"><a href="#Validate-US-Telephone-Numbers" class="headerlink" title="Validate US Telephone Numbers"></a><a target="_blank" rel="noopener" href="https://www.freecodecamp.com/challenges/validate-us-telephone-numbers">Validate US Telephone Numbers</a></h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">telephoneCheck</span>(<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="comment">// Good luck!</span></span><br><span class="line">  <span class="keyword">var</span> re= <span class="regexp">/-|\s|\(|\)/g</span>;</span><br><span class="line">  <span class="keyword">var</span> kuohao=<span class="regexp">/\(|\)/g</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> left,right;</span><br><span class="line">  <span class="keyword">var</span> newStr;</span><br><span class="line">  <span class="comment">//var re = /apples/gi;</span></span><br><span class="line"><span class="comment">//var  newStr= str.replace(re,&#x27;&#x27;);</span></span><br><span class="line"> <span class="comment">// return newStr;</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;str.<span class="property">length</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">     <span class="keyword">if</span>(str[i]==<span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">       &#123;</span><br><span class="line">        left=i;</span><br><span class="line">       &#125;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;str.<span class="property">length</span>;j++)</span><br><span class="line">    &#123;</span><br><span class="line">     <span class="keyword">if</span>(str[j]==<span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">       &#123;</span><br><span class="line">        right=j;</span><br><span class="line">       &#125;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> left!==<span class="string">&#x27;number&#x27;</span>&amp;&amp;<span class="keyword">typeof</span> right!==<span class="string">&#x27;number&#x27;</span>||left&lt;right)</span><br><span class="line">    &#123;</span><br><span class="line">       newStr=str.<span class="title function_">replace</span>(re,<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="built_in">parseInt</span>(newStr)!==<span class="string">&#x27;number&#x27;</span>)</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">             <span class="keyword">if</span>(newStr[<span class="number">0</span>]==<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">if</span>(newStr.<span class="property">length</span>==<span class="number">11</span>)</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">          <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          </span><br><span class="line">        &#125;</span><br><span class="line">      <span class="keyword">else</span>&#123;</span><br><span class="line">           <span class="keyword">if</span>(newStr.<span class="property">length</span>==<span class="number">10</span>)</span><br><span class="line">             &#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">             &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">            &#125;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">telephoneCheck</span>(<span class="string">&quot;(6505552368)&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+<p>知识点parseInt()方法，正则表达式等。</p>
+<p>这里要注意的是：parseInt(“40 years”) 的结果是40。只要有数字，就能够解析。</p>
+<p>还有一点需要注意的是：<br>typeof parseInt(hello) 就是number类型的。parseInt(hello) 的结果是null。<br>判断一个字符串是否全部为数字</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;str.<span class="property">length</span>;i++)</span><br><span class="line">&#123;</span><br><span class="line"> <span class="keyword">if</span>( !<span class="built_in">parseInt</span>(str[i]))</span><br><span class="line">&#123; </span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>最后写出了下面的程序：<br>​	<br>​	</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">telephoneCheck</span>(<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="comment">// Good luck!</span></span><br><span class="line">  <span class="keyword">var</span> re= <span class="regexp">/-|\s|\(|\)/g</span>;</span><br><span class="line">  <span class="keyword">var</span> place=<span class="regexp">/\s|-/g</span>;</span><br><span class="line">  <span class="comment">//如果字符串中第一位是-则直接返回false</span></span><br><span class="line">  <span class="keyword">if</span>(str[<span class="number">0</span>]==<span class="string">&#x27;-&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">      str=str.<span class="title function_">replace</span>(place,<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">      <span class="comment">//首字母是否为1</span></span><br><span class="line">  <span class="comment">//首字母为1</span></span><br><span class="line">   </span><br><span class="line">  <span class="keyword">if</span>(str[<span class="number">0</span>]==<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">     &#123;</span><br><span class="line">       <span class="comment">//出现一对括号的情况</span></span><br><span class="line">       <span class="keyword">if</span>(str[<span class="number">1</span>]==<span class="string">&#x27;(&#x27;</span>&amp;&amp;str[<span class="number">5</span>]==<span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">         &#123;</span><br><span class="line">           </span><br><span class="line">           str=str.<span class="title function_">replace</span>(re,<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">           </span><br><span class="line">           <span class="keyword">if</span>(str.<span class="property">length</span>==<span class="number">11</span>)</span><br><span class="line">             &#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">               </span><br><span class="line">             &#125;</span><br><span class="line">           <span class="keyword">else</span>&#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">             </span><br><span class="line">           &#125;</span><br><span class="line">            &#125;</span><br><span class="line">       <span class="comment">//没有括号的情况</span></span><br><span class="line">       <span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;str.<span class="property">length</span>;i++)</span><br><span class="line">         &#123;</span><br><span class="line">           <span class="keyword">if</span>( !<span class="built_in">parseInt</span>(str[i]))</span><br><span class="line">             <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">           </span><br><span class="line">         &#125;</span><br><span class="line">         </span><br><span class="line">       &#125;</span><br><span class="line">              </span><br><span class="line">        str=str.<span class="title function_">replace</span>(re,<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">if</span>(str.<span class="property">length</span>==<span class="number">11</span>)</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">          &#125;</span><br><span class="line">       <span class="keyword">else</span>&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//没有括号情况结束</span></span><br><span class="line">     &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//首字母不为0</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//有一对括号的情况</span></span><br><span class="line">     <span class="keyword">if</span>(str[<span class="number">0</span>]==<span class="string">&#x27;(&#x27;</span>&amp;&amp;str[<span class="number">4</span>]==<span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">       &#123;</span><br><span class="line">         </span><br><span class="line">          str=str.<span class="title function_">replace</span>(re,<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">         </span><br><span class="line">          <span class="keyword">if</span>(str.<span class="property">length</span>==<span class="number">10</span>)</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">          &#125;</span><br><span class="line">         <span class="keyword">else</span>&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">         &#125;</span><br><span class="line">            </span><br><span class="line">       &#125;</span><br><span class="line">   <span class="comment">//没有一对括号的情况</span></span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;str.<span class="property">length</span>;j++)</span><br><span class="line">         &#123;</span><br><span class="line">           <span class="keyword">if</span>( !<span class="built_in">parseInt</span>(str[j]))</span><br><span class="line">             <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">           </span><br><span class="line">         &#125;</span><br><span class="line">      str=str.<span class="title function_">replace</span>(re,<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">      <span class="keyword">if</span>(str.<span class="property">length</span>==<span class="number">10</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">      &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="title function_">telephoneCheck</span>(<span class="string">&quot;(555)555-5555&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>缺点是使用了大量的if else，十分不便于阅读。应该是可以进行简化的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">telephoneCheck</span>(<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="comment">// Good luck!</span></span><br><span class="line">  <span class="keyword">var</span> re= <span class="regexp">/-|\s|\(|\)/g</span>;</span><br><span class="line">  <span class="keyword">var</span> place=<span class="regexp">/\s|-/g</span>;</span><br><span class="line">  <span class="comment">//如果字符串中第一位是-则直接返回false</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//构建一个比较的方法</span></span><br><span class="line">   <span class="keyword">function</span> <span class="title function_">compare</span>(<span class="params">a,b</span>)</span><br><span class="line">  &#123;</span><br><span class="line">  <span class="keyword">if</span>(a==b)</span><br><span class="line">    &#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">               </span><br><span class="line">     &#125;</span><br><span class="line">   <span class="keyword">else</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span>(str[<span class="number">0</span>]==<span class="string">&#x27;-&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">      str=str.<span class="title function_">replace</span>(place,<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//没有括号的情况</span></span><br><span class="line">       <span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;str.<span class="property">length</span>;i++)</span><br><span class="line">         &#123;</span><br><span class="line">           <span class="keyword">if</span>( !<span class="built_in">parseInt</span>(str[i]))</span><br><span class="line">             <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">           </span><br><span class="line">         &#125;</span><br><span class="line">         </span><br><span class="line">       &#125;</span><br><span class="line">              </span><br><span class="line">        str=str.<span class="title function_">replace</span>(re,<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">return</span> <span class="title function_">compare</span>(str.<span class="property">length</span>,<span class="number">11</span>);</span><br><span class="line">       <span class="comment">//没有括号情况结束</span></span><br><span class="line">     &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//首字母不为0</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//有一对括号的情况</span></span><br><span class="line">     <span class="keyword">if</span>(str[<span class="number">0</span>]==<span class="string">&#x27;(&#x27;</span>&amp;&amp;str[<span class="number">4</span>]==<span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">       &#123;</span><br><span class="line">         </span><br><span class="line">          str=str.<span class="title function_">replace</span>(re,<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">         </span><br><span class="line">         <span class="keyword">return</span> <span class="title function_">compare</span>(str.<span class="property">length</span>,<span class="number">10</span>);</span><br><span class="line">            </span><br><span class="line">       &#125;</span><br><span class="line">   <span class="comment">//没有一对括号的情况</span></span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;str.<span class="property">length</span>;j++)</span><br><span class="line">         &#123;</span><br><span class="line">           <span class="keyword">if</span>( !<span class="built_in">parseInt</span>(str[j]))</span><br><span class="line">             <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">           </span><br><span class="line">         &#125;</span><br><span class="line">      str=str.<span class="title function_">replace</span>(re,<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">compare</span>(str.<span class="property">length</span>,<span class="number">10</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">telephoneCheck</span>(<span class="string">&quot;(555)555-5555&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>将比较是否相等的功能提出来做一个方法，这样就让代码相对之前更加简洁了。</p>
+<p>层次优先级是首先判断首字母，其次判断是否有一对括号放在合适的位置，最后是判断经过筛选之后的字符串的长度。</p>
+<p>美国的电话号码，国码为1，三位的区码，以及7位的普通码，其中，国码可以省略掉。</p>
+<h1 id="Symmetric-Difference"><a href="#Symmetric-Difference" class="headerlink" title="Symmetric Difference"></a><a target="_blank" rel="noopener" href="https://www.freecodecamp.com/challenges/symmetric-difference">Symmetric Difference</a></h1><p>创建一个方法，它有两个及以上的数组作为参数，返回一个数组，这个数组中有非公有的元素。</p>
+<p>比如A &#x3D; {1, 2, 3}，B &#x3D; {2, 3, 4}，这个时候组成的C就是{1,2,3,4},以此类推，可以有多个参数。</p>
+<p>移除一个数组中的重复元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> names = [<span class="string">&quot;Alex&quot;</span>,<span class="string">&quot;Tony&quot;</span>,<span class="string">&quot;James&quot;</span>,<span class="string">&quot;Suzane&quot;</span>, <span class="string">&quot;Marie&quot;</span>, <span class="string">&quot;Laurence&quot;</span>, <span class="string">&quot;Alex&quot;</span>, <span class="string">&quot;Suzane&quot;</span>, <span class="string">&quot;Marie&quot;</span>, <span class="string">&quot;Marie&quot;</span>, <span class="string">&quot;James&quot;</span>, <span class="string">&quot;Tony&quot;</span>, <span class="string">&quot;Alex&quot;</span>];</span><br><span class="line"><span class="keyword">var</span> uniqueNames = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> names)&#123;</span><br><span class="line">        <span class="keyword">if</span>(uniqueNames.<span class="title function_">indexOf</span>(names[i]) === -<span class="number">1</span>)&#123;</span><br><span class="line">            uniqueNames.<span class="title function_">push</span>(names[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>仿照着上面的程序，就可以构造一个二维数组，将原来每个数组中的重复元素去除掉</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newArr=[];<span class="comment">//define a new array </span></span><br><span class="line"></span><br><span class="line"> <span class="comment">//find out the length of arguments</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="variable language_">arguments</span>.<span class="property">length</span>;i++)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    newArr[i]=[];<span class="comment">//this is important ,you must make the newArr[i]==empty firstly,or there would be console newArr[i] is undefined.</span></span><br><span class="line">  <span class="comment">//delete the duplicate elements</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;<span class="variable language_">arguments</span>[i].<span class="property">length</span>;j++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// delete and push to a new array</span></span><br><span class="line"> <span class="keyword">if</span>(newArr[i].<span class="title function_">indexOf</span>(<span class="variable language_">arguments</span>[i][j])===-<span class="number">1</span>)</span><br><span class="line">   &#123;</span><br><span class="line">     newArr[i].<span class="title function_">push</span>(<span class="variable language_">arguments</span>[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">         &#125;</span><br><span class="line"><span class="comment">//delete end</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后是构造了这样的这样的一个方法，来得到两个数组中的非同项：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">function</span> <span class="title function_">twoArg</span>(<span class="params">arr1,arr2</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">var</span> finalArr=[];<span class="comment">//the final array</span></span><br><span class="line"><span class="keyword">var</span> middle=[];<span class="comment">//the middle array</span></span><br><span class="line"><span class="keyword">var</span> dub=[];<span class="comment">//the dub array</span></span><br><span class="line">finalArr=arr1.<span class="title function_">concat</span>(arr2);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> k=<span class="number">0</span>;k&lt;finalArr.<span class="property">length</span>;k++)</span><br><span class="line"> &#123;</span><br><span class="line"> <span class="keyword">if</span>(middle.<span class="title function_">indexOf</span>(finalArr[k])===-<span class="number">1</span>)</span><br><span class="line">  middle.<span class="title function_">push</span>(finalArr[k]);</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">  dub.<span class="title function_">push</span>(finalArr[k]);</span><br><span class="line">     &#125;</span><br><span class="line">      &#125;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">var</span> m=<span class="number">0</span>;m&lt;dub.<span class="property">length</span>;m++)</span><br><span class="line">     &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> n=<span class="number">0</span>;n&lt;middle.<span class="property">length</span>;n++)</span><br><span class="line">&#123;</span><br><span class="line"> <span class="keyword">if</span>(middle[n]==dub[m])</span><br><span class="line"></span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">          middle.<span class="title function_">splice</span>(n,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 变量名命名不是太好。</p>
+<p>然后定义一个全局的变量，final。这样就可以写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">final=<span class="title function_">twoArg</span>(newArr[<span class="number">0</span>],newArr[<span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> m=<span class="number">2</span>;m&lt;newArr.<span class="property">length</span>;m++)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">      final=<span class="title function_">twoArg</span>(final,newArr[m]);</span><br><span class="line">      &#125;</span><br><span class="line">        <span class="keyword">return</span> final;</span><br></pre></td></tr></table></figure>
+<p>这样就可以将这三部分组合在一起。此题目可以加深对函数式编程的理解。</p>
+<p>​     </p>
+<h1 id="Exact-Change"><a href="#Exact-Change" class="headerlink" title="Exact Change"></a><a target="_blank" rel="noopener" href="https://www.freecodecamp.com/challenges/exact-change">Exact Change</a></h1><p>题目要求：设计一个找零钱的系统</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">checkCashRegister</span>(<span class="params">price, cash, cid</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> change;</span><br><span class="line">  <span class="comment">// Here is your change, ma&#x27;am.</span></span><br><span class="line">  change=cash-price;</span><br><span class="line">  <span class="keyword">return</span> change;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">checkCashRegister</span>(<span class="number">19.50</span>, <span class="number">20.00</span>, [[<span class="string">&quot;PENNY&quot;</span>, <span class="number">1.01</span>], [<span class="string">&quot;NICKEL&quot;</span>, <span class="number">2.05</span>], [<span class="string">&quot;DIME&quot;</span>, <span class="number">3.10</span>], [<span class="string">&quot;QUARTER&quot;</span>, <span class="number">4.25</span>], [<span class="string">&quot;ONE&quot;</span>, <span class="number">90.00</span>], [<span class="string">&quot;FIVE&quot;</span>, <span class="number">55.00</span>], [<span class="string">&quot;TEN&quot;</span>, <span class="number">20.00</span>], [<span class="string">&quot;TWENTY&quot;</span>, <span class="number">60.00</span>], [<span class="string">&quot;ONE HUNDRED&quot;</span>, <span class="number">100.00</span>]]);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>最初给定的程序是这样的，其中第一个参数是商品价格price，第二个参数是顾客实际付款金额，第三个参数是一个数组，也就是收银台目前剩余的零钱数目。</p>
+<p>这个程序的要求是能够判断是否有零钱找，找的零钱各自是多少（美元为单位，所以不光有1分，5分这样的零钱，还有25美分等）。</p>
+<p>如果执行：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">checkCashRegister</span>(<span class="number">19.50</span>, <span class="number">20.00</span>, [[<span class="string">&quot;PENNY&quot;</span>, <span class="number">1.01</span>], [<span class="string">&quot;NICKEL&quot;</span>, </span><br><span class="line"><span class="number">2.05</span>], [<span class="string">&quot;DIME&quot;</span>, <span class="number">3.10</span>], [<span class="string">&quot;QUARTER&quot;</span>, <span class="number">4.25</span>], [<span class="string">&quot;ONE&quot;</span>, <span class="number">90.00</span>], [<span class="string">&quot;FIVE&quot;</span>, </span><br><span class="line"><span class="number">55.00</span>], [<span class="string">&quot;TEN&quot;</span>, <span class="number">20.00</span>], [<span class="string">&quot;TWE</span></span><br><span class="line"><span class="string">NTY&quot;</span>, <span class="number">60.00</span>], [<span class="string">&quot;ONE HUNDRED&quot;</span>, <span class="number">100.00</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>则结果应当是：</p>
+<p> &#96;[[“QUARTER”, 0.50]]，注意这是个二维数组。</p>
+<p>这个时候我想先找出来在抽屉里面总共有多少钱，想要将总数相加，但是这个时候要注意cid是一个二维数组，而不是一个JSON，因此应该相加的是cid[0][1]+cid[1][1]….. </p>
+<p>但是这个时候遇到一个问题：</p>
+<p>return 1.01+2.05; 返回的3.05999996 这样一个值。</p>
+<p>而 return 1.01+2.0; 返回的则就是3.01</p>
+<p>搜索发现：<a target="_blank" rel="noopener" href="http://www.lezhu99.com/2202.html">http://www.lezhu99.com/2202.html</a> 和<a target="_blank" rel="noopener" href="https://gist.github.com/binjoo/3926896">https://gist.github.com/binjoo/3926896</a></p>
+<p>得出的结果是这是Javascript语言的BUG。</p>
+<p>下面的<a target="_blank" rel="noopener" href="https://gist.github.com/binjoo/3926896">方法</a>可以解决这个Bug</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">function</span> <span class="title function_">accAdd</span>(<span class="params">arg1, arg2</span>) &#123;</span><br><span class="line">     <span class="keyword">var</span> r1, r2, m, c;</span><br><span class="line">     <span class="keyword">try</span> &#123;</span><br><span class="line">         r1 = arg1.<span class="title function_">toString</span>().<span class="title function_">split</span>(<span class="string">&quot;.&quot;</span>)[<span class="number">1</span>].<span class="property">length</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">         r1 = <span class="number">0</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">try</span> &#123;</span><br><span class="line">         r2 = arg2.<span class="title function_">toString</span>().<span class="title function_">split</span>(<span class="string">&quot;.&quot;</span>)[<span class="number">1</span>].<span class="property">length</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">         r2 = <span class="number">0</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     c = <span class="title class_">Math</span>.<span class="title function_">abs</span>(r1 - r2);</span><br><span class="line">     m = <span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">10</span>, <span class="title class_">Math</span>.<span class="title function_">max</span>(r1, r2));</span><br><span class="line">     <span class="keyword">if</span> (c &gt; <span class="number">0</span>) &#123;</span><br><span class="line">         <span class="keyword">var</span> cm = <span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">10</span>, c);</span><br><span class="line">         <span class="keyword">if</span> (r1 &gt; r2) &#123;</span><br><span class="line">             arg1 = <span class="title class_">Number</span>(arg1.<span class="title function_">toString</span>().<span class="title function_">replace</span>(<span class="string">&quot;.&quot;</span>, <span class="string">&quot;&quot;</span>));</span><br><span class="line">             arg2 = <span class="title class_">Number</span>(arg2.<span class="title function_">toString</span>().<span class="title function_">replace</span>(<span class="string">&quot;.&quot;</span>, <span class="string">&quot;&quot;</span>)) * cm;</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">             arg1 = <span class="title class_">Number</span>(arg1.<span class="title function_">toString</span>().<span class="title function_">replace</span>(<span class="string">&quot;.&quot;</span>, <span class="string">&quot;&quot;</span>)) * cm;</span><br><span class="line">             arg2 = <span class="title class_">Number</span>(arg2.<span class="title function_">toString</span>().<span class="title function_">replace</span>(<span class="string">&quot;.&quot;</span>, <span class="string">&quot;&quot;</span>));</span><br><span class="line">         &#125;</span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         arg1 = <span class="title class_">Number</span>(arg1.<span class="title function_">toString</span>().<span class="title function_">replace</span>(<span class="string">&quot;.&quot;</span>, <span class="string">&quot;&quot;</span>));</span><br><span class="line">         arg2 = <span class="title class_">Number</span>(arg2.<span class="title function_">toString</span>().<span class="title function_">replace</span>(<span class="string">&quot;.&quot;</span>, <span class="string">&quot;&quot;</span>));</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> (arg1 + arg2) / m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>这时候注意下面这种情况；</p>
+<p>checkCashRegister(19.50, 20.00, [[“PENNY”, 0.01], [“NICKEL”, 0], [“DIME”, 0], [“QUARTER”, 0], [“ONE”, 1.00], [“FIVE”, 0], [“TEN”, 0], [“TWENTY”, 0], [“ONE HUNDRED”, 0]]);</p>
+<p>在抽屉里面是有1.01元的，而应找是0.5元，虽然抽屉里的钱足够找，但是却不能够找钱，因为凑不出来这0,5元。</p>
+<p>看网上说找零钱问题也属于动态规划，也算是一个比较经典的算法问题了，所以打算先研究研究。</p>
+<p>但是这道题目又与动态规划不是太一样，因为给定的约束条件中，每个面值的钱币并不是足够的，因此改变策略。</p>
+<p>最后的完整实现过程如下：</p>
+<script src="https://gist.github.com/zhangolve/40a244aee8198a4e949bdfecc3b77d47.js"></script>
+
+
+
+
+
+<p>​   </p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/07/21/201607/android-UI-MODIFY/" rel="prev" title="Android手机UI 改造">
+      <i class="fa fa-chevron-left"></i> Android手机UI 改造
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/08/08/201608/note-about-zhangxueliang/" rel="next" title="《张学良口述历史》杂记">
+      《张学良口述历史》杂记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%8F%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">序言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sorted-Union"><span class="nav-number">2.</span> <span class="nav-text">Sorted Union</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Convert-HTML-Entities"><span class="nav-number">3.</span> <span class="nav-text">Convert HTML Entities</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spinal-Tap-Case"><span class="nav-number">4.</span> <span class="nav-text">Spinal Tap Case</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sum-All-Odd-Fibonacci-Numbers"><span class="nav-number">5.</span> <span class="nav-text">Sum All Odd Fibonacci Numbers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sum-All-Primes"><span class="nav-number">6.</span> <span class="nav-text">Sum All Primes</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Smallest-Common-Multiple"><span class="nav-number">7.</span> <span class="nav-text">Smallest Common Multiple</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Finders-Keepers"><span class="nav-number">8.</span> <span class="nav-text">Finders Keepers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Drop-it"><span class="nav-number">9.</span> <span class="nav-text">Drop it</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Steamroller"><span class="nav-number">10.</span> <span class="nav-text">Steamroller</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Binary-Agents"><span class="nav-number">11.</span> <span class="nav-text">Binary Agents</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Everything-Be-True"><span class="nav-number">12.</span> <span class="nav-text">Everything Be True</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Arguments-Optional"><span class="nav-number">13.</span> <span class="nav-text">Arguments Optional</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">14.</span> <span class="nav-text">正则表达式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Validate-US-Telephone-Numbers"><span class="nav-number">15.</span> <span class="nav-text">Validate US Telephone Numbers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Symmetric-Difference"><span class="nav-number">16.</span> <span class="nav-text">Symmetric Difference</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exact-Change"><span class="nav-number">17.</span> <span class="nav-text">Exact Change</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

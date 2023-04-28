@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="#简述如果你只是想知道「firefox怎么将放在标签页最左边的新建标签页按钮放到标签页的右边」（原谅我表达能力就到这儿了），请直接拉到下面#解决方法 。（也就是从图一的效果转化成图二的效果）#经过事情的大概经过是这样的：时隔两个多月又重新用上了Firefox，之前两个多月实际上一直在用chrome，其实chrome的实际体验已经很好了，但是看久了总是会烦的。而且浏览器这东西，又往往是我电脑用的最频">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Firefox问题之新标签页位置">
+<meta property="og:url" content="http://hktkdy.com/2014/10/07/201410/1007/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="#简述如果你只是想知道「firefox怎么将放在标签页最左边的新建标签页按钮放到标签页的右边」（原谅我表达能力就到这儿了），请直接拉到下面#解决方法 。（也就是从图一的效果转化成图二的效果）#经过事情的大概经过是这样的：时隔两个多月又重新用上了Firefox，之前两个多月实际上一直在用chrome，其实chrome的实际体验已经很好了，但是看久了总是会烦的。而且浏览器这东西，又往往是我电脑用的最频">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/63a3d9b7tw1el2ctvl92bj20jp02x0sw.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/63a3d9b7tw1el2cvazvifj20n301rmxf.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/63a3d9b7tw1el2ctvl92bj20jp02x0sw.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/63a3d9b7tw1el2cvgzqegj20px05wglz.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/63a3d9b7tw1el2cuzr2qnj20ql0fimy7.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/63a3d9b7tw1el2cvazvifj20n301rmxf.jpg">
+<meta property="article:published_time" content="2014-10-07T00:53:16.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.086Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="火狐">
+<meta property="article:tag" content="chrome">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/63a3d9b7tw1el2ctvl92bj20jp02x0sw.jpg">
+
+<link rel="canonical" href="http://hktkdy.com/2014/10/07/201410/1007/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Firefox问题之新标签页位置 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2014/10/07/201410/1007/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Firefox问题之新标签页位置
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-10-07 08:53:16" itemprop="dateCreated datePublished" datetime="2014-10-07T08:53:16+08:00">2014-10-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2014/10/07/201410/1007/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2014/10/07/201410/1007/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>#简述<br>如果你只是想知道「firefox怎么将放在标签页最左边的新建标签页按钮放到标签页的右边」（原谅我表达能力就到这儿了），请直接拉到下面#解决方法 。（也就是从图一的效果转化成图二的效果）<br><img src="http://ww2.sinaimg.cn/large/63a3d9b7tw1el2ctvl92bj20jp02x0sw.jpg" alt="图一"><br><img src="http://ww3.sinaimg.cn/large/63a3d9b7tw1el2cvazvifj20n301rmxf.jpg" alt="图二"><br>#经过<br>事情的大概经过是这样的：<br>时隔两个多月又重新用上了Firefox，之前两个多月实际上一直在用chrome，其实chrome的实际体验已经很好了，但是看久了总是会烦的。而且浏览器这东西，又往往是我电脑用的最频繁的软件。再者，因为十一这几天假期没有出去玩，也确实有那么点无聊，想折腾点东西，而你们懂得，Firefox素有「耐操」的特性，所以我就又回来了。<br>先是将Firefox更新到了32，我记得我上次频繁使用应该还是29吧，后来偶尔打开的时候看到有更新提示就也更新了。这次更新后，虽然没看到明显的变化，不过也有点新鲜感。</p>
+<p>但是紧接着问题就来了，就像是下图这样，+号放到了标签页的最左边的位置。这个问题实际上两个多月以前就有过，当时还在<a target="_blank" rel="noopener" href="http://tieba.baidu.com/f?kw=firefox">firefox吧</a> 发过帖子，不过问题并没有得到解决。这次既然时间很充足，于是当我安装好firefox的更新之后，就又想解决一下这个问题。就又发了两贴，但是仍然没有得到一个满意的解决方法。<br><img src="http://ww2.sinaimg.cn/large/63a3d9b7tw1el2ctvl92bj20jp02x0sw.jpg"></p>
+<p>其实问题也很明显，不外乎是「扩展」「脚本」「样式」「定制」里面的问题，我于是检查了一遍，「扩展」「脚本」「样式」这些只有1个mix tab扩展，我把他恢复默认设置，结果还是那个样子。<br>于是又来搞「定制」，在空白标签页右键选择「定制」，会有如下图的界面。在「更多工具和功能」里确实有新建标签页，但是这个只能被拖放到标签页的最左边，而不能放到打开的标签页的右边。</p>
+<p><img src="http://ww2.sinaimg.cn/large/63a3d9b7tw1el2cvgzqegj20px05wglz.jpg"></p>
+<p>#解决方法</p>
+<p>解决方法仍然是在「定制」里面做文章，打开定制后，点击那个「恢复默认设置」，这个时候并没有直接恢复默认设置，而是给你一次反悔的机会，你的Firefox的界面改成了最原始的那个样子，但是这个定制界面里还有一个「撤销」按钮，如果不满意的话，可以撤销。我就是在「恢复默认设置」这个预览里看到了新建标签页达到了我理想的效果。然后我选择了确认。当然这个界面上的其他部分你可能并不满意，所以再次点击「定制」，将你常用的东西放到搜索框的后面，于是基本上还是能够恢复你的习惯的。</p>
+<p><img src="http://ww3.sinaimg.cn/large/63a3d9b7tw1el2cuzr2qnj20ql0fimy7.jpg"></p>
+<p>实际效果图如下：<br><img src="http://ww3.sinaimg.cn/large/63a3d9b7tw1el2cvazvifj20n301rmxf.jpg"></p>
+<p>#结论</p>
+<p>经过这次这个折腾，我的一个体会就是：<br>如果你不知道怎么改变，就恢复默认设置吧。手机可以恢复出厂设置，Firefox也可以改到默认设置。这是最笨的方法，也可能是最有效的方法。当然做这些的前提是你最好能够把重要的东西备份一下，防止出现不必要的麻烦。</p>
+<p>#闲话<br>实际上我也试过修改Firefox的主题，修改成fxchrome主题，但是出来的效果还是和图一类似。我也试过下载了一个便携版Firefox来看看它的效果，就是从设置这个便携版的时候发现的恢复默认设置，因为以前一直不敢恢复设置，怕恢复之后就生效，然后你的东西就全没了。因为是便携版，所以不怕这个，也就试了试，结果才发现，原来Firefox是给你一次后悔的机会的。点击「恢复默认设置」后是先有一个预览界面的。</p>
+<p><strong>以上</strong></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%81%AB%E7%8B%90/" rel="tag"># 火狐</a>
+              <a href="/tags/chrome/" rel="tag"># chrome</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2014/10/02/201410/1002/" rel="prev" title="九月简单回顾">
+      <i class="fa fa-chevron-left"></i> 九月简单回顾
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2014/10/12/201410/1012/" rel="next" title="再谈个人博客">
+      再谈个人博客 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

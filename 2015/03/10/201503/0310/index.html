@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="这真的是一个很大的题目，以至于我自己都觉得望见它而起敬畏之心。不过我这次想要说的并不是什么多么深刻的难以理解的学术问题，我自己也并没有在此方面有太多的所谓「研究」，完全是出于个人的兴趣。所以，本文，如果说有什么益处，那么于我而言，便是梳理一下我对于这方面的认识，以及期待着未来的自己的重新审视，倘若对于读者而言，则是希望能够让更多人，对于未来的科技产生更多的兴趣。 全息投影这个概念，我最早是在高中的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟现实和全息投影">
+<meta property="og:url" content="http://hktkdy.com/2015/03/10/201503/0310/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="这真的是一个很大的题目，以至于我自己都觉得望见它而起敬畏之心。不过我这次想要说的并不是什么多么深刻的难以理解的学术问题，我自己也并没有在此方面有太多的所谓「研究」，完全是出于个人的兴趣。所以，本文，如果说有什么益处，那么于我而言，便是梳理一下我对于这方面的认识，以及期待着未来的自己的重新审视，倘若对于读者而言，则是希望能够让更多人，对于未来的科技产生更多的兴趣。 全息投影这个概念，我最早是在高中的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-03-10T07:09:18.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.086Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="科技">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hktkdy.com/2015/03/10/201503/0310/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>虚拟现实和全息投影 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2015/03/10/201503/0310/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          虚拟现实和全息投影
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-03-10 15:09:18" itemprop="dateCreated datePublished" datetime="2015-03-10T15:09:18+08:00">2015-03-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%88%86%E4%BA%AB/" itemprop="url" rel="index"><span itemprop="name">分享</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/03/10/201503/0310/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2015/03/10/201503/0310/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这真的是一个很大的题目，以至于我自己都觉得望见它而起敬畏之心。不过我这次想要说的并不是什么多么深刻的难以理解的学术问题，我自己也并没有在此方面有太多的所谓「研究」，完全是出于个人的兴趣。所以，本文，如果说有什么益处，那么于我而言，便是梳理一下我对于这方面的认识，以及期待着未来的自己的重新审视，倘若对于读者而言，则是希望能够让更多人，对于未来的科技产生更多的兴趣。</p>
+<p>全息投影这个概念，我最早是在高中的课本上面看到的。因为中是光学部分，是正文之后的扩展阅读里面提到的。不过 ，我们高中物理老师人比较好，而且博学多才，故而在讲完正文之后，便又扯了一些关于全息投影的东西。如果粗略算来，那时大概是2010年，当然我们听得也是云里雾里，虽然很是好奇，然而毕竟不在高考范围之内，甚至连普通的月考考试范围都不在，于是便没有太多理会，权当是一个扯淡的话。所以，当我最近重新听说全息投影的时候，在头脑中并没有什么明确的概念，连它的应用也不晓得。</p>
+<p>前些天，因为在YouTuBe上订阅了the wired这个channel，所以看到了有关虚拟现实的一两个 视频，也全然没有理会。后来又看到了霍炬写的<a href="%5Bhttp://www.tmtpost.com/199934.html%5D(http://www.tmtpost.com/199934.html)">人们想的太远了！强人工智能出现之前，人类命运已经注定灰暗</a> , 这篇文章很长，但是耐心的读完之后，觉得也许人工智能这些看似玄玄的东西离我们并不遥远。当然，总是有领先的，也总是有落后的。搭载<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/%E4%B8%AA%E4%BA%BA%E7%94%B5%E8%84%91#.E6.AD.B7.E5.8F.B2">微软操作系统的个人电脑80年代早期就已经问世了</a>,但是在中国全面普及大概也是2000年以后的事情，而我们家拥有第一台PC机是在2009年，而与此同时还有那么多家庭没有一台电脑。就是在今天，还在课上听到一老师讲到「中国的科技发展落后美国30年」，我个人倒是觉得科技发展的距离已经在缩短了。虽然尽管是在缩短，但是仍然是落后的，这个基本上不存在争议。所以如果有一天虚拟现实的设备真正的投入市场之后，是否会像今天的apple watch 那样，中国大陆与美帝同步发售呢？也许有可能，然而即便是同步发售了，那么技术这个硬东西，不仍然是人家领先吗？而且好像更加重要的是，国内鲜有人关注这些方面，除了专业人士。</p>
+<p>昨天，在课间的时候看了一个名叫「iPhone 5 Concept Features<br>」的视频，后来才知道这是2001年的视频，当我后来重新在油管上找到这个视频来看时，很有意思的看到，下面的评论有很多是这样写的「我看到这个视频的时候是2015年，我手里的手机是Iphone 5s，为什么没有这个功能？」，感觉真有点二逼青年欢乐多的味道。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lzsBwnv_dAg" frameborder="0" allowfullscreen></iframe>
+
+<p>后来吃饭的时候，和同学讨论这个视频的细节部分，同学问「为什么没有投影布就能够直接在空气中将画面投影出来？」，于是经过了一番讨论，他说根据基本的光学知识这是不可能做到的，他自我猜测是用到了「全息投影」技术，我则迷惑不解，首先便是甚至于不知道所谓「全息投影」的概念，不过因为联想到之前看过的霍炬的文章，所以竟然扯到了虚拟现实上面，我告诉他「虚拟现实，打个比方，你头上戴个头罩，蒙住双眼，你的眼前就会浮现出一些虚拟的画面来，你的意念支配着你游戏里面的角色完成任务」，发现自己当时不假思索吐露出来的竟然是我当年看过没几页的《三体》里面的重要情节，于是连忙解释说「啊不，那就是科幻了，科技现在还达不到，应该是你的身体的运动你的游戏里面的人物也能相应完成指定的动作」，因为当时在吃饭，并不方便 上网查资料，于是关于投影的这个问题便只好搁置了下来。</p>
+<p>晚上的时候，看了几个视频刷了几个网页，大概一窥究竟了。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lJVhWwINovY" frameborder="0" allowfullscreen></iframe>
+
+<p>上面的视频同样上传于2011年，可以说已经并不新鲜了，然而其实对于我来说，仍然觉得很神奇，所以仍然可以想见关于科技的概念要想普及远远不是三年五年的事情吧。还有一个例子，之前有幸听了一个所谓中科院自动化研究所<br>的研究员的演讲，他说到了机器人，放了下面的这个视频</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cNZPRsrwumQ" frameborder="0" allowfullscreen></iframe>
+
+
+<p>这个视频据介绍是拍摄于2008年，我们惊异于机器人发展，我总以为经过了七八年的时间会有更大的突破，可是当我昨天又带着几分兴趣，又在同一个channel下面看其他视频时，从一个外行的角度看，最新的视频内容与08年的差异并不大，当然这只是外行的看法，感性的看法，我的理解是越到后面，想要改进就越困难。抛开这些不提，想一想确实觉得可怕，如果这些突入到军事活动中，杀伤力之大也是有的。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/M8YjvHYbZ9w" frameborder="0" allowfullscreen></iframe>
+
+<p>另一个我觉得关于全息摄影（投影）的比较有趣的视频是下面这个，是微软主打的hololens（因为全息摄影的英文名叫做holography，全息投影是front-projected holographic display），这是随win10预览版一起出现在发布会上的一个产品，只是当时我并没有留意到。看这个视频的时候，让我对于昨天的那个问题，即「为什么没有投影布就能够直接在空气中将画面投影出来？」给出了一个猜想：</p>
+<p>其实我们在那个Iphone 5的概念视频中看到的并不是肉眼直接看到的结果，而是由于全息摄像机将画面记录下来，我们再用肉眼看到原来的摄像机上面的画面，这就解释了为什么会出现直接在空气中投影的事情，当然这也只是我的猜想，我的猜想的理由是因为我看到在这个发布会上，从观众的普通视野看是一无所有的，而从全息摄像机的播放的画面，才能够看到hololens持有者所能够看到的画面，这有点像是皇帝的新衣，但是也的的确确是存在的。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qym11JnFQBM" frameborder="0" allowfullscreen></iframe>
+
+<p>而关于虚拟现实技术，我看的比较有趣的一个视频是下面这个：</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9yplHQhaVXU" frameborder="0" allowfullscreen></iframe>
+
+<p>这个视频中是一个月前才上传的，应该说比较新了。在这里面，虚拟现实技术还主要用于游戏产品的开发，不过这不妨碍我们往更深远的地步来思考，如果谷歌眼镜或者微软的hololens也算作是「虚拟现实」的话，那么，前景仍然十分广阔啊。虚拟现实与可穿戴设备也是可以完美结合的。</p>
+<p>最后又想到了昨天聊天时脱口而出不假思索的关于「虚拟现实」的例子，那个《三体》里面的有趣的故事，也许有一天那将会成为「科幻」，而不是「科幻」，就像是《海底两万里》里面的「潜水挺」一样，也未可知。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%A7%91%E6%8A%80/" rel="tag"># 科技</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2015/03/03/201503/03/" rel="prev" title="丢">
+      <i class="fa fa-chevron-left"></i> 丢
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2015/03/10/201503/031002/" rel="next" title="zhihuhelp生成电子书">
+      zhihuhelp生成电子书 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

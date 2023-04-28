@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="题目描述，给定一个JSON对象，对它进行增删，更新等操作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS入门（1）JSON对象的修改">
+<meta property="og:url" content="http://hktkdy.com/2016/05/02/201604/A-JSON-question/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="题目描述，给定一个JSON对象，对它进行增删，更新等操作。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-05-02T04:10:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.090Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="JSON">
+<meta property="article:tag" content="JS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hktkdy.com/2016/05/02/201604/A-JSON-question/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JS入门（1）JSON对象的修改 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2016/05/02/201604/A-JSON-question/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS入门（1）JSON对象的修改
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-05-02 12:10:49" itemprop="dateCreated datePublished" datetime="2016-05-02T12:10:49+08:00">2016-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2016/05/02/201604/A-JSON-question/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2016/05/02/201604/A-JSON-question/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>题目描述，给定一个JSON对象，对它进行增删，更新等操作。</p>
+<span id="more"></span>
+<p>原本的程序是这样的：</p>
+<pre><code>// Setup
+var collection = &#123;
+    2548: &#123;
+      album: &quot;Slippery When Wet&quot;,
+      artist: &quot;Bon Jovi&quot;,
+      tracks: [ 
+        &quot;Let It Rock&quot;, 
+        &quot;You Give Love a Bad Name&quot; 
+      ]
+    &#125;,
+    2468: &#123;
+      album: &quot;1999&quot;,
+      artist: &quot;Prince&quot;,
+      tracks: [ 
+        &quot;1999&quot;, 
+        &quot;Little Red Corvette&quot; 
+      ]
+    &#125;,
+    1245: &#123;
+      artist: &quot;Robert Palmer&quot;,
+      tracks: [ ]
+    &#125;,
+    5439: &#123;
+      album: &quot;ABBA Gold&quot;
+    &#125;
+&#125;;
+
+// Keep a copy of the collection for tests
+var collectionCopy = JSON.parse(JSON.stringify(collection));
+
+// Only change code below this line
+function updateRecords(id, prop, value) &#123;
+
+
+  return collection;
+&#125;
+
+// Alter values below to test your code
+updateRecords(5439, &quot;artist&quot;, &quot;ABBA&quot;);
+</code></pre>
+<p>要求是这样的：</p>
+<blockquote>
+<p>For the given id in collection:</p>
+</blockquote>
+<blockquote>
+<p>If value is non-blank (value !&#x3D;&#x3D; “”) and prop is not “tracks” then update or set the value for the prop.</p>
+</blockquote>
+<blockquote>
+<p>If the prop is “tracks” and value is non-blank, push the value onto the end of the tracks array.</p>
+</blockquote>
+<blockquote>
+<p>If value is blank, delete that prop.</p>
+</blockquote>
+<blockquote>
+<p>Always return the entire collection object.</p>
+</blockquote>
+<p>我经过一番思考，写出的程序是这样的：</p>
+<pre><code>var collection = &#123;
+    2548: &#123;
+      album: &quot;Slippery When Wet&quot;,
+      artist: &quot;Bon Jovi&quot;,
+      tracks: [ 
+        &quot;Let It Rock&quot;, 
+        &quot;You Give Love a Bad Name&quot; 
+      ]
+    &#125;,
+    2468: &#123;
+      album: &quot;1999&quot;,
+      artist: &quot;Prince&quot;,
+      tracks: [ 
+        &quot;1999&quot;, 
+        &quot;Little Red Corvette&quot; 
+      ]
+    &#125;,
+    1245: &#123;
+      artist: &quot;Robert Palmer&quot;,
+      tracks: [ ]
+    &#125;,
+    5439: &#123;
+      album: &quot;ABBA Gold&quot;
+    &#125;
+&#125;;
+// Keep a copy of the collection for tests
+var collectionCopy = JSON.parse(JSON.stringify(collection));
+
+// Only change code below this line
+function updateRecords(id, prop, value) &#123;
+if(value!==&quot;&quot;&amp;&amp; prop!==&quot;tracks&quot;)&#123;
+  collection.id.prop=value;
+ 
+&#125;
+  
+  else if(prop==&quot;tracks&quot;&amp;&amp;value!==&quot;&quot;)&#123;
+    collection.id.tracks.push(value);
+  &#125;
+  else if(value===&quot;&quot;)&#123;
+    collection.id.prop.delete();
+  &#125;
+
+  return collection;
+&#125;
+
+
+// Alter values below to test your code
+updateRecords(5439, &quot;artist&quot;, &quot;ABBA&quot;);
+</code></pre>
+<p>出现的错误提示是：<br>    TypeError: Cannot set property ‘artist’ of undefined</p>
+<p>个人其实在之前判断这个应该就是传递参数时遇到的问题，但是不知道怎么解决。在<br>      collection.id.prop&#x3D;value;</p>
+<p>这一行代码修改了很多遍，也看过一些例程。比如修改成：</p>
+<pre><code>collection.[id].[prop]=value
+</code></pre>
+<p>又或者是：</p>
+<pre><code>collection.[&quot;id&quot;].prop=value
+</code></pre>
+<p>反正就是来回用[]试探了。 无效<br>最后还是用谷歌搜索了一下，得到了<a target="_blank" rel="noopener" href="https://github.com/FreeCodeCamp/FreeCodeCamp/issues/5920">issues&#x2F;5920</a></p>
+<p>有个网友回答的很到位：</p>
+<blockquote>
+<p>The problem is that id is not a property of collection. id is a variable that contains the name of a property of collection. You must use bracket notation to access it. IE collection[id]</p>
+</blockquote>
+<p>所以我分析得多少还有几分道理，只是忘记了collection与[id] 之间是不能有符号. 的。这个时候使用[]也正是为了区分prop。</p>
+<p>当然，我还发现了我的代码的其他问题，比如在一个array里面删除一个元素，可以用delete，但是我之前的用法：</p>
+<pre><code>collection.id.prop.delete();
+</code></pre>
+<p>显然是不对的，我是受到了上一个push命令的影响。实际上应该使用：</p>
+<pre><code>delete collection[id][prop]
+</code></pre>
+<p>修改后的代码为：</p>
+<pre><code>// Setup
+var collection = &#123;
+    2548: &#123;
+      album: &quot;Slippery When Wet&quot;,
+      artist: &quot;Bon Jovi&quot;,
+      tracks: [ 
+        &quot;Let It Rock&quot;, 
+        &quot;You Give Love a Bad Name&quot; 
+      ]
+    &#125;,
+    2468: &#123;
+      album: &quot;1999&quot;,
+      artist: &quot;Prince&quot;,
+      tracks: [ 
+        &quot;1999&quot;, 
+        &quot;Little Red Corvette&quot; 
+      ]
+    &#125;,
+    1245: &#123;
+      artist: &quot;Robert Palmer&quot;,
+      tracks: [ ]
+    &#125;,
+    5439: &#123;
+      album: &quot;ABBA Gold&quot;
+    &#125;
+&#125;;
+// Keep a copy of the collection for tests
+var collectionCopy = JSON.parse(JSON.stringify(collection));
+
+// Only change code below this line
+function updateRecords(id, prop, value) &#123;
+if(value!==&quot;&quot;&amp;&amp; prop!==&quot;tracks&quot;)&#123;
+  collection[id][prop]=value;
+ 
+&#125;
+  
+  
+  else if(prop==&quot;tracks&quot;&amp;&amp;value!==&quot;&quot;)&#123;
+    collection[id][prop].push(value);
+  &#125;
+  else if(value===&quot;&quot;)&#123;
+   delete  collection[id][prop];
+  &#125;
+
+  return collection;
+&#125;
+
+
+// Alter values below to test your code
+updateRecords(2548, &quot;artist&quot;, &quot;&quot;);
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JSON/" rel="tag"># JSON</a>
+              <a href="/tags/JS/" rel="tag"># JS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/04/29/201604/2016-midi-memory/" rel="prev" title="回忆迷笛">
+      <i class="fa fa-chevron-left"></i> 回忆迷笛
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/05/03/201604/reverse-string/" rel="next" title="JS入门（2）字符串逆序排列问题">
+      JS入门（2）字符串逆序排列问题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

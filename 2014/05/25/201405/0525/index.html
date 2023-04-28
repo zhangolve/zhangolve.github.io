@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="用github结合hexo建立个人博客的几点注意及参考资料">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用github结合hexo建立个人博客的几点注意及参考资料">
+<meta property="og:url" content="http://hktkdy.com/2014/05/25/201405/0525/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="用github结合hexo建立个人博客的几点注意及参考资料">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/63a3d9b7gw1egq96ajyzbj20ev03rdg0.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/63a3d9b7gw1egq9s7gyl3j20oh066wf5.jpg">
+<meta property="article:published_time" content="2014-05-25T00:30:16.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.082Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="建站">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/63a3d9b7gw1egq96ajyzbj20ev03rdg0.jpg">
+
+<link rel="canonical" href="http://hktkdy.com/2014/05/25/201405/0525/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>用github结合hexo建立个人博客的几点注意及参考资料 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2014/05/25/201405/0525/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          用github结合hexo建立个人博客的几点注意及参考资料
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-05-25 08:30:16" itemprop="dateCreated datePublished" datetime="2014-05-25T08:30:16+08:00">2014-05-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2014/05/25/201405/0525/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2014/05/25/201405/0525/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <div class="post-description">用github结合hexo建立个人博客的几点注意及参考资料</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前面"><a href="#前面" class="headerlink" title="前面"></a>前面</h1><p>   首先谈一下为什么要写这样一篇文字，可以说，当初自己从想要建立这样一个博客到最后博客建成，一路上确实是遇到了很多问题的，而这些问题，我相信，对于大多数小白可能也会遇到。同时，鉴于是刚刚开的博客，所以新鲜的味道还没有散去，故而自然要写一个练练手。当然，我觉得互联网上的分享其实也类似于学术分享，所谓站在巨人的肩膀上，我在建站之出参考了很多的资料，然而没有一个的资料是十分全面的，所以也想借此机会来重新梳理一下。</p>
+<p><strong>我的题目也已经说了，本文是对已有资料的补充。所以，自然也不会再多说废话在一些别的教程上已经说的很清楚的地方。</strong>我建站时参考的主要教程是来自<a target="_blank" rel="noopener" href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/">如何搭建一个独立博客——简明Github Pages与Hexo教程</a> ，所以我之后的所说的也都是对此篇教程的补充。</p>
+<h1 id="1购买域名"><a href="#1购买域名" class="headerlink" title="1购买域名"></a>1购买域名</h1><hr>
+<p>  购买域名中存在的问题在登录<a href="www.godaddy.com/">goadaddy</a>时是用firefox浏览器登录之后出现了国家和货币那两个项目的混乱，你开始选的是US，等到下一步继续进行的时候就变成了越南了，货币也随之变成了越南盾，这是我的现象，不知道其他人有没有，所以还是推荐使用chrome浏览器吧，如果是英语不太好的话，还可以自动翻译。<br><img src="http://ww4.sinaimg.cn/large/63a3d9b7gw1egq96ajyzbj20ev03rdg0.jpg" alt="我所说的货币和国家混乱"><br>20151118更新，如今再读下面这一段，废话。<br>~~用github和hexo结合在一起建站真的很经济，对于只是想单纯的玩博客的而不是搞复杂的网站的人绰绰有余。我购买了一年的域名花了50多软妹，想一想，50多块在当今社会真的不是钱啦！~~~</p>
+<p>#2安装软件</p>
+<p>这个不多说，应该说教程上很详细。</p>
+<h1 id="配置和使用Github"><a href="#配置和使用Github" class="headerlink" title="配置和使用Github"></a>配置和使用Github</h1><p>这一点要注意的是，当使用git的时候我所出现的几个问题。</p>
+<ul>
+<li><p>1在输入密码状态是，你打在键盘上的密码是不显示出来的，对，是连**********这样的都不会显示的，所以你只管放心地去输入你的github账号的正确的密码就好了。</p>
+</li>
+<li><p>安装完成之后使用命令<code>hexo g</code>   <code>hexo s</code> 之后去浏览器输入<a href="http://localhost:4000进行查看，如果是一个很不错的网页，有图片，有第一篇hello">http://localhost:4000进行查看，如果是一个很不错的网页，有图片，有第一篇hello</a> world的博文的话，则可以进行更新主题的继续操作，如果出现了如<img src="http://ww1.sinaimg.cn/large/63a3d9b7gw1egq9s7gyl3j20oh066wf5.jpg" alt="这样的图片">出现在浏览器的窗口上，则需要进行如下操作。</p>
+<pre><code> $ npm install hexo-renderer-ejs --save
+ $ npm install hexo-renderer-stylus --save
+ $ npm install hexo-renderer-marked --save
+</code></pre>
+</li>
+</ul>
+<p>而且是就在当前的博客目录下，因为你的博客目录下缺少渲染网页的工具，所以上面的操作是下载这些工具的。这一个点我找了好久都没有找到，还专门问了一个写教程的博主，然而他也不太了解，最后是通过Google看的hexo的开发者的<a target="_blank" rel="noopener" href="https://github.com/tommy351/hexo/releases/tag/2.6.0">issue</a> 解决的，  所以也请你们一定要注意啦！<br>#本地空间的上传<br>这一点我觉得那个教程做的不太好，他在域名绑定之后就说博客已经搭建完成了，但是在我们这些小白看来要搭建完至少应当是将本地仓库传到远程（remote）之后才能说得上是搭建完成。这里就不吐槽了。上传其实很简单<strong>只需要对根目录下的config.yml进行简单的配置就可以了</strong>可以参考<a target="_blank" rel="noopener" href="http://zipperary.com/2013/05/28/hexo-guide-2/">http://zipperary.com/2013/05/28/hexo-guide-2/</a>  ，所以我觉得正确的搭建顺序是<strong>先能把本地的仓库上传到远程之后才是域名的绑定和所谓的进阶</strong></p>
+<p>PS <del>我还是很喜欢jacman这个主题的，相比于<a target="_blank" rel="noopener" href="http://zipperary.com/2013/05/28/hexo-guide-2/">http://zipperary.com/2013/05/28/hexo-guide-2/</a> 教程中的light主题而言，他更加的简单，当然这也要看个人了。</del>20150118更新：我现在在用的这个主题：<a target="_blank" rel="noopener" href="https://github.com/yuche/hexo-theme-kael">kael</a>其实更加简洁朴实尤其适合那些非技术类的博客，具体可以参考我的<a href="http://hktkdy.com/2015/01/01/201501/0101/">hexo博客主题更换为kael</a> 这篇文章。<br>#进阶方面<br>其实人家已经给你配置好了，当你下载了他的主题之后，再进行简单的copy和改变，比如一些很个性化的东西就需要你自己的设置，比如网页页面上的邮箱，微博，豆瓣，github的地址等，人家是根据自己的需要设置的，所以你要替换成你自己的。这些即使看不懂那些网络语言也可以很轻松地替换。</p>
+<ul>
+<li>图床<br><del>我用的是“围脖是个好图床”通过搜索可以很方便地找到。不过是个浏览器扩展（插件），但是也真的很方便，将图片拖动到他的大空白区域，然后就可以生成一个网络地址，将此地址复制到博客中即可。ps前提是你需要首先在浏览器上登录你的微博账号啦！</del><br>20150118更新：实际上没用几天那个围脖是个好图床，由于chrome升级之后不能安装非官方的xpi，而同时我又发现其实七牛的云存储真的很给力，于是果断的更换成了七牛，毕竟他的两大优点速度快以及可以将原来的文件都可见很吸引我。当然，每月10G的流量对我来说绰绰有余。</li>
+</ul>
+<hr>
+<ul>
+<li><p>其他须知<br>1使用git时可能出现的其他问题<br>提示出现<br><code>Github “Updates were rejected because the remote contains work that you do not have”</code><br>这个时候只需要执行</p>
+<p>   git remote add origin &#x2F;&#x2F;your github url</p>
+<pre><code>  //pull those changes
+  
+  git pull origin master
+  
+  //now, push your work to your new repo
+  
+  git push origin master
+</code></pre>
+</li>
+</ul>
+<p> 2应当比较熟练的使用下面的命令</p>
+<pre><code> `hexo g`   `hexo s`  
+ `hexo d`    `int init` 
+ `git pull`  `git push` 
+ `git pull` `origin master`
+ `git push`  `origin master` 
+ 
+</code></pre>
+<p> 3博客的生成从上传到远程仓库到最后生成网页可能需要十分钟左右，所以请耐心等候，用那谁的话说“可以泡一杯咖啡”。</p>
+<p>  4博客的写作<br>20150118更新：<br>经过了半年多的使用，发现markdown确实是个好东西，与此同时也发现了另外一个比较好的markdown书写工具，简书。这个网站不仅能够在线用markdown写文章，还能够发表文章，我往往是在上面写好之后顺便就发表了，同时投稿到几个专题里，收获的阅读数往往会比<a target="_blank" rel="noopener" href="http://hktkdycom/">http://hktkdycom</a> 这个博客要高。我的简书地址：<a target="_blank" rel="noopener" href="http://www.jianshu.com/users/1c26e9e36267/latest_articles">http://www.jianshu.com/users/1c26e9e36267/latest_articles</a>  欢迎关注<br>将在这里写好的博客粘贴到posts生成的博客md文件里面，再运行<br><code>hexo g hexos </code></p>
+<p> 就可以在本地查看你的博客的效果啦（建议将http:lacalhost：4000存为一个浏览器书签以便随时查看）</p>
+<p><del>可以用Cmd markdown <a target="_blank" rel="noopener" href="https://www.zybuluo.com/mdeditor/note/14372">https://www.zybuluo.com/mdeditor/note/14372</a> ，我现在就在用这个，因为也是第一次用，也不是很熟练，所以你会看到我的博客排版确实有点问题。。。。</del> 现在排版好多了，好不好！</p>
+<p>5摘要的设置<br>Q: 老子原来使用&lt;–! more –&gt;分割的摘要怎么在首页中就剩下140个字了？<br>A: 骚年，慧眼啊！是这样的：为了提高打开首页的速度故首页不加载文章图片，只加载文章摘要。因此我强烈建议大家在写文章的时候自己总结description并将其放在开头的front-matter中。如果没有会截取&lt;–! more –&gt;内容前的140个字，如果你连这个都懒得写，没关系，依旧为你截取文章内容的前140个字作为摘要。<br>以上问题来自（<a target="_blank" rel="noopener" href="http://yangjian.me/pacman/hello/introducing-pacman-theme/%EF%BC%89">http://yangjian.me/pacman/hello/introducing-pacman-theme/）</a>  我看了也是很受用的。</p>
+<p>6hexo版本回退问题</p>
+<p>20150118更新：<br>由于我看了一篇<a target="_blank" rel="noopener" href="http://blog.yuanbin.me/posts/2014/05/multi-deployment-with-hexo.html">博客</a>  讲可以将博客同时部署到github和gitcafe，所以就打算试一试，在设置了相关的：</p>
+<pre><code> deploy:
+    type: git
+    message: [message]
+    repo:
+    github: &lt;repository url&gt;,[branch]
+    gitcafe: &lt;repository url&gt;,[branch]
+</code></pre>
+<p>但是仍然未能达到理想的效果，提示出错hexo g之后没有问题，但是hexo s的时候不能上传，而且可以肯定就是这里出了问题。于是想到了升级hexo，觉得是现在的版本不支持deploy到两个远程。谁知道升级之后问题更大了，hexo<br>g都显示错误，最后懒得折腾，觉得没必要这样同时放到两个远程。倒不如换个思路退回原版本，这样倒也方便。<br>方法是：</p>
+<blockquote>
+<p>打开命令行，输入npm install -g hexo@版本号就可以回退到没有出现问题的版本上来。<br>这个命令适用于所有Node.js模块</p>
+</blockquote>
+<p>建站之后我发现的其他有关的问题，可以参考我的这一篇博文.<a href="http://hktkdy.com/2014/05/24/0524">http://hktkdy.com/2014/05/24/0524</a><br>最后感谢给我帮助的前人博主们，感谢hexo的发明人tommy351。<br><a target="_blank" rel="noopener" href="http://cnfeat.com/">cnfeat</a><br><a target="_blank" rel="noopener" href="http://zipperary.com/">Zippera</a><br><a target="_blank" rel="noopener" href="https://github.com/tommy351">tommy351</a><br><a target="_blank" rel="noopener" href="http://yangjian.me/pacman/">yangjian</a></p>
+<hr>
+<p>转载请注明原博地址：<a href="http://hktkdy.com/2014/05/25/201405/0525/">用github结合hexo建立个人博客的几点注意及参考资料</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag"># 建站</a>
+              <a href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag"># 博客</a>
+              <a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"># 技术</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2014/05/24/201405/0524/" rel="prev" title="关于博客">
+      <i class="fa fa-chevron-left"></i> 关于博客
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2014/05/26/201405/0526/" rel="next" title="舌尖上的中国">
+      舌尖上的中国 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">前面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1%E8%B4%AD%E4%B9%B0%E5%9F%9F%E5%90%8D"><span class="nav-number">2.</span> <span class="nav-text">1购买域名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8Github"><span class="nav-number">3.</span> <span class="nav-text">配置和使用Github</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

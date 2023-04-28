@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="第一部分见：http:&#x2F;&#x2F;hktkdy.com&#x2F;2016&#x2F;08&#x2F;03&#x2F;201608&#x2F;free-code-camp-some-test&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FreeCodeCamp JS算法题部分【2】">
+<meta property="og:url" content="http://hktkdy.com/2016/08/27/201608/free-code-camp-some-test-2/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="第一部分见：http:&#x2F;&#x2F;hktkdy.com&#x2F;2016&#x2F;08&#x2F;03&#x2F;201608&#x2F;free-code-camp-some-test&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/f454d3ecae15ea7887c1f3f40b0b80b0d6f711af">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/183d080fad6c5e9292cd08bc28897f334189b75f">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/ffd2487510aa438433a2579450ab2b3d557e5edc">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/f5f3c8921a3b352de45446a6789b104458c9f90b">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/f82cade9898ced02fdd08712e5f0c0151758a0dd">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/8073f9e9d38f6eaa5ff50e677b526ed022ce38a4">
+<meta property="article:published_time" content="2016-08-27T08:38:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.094Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/f454d3ecae15ea7887c1f3f40b0b80b0d6f711af">
+
+<link rel="canonical" href="http://hktkdy.com/2016/08/27/201608/free-code-camp-some-test-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>FreeCodeCamp JS算法题部分【2】 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2016/08/27/201608/free-code-camp-some-test-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          FreeCodeCamp JS算法题部分【2】
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-27 16:38:49" itemprop="dateCreated datePublished" datetime="2016-08-27T16:38:49+08:00">2016-08-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2016/08/27/201608/free-code-camp-some-test-2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2016/08/27/201608/free-code-camp-some-test-2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>第一部分见：<a href="http://hktkdy.com/2016/08/03/201608/free-code-camp-some-test/">http://hktkdy.com/2016/08/03/201608/free-code-camp-some-test/</a></p>
+<span id="more"></span>
+<h1 id="Inventory-Update"><a href="#Inventory-Update" class="headerlink" title="Inventory Update"></a>Inventory Update</h1><h2 id="题目要求："><a href="#题目要求：" class="headerlink" title="题目要求："></a>题目要求：</h2><p>对库存的管理,两个二维数组，二维数组的形式是内层数组表示的是某个商品的数量值。外层数组表示的是所有的这些商品。第一个数组表示的是当前库存，第二个数组表示的是新加入的商品。</p>
+<p>又遇到了这种都不等于才做处理的事情。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">updateInventory</span>(<span class="params">arr1, arr2</span>) &#123;</span><br><span class="line">    <span class="comment">// All inventory must be accounted for or you&#x27;re fired!</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">getAdd</span>(<span class="params">arr1,arr2</span>)</span><br><span class="line">  &#123;</span><br><span class="line">  <span class="keyword">var</span> finalInv=[];</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr1.<span class="property">length</span>;i++)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;arr2.<span class="property">length</span>;j++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span>(arr1[i][<span class="number">1</span>]==arr2[j][<span class="number">1</span>])</span><br><span class="line">        &#123;</span><br><span class="line">          finalInv.<span class="title function_">push</span>([arr1[i][<span class="number">0</span>]+arr2[j][<span class="number">0</span>],arr1[i][<span class="number">1</span>]]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> finalInv;</span><br><span class="line">  &#125;</span><br><span class="line">   <span class="keyword">var</span> finalInv=<span class="title function_">getAdd</span>(arr1,arr2);</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">get</span>(<span class="params">arr1,arr2</span>)</span><br><span class="line">  &#123;</span><br><span class="line">  <span class="keyword">var</span> count=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;arr2.<span class="property">length</span>;j++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr1.<span class="property">length</span>;i++)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">if</span>(arr2[j][<span class="number">1</span>]!=arr1[i][<span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">              count++;<span class="comment">//对于所有的都不等于才执行。</span></span><br><span class="line">            &#125;</span><br><span class="line">              &#125;</span><br><span class="line">      <span class="keyword">if</span>(count==arr1.<span class="property">length</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          arr1.<span class="title function_">push</span>(arr2[j]);</span><br><span class="line">         </span><br><span class="line">        &#125;</span><br><span class="line">      count=<span class="number">0</span>;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> arr1;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">get</span>(finalInv,arr1);</span><br><span class="line">  finalInv= <span class="title function_">get</span>(finalInv,arr2);</span><br><span class="line">     finalInv.<span class="title function_">sort</span>(<span class="keyword">function</span> (<span class="params">a, b</span>) &#123;</span><br><span class="line">       <span class="keyword">if</span> (a[<span class="number">1</span>] &gt; b[<span class="number">1</span>]) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (a[<span class="number">1</span>] &lt; b[<span class="number">1</span>]) &#123;</span><br><span class="line">           <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">   &#125;);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> finalInv;</span><br><span class="line">  	&#125;</span><br><span class="line">  	<span class="comment">// Example inventory lists</span></span><br><span class="line"><span class="keyword">var</span> curInv = [</span><br><span class="line">    [<span class="number">21</span>, <span class="string">&quot;Bowling Ball&quot;</span>],</span><br><span class="line">    [<span class="number">2</span>, <span class="string">&quot;Dirty Sock&quot;</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="string">&quot;Hair Pin&quot;</span>],</span><br><span class="line">    [<span class="number">5</span>, <span class="string">&quot;Microphone&quot;</span>]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> newInv = [</span><br><span class="line">    [<span class="number">2</span>, <span class="string">&quot;Hair Pin&quot;</span>],</span><br><span class="line">    [<span class="number">3</span>, <span class="string">&quot;Half-Eaten Apple&quot;</span>],</span><br><span class="line">    [<span class="number">67</span>, <span class="string">&quot;Bowling Ball&quot;</span>],</span><br><span class="line">    [<span class="number">7</span>, <span class="string">&quot;Toothpaste&quot;</span>]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="title function_">updateInventory</span>(curInv, newInv);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>上面是我的代码，我的思路是先将能够合并的库存找出来，然后进行叠加处理。然后再把不能合并的挑选出来，推入到堆栈当中。<br>下面再看一下<a target="_blank" rel="noopener" href="https://github.com/FreeCodeCamp/FreeCodeCamp/wiki/Algorithm-Inventory-Update">网友版</a>的： </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">updateInventory</span>(<span class="params">arr1, arr2</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Variable for location of product</span></span><br><span class="line">    <span class="keyword">var</span> index;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// A helper method to return the index of a specified product (undefined if not found)</span></span><br><span class="line">    <span class="keyword">var</span> getProductIndex = <span class="keyword">function</span> (<span class="params">name</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="variable language_">this</span>.<span class="property">length</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="variable language_">this</span>[i][<span class="number">1</span>] === name) &#123;  <span class="comment">//这里的this是什么呢?下面有注释arr1是this。</span></span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// For each item of the new Inventory</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr2.<span class="property">length</span>; i++) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Invoke our helper function using arr1 as this</span></span><br><span class="line">        index = getProductIndex.<span class="title function_">call</span>(arr1, arr2[i][<span class="number">1</span>]); <span class="comment">//这里使用call方法无疑很巧妙了。</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// If the item doesn&#x27;t exist           //call中第一个参数作为this</span></span><br><span class="line">        <span class="keyword">if</span> (index === <span class="literal">undefined</span>) &#123;</span><br><span class="line">            <span class="comment">// Push the entire item</span></span><br><span class="line">            arr1.<span class="title function_">push</span>(arr2[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// Add the new quantity of the current item</span></span><br><span class="line">            arr1[index][<span class="number">0</span>] += arr2[i][<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Sort alphabetically, by the product name of each item</span></span><br><span class="line">    arr1.<span class="title function_">sort</span>(<span class="keyword">function</span> (<span class="params">a, b</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[<span class="number">1</span>] &gt; b[<span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (a[<span class="number">1</span>] &lt; b[<span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> arr1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// test here</span></span><br><span class="line"><span class="comment">// Example inventory lists</span></span><br><span class="line"><span class="keyword">var</span> curInv = [</span><br><span class="line">    [<span class="number">21</span>, <span class="string">&quot;Bowling Ball&quot;</span>],</span><br><span class="line">    [<span class="number">2</span>, <span class="string">&quot;Dirty Sock&quot;</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="string">&quot;Hair Pin&quot;</span>],</span><br><span class="line">    [<span class="number">5</span>, <span class="string">&quot;Microphone&quot;</span>]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> newInv = [</span><br><span class="line">    [<span class="number">2</span>, <span class="string">&quot;Hair Pin&quot;</span>],</span><br><span class="line">    [<span class="number">3</span>, <span class="string">&quot;Half-Eaten Apple&quot;</span>],</span><br><span class="line">    [<span class="number">67</span>, <span class="string">&quot;Bowling Ball&quot;</span>],</span><br><span class="line">    [<span class="number">7</span>, <span class="string">&quot;Toothpaste&quot;</span>]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="title function_">updateInventory</span>(curInv, newInv);</span><br></pre></td></tr></table></figure>
+
+<p>这个算法的思路是这样的，默认将第一个数组，也就是当前库存放入到堆栈当中，然后对第二个数组也就是添加的库存进行处理，如果发现已经有这样的产品，则进行叠加计算再推入堆栈，否则就直接把该新加入的商品推入堆栈之中。将全部处理完毕之后，再按照商品的数目进行排序。</p>
+<h1 id="No-repeats-please"><a href="#No-repeats-please" class="headerlink" title="No repeats please"></a>No repeats please</h1><h2 id="题目要求：-1"><a href="#题目要求：-1" class="headerlink" title="题目要求："></a>题目要求：</h2><p>给定一个字符串，然后找到这个字符串的所有可能的排列情况。比如字符串为’aab’,那么这个时候，就会有6种排列，分别为 (aab, aab, aba, aba, baa, baa)，但是只有aba和aba这两种是没有相邻字母相同的。这个时候就返回一个2.</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>排列组合的问题。<br>我们知道如果忽略掉正反颠倒的情况以及忽略掉相邻字母相同排列的情况，那么这个时候就像上面所说’aab’这个字符串是有6种排列情况的，这个规律就是n的阶乘，其中n是这个字符串的长度。</p>
+<pre><code>function permAlone(str) &#123;
+  var len=str.length;
+  var num=1;
+  for(var i=1;i&lt;len+1;i++)
+    &#123;
+      num*=i;
+    &#125;
+  return num;
+&#125;
+
+permAlone(&#39;abcdefa&#39;);
+</code></pre>
+<p>上面的方法，就是用来计算这种阶乘的。<br>如果有一个重复值，重复了i次，是n！-(n-1)!*i，就是把重复值看成一个整体来考虑，更多的情况更加复杂了。</p>
+<p>而后，我看到了<a target="_blank" rel="noopener" href="http://www.knanthony.com/blog/free-code-camp-no-repeats-please/">这篇文章</a> ,当然也是英文的，讲述了他的思考过程。</p>
+<p>他最初的想法跟我一样，也是先把总的次数找出来，再把重复的次数去除掉，最后剩下的，就是最终的结果。但是当遇到了重复值不止一个，重复次数不止一次的情况时，这个方法就不好用了。</p>
+<p>然后是Heap’s algorithm算法，根据百度百科的介绍，他的算法描述是：</p>
+<blockquote>
+<p>Heap’s algorithm递归的产生n个不同物品的全排列。具体来说，首先因为有n个物品，我们用1至n将这些物品编号。我们执行下列步骤：</p>
+</blockquote>
+<blockquote>
+<p>(1) 我们设置一个变量i，初始化i为0。</p>
+</blockquote>
+<blockquote>
+<p>(2) i等于n则算法产生所有全排列，退出。i不等于n，执行第(3)步。</p>
+</blockquote>
+<blockquote>
+<p>(3) 我们用该算法产生了前n-1个物品的全排列 (共(n-1)!个)。我们将第n个物品作为最后一个元素放入到这些排列中。这样，我们就得到了所有n个不同物品的全排列中，第n个物品在排列的最后一位的排列。接下来，如果n是奇数，则我们将排列里的第一个元素与最后一个元素互换。如果n是偶数，我们将排列的第i个元素与最后一个元素互换。</p>
+</blockquote>
+<blockquote>
+<p>(4) i加1。回第(2)步。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">perms</span>(<span class="params">data</span>) &#123;</span><br><span class="line"><span class="keyword">if</span> (!(data <span class="keyword">instanceof</span> <span class="title class_">Array</span>)) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&quot;input data must be an Array&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">data = data.<span class="title function_">slice</span>();  <span class="comment">// make a copy</span></span><br><span class="line"><span class="keyword">var</span> permutations = [],</span><br><span class="line">    stack = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">doPerm</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (data.<span class="property">length</span> == <span class="number">0</span>) &#123;</span><br><span class="line">        permutations.<span class="title function_">push</span>(stack.<span class="title function_">slice</span>());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; data.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> x = data.<span class="title function_">splice</span>(i, <span class="number">1</span>);</span><br><span class="line">        stack.<span class="title function_">push</span>(x);</span><br><span class="line">        <span class="title function_">doPerm</span>();</span><br><span class="line">        stack.<span class="title function_">pop</span>();</span><br><span class="line">        data.<span class="title function_">splice</span>(i, <span class="number">0</span>, x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">doPerm</span>();</span><br><span class="line"><span class="keyword">return</span> permutations;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> input = <span class="string">&quot;abcd&quot;</span>.<span class="title function_">split</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> result = <span class="title function_">perms</span>(input);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; result.<span class="property">length</span>; i++) &#123;</span><br><span class="line">result[i] = result[i].<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+<h1 id="Friendly-Date-Ranges"><a href="#Friendly-Date-Ranges" class="headerlink" title="Friendly Date Ranges"></a>Friendly Date Ranges</h1><h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><ul>
+<li><p>使用月份的名称而不是数字代表，日期使用缩写而不是数字</p>
+</li>
+<li><p>如果日期的范围小于一年，那么不展示结尾年份</p>
+</li>
+<li><p>如果日期范围是从当年（2016年）开始，并且在一年内（指的是365天这样的概念，而不是2016年这样的概念）结束，那么年份将不会被显示出来</p>
+</li>
+<li><p>如果日期的范围是在同年同月里（不是指在三十天内），那么将不显示结尾年份和月份。</p>
+</li>
+<li><p>还要注意的是在原来的格式中是年月日的格式，但是在转换之后，就成了月日年的格式(满足上面的条件，年甚至可以省略掉)</p>
+<p>比如makeFriendlyDates([“2016-07-01”, “2016-07-04”]) should return [“July 1st”,”4th”]</p>
+<p>在上面例子中，它满足上面提到这全部要求。</p>
+</li>
+</ul>
+<h2 id="尝试"><a href="#尝试" class="headerlink" title="尝试"></a>尝试</h2><p>  题目并不复杂，但是需要构造的方法较多。我在这个过程中构造了</p>
+<p>  ​</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">parse</span>(<span class="params">arr</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.<span class="property">length</span>;i++)</span><br><span class="line">      &#123;</span><br><span class="line">      arr[i]=<span class="built_in">parseInt</span>(arr[i]);</span><br><span class="line">      &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用于将原来的字符串型量转化为整型量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">formatDay</span>(<span class="params">day</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">switch</span>(day)</span><br><span class="line">      &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">1</span>:day=date[<span class="number">0</span>];<span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">2</span>:day=date[<span class="number">1</span>];<span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">3</span>:day=date[<span class="number">2</span>];<span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">21</span>:day=date[<span class="number">3</span>];<span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">22</span>:day=date[<span class="number">4</span>];<span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">23</span>:day=date[<span class="number">5</span>];<span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">31</span>:day=date[<span class="number">6</span>];<span class="keyword">break</span>;</span><br><span class="line">        <span class="attr">default</span>:day=day+<span class="string">&#x27;th&#x27;</span>;</span><br><span class="line">      &#125;</span><br><span class="line">  <span class="keyword">return</span> day;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用于转化日期格式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">formatMonth</span>(<span class="params">mon</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    </span><br><span class="line">      </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span>;i&lt;<span class="number">13</span>;i++)</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="keyword">if</span>(mon==i)</span><br><span class="line">              &#123;</span><br><span class="line">              mon=month[i-<span class="number">1</span>];</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">return</span> mon;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用于转化月份格式</p>
+<p>我造了很多的轮子，最后为了实现它，写的代码超过了两百行，代码太多，就不往上贴了，放到了gists上面，感兴趣的可以戳<a target="_blank" rel="noopener" href="https://gist.github.com/zhangolve/f2940e24512adff4056150442f1b2143">这里</a>, 就这样实际上还复用(reuse)了很多方法，但是最后看一些参考的<a target="_blank" rel="noopener" href="https://github.com/Rafase282/My-FreeCodeCamp-Code/wiki/Bonfire-Friendly-Date-Ranges">答案</a> , 使用了getUTCDate() 以及getUTCFullYear()这个方法，这样做就能够确保「当年」是随着时间而改变的，而不是像我程序中的，只能是2016年，过了2016年，这个「当年」就过时了。另外，还使用getMonth,getTime等方法，这也在告诉我，掌握哪些已经成熟的轮子有多么重要。</p>
+<h1 id="Map-the-Debris"><a href="#Map-the-Debris" class="headerlink" title="Map the Debris"></a>Map the Debris</h1><h2 id="题目要求-1"><a href="#题目要求-1" class="headerlink" title="题目要求"></a>题目要求</h2><p>轨道周期问题。</p>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%A4%A9%E6%96%87%E5%AD%A6">天文学</a>中绕中心天体在圆形或者椭圆轨道上运转的小天体轨道周期为：</p>
+<p>其中：<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/f454d3ecae15ea7887c1f3f40b0b80b0d6f711af"></p>
+<p><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/183d080fad6c5e9292cd08bc28897f334189b75f"></p>
+<p> <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/ffd2487510aa438433a2579450ab2b3d557e5edc" alt="a">，是轨道<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%8D%8A%E9%95%B7%E8%BB%B8">半长轴</a>长度, <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/f5f3c8921a3b352de45446a6789b104458c9f90b" alt="G">，是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%BC%95%E5%8A%9B%E5%B8%B8%E6%95%B8">引力常数</a>, <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/f82cade9898ced02fdd08712e5f0c0151758a0dd" alt="M">，是中心天体质量</p>
+<p><em>T</em>小时, <em>R</em>天体半径 若太阳为中心天体，我们简单的设<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/8073f9e9d38f6eaa5ff50e677b526ed022ce38a4"></p>
+<p><em>T</em>单位年, <em>a</em>表示距离<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%A4%A9%E6%96%87%E5%8D%95%E4%BD%8D">天文单位</a>。等同于<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%BC%80%E6%99%AE%E5%8B%92%E8%A1%8C%E6%98%9F%E8%BF%90%E5%8A%A8%E5%AE%9A%E5%BE%8B">开普勒第三定律</a></p>
+<p>其实就是要实现上面的轨道周期公式。</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>在使用中，用到了js 中的一些math方法，比如Math.pow(),另外由于公式中有圆周率常数pi，因此还用到了Math.PI。</p>
+<p>由于有：</p>
+<blockquote>
+<p> The values should be rounded to the nearest whole number. The body being orbited is Earth.</p>
+</blockquote>
+<p>要求是取得最接近的整数，则应该是四舍五入的。</p>
+<p>则应当使用Math.round() 方法。最后写出了下面的程序：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">orbitalPeriod</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> <span class="variable constant_">GM</span> = <span class="number">398600.4418</span>;</span><br><span class="line">  <span class="keyword">var</span> earthRadius = <span class="number">6367.4447</span>;</span><br><span class="line">  <span class="keyword">var</span> orPstack=[];</span><br><span class="line">  <span class="keyword">var</span> result=[];</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">orP</span>(<span class="params">avg</span>)</span><br><span class="line">  &#123;</span><br><span class="line">  <span class="keyword">var</span> a3=<span class="title class_">Math</span>.<span class="title function_">pow</span>(avg+earthRadius,<span class="number">3</span>);</span><br><span class="line">  <span class="comment">//return a3;</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">round</span>(<span class="number">2</span>*<span class="title class_">Math</span>.<span class="property">PI</span>*<span class="title class_">Math</span>.<span class="title function_">pow</span>(a3/<span class="variable constant_">GM</span>,<span class="number">0.5</span>));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.<span class="property">length</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">      orPstack.<span class="title function_">push</span>(<span class="title function_">orP</span>(arr[i].<span class="property">avgAlt</span>));</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;arr.<span class="property">length</span>;j++)</span><br><span class="line">    &#123;</span><br><span class="line">   result.<span class="title function_">push</span>(&#123;<span class="attr">name</span>:arr[j].<span class="property">name</span>,<span class="attr">orbitalPeriod</span>:orPstack[j]&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">orbitalPeriod</span>([&#123;name : <span class="string">&quot;sputnik&quot;</span>, avgAlt : <span class="number">35873.5553</span>&#125;]);</span><br></pre></td></tr></table></figure>
+
+<p>最后想说一句，学个编程还不能够把高中物理给忘记啊。</p>
+<p>总结下来，这个题目还是考察的是对象和基本的JS数学操作方法。</p>
+<h1 id="Pairwise"><a href="#Pairwise" class="headerlink" title="Pairwise"></a>Pairwise</h1><h2 id="题目要求：-2"><a href="#题目要求：-2" class="headerlink" title="题目要求："></a>题目要求：</h2><p>给定一个数组，找出这个数组中的元素对，它们的和与第二个参数arg相等，这个时候返回这个元素对的地址和（indices）</p>
+<p>如果有多个元素对的可能，这个时候返回地址和加起来最小的元素对的地址和，另外需要注意的一点是每一个元素一旦被使用了也就不能够被再次使用了。</p>
+<p>举例来说</p>
+<blockquote>
+<p><code>pairwise([7, 9, 11, 13, 15], 20)</code> returns <code>6</code>. The pairs that sum to 20 are <code>[7, 13]</code> and <code>[9, 11]</code></p>
+</blockquote>
+<h2 id="过程-1"><a href="#过程-1" class="headerlink" title="过程"></a>过程</h2><p>题目本身并不复杂，我写下了下面的程序用于测试。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">pairwise</span>(<span class="params">arr, arg</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> middle=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">var</span> stack=[];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.<span class="property">length</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> j=i+<span class="number">1</span>;j&lt;arr.<span class="property">length</span>;j++)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">if</span>(arr[i]+arr[j]==arg)</span><br><span class="line">            &#123;</span><br><span class="line">              stack.<span class="title function_">push</span>(i,j);</span><br><span class="line">              arr.<span class="title function_">splice</span>(j,<span class="number">1</span>);</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">return</span> stack;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">pairwise</span>([<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>], <span class="number">1</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这个时候出现了问题，这时候得到的结果是：</p>
+<p><code>[0,4,1,4]</code></p>
+<p>很显然，由于我在程序中使用了arr.splice(j,1)，导致在数组arr中，原来本来应该位于index&#x3D;5的最后一个1现在却处在了index&#x3D;4的位置。</p>
+<p>这个时候我只把arr.splice(j,1)改成了arr[j]&#x3D;’a’，事实上arr[j]可以是任意的非数字类型量，我的目的就是让这个arr[j]不再被使用。</p>
+<p>有了上面的判断之后，我就写出了下面的程序：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">pairwise</span>(<span class="params">arr, arg</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> middle=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">var</span> stack=[];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.<span class="property">length</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> j=i+<span class="number">1</span>;j&lt;arr.<span class="property">length</span>;j++)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">if</span>(arr[i]+arr[j]==arg)</span><br><span class="line">            &#123;</span><br><span class="line">              stack.<span class="title function_">push</span>(i,j);</span><br><span class="line">              arr[j]=<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(stack.<span class="property">length</span>===<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> sum=stack.<span class="title function_">reduce</span>(<span class="keyword">function</span>(<span class="params">a,b</span>)</span><br><span class="line">              &#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">pairwise</span>([], <span class="number">100</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/08/09/201608/spotify-to-easenet/" rel="prev" title="18行Python教你Spotify 歌单转网易云歌单">
+      <i class="fa fa-chevron-left"></i> 18行Python教你Spotify 歌单转网易云歌单
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/08/27/201608/some-point-about-henan-people/" rel="next" title="我印象中的河南人">
+      我印象中的河南人 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Inventory-Update"><span class="nav-number">1.</span> <span class="nav-text">Inventory Update</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">题目要求：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#No-repeats-please"><span class="nav-number">2.</span> <span class="nav-text">No repeats please</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82%EF%BC%9A-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目要求：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">2.2.</span> <span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Friendly-Date-Ranges"><span class="nav-number">3.</span> <span class="nav-text">Friendly Date Ranges</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82"><span class="nav-number">3.1.</span> <span class="nav-text">题目要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95"><span class="nav-number">3.2.</span> <span class="nav-text">尝试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Map-the-Debris"><span class="nav-number">4.</span> <span class="nav-text">Map the Debris</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82-1"><span class="nav-number">4.1.</span> <span class="nav-text">题目要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B"><span class="nav-number">4.2.</span> <span class="nav-text">过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pairwise"><span class="nav-number">5.</span> <span class="nav-text">Pairwise</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82%EF%BC%9A-2"><span class="nav-number">5.1.</span> <span class="nav-text">题目要求：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B-1"><span class="nav-number">5.2.</span> <span class="nav-text">过程</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="写在前面需要说明一点是，关于比较常规的React性能优化，可以看这篇文章：React 16 加载性能优化指南，我要聊到是一些非常规，与实际开发密切相关的坑，但也正是因为这是我个人遇到的个案，或者并不构成普遍意义。 我前面一篇《React开发实践5–详细说说滚动记忆》  其实跟React关系不大，只是因为做React的项目遇到了问题，也就顺手写下来了。最早遇到这个问题，的确第一反映是React这个库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React开发实践7--首页优化的过程">
+<meta property="og:url" content="http://hktkdy.com/2018/08/07/201808/react-7-better-ec-index/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="写在前面需要说明一点是，关于比较常规的React性能优化，可以看这篇文章：React 16 加载性能优化指南，我要聊到是一些非常规，与实际开发密切相关的坑，但也正是因为这是我个人遇到的个案，或者并不构成普遍意义。 我前面一篇《React开发实践5–详细说说滚动记忆》  其实跟React关系不大，只是因为做React的项目遇到了问题，也就顺手写下来了。最早遇到这个问题，的确第一反映是React这个库">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-08-07T01:24:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.094Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hktkdy.com/2018/08/07/201808/react-7-better-ec-index/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>React开发实践7--首页优化的过程 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2018/08/07/201808/react-7-better-ec-index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React开发实践7--首页优化的过程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-08-07 09:24:49" itemprop="dateCreated datePublished" datetime="2018-08-07T09:24:49+08:00">2018-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/08/07/201808/react-7-better-ec-index/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/08/07/201808/react-7-better-ec-index/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>需要说明一点是，关于比较常规的React性能优化，可以看这篇文章：<br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIzNjcwNzA2Mw==&mid=2247485902&idx=1&sn=952e0db3bc0f36b7cd4db71b17914daa&chksm=e8d28456dfa50d407e52c935cb7518cf76f1179a8bcbbac760f1685f88fd8d809ca84f5d9c3f&mpshare=1&scene=1&srcid=0720NL5okWr9xzIeEpbQmWyZ#rd">React 16 加载性能优化指南</a>，我要聊到是一些非常规，与实际开发密切相关的坑，但也正是因为这是我个人遇到的个案，或者并不构成普遍意义。</p>
+<p>我前面一篇<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/db42bb62f69a">《React开发实践5–详细说说滚动记忆》</a>  其实跟React关系不大，只是因为做React的项目遇到了问题，也就顺手写下来了。最早遇到这个问题，的确第一反映是React这个库的锅，但是稍稍理性的想一想也知道，React的本质也是JS啊，于是很快就将注意力转移了。</p>
+<p>说回头来，上一篇文章说到的那个业务需求，在React-router的官方文档里专门有一节在讲，也就是<a target="_blank" rel="noopener" href="https://reacttraining.com/web/guides/scroll-restoration">Scroll Restoration</a>。这里也说到了我在上一篇结尾列出来的那个文档：<a target="_blank" rel="noopener" href="https://majido.github.io/scroll-restoration-proposal/history-based-api.html#usage">scrollRestoration</a></p>
+<p>如此说来，我现在资料颇多了。有了前面的铺垫，我想我也就不用再废话了。</p>
+<h1 id="CMS-这个坑"><a href="#CMS-这个坑" class="headerlink" title="CMS 这个坑"></a>CMS 这个坑</h1><p>首先我引入了一个库<code>react-router-scroll-4</code>，眼尖的朋友看出来了为什么还要带个<code>4</code>呢，这是因为原本的库是<code>react-router-scroll</code>,因为这个库不支持react-router v4，因此有开发者又fork出来一个能够支持react-router v4的分支，我用的也就是这一个了。我看过他的源码，核心思想其实就像上面提到的react-router官方文档所介绍的一样，通过session-storage 来处理。</p>
+<p>之后，我开始对商品列表页和APP首页进行改造。商品列表页改造地非常简单，无非是对组件进行一次包裹。但是APP首页的改造却遇到了麻烦。同样是对该组件进行包裹，结果现象却是无法实现滚动记忆。这让我好生无奈。这又是为什么呢？我首先想到了是不是这个<code>react-router-scroll-4</code>支持不够好，毕竟这是一个连github项目库都没有的npm包，顺着这个思路，我去看了这个库的源码，又通过打印log的方式去debug，发现了问题所在：原来这个库对<code> dangerouslySetInnerHTML</code>这种注入HTML的方式没有进行处理，这里面的关键点在于生命周期，此处我并不想多讲，但最终导致无法实现滚动记忆。而我们之所以要在项目中使用<code> dangerouslySetInnerHTML</code>,也是因为项目中有用到CMS的模块，历史遗留问题，一时无法解决。</p>
+<p>但是你知道的，虽然我后来通过修改这个第三方库<code>react-router-scroll-4</code>，最终实现了首页的滚动记忆，但是前面我也提到了由于使用了CMS系统，造成首页的几乎所有点击都是普通的a标签href的跳转，即这样的交互将原本的React app的优势：独立的路由体系打散了。事实证明，在性能上也造成很大问题。</p>
+<p>为了更好地说明问题，举个例子。如果是在同一个路由体系下，从首页&#x2F;切换到 &#x2F;abc，这个过程，只会去加载abc路由所需要的资源。但是如果脱离了这个路由体系，而是通过普通的a标签href跳转，进入&#x2F;abc的时候，相当于又重新进入一遍app，这个时候原本一些bundle的资源又会被重新加载一边，虽然这些资源可能被浏览器缓存了起来，但是缓存好了和根本不需要又是两回事，对不对。</p>
+<p>所以，如果能够尽量在进入一个React app之后，尽量不再脱离这个app，也就是一直React-router的方式进行跳转，用我前面文章提到过的说法，就是假跳转，其实是能够有很好的优势的。</p>
+<p>原来有一个CMS，我会调用一个接口，返回一个HTML页面内容。如果能够将HTML转成REACT组件，这样是不是更好呢？我后来找到了<code>html-react-parser</code>这个库，其实还有另外一个库，不过另外一个库有一些问题，比如图片的url上面如果有大写字母会转成小写字母，造成图片加载失败。</p>
+<p>这个库很好地解决了我的问题。接下来，我做了如下改动，一切都水到渠成。</p>
+<ul>
+<li><p>在第一次进入首页的时候，将首页内容(cms html)放置到React state中进行储存，在下次回到首页时，无须重复调用获取首页内容接口，即可快速获取首页内容，达到尽快地相应</p>
+</li>
+<li><p>将原本html上面的a标签上的click事件进行劫持，根据情况，将原来的a跳转改为react-router 的history.push()，使之不脱离这个app。由于这里没有脱离app，则当接下来用户点击返回回到首页时，还是会按照react-router的方式去返回，则次过程也不会脱离app了。</p>
+</li>
+</ul>
+<p>这里有个小tips,如果我们获取e.target.href的话，我们会发现即便是我们原本写的a标签是这样的</p>
+<p><a href="/product/1">one product</a></p>
+<p>最后得到的 e.target.href也会自动添加上网址。可是我们知道history.push()只认相对路径，因此e.target.href并不能满足我们的需求，而通过获取a标签上的href属性，也就是getAttribute(‘href’),能够保留a标签上的href属性值，而这个值，正是我们所需要的。</p>
+<h1 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h1><p>React应用还是应该干净一些，避免使用<code> dangerouslySetInnerHTML</code>，使用它会有很多tricky的事情发生，比如在componentDidMount的时候，dom上某个元素还处在undefind的状态，原因很可能是因为这个元素是由<code> dangerouslySetInnerHTML</code>产生的，而他往dom里面添加节点是在componentDidMount之后。</p>
+<p>我还是不很确定，通过history api完成跳转的，滚动记忆的情况。</p>
+<p>react-router的假跳转，其核心当然还是利用了history api</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/05/31/201805/focus/" rel="prev" title="focus 事件的监听">
+      <i class="fa fa-chevron-left"></i> focus 事件的监听
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/08/09/201808/babel-and-polifill/" rel="next" title="babel 与 polyfill两三事">
+      babel 与 polyfill两三事 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CMS-%E8%BF%99%E4%B8%AA%E5%9D%91"><span class="nav-number">2.</span> <span class="nav-text">CMS 这个坑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">结论：</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

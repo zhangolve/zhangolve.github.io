@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="第一场面试上一次说到了我的自学经历，我觉得入门并不是一件很容易的事情，在第三章 ，我也说过，我15年冬天的时候还幻想着能够成为一名安卓开发工程师，然后就是因为连入门都很困难，最终这个想法也夭折了，但谁又曾想到，一支花败，另外一支花开。机缘巧合，我竟然就慢慢地学习起了前端开发，并且越学越有了兴致。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我一个自动化本科生怎么就做了前端呢？(5)">
+<meta property="og:url" content="http://hktkdy.com/2016/12/28/201612/automation-to-frontend-5/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="第一场面试上一次说到了我的自学经历，我觉得入门并不是一件很容易的事情，在第三章 ，我也说过，我15年冬天的时候还幻想着能够成为一名安卓开发工程师，然后就是因为连入门都很困难，最终这个想法也夭折了，但谁又曾想到，一支花败，另外一支花开。机缘巧合，我竟然就慢慢地学习起了前端开发，并且越学越有了兴致。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/qianduan2.png">
+<meta property="article:published_time" content="2016-12-28T08:55:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.094Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="回忆记忆">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="自动化，改行记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/qianduan2.png">
+
+<link rel="canonical" href="http://hktkdy.com/2016/12/28/201612/automation-to-frontend-5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>我一个自动化本科生怎么就做了前端呢？(5) | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2016/12/28/201612/automation-to-frontend-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          我一个自动化本科生怎么就做了前端呢？(5)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-28 16:55:49" itemprop="dateCreated datePublished" datetime="2016-12-28T16:55:49+08:00">2016-12-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%9E%E5%BF%86%E8%AE%B0%E5%BF%86/" itemprop="url" rel="index"><span itemprop="name">回忆记忆</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2016/12/28/201612/automation-to-frontend-5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2016/12/28/201612/automation-to-frontend-5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/qianduan2.png" alt="春天来了"></p>
+<hr>
+<h1 id="第一场面试"><a href="#第一场面试" class="headerlink" title="第一场面试"></a>第一场面试</h1><p>上一次说到了我的自学经历，我觉得入门并不是一件很容易的事情，在<a href="http://hktkdy.com/2016/11/26/201611/automation-to-frontend-3/">第三章</a> ，我也说过，我15年冬天的时候还幻想着能够成为一名安卓开发工程师，然后就是因为连入门都很困难，最终这个想法也夭折了，但谁又曾想到，一支花败，另外一支花开。机缘巧合，我竟然就慢慢地学习起了前端开发，并且越学越有了兴致。</p>
+<span id="more"></span>
+
+
+<p>我只系统学习了不到一个月的前端相关知识，然后就去面试了。第一天就有两场面试，早上的面试走的是笔试加面试的流程，然而那笔试题更像是智力测验，当时有五六个人在一个屋子里答题，我貌似是那群人里面笔试成绩最好的一个，顺利地通过了笔试，然而毕竟基础知识相对薄弱，因此尽管笔试成绩很好，当遇到技术面的时候，我就原形毕露了。大概面试官对我的智力程度还是很肯定的，于是给了我2000块的实习期合同，并且告诉我会有相对系统的任务安培和培训。我当然觉得很低，因为当时还有另外的几家公司等着我去面试，便没有向那家公司给出明确的答复，只说再考虑一下。</p>
+<h1 id="基础还很差"><a href="#基础还很差" class="headerlink" title="基础还很差"></a>基础还很差</h1><p>而我实际上也只通过了那一个面试，只得到了那一个offer。我大多数时候，都是在技术面的时候被打回原形的。那个时候的我，连ajax是什么都不晓得。有一次一个技术问我会不会使用阿贾克斯，然后我当场楞了好久，就在想到底什么是阿贾克斯。说时候，那个时候，我是听说过ajax的，但是前文已经说过，我是跟着<a target="_blank" rel="noopener" href="https://github.com/FreeCodeCamp/FreeCodeCamp">FreeCodeCamp</a> 学习的，是纯英文的环境，除此之外，也看过一些相关的文章，但是并没有看过那种教学视频，因此并不知道这个单词应该怎样读和写。我自己的读法是将几个字母的读音都读出来，也就是 a j a x ，当我反应过来之后，又去跟这位技术确认，您说的是a j a x 吗？我自我介绍的时候说过，我来自河北廊坊，这位技术和我是老乡，来自三河县，他自己表示出于老乡的缘由，给我了几点建议，他认为我的基础并不牢固，连阿贾克斯都不晓得。如果真的喜欢前端，可以考虑去上培训班。</p>
+<p>培训班这种事，我在16年年初自己写年度计划的时候，就想过。当时我考虑的是安卓开发，因此我有过这样的计划：</p>
+<blockquote>
+<p>2016年下半年，如果在6月毕业之后，仍然没能够找到一个工作的话，这个时候，可以考虑参加一个培训班，这个培训班不能是千峰培训，培训仍然是安卓，培训只有四个月，但是价格不菲，所以在这四个月内一定要好好学习。如果在2016年毕业之前另外找到了新的工作的话，那么在这个单位好好干喽，可以肯定的是，自己基础还比较薄弱，所以一定要狠下工夫。</p>
+</blockquote>
+<p>这样计划的缘由在于，我从各种渠道得知所谓的IT技术培训班并没有他们宣传中的那么美好，如果真的培训三个月，顶上人家计科专业本科四年，那还要计科专业干嘛吃呢？</p>
+<p>这位技术对我的建议，我认为他是出于好心的，但是显然，对我来讲，我并不想走那一步。他也说的很对，我的基础很薄弱。我继续着我的奔波，穿梭在北京城各个城区，四天内五场面试，确实很累很累。有的面试只进行了十分钟，我却要为此跑上几个小时，赶到面试地点。对方结束面试时，面带微笑，说着会将面试结果通知你，却在之后杳无音信。我也渐渐意识到，这很正常，人家没有当场拒绝你，给了你十分钟时间，已经是很大的面子了，毕竟谁让你技不如人呢!</p>
+<h1 id="最后一面"><a href="#最后一面" class="headerlink" title="最后一面"></a>最后一面</h1><p>在<a href="http://hktkdy.com/2016/12/21/201612/automation-to-frontend-4/">上一章</a> ，我说过我机缘巧合连带自身努力地争取到一个某技术论坛内容运营岗位的面试资格，为了这个面试资格，我在国家图书馆的电子阅览室里修改了两个小时的简历，最终达到了一个比较满意的效果。</p>
+<p>那是我那次北京之行的最后一场面试，接待我的是该公司的HR，这家公司还属于创业阶段，但在业界应该也很有名了。HR把我安排到了休息室，我坐在休息室里面，看到休息室桌子上有台PS4，顿时觉得这个好可爱，觉得这家公司的氛围是我喜欢的。毕竟相比之下，我之前在南方的传统行业也有过实习经历，也去过很多工厂，他们的休息室或者接待室，里面几乎必有的是一套精美的茶具。喝着茶，聊着业务，是常态。而在这里，我显然并没有看到那些。</p>
+<p>面试我的正是那位在推特上与我互动的co-founder ，这位co-founder年纪不大，我后来得知应该也是个90后。我首先做了自我介绍，因为我很想得到这份工作，如何介绍自己的这套说辞也在我脑海中预想过很多遍了，因而这个自我介绍，我说了很多，而正是因为说到东西多了，往往又会被对面这位面试官及时打断，问我有关情况。这个时候，谈及细节了，就发现自己并没有像自己刚刚介绍的那么牛逼。比如我自己介绍说，我经常也会玩知乎啊，豆瓣啊。然后对方马上机警地问我，你知乎上有多少关注啊，你知乎上最多赞的答案有多少个赞同啊。而那个时候，我知乎上，最多赞的答案也不过100个赞同而已。他们是需要所谓的网红的，而我离网红当然还差很远。</p>
+<p>自我介绍完毕，面试官开始拿起我的简历来逐个条目地进行考察。这件事情过去半年多了，至今仍然记得几点考察内容。</p>
+<ol>
+<li>我简历上有些大学期间使用C51做过自动窗帘控制系统。然后面试官就要求我用C写一个用冒泡算法实现的数组排序，我的C语言已经废弃了一年多了，算法基础也不好，在那里憋了五分钟，实在搞不定，坦言不会了。</li>
+<li>我简历上写我能够听懂TED，奥巴马演讲，面试官从他们官网上找到一篇英文文章，然后给我五分钟的时间要求我转述这篇文章的主要内容，前面提过，这是一个技术社区，这篇文章是关于react+electron的，而那个时候，我只对react有所耳闻，还没有涉足过，electron更是完全没有概念，我英语上能理解得再多，奈何技术上一些概念无法理解，看这篇文章也如天书一般。因此，这个考验，我也是不及格的。</li>
+</ol>
+<p>总之，当把简历上的各个条目逐一考验的时候，我自己的水分就全部榨干了。我当然不会怪罪这位面试官，我很感激他，时至今日，我都很佩服他身为90后已经能够创业，已经能够在观察人方面如此了得了，我也感激他抽出一个小时的时间，实际上梳理了我自己的问题。这次面试给我的教训很大，让我意识到我太多的不足，我决定此次北京之行不再找工作了，也拒绝了第一个面试中给的offer，我要先回学校，先毕业，再找工作。</p>
+<p>而说起来还有个小插曲，我面试结束之后，正巧赶上另外一个面试者在休息室之外等着，HR姐姐向我介绍了他，而之所以特意介绍我们两个认识，是因为我们两个人都是三个字的名字，前两个字都一样，HR甚至怀疑我们是兄弟。HR姐姐甚至让我们两个互相之间加了微信，我在回住处的路上与那位有缘人简单地用微信交流了一下，后来又从他的微信朋友圈，找到了他的知乎，才发现人家在知乎上还是关注上万的大V呢！不过可以再多说两句，虽然他算是大V了，也有内容运营的经验，然而他毕竟没有跟技术打过交道，只是学习能力还是蛮强的，也能够用hexo+github pages 完全独立的<a href="http://hktkdy.com/2014/05/25/201405/0525/">搭建一个个人博客出来</a>。</p>
+<p>实际上，我这次北京之行的一些面试经历，也写在了一个V2EX的<a target="_blank" rel="noopener" href="https://www.v2ex.com/t/277719#reply12">帖子上</a> ，半年多以前写的帖子，回过头来看，那些事情又都浮在眼前了。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>回想起这次北京之行，我认为这是我整个2016年做得最勇敢有意义的事情之一，如果我循规蹈矩，不去看看外面的世界，不去做出突破，我可能还迷茫着呢。但是正是这次北京之行，让我意识到</p>
+<p>1.学历当然重要，但是并不是那么重要。当我的简历通过了筛选之后，基本对方就默认了你的学历符合要求了，这个时候，其实是技术上够不够硬，在这方面，我差很多。</p>
+<p>2.简历很重要，要认真准备，你简历上写了什么内容，就要设想面试的时候，面试官会以此为出发点进行考察，你应该要为你写在简历上的内容负责。</p>
+<p>3.北京人杰地灵。这一点也很重要，这次北京之行，短短五天，见了很多人，聊了很多天。最突出的印象是，觉得北京吸纳人才的本领是一流的，我见过了很多不一样的人，给了我很多不一样的体验。因此，我更加喜欢北京了，想要至少一段时间内，在毕业之后北京工作。毕竟，跟牛人交流，受牛人熏陶，自己也会变得更牛。</p>
+<p>下面是前几章：</p>
+<p><a href="http://hktkdy.com/2016/09/25/201609/automation-to-frontend-1/">我一个自动化本科生怎么就做了前端呢？(1)关上一扇扇门</a><br><a href="http://hktkdy.com/2016/09/25/201609/automation-to-frontend-2/">我一个自动化本科生怎么就做了前端呢？(2)把通向自动化的路的门关掉</a><br><a href="http://hktkdy.com/2016/11/26/201611/automation-to-frontend-3/">我一个自动化本科生怎么就做了前端呢？(3)有时候觉得像插队</a><br><a href="http://hktkdy.com/2016/12/21/201612/automation-to-frontend-4/">我一个自动化本科生怎么就做了前端呢？(4)入门和试错</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%9E%E5%BF%86%E8%AE%B0%E5%BF%86/" rel="tag"># 回忆记忆</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%EF%BC%8C%E6%94%B9%E8%A1%8C%E8%AE%B0/" rel="tag"># 自动化，改行记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/12/23/201612/some-trouble-about-ajax/" rel="prev" title="Ajax异步调用踩过的坑">
+      <i class="fa fa-chevron-left"></i> Ajax异步调用踩过的坑
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/01/07/201701/tianjin/" rel="next" title="天津游记--天津这个大农村">
+      天津游记--天津这个大农村 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%9C%BA%E9%9D%A2%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">第一场面试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%BF%98%E5%BE%88%E5%B7%AE"><span class="nav-number">2.</span> <span class="nav-text">基础还很差</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E4%B8%80%E9%9D%A2"><span class="nav-number">3.</span> <span class="nav-text">最后一面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

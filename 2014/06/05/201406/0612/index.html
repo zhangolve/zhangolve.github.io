@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="2014&#x2F;6&#x2F;24更新之前修改的hosts还是不太稳定，没几天就挂了。后来发现一个教程，比较靠谱，推荐给大家。http:&#x2F;&#x2F;ippotsuko.com&#x2F;blog&#x2F;use-google&#x2F;他的博客还不错，推荐关注。在他的这篇博客中有一点是关于Google搜索服务优化的，很不错。 Google会根据你的地区自动切换搜索的语言   在大陆是自动跳转到谷歌香港  你懂的  如果你要搜索一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google，想说上你不容易">
+<meta property="og:url" content="http://hktkdy.com/2014/06/05/201406/0612/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="2014&#x2F;6&#x2F;24更新之前修改的hosts还是不太稳定，没几天就挂了。后来发现一个教程，比较靠谱，推荐给大家。http:&#x2F;&#x2F;ippotsuko.com&#x2F;blog&#x2F;use-google&#x2F;他的博客还不错，推荐关注。在他的这篇博客中有一点是关于Google搜索服务优化的，很不错。 Google会根据你的地区自动切换搜索的语言   在大陆是自动跳转到谷歌香港  你懂的  如果你要搜索一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/63a3d9b7gw1eh3fup9n9ij20it0cbdie.jpg">
+<meta property="article:published_time" content="2014-06-05T11:07:16.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.082Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="谷歌">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/63a3d9b7gw1eh3fup9n9ij20it0cbdie.jpg">
+
+<link rel="canonical" href="http://hktkdy.com/2014/06/05/201406/0612/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Google，想说上你不容易 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2014/06/05/201406/0612/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Google，想说上你不容易
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-06-05 19:07:16" itemprop="dateCreated datePublished" datetime="2014-06-05T19:07:16+08:00">2014-06-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2014/06/05/201406/0612/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2014/06/05/201406/0612/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>2014&#x2F;6&#x2F;24更新<br>之前修改的hosts还是不太稳定，没几天就挂了。后来发现一个教程，比较靠谱，推荐给大家。<br><a target="_blank" rel="noopener" href="http://ippotsuko.com/blog/use-google/">http://ippotsuko.com/blog/use-google/</a><br>他的博客还不错，推荐关注。<br>在他的这篇博客中有一点是关于Google搜索服务优化的，很不错。</p>
+<p>Google会根据你的地区自动切换搜索的语言   在大陆是自动跳转到谷歌香港  你懂的  如果你要搜索一些奇奇怪怪的东西 是很难的 因为google香港禁用了安全搜索 这个时候你需要 <a target="_blank" rel="noopener" href="https://google.com/ncr">https://google.com/ncr</a> 打开这个网址  Google就不会自动跳转了    或者进入<a target="_blank" rel="noopener" href="https://encrypted.google.com/">https://encrypted.google.com</a>   解除google的搜索限制 这个是完全加密的</p>
+<p>Chrome浏览器可以用地址栏搜索    用ncr的参数应该是</p>
+<pre><code>https://www.google.com/#lr=lang_zh-CN&amp;newwindow=1&amp;q=%s
+</code></pre>
+<p>2014&#x2F;6&#x2F;12更新<br><em>经历了一年一度的墙加高之后，终于在今天Google又能够在修改完hosts之后不挂gae的前提下上去了，可喜可贺啊！速速奔走相告吧！</em>最后的结论其实还是，zf想让你上，你就上的去，zf不想让你上，你门都没有。不过说归说，zf的用意还是可以理解的。<br>2014&#x2F;6&#x2F;10更新<br>即使是用gae发现还是很难上Google了，这时候可以考虑改hosts文件，改hosts文件我用到了smartladder里提供的hosts文件，显示是2014&#x2F;5&#x2F;30的最新的hosts文件，我下载之后8号，基本上可以解决上Google慢的问题，另外因为我电脑上还有Google drive，因为这些天墙的厉害，导致google drive也是不能用的，改过hosts之后又能用了两天，但是请注意只有两天，今天10号，再次登录google drive客户端，发现登陆不上去，只能说GFW封得真是太快了，但是不管怎么样，毕竟上网页版还勉强能够上去吧。之前看到月光博客的介绍，说Google在最近这些天流量预计下降了75%，哎，我等还是很不容易的啊，能够一直坚持到现在，可喜可贺啊！<br>不太华丽的分界线————-<br>我们知道最近由于种种愿意最近想要上Google十分困难，即使是用gae也是如此，我们是不是突然明白了，其实gae这个所谓的神器也不过是zf睁一只眼，闭一只眼的产物呢？<br>但是他闭他的眼，我们还go on our trip.</p>
+<hr>
+<p><strong>此方法已经失效，主要原因是ip地址被封了，但是原理就在那里 ，你只需要找到可用的ip地址，然后换到对应的位置即可。</strong></p>
+<p>当gae开始全线飘黄的时候，更新一下配置吧。<br>一下来源是Google+ gae社群。</p>
+<p>GAE最新解决办法，手动修改GoAgent修改iplist 就在proxy里ipv4上边</p>
+<blockquote>
+<p>google_cn &#x3D;<br>60.199.175.82|60.199.175.83|60.199.175.84|121.78.74.99|60.199.175.123 google_hk &#x3D;<br>123.205.250.132|123.205.250.80|123.205.251.112|123.205.251.80|163.28.116.18|163.28<br>.83.146|202.39.143.20|202.39.143.84|203.211.0.20|google_hk &#x3D; 210.61.221.187|121.78.74.99</p>
+</blockquote>
+<p>自己動手修改[iplist]，重启。OK<br>祝你好运咯<br><img src="http://ww4.sinaimg.cn/large/63a3d9b7gw1eh3fup9n9ij20it0cbdie.jpg"></p>
+<blockquote>
+<p>Written with <a target="_blank" rel="noopener" href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+<blockquote>
+<p>Written with <a target="_blank" rel="noopener" href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"># 技术</a>
+              <a href="/tags/%E8%B0%B7%E6%AD%8C/" rel="tag"># 谷歌</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2014/06/04/201406/060401/" rel="prev" title="FIirefox（火狐）浏览器自定义书签文件夹图案">
+      <i class="fa fa-chevron-left"></i> FIirefox（火狐）浏览器自定义书签文件夹图案
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2014/06/08/201406/061404/" rel="next" title="晓松奇谈拾遗1">
+      晓松奇谈拾遗1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

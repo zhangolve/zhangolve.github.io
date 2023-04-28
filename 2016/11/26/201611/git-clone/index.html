@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="#问题： git clone 之后才想提交代码怎么办？ 我相信很多同学跟我一样有过这样类似的经历，在github上看到一个项目，觉得很感兴趣，想要研究一番，最开始也只是star一下，这样方便以后查找，但是这样还是不过瘾，看源码还是不方便，因此就想到了git clone，将项目仓库克隆到本地观看，但是看源码的过程中发现，源码很是巧妙，不时要做一番注解，以便帮助理解，尤其是看老外的代码更是如此，毕竟注">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git clone 之后才想要提交代码怎么办？">
+<meta property="og:url" content="http://hktkdy.com/2016/11/26/201611/git-clone/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="#问题： git clone 之后才想提交代码怎么办？ 我相信很多同学跟我一样有过这样类似的经历，在github上看到一个项目，觉得很感兴趣，想要研究一番，最开始也只是star一下，这样方便以后查找，但是这样还是不过瘾，看源码还是不方便，因此就想到了git clone，将项目仓库克隆到本地观看，但是看源码的过程中发现，源码很是巧妙，不时要做一番注解，以便帮助理解，尤其是看老外的代码更是如此，毕竟注">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-11-26T00:50:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.094Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hktkdy.com/2016/11/26/201611/git-clone/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>git clone 之后才想要提交代码怎么办？ | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2016/11/26/201611/git-clone/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          git clone 之后才想要提交代码怎么办？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-26 08:50:49" itemprop="dateCreated datePublished" datetime="2016-11-26T08:50:49+08:00">2016-11-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2016/11/26/201611/git-clone/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2016/11/26/201611/git-clone/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>#问题： git clone 之后才想提交代码怎么办？</p>
+<p>我相信很多同学跟我一样有过这样类似的经历，在github上看到一个项目，觉得很感兴趣，想要研究一番，最开始也只是star一下，这样方便以后查找，但是这样还是不过瘾，看源码还是不方便，因此就想到了git clone，将项目仓库克隆到本地观看，但是看源码的过程中发现，源码很是巧妙，不时要做一番注解，以便帮助理解，尤其是看老外的代码更是如此，毕竟注解都是英文的(所以程序猿确实要学好英语啊)。有时候，又不满足于光阅读和添加注解，还想能够在功能上做一些改动。这时候，这个仓库与之前相比已经有很大的差别了。我们还不满足于这个项目仓库只存在于我们的本地，也希望这些改动能够放到github上，虽然这些改动和注解对项目本身不会有什么帮助，但是一来方便自己以后阅读二来也有可能帮助其他学习这个项目的人。</p>
+<p>那么现在问题就来了，由于事先考虑不周，没有采取预防措施（听起来好怪啊这句话），我们是通过 git clone命令来将该仓库下载到本地的，这个时候的remote其实是原项目地址，我们当然是不能直接git push的，因为我们并没有这样的权限。那么怎么做呢？</p>
+<h1 id="git-remote-remove-origin"><a href="#git-remote-remove-origin" class="headerlink" title="git remote remove origin"></a>git remote remove origin</h1><p>通过刚才的分析，我们已经提到了，主要的问题来自于git remote的地址问题，那么我们要做的首先应该是将本地与当前远程remote切断联系，这里我参考了<a target="_blank" rel="noopener" href="http://blog.csdn.net/wsycsdn19930512/article/details/50574217"> git中本地与远程库的关联与取消</a> 这篇文章中提到的方法。</p>
+<h1 id="fork-原项目，为本地仓库添加远程remote"><a href="#fork-原项目，为本地仓库添加远程remote" class="headerlink" title="fork 原项目，为本地仓库添加远程remote"></a>fork 原项目，为本地仓库添加远程remote</h1><p>到了这一步，思路就逐渐明朗了，我们刚刚切断了远程，那么现在就需要添加一个新的远程仓库，这个新的仓库从何而来呢？就需要我们对原仓库进行fork了，之后就是使用刚刚文章中提到的添加远程的方法。</p>
+<pre><code>git remote add origin git@github.com:git_username/repository_name.git
+</code></pre>
+<h1 id="git-push-origin-master"><a href="#git-push-origin-master" class="headerlink" title="git push origin master"></a>git push origin master</h1><p>最后，我们就可以按照原来熟悉的套路来提交代码了。</p>
+<pre><code>git add -A
+git commit -m &#39;what your comment is &#39;
+git push origin master
+</code></pre>
+<p>我们知道如果我们在clone代码库到本地的时候，采用SSH加密的方式的话，在git push的时候是无须输入远程仓库的github账户密码的，SSH的写法就像下面这样：</p>
+<pre><code>git@github.com:git_username/repository_name.git
+</code></pre>
+<p>但是由于我们的前提条件，并没有给我们那样的机会。因此到了git push的时候，自然还是需要我们老老实实输入账号密码的。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/git/" rel="tag"># git</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/11/26/201611/something-about-trump/" rel="prev" title="也谈特朗普当选美国总统">
+      <i class="fa fa-chevron-left"></i> 也谈特朗普当选美国总统
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/11/26/201611/panjiayuan/" rel="next" title="潘家园旧货市场小记">
+      潘家园旧货市场小记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#git-remote-remove-origin"><span class="nav-number">1.</span> <span class="nav-text">git remote remove origin</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fork-%E5%8E%9F%E9%A1%B9%E7%9B%AE%EF%BC%8C%E4%B8%BA%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8Bremote"><span class="nav-number">2.</span> <span class="nav-text">fork 原项目，为本地仓库添加远程remote</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-push-origin-master"><span class="nav-number">3.</span> <span class="nav-text">git push origin master</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

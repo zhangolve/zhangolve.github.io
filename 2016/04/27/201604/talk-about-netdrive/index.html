@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="以前看过一些回忆互联网论坛时代的文章，看得我飘飘摇摇，「猫扑」也好，「关天茶社」也好，都是成为了历史的，让人好奇的事物。然而，互联网的确发展地超乎了人们的想象，这次国内几家网盘纷纷地倒下，也让我觉得有「可以兴怀」的理由了。 从UC网盘说起我最早知道有网盘这回事，还是起于高中时代。那个时候用着功能机的我，手机上装着一个UC浏览器简直犹如神奇一般。手机UC浏览器相对于手机内置的那个浏览器，简直是秒杀级">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于网盘">
+<meta property="og:url" content="http://hktkdy.com/2016/04/27/201604/talk-about-netdrive/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="以前看过一些回忆互联网论坛时代的文章，看得我飘飘摇摇，「猫扑」也好，「关天茶社」也好，都是成为了历史的，让人好奇的事物。然而，互联网的确发展地超乎了人们的想象，这次国内几家网盘纷纷地倒下，也让我觉得有「可以兴怀」的理由了。 从UC网盘说起我最早知道有网盘这回事，还是起于高中时代。那个时候用着功能机的我，手机上装着一个UC浏览器简直犹如神奇一般。手机UC浏览器相对于手机内置的那个浏览器，简直是秒杀级">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-04-27T14:10:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.090Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="网络">
+<meta property="article:tag" content="云">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hktkdy.com/2016/04/27/201604/talk-about-netdrive/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>关于网盘 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2016/04/27/201604/talk-about-netdrive/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于网盘
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-04-27 22:10:49" itemprop="dateCreated datePublished" datetime="2016-04-27T22:10:49+08:00">2016-04-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2016/04/27/201604/talk-about-netdrive/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2016/04/27/201604/talk-about-netdrive/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>以前看过一些回忆互联网论坛时代的文章，看得我飘飘摇摇，「猫扑」也好，「关天茶社」也好，都是成为了历史的，让人好奇的事物。然而，互联网的确发展地超乎了人们的想象，这次国内几家网盘纷纷地倒下，也让我觉得有「可以兴怀」的理由了。</p>
+<h1 id="从UC网盘说起"><a href="#从UC网盘说起" class="headerlink" title="从UC网盘说起"></a>从UC网盘说起</h1><p>我最早知道有网盘这回事，还是起于高中时代。那个时候用着功能机的我，手机上装着一个UC浏览器简直犹如神奇一般。手机UC浏览器相对于手机内置的那个浏览器，简直是秒杀级别的，因此我对UC浏览器十分有好感。当UC浏览器一版一版地更新，有一天，它告诉我说，可以使用它的网盘功能了。我当然是很高兴地跃跃欲试了。</p>
+<p>印象中，最初的时候，也就是2011年左右，UC网盘只有50M 左右的容量。那个时候，我还真往里面传过一些小的文件。当时觉得这样的容量已经很大了，那个时候还没有用过Wifi, 当时的手机流量还是每个月30M，这在仅仅五年之后的今天可能是不可以想象的（现在我每天使用的手机流量可能都要超过30M了）。的确，在当时50M的容量其实对我已经戳戳有余，我并没有那么多的理由来使用网盘。</p>
+<h1 id="新浪微盘和百度云"><a href="#新浪微盘和百度云" class="headerlink" title="新浪微盘和百度云"></a>新浪微盘和百度云</h1><p>时间过得很快，2012年，也就是我进入大学那年，我注册了百度账号，后来知道了「百度云」网盘并跟着注册了账号。我也大概是那个时候，知道了新浪的微盘。出于对新浪长期的好感（新浪博客和新浪微博上那个时候我最常用的几个网络服务，新浪邮箱是一直到现在我很多国内网络账户的注册邮箱），我也开始使用新浪微盘，我会在新浪微盘里面存放一些高中时候的照片和录制的视频资料。那个时候，我还不知道有Evernote这样的东西，我有大量的新浪微盘里面的文件其实是.TXT 格式的，这些 文本文件每一个的内容往往只有几句话。当我得知<a target="_blank" rel="noopener" href="http://www.williamlong.info/archives/4586.html">新浪微盘宣布关闭</a> 之后开始整理自己的新浪微盘内容的时候，看到这大量的.txt 文件，竟也觉得当时的自己幼稚可笑，觉得完全可以使用一个txt将很多内容类似的文件合并起来，觉得完全可以使用网络笔记来处理这些文件中的内容。但是，这就是成长啊，不可能一步登天吧。</p>
+<p>我用新浪微盘最频繁的时候，将它作为我的网络同步盘。它同步了我的一个本地文件夹，我将那个文件夹分门别类建立若干个子文件夹，当时从网络上下载了很多的电子书，网络视频等也都放置到这个文件夹里，后来又陆续传到了新浪微盘上面。我后来有了一个意识，那就是：<strong>如果是网络上已经有的视频内容，下载到本地，乃至放到网盘里其实都没有多大的意义，因为我们可以随时再次观看</strong>。这也就是云端的好处，当然，我有了这样的意识也并非突如其来的，当我真正有了这样的意识之后，我再使用网络同步盘的时候，使用的是Dropbox，Onedrive 这样的国外网盘服务，存储的都是个人的文本类数据类图像类资料，因此尽管国外网盘往往都只是相对于国内很小的存储空间，但是对我来讲，已经完全够用了。当然，这也是后话了。</p>
+<h1 id="网盘大战"><a href="#网盘大战" class="headerlink" title="网盘大战"></a>网盘大战</h1><p>我对网盘的认识是逐步的，2013年，让我对网盘有了新的认识。那一年，各家网盘之间爆发了争地盘的大战。如今，还能够从<a target="_blank" rel="noopener" href="http://www.sootoo.com/content/443486.shtml">当年的新闻</a>，来一窥当年的硝烟弥漫。</p>
+<blockquote>
+<p>8月22日是百度世界大会，百度在其大会的主页上重点推荐了百度云服务，限时领取，1T永久百度云空间。主要分为三部分，下载PC客户端获赠100G，下载移动端获赠360G，用百付宝支付1元，就能获得564G永久使用容量。<br>百度在百度世界的首页重点推荐，可见其对个人云存储市场的重视。不过360可不会这么轻易的放过百度。同样在8月22日，360在其官方微博上透露：#360云盘1T永久空间免费送#360G不够?那就再来666G吧，不用1块钱哦~。360的1TB也分为三部分，下载PC客户端获赠100G，下载移动端获赠260G，免费的666G。</p>
+</blockquote>
+<p>的确，当时的争斗，其实主要还是百度和360之间展开的。只是很多小网盘因为不愿意被是市场淘汰，也纷纷加入战斗，只是阵势没有那两家大吧。他们的争斗，就像是当时的新闻所说：</p>
+<blockquote>
+<p>　纵观网盘整个的大战轨迹，从最初的永硕网络硬盘、网络E盘、QQ网络硬盘、UC网盘等只有几M的网盘大战，再到金山云盘、360云盘、百度云几G甚至到TB级别，变化的只是空间的大小。<br>网盘最初的上传图片、视频、音乐等，到现在的视频云播放，直接在线预览等功能，在功能上，并没有在几大网盘之间形成差异化竞争，技术的壁垒在网盘上并没有形成很大的差异。</p>
+</blockquote>
+<h1 id="百度云的恶心"><a href="#百度云的恶心" class="headerlink" title="百度云的恶心"></a>百度云的恶心</h1><p>想想那个时候，我还真是像着了魔一样，甭管有用没有用，先领取了网盘容量再说，后来的结果是，我的百度云网盘容量2158GB ，我的360网盘容量也达到了2T，我的微盘达到了150G容量，这其中360网盘基本没有用，百度云则真的是使用充分了。百度云那个时候，细细分析百度云当时的成功，忽视版权是一个重要的原因。那个时候，百度云为了抢占市场，允许人们公开分享，因此产生了很多分享达人，而这些分享达人，其实分享的无疑都是盗版电影，盗版电视剧等等，当然还包括人们喜闻乐见的岛国动作片了。离线下载带来了极大的方便，一个几百K的种子文件，拖到百度云里面只需轻轻一点，离线下载完成，苍老师全集就存到你的网盘里面。百度云发力移动端，移动端安装百度云网盘之后仅仅添加一个视频插件，就可以在那全集间自由穿梭，想看哪部看哪部了。这在当时来讲，尽管快播还在活着，虽然离死也不远了，对于广大宅男们来说，却的确是比快播的体验要好得多了。</p>
+<p>人们包括我在内也的确乐于看到这样方便快捷的资源分享，仅仅在别人的分享的百度云网盘页面上点击转存，就可以直接将那么多好资源占为己有，那感觉还是很爽的。其实后来想想，百度坏就坏在这一点上了，<strong>在初期为了抢占市场，从不谈什么「版权」「法律」，等到他坐拥了大量的用户之后呢，他就开始拿版权，法律说事了。</strong> 百度在这方面所做的坏事，可不光是百度云，还有当年的百度MP3等等。</p>
+<p>后来，大概是2014年，就有了「互联网专项整治活动」，从那以后，百度云的「盗版」和「泛黄」就收敛很多了。的确能够看到很多时候，分享的文件被取消，即便是使用百度云的加密功能也一样无效。但是，大体上，百度还是给「盗版」和「泛黄」留了门的。刚刚提到了，我的百度云有2158G的容量，事实上已经用掉了2000G，其中绝大部分的容量是存储曾经收集到的一些盗版的影视剧，教学资源，网络课程视频。当快播在那个时候倒下的时候，的确见到了一些网民扼腕叹息，很多网民其实不用快播看岛国片，看的就是盗版影视剧而已，但就像我刚刚所说，百度云在这方面，大幅度领先快播，以至于我觉得快播的倒下，自有后来的百度云接力。</p>
+<p>不过后来并不是那样了，<a target="_blank" rel="noopener" href="http://tieba.baidu.com/p/3012980032">百度云停止离线下载</a>，看到有条评论，说「一个时代结束了」，后来百度云恢复了网盘的离线下载，但是已经根本不是那么嚣张了。不仅那种全集的种子会被提示违规，就是单个的种子也是常常违规，人们后来发现，原来他们存放在百度云里面的岛国片，后来都变成了8秒的教育片，也是讽刺。</p>
+<h1 id="依然相信网盘服务"><a href="#依然相信网盘服务" class="headerlink" title="依然相信网盘服务"></a>依然相信网盘服务</h1><p>然而，2014年，我也更加频繁地使用国外的网络服务，我已经不再会把个人资料存放到百度云或者新浪微盘这些地方了。这在后来被证明极为明智，新浪微盘关闭甚至都不会给用户发一封邮件，仅仅是通过在他们的新浪微博上发条微博告诉人们「我要关门了，都散了吧」。我如果没有看月光博客的相关报道，可能就会损失大量的历史资料，而那些资料，对我而言是一份珍贵的回忆。相比之下，国外的服务，在处理此类问题上往往很有人情味，更何况国外的网盘服务的确在「安全性」和「可靠性」上更胜一筹。</p>
+<p>虽然，国内的微盘，UC网盘，快盘等网络云盘相继地倒下了，但是我仍然认为「云」是未来的趋势，我在两年前，也就是2014年，还曾经写过一篇<a href="http://hktkdy.com/2014/08/25/201408/082506/">博客: 构建个人云端信息库</a>，记录我使用的「云」工具，直到如今，我的体验非常良好，我也推荐更多人使用云端服务。</p>
+<p>另外，推荐使用<strong>BitTorrent Sync</strong> ，这是一个去中心化的网盘服务，可以试试，很有意思。 </p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag"># 网络</a>
+              <a href="/tags/%E4%BA%91/" rel="tag"># 云</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/04/22/201604/blog-end-add-wechat/" rel="prev" title="【Hexo】文章末尾添加微信公众号二维码">
+      <i class="fa fa-chevron-left"></i> 【Hexo】文章末尾添加微信公众号二维码
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/04/29/201604/2016-midi-memory/" rel="next" title="回忆迷笛">
+      回忆迷笛 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8EUC%E7%BD%91%E7%9B%98%E8%AF%B4%E8%B5%B7"><span class="nav-number">1.</span> <span class="nav-text">从UC网盘说起</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B0%E6%B5%AA%E5%BE%AE%E7%9B%98%E5%92%8C%E7%99%BE%E5%BA%A6%E4%BA%91"><span class="nav-number">2.</span> <span class="nav-text">新浪微盘和百度云</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%9B%98%E5%A4%A7%E6%88%98"><span class="nav-number">3.</span> <span class="nav-text">网盘大战</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%99%BE%E5%BA%A6%E4%BA%91%E7%9A%84%E6%81%B6%E5%BF%83"><span class="nav-number">4.</span> <span class="nav-text">百度云的恶心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%9D%E7%84%B6%E7%9B%B8%E4%BF%A1%E7%BD%91%E7%9B%98%E6%9C%8D%E5%8A%A1"><span class="nav-number">5.</span> <span class="nav-text">依然相信网盘服务</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

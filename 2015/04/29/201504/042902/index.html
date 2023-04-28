@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="#写在前面本文原标题《以iPhone 6 为例介绍手机内置传感器 》，是我的《传感器》课程的课后大作业。说来之所以会写这样一篇东西，也是因为老师布置的其他题目，我都不感兴趣，她倒是提到说可以写写介绍一下手机上面的传感器，我在之前也和她说过，手机上的传感器早就有很多人介绍过了，想写出个小论文来分分钟的事，于是就想倒不如真就这样写罢。只是在实际写的过程中，我自己人为地给自己增加了一些困难：第一，由于我">
+<meta property="og:type" content="article">
+<meta property="og:title" content="扒一扒iPhone6的手机传感器">
+<meta property="og:url" content="http://hktkdy.com/2015/04/29/201504/042902/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="#写在前面本文原标题《以iPhone 6 为例介绍手机内置传感器 》，是我的《传感器》课程的课后大作业。说来之所以会写这样一篇东西，也是因为老师布置的其他题目，我都不感兴趣，她倒是提到说可以写写介绍一下手机上面的传感器，我在之前也和她说过，手机上的传感器早就有很多人介绍过了，想写出个小论文来分分钟的事，于是就想倒不如真就这样写罢。只是在实际写的过程中，我自己人为地给自己增加了一些困难：第一，由于我">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://hktkdy.qiniudn.com/allchip.jpg">
+<meta property="og:image" content="http://hktkdy.qiniudn.com/MP67B.jpg">
+<meta property="og:image" content="http://hktkdy.qiniudn.com/TSL2581.jpg">
+<meta property="og:image" content="http://hktkdy.qiniudn.com/AKM8963-300x297.jpg">
+<meta property="og:image" content="http://hktkdy.qiniudn.com/fingerprintjpg.jpg">
+<meta property="og:image" content="http://hktkdy.qiniudn.com/MBP280.jpg">
+<meta property="og:image" content="http://hktkdy.qiniudn.com/barometer.png">
+<meta property="article:published_time" content="2015-04-29T03:29:39.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.086Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="作业">
+<meta property="article:tag" content="传感器">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hktkdy.qiniudn.com/allchip.jpg">
+
+<link rel="canonical" href="http://hktkdy.com/2015/04/29/201504/042902/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>扒一扒iPhone6的手机传感器 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2015/04/29/201504/042902/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          扒一扒iPhone6的手机传感器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-04-29 11:29:39" itemprop="dateCreated datePublished" datetime="2015-04-29T11:29:39+08:00">2015-04-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/04/29/201504/042902/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2015/04/29/201504/042902/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>#写在前面<br>本文原标题《以iPhone 6 为例介绍手机内置传感器 》，是我的《传感器》课程的课后大作业。说来之所以会写这样一篇东西，也是因为老师布置的其他题目，我都不感兴趣，她倒是提到说可以写写介绍一下手机上面的传感器，我在之前也和她说过，手机上的传感器早就有很多人介绍过了，想写出个小论文来分分钟的事，于是就想倒不如真就这样写罢。只是在实际写的过程中，我自己人为地给自己增加了一些困难：<br><strong>第一，由于我在这文中特指了一种型号的手机，也就是iPhone 6 ，导致我需要查的东西不仅仅是共性的，还应当更多的是该品类的特性。第二 ，我希望我介绍的传感器，应当最好包括每种传感器的类型，每种传感器芯片型号，每种传感器的原理，每种传感器在手机上的应用。所以我认为读者您今天看到的这篇文章，可能就是截至到目前介绍iPhone 6手机传感器最全面的一篇文章了，至少是在中文世界里（如果不是请告知，贴出您认为是最全面的链接地址）</strong></p>
+<p>可是事实上却发现几乎没有单独介绍手机传感器的论文，而介绍传感器的网文往往也只是侧重于某一方面或者某一点（这里说的某一点是指一些新闻的介绍），导致事实上，我写这篇小东西其实更多的时候是在归纳整理其他人的资料，来得到一篇更加系统的介绍iPhone 6手机传感器的文章。在实际过程中，这篇文字从收集资料到写作完成大概花了我至少7个小时的时间，看到原来零散的材料在我手中能够梳理得更有条理，我认为还是值得的。当然，由于参考了几篇英文资料而我的英文水平又不是特别好，所以可能会出现一些错误，也望高人若看到错误不吝赐教。</p>
+<p>#一背景</p>
+<p>##1,1为什么要选用iPhone 6手机</p>
+<p>智能手机品类繁多，参差不齐，每一种智能手机中的内置传感器的数量和类型也不尽相同。众所周知，苹果公司发布的iPhone 手机开启了智能手机时代，而iPhone 6是苹果公司（Apple）在2014年9月9日推出的最新的一款iPhone 手机产品，iPhone 手机也一直都以其尖端科技领跑全球手机行业，iPhone 6是最具有代表性的一款智能手机产品，因此，此次，我选择了iPhone 6 手机，以它为例来介绍智能手机中的内置传感器。</p>
+<p>##1.2 iPhone 手机的软件层面<br>iPhone 6手机搭载的是最新的ios 8操作系统，苹果公司最早于2007年1月9日的Macworld大会上公布这个系统，最初是设计给iPhone使用的，后来陆续套用到iPod touch、iPad以及Apple TV等产品上。iOS与苹果的Mac OS X操作系统一样，属于类Unix的商业操作系统。原本这个系统名为iPhone OS，因为iPad，iPhone，iPod touch都使用iPhone OS，所以2010WWDC大会上宣布改名为iOS。</p>
+<p>##1.3 iPhone  6手机的硬件层面</p>
+<p>除传感器外，iPhone 6采用4.7英寸屏幕，分辨率为1334*750像素，内置64位构架的苹果A8处理器，性能提升非常明显；同时还搭配全新的M8协处理器，专为健康应用所设计；采用后置800万像素镜头，前置120万像素摄影FaceTime HD 高清摄像头；并且加入Touch ID支持指纹识别，首次新增NFC功能；也是一款三网通手机，4G LTE连接速度可达150Mbps，支持多达20个LTE频段。</p>
+<p>#二 iPhone 6手机上传感器概略介绍</p>
+<p>iPhone 6手机上的所有传感器包括加速传感器，光线传感器，距离传感器，指纹识别传感器，三轴陀螺仪，气压计，电子罗盘（磁力感应器）, 湿度传感器,相机传感器，声波传感器，触摸屏传感器，温度传感器，压力传感器等。</p>
+<p>![iPhone 6手机中主要传感器一览](<a target="_blank" rel="noopener" href="http://hktkdy.qiniudn.com/all">http://hktkdy.qiniudn.com/all</a> sensor.jpg)<br><img src="http://hktkdy.qiniudn.com/allchip.jpg" alt="iPhone 6手机中主要传感器型号功能"></p>
+<p>#三 各种传感器的详细介绍</p>
+<p>##3.1 运动&#x2F;加速度传感器 Motion sensor&#x2F;accelerometer</p>
+<p>###3.1.1加速传感器的原理</p>
+<p>在iPhone 6中的加速传感器芯片为InvenSense公司的MP67B芯片，这是一个六轴加速度和重力传感器。而在之前的历代iPhone 手机中该传感器采用的是STMicroelectronics 公司生产的芯片。</p>
+<p>手机加速传感器是一种能够测量加速力的电子设备。加速力就是当物体在加速过程中作用在物体上的力，比如重力。加速传感器原理：运用压电效应实现，一片“重力块”和压电晶体做成一个重力感应模块，手机方向改变时，重力块作用于不同方向的压电晶体上的力也随之改变，输出电压信号不同，从而判断手机的方向。加速力可以是个常量，比如g，也可以是变量。他可以根据重力感应产生的加速度来推算出手机相对于水平面的倾斜度。</p>
+<p> <img src="http://hktkdy.qiniudn.com/MP67B.jpg" alt="MP67B芯片"></p>
+<p>###3.1.2加速度传感器的应用</p>
+<p>重力感应常用于自动旋转屏幕以及一些游戏，但是它本身局限性比较大，因为他是根据重力判断方向，通过感应重力正交两个方向的分力大小，来判断水平方向。常见的应用加速度传感器的手机app是一些运动型的游戏，如极品飞车。这个时候可以通过重力判断水平垂直防线。</p>
+<p>##3.2  光传感器 Ambient Light sensor </p>
+<p>###3.2.1光传感器的原理</p>
+<p>在iPhone 6手机上，光传感器芯片选用的是AMS公司的TSL2581芯片。环境光传感器可以感知周围光线情况，并告知处理芯片自动调节显示器背光亮度，降低产品的功耗。</p>
+<p>光线感应器由投光器和受光器组成，投光器将光线聚焦，在传输至受光器，最后通过感应器接收变成电器信号。光线感应的用途是可以根据周围环境光线调节手机屏幕本身的亮度。</p>
+<p>环境光传感器可以感知周围光线情况，并告知处理芯片自动调节显示器背光亮度，降低产品的功耗。市场出售的有光敏电阻、光敏二极管、光电三极管、硅光电池等。</p>
+<p><img src="http://hktkdy.qiniudn.com/TSL2581.jpg" alt="TSL2581芯片"></p>
+<p>###3.2.2光传感器的应用</p>
+<p>在iPhone 6手机上，显示屏消耗的电量一般高达电池总电量的30%，采用环境光传感器可以最大限度地延长电池的工作时间。另一方面，环境光传感器有助于显示器提供柔和的画面。当环境亮度较高时，使用环境光传感器的液晶显示器会自动调成高亮度。当外界环境较暗时，显示器就会调成低亮度。</p>
+<p>##3.3电子罗盘 eCompass<br>###3.3.1电子罗盘的原理</p>
+<p>从iPhone 3GS开始，iPhone手机中开始内置电子罗盘传感器。在iPhone 6手机中，电子罗盘芯片类型为由AKM公司生产的 AKM 8963芯片。AKM公司生产的电子罗盘传感器芯片一直服务于历代iPhone 手机之中。</p>
+<p>电子罗盘由三维磁阻传感器、双轴倾角传感器和MCU构成。三维磁阻传感器用来测量地球磁场，倾角传感器是在磁力仪非水平状态时进行补偿；MCU处理磁力仪和倾角传感器的信号以及数据输出和软铁、硬铁补偿。该磁力仪是采用三个互相垂直的磁阻传感器，每个轴向上的传感器检测在该方向上的地磁场强度。向前的方向称为x方向的传感器检测地磁场在x方向的矢量值；向左或Y方向的传感器检测地磁场在Y方向的矢量值；向下或Z方向的传感器检测地磁场在Z方向的矢量值。每个方向的传感器的灵敏度都已根据在该方向上地磁场的分矢量调整到最佳点，并具有非常低的横轴灵敏度。传感器产生的模拟输出信号进行放大后送入MCU进行处理。磁场测量范围为±2Gauss。通过采用12位A&#x2F;D转换器，磁力仪能够分辨出小于1mGauss的磁场变化量，我们便可通过该高分辨力来准确测量出200-300mGauss的X和Y方向的磁场强度，不论是在赤道上的向上变化还是在南北极的更低值位置。</p>
+<p><img src="http://hktkdy.qiniudn.com/AKM8963-300x297.jpg" alt="AKM8963芯片"></p>
+<p>###3.3.2电子罗盘的应用<br>电子罗盘的应用很广泛，一个简单的使用电子罗盘传感器的实例是iPhone 手机上的指南针app，通过指南针app可以实现在手机不联网的情况下进行指示方向，不依靠地图类app来指路，节省流量，方便快捷。在地图类的app中，电子罗盘也被用来配合设备的GPS和其他位置功能达到指向的功能。</p>
+<p>##3.4距离传感器 Proximity sensor<br>###3.4.1 距离传感器的原理<br>通过发射特别短的并测量此光脉冲从发射到被物体反射回来的时间，通过测时间间隔来计算与物体之间的距离。此方法叫做飞行时间法（flying time）</p>
+<p>###3.4.2距离传感器的应用<br>这个传感器能够判断iPhone 6手机距离你有多近，这个传感器的一个作用是当手机贴近耳朵的时候能够自动的关闭屏幕。</p>
+<p>##3.5 指纹识别传感器   fingerprint sensor </p>
+<p>###3.5.1指纹识别传感器的原理</p>
+<p>在iPhone 6手机中选用的是TMDR 92芯片。苹果手机从iPhone 5s开始支持指纹识别，iPhone 6及iPhone6 plus依旧支持，它的指纹识别传感器的供应商为Authen Tec公司。</p>
+<p>指纹识别传感器位于iPhone 6手机的HOME键下方，Home键周围的光环也是感应性的，当手指靠近时就能检测到。用户也能很快知道自己的指纹是否正在被扫描而无需点按Home键。iPhone 6手机内的指纹识别传感器是 500dpi的阵列阵列，就这一点，就可以确定是电容式指纹采集方式。然后电容式会有一个问题，也可以算是特征，就是如何让手指带电，以及，如何检测到手指在采集区，并让检测电容阵列带电，(电容阵列一直带电很伤电容的，毕竟是很精密的设备)，所以5s的不锈钢圆环就是起这个作用，让手指带电，并且检测到手指接触后，触发电容检测阵列加电。</p>
+<p><img src="http://hktkdy.qiniudn.com/fingerprintjpg.jpg" alt="TMDR 92芯片"></p>
+<p>###3.5.2指纹识别传感器的应用</p>
+<p>指纹识别传感器位于iPhone 6手机的HOME键下方，有了他，用户可以安东home键来进行解锁。有了它，用户可以免输入密码，确保更加安全的操作。最近，支付宝的ios app也已经支持了指纹识别，用户无需输入支付宝开启密码来开启支付宝，也不需要输入支付宝的支付密码，仅仅需要按动iPhone手机的HOME键就能够实现支付的功能。</p>
+<p>##3.6陀螺仪  gyroscope<br>###3.6.1陀螺仪的原理<br>iPhone 手机使用的陀螺仪芯片是Invensens公司的 MPU-6700。陀螺仪从2010年发布的iPhone 4手机开始在iPhone 手机中内置。</p>
+<p>陀螺仪能够同时测定6个方向的位置，移动轨迹，加速。 单轴的只能测量一个方向的量，也就是一个系统需要三个陀螺仪，而3轴的一个就能替代三个单轴的。3轴的体积小、重量轻、结构简单、可靠性好，是激光陀螺的发展趋势。</p>
+<p>###3.6.2陀螺仪应用<br>它的主要作用是运用在游戏的控制上。通过三轴陀螺仪，我们只需要通过移动手机相应的位置，就可以达到改变方向的目的。比如平衡球游戏或者极品飞车，就是应用了陀螺仪的原理，完全摒弃以前通过方向按键来控制游戏的操控方式，使游戏更加真实，操作更加灵活。</p>
+<p>##3.7气压计  Barometer<br>###3.7.1气压计的原理</p>
+<p>iPhone 6手机采用的气压计芯片是来自Bosch公司的MBP280芯片。</p>
+<p>普通的气压计原理是根据气压计里面水银的高度是由大气压支撑，也就是说，大气压有多大，水银柱的液面就会有多高，所以气压计中，水银越高，气压越大。通过水银柱的高度，分割气压计的精确度，就可以来测量当前的气压了。<br>iPhone手机中的气压计类似于现实生活中的这些气压计，不过没有了液体水银，代替的是两个传感器之间的转换来将压力转换成另外一个传感器可以测量的量。</p>
+<p><img src="http://hktkdy.qiniudn.com/MBP280.jpg" alt="MBP280芯片"></p>
+<p>###3.7.2气压计的应用<br>其实气压计的基本作用只是测量大气的压强，更重要的应用是为了尽用三维空间的功用来辅助GPS，通过气压的高低来判断设备的高度，再配合GPS所取得的经度和纬度来更快地计算出设备所在的位置。所以气压计在地图类，使用GPS或天气类的app中也有广泛的应用。</p>
+<p><img src="http://hktkdy.qiniudn.com/barometer.png" alt="在weathersignal app中的应用"></p>
+<p>##其他传感器</p>
+<p> 像湿度传感器,相机传感器，声波传感器，触摸屏传感器，温度传感器,压力传感器等，由于它们的资料较少，且实际上如声波传感器，触摸屏传感器已经十分普遍地运用在智能手机上，而温度，湿度传感器与气压传感器功能类似，都属于环境传感器，且属于第一次出现在iPhone 手机上，相关资料相对较少，故不再具体讨论。</p>
+<p>#注明：<br>实际在使用过程中，很多的概念往往比较混论，比如运动传感器，加速度传感器，速度传感器，重力传感器等，在这里我使用的是wikipedia上苹果手机传感器介绍中的说法，只提到了加速度传感器。另外，由于传感器本身的概念分类比较模糊，在网络上也没有找到任何一篇有将苹果手机所有传感器一一列出的资料，往往是说法都不统一，这也造成了我写作此文时的另外一个难点。（如若不信，可以查看下面的参考资料链接，的确是每一篇的说法都不尽相同）</p>
+<p>#参考资料<br><a target="_blank" rel="noopener" href="http://www.chipworks.com/en/technical-competitive-analysis/resources/blog/inside-the-iphone-6-and-iphone-6-plus/">http://www.chipworks.com/en/technical-competitive-analysis/resources/blog/inside-the-iphone-6-and-iphone-6-plus/</a><br><a target="_blank" rel="noopener" href="http://www.sensorshome.com/info_list.asp?channel=3&id=1009">http://www.sensorshome.com/info_list.asp?channel=3&amp;id=1009</a><br><a target="_blank" rel="noopener" href="http://www.forbes.com/sites/karstenstrauss/2014/09/19/inside-the-apple-iphone-6-plus-invensense-makes-the-grade/">http://www.forbes.com/sites/karstenstrauss/2014/09/19/inside-the-apple-iphone-6-plus-invensense-makes-the-grade/</a><br><a target="_blank" rel="noopener" href="http://net.chinabyte.com/0/12711500_2.shtml">http://net.chinabyte.com/0/12711500_2.shtml</a><br><a target="_blank" rel="noopener" href="http://www.shushao.com/apple/test/item/214550-iphone6">http://www.shushao.com/apple/test/item/214550-iphone6</a><br><a target="_blank" rel="noopener" href="http://www.pc6.com/edu/72431.html">http://www.pc6.com/edu/72431.html</a><br><a target="_blank" rel="noopener" href="http://www.quora.com/How-does-the-barometer-on-the-iPhone-6-work">http://www.quora.com/How-does-the-barometer-on-the-iPhone-6-work</a><br><a target="_blank" rel="noopener" href="https://gigaom.com/2014/10/09/weathersignal-starts-tracking-pressure-on-ios-using-the-iphone-6s-barometer/">https://gigaom.com/2014/10/09/weathersignal-starts-tracking-pressure-on-ios-using-the-iphone-6s-barometer/</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag"># 作业</a>
+              <a href="/tags/%E4%BC%A0%E6%84%9F%E5%99%A8/" rel="tag"># 传感器</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2015/04/29/201504/042901/" rel="prev" title="读Non-Fiction（非虚构） 的两个好处">
+      <i class="fa fa-chevron-left"></i> 读Non-Fiction（非虚构） 的两个好处
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2015/04/29/201504/042903/" rel="next" title="世界这么大，我不想去看看？">
+      世界这么大，我不想去看看？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

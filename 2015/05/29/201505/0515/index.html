@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="#缘起 似乎又到了毕业季，于是总不免矫情地感怀。感到三年时间匆匆而过[1]，便总想有一些可以留作纪念的东西，当然，文字我是有的，但仅仅是文字还是不够的，有很多时候，影像的力量更加强大。 与此同时，很偶然的机会，在youtube上面又听到了那首曾经很有感觉到歌曲：《桜の花びらたち》（墙内地址：音悦台），之所以说又是因为之前其实已经不止一遍的听过了。这首歌，与前田本人毕业AKB的情感有关，自然也就更加">
+<meta property="og:type" content="article">
+<meta property="og:title" content="制作电子相册（photo shldeshow）经验">
+<meta property="og:url" content="http://hktkdy.com/2015/05/29/201505/0515/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="#缘起 似乎又到了毕业季，于是总不免矫情地感怀。感到三年时间匆匆而过[1]，便总想有一些可以留作纪念的东西，当然，文字我是有的，但仅仅是文字还是不够的，有很多时候，影像的力量更加强大。 与此同时，很偶然的机会，在youtube上面又听到了那首曾经很有感觉到歌曲：《桜の花びらたち》（墙内地址：音悦台），之所以说又是因为之前其实已经不止一遍的听过了。这首歌，与前田本人毕业AKB的情感有关，自然也就更加">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-05-28T23:49:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.090Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="大学">
+<meta property="article:tag" content="生活">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hktkdy.com/2015/05/29/201505/0515/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>制作电子相册（photo shldeshow）经验 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2015/05/29/201505/0515/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          制作电子相册（photo shldeshow）经验
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-05-29 07:49:49" itemprop="dateCreated datePublished" datetime="2015-05-29T07:49:49+08:00">2015-05-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">大学</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/05/29/201505/0515/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2015/05/29/201505/0515/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>#缘起</p>
+<p>似乎又到了毕业季，于是总不免矫情地感怀。感到三年时间匆匆而过[1]，便总想有一些可以留作纪念的东西，当然，文字我是有的，但仅仅是文字还是不够的，有很多时候，影像的力量更加强大。</p>
+<p>与此同时，很偶然的机会，在youtube上面又听到了那首曾经很有感觉到歌曲：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=3Q7oeQgms44&list=TLv9ouDZKLccg">《桜の花びらたち》</a>（墙内地址：<a target="_blank" rel="noopener" href="http://v.yinyuetai.com/video/555762">音悦台</a>），之所以说又是因为之前其实已经不止一遍的听过了。这首歌，与前田本人毕业AKB的情感有关，自然也就更加符合我的主题要求了。</p>
+<p>#准备工作</p>
+<p>我三年来的相片，大多是由手机拍摄的，少部分由一个不专业的数码相机拍摄，这些相片只有很少一部分存放在我的笔记本上面，前一年半的照片存放在我的百度云网盘上，后一年半的照片存放在我的Google Photos 上面，所以所谓的准备工作，就是在以上三处来筛选出我比较满意的相片来，事实上，在筛选过程中，的确发现，这种过程本身就是一种很好的体验，仿佛又重温了那样一段经历，曾经可能仅仅是偶然拍摄的一张图片，如今看来意义却完全变了。每一张图片背后都有一个故事，大多数时候，我自己是能够从一张照片中想到那些曾经发生的故事的。</p>
+<p>这个工作进行了两个小时左右，筛选出50几张照片，照片的内容包含校内的我参加的比赛，社团活动，观看的演讲，参加过的班级活动，出去实习，出去旅行，出去看电影，出去看文艺演出等，这些内容自然不是我大学生活的全部，仅仅是关于「玩」的那部分，但，就是这部分，因为有了更多人的参与，却更显得珍贵了。的确如此，毕竟我过去的文字中，确实少有提到这部分，但，他们却真实的存在过。</p>
+<p>#制作</p>
+<p>我曾经用会声会影软件制作过类似的小视频，但是那也已经是将近两年前的事情了，电脑上早就没有了这个庞大的软件，而我也不想重新安装，毕竟我只是需要实现一个很简单的功能，于是首先想到的是Youtube的上传功能，它能够提供图片上传制作电子相册，而我的网速又一直不错，虽然是科学上网状态，但上传速度也很快。上传照片，制作出电子相册用这个云服务比较容易，但是，我希望的是能够添加<strong>音轨</strong>，可是这一点上，Youtube受限于版权问题，只能够提供免费的背景音乐，而这是不符合我的要求的。</p>
+<p>后来上网用<strong>谷歌</strong>搜索了「视频添加音轨」的关键词，结果搜索到了一个叫做狸窝的视频转化器软件，这个我之前也是用过的，但仅限于使用它的视频转换功能，下载安装之后，发现它的添加音轨功能需要收费，这让我很不爽，所以继续折腾。</p>
+<p>接着我换用了新的搜索词「video add voice」，使用英文搜索。这一次，我看到了排名靠前的几位推荐使用<a target="_blank" rel="noopener" href="http://windows.microsoft.com/en-us/windows-live/movie-maker/">windows moivie maker</a>，于是便尝试安装，起初还以为这是一个收费软件，结果却发现并非如此，而且体积小，下载安装时间都并不长，很让我满意。</p>
+<p>至于windows movie maker的使用，十分简单，只是英文界面对于英语渣总不免捉襟见肘，但一旦熟悉了真的十分简答易用，制作电子相册，更是瑞士军刀一般。</p>
+<p>简单的步骤就是</p>
+<ul>
+<li>添加自己选好的照片</li>
+<li>设定每张图片的展示时间（duration）</li>
+<li>设定幻灯的切换方式</li>
+<li>添加自己选用的背景音乐[2]</li>
+<li>在合适的地方添加字幕</li>
+<li>添加片头主题风格</li>
+</ul>
+<p>#上传</p>
+<p>经过一番折腾之后，终于达到了一个比较满意的效果，接下来就是上传到视频网站，这里可以稍微吐槽一下。我先是在youku上传，结果100多M的视频只用了2分钟左右便上传成功，但审核时间很长，随后，我在Youtube上传（我还是喜欢没有水印的），结果上传处理时间总计8分钟左右，而此过程结束后，youku那边仍然在审核之中。</p>
+<p>最后，将制作好的视频贴出来，献丑一下：</p>
+<p> Youtube地址：</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Qv-JRiZAa2o" frameborder="0" allowfullscreen></iframe>
+
+
+<p>优酷地址：</p>
+<p><embed src="http://player.youku.com/player.php/sid/XOTY0MDk5MDQ4/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed></p>
+<p>#后记</p>
+<p>此文不打算煽情,可能以后会专门写矫情的力图煽情的文字.这篇的用意只是为了以后自己再制作相关的视频能够更加熟练,不至于像这次一样历经曲折,当然,顺便分享给广大网友.</p>
+<p>#Note<br>[1]说三年时间匆匆而过，是因为现在处在大三下学期，而大四的时候，我将去实习，所以也就不会再留在学校，也许校园生活从此便结束了。</p>
+<p>[2]前田的那首歌是现场版，只此一版，所以我选择了从视频网站将M4A的音频爬下来，然后再将其转化为MP3格式的文件。此歌曲时长5:26秒，我使用了5：14秒。<br>Youtube的视频音频在线下载网站：<a target="_blank" rel="noopener" href="http://en.savefrom.net/?rmode=false">http://en.savefrom.net/?rmode=false</a><br>M4A转MP3在线服务网站：<a target="_blank" rel="noopener" href="http://www.zamzar.com/convert/m4a-to-mp3/">http://www.zamzar.com/convert/m4a-to-mp3/</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%A7%E5%AD%A6/" rel="tag"># 大学</a>
+              <a href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag"># 生活</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag"># 网络</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2015/05/29/201505/0514/" rel="prev" title="【firefox】去爱奇艺广告 （201505）">
+      <i class="fa fa-chevron-left"></i> 【firefox】去爱奇艺广告 （201505）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2015/06/12/201506/0612/" rel="next" title="乌龟与阿基里斯之重要的事情要说三遍">
+      乌龟与阿基里斯之重要的事情要说三遍 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

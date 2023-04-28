@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="需求##１希望能够让开发者写代码更轻松 以往没有引入postcss autoprefixer之前，我们为了css相关特性能够在各个浏览器上的兼容，引入了scss，利用它的mixins来实现prefix。但是每一个mixin　都有一个自己的语法。 比如以往，如果我们我们想要写一条 div &amp;#123;     display: flex;     align-items: center;     j">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在webpack项目中配置postcss，实现autoprefix">
+<meta property="og:url" content="http://hktkdy.com/2018/09/01/201809/webpack-and-autoprefix/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="需求##１希望能够让开发者写代码更轻松 以往没有引入postcss autoprefixer之前，我们为了css相关特性能够在各个浏览器上的兼容，引入了scss，利用它的mixins来实现prefix。但是每一个mixin　都有一个自己的语法。 比如以往，如果我们我们想要写一条 div &amp;#123;     display: flex;     align-items: center;     j">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-09-01T01:24:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.094Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="webpack">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hktkdy.com/2018/09/01/201809/webpack-and-autoprefix/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>在webpack项目中配置postcss，实现autoprefix | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2018/09/01/201809/webpack-and-autoprefix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在webpack项目中配置postcss，实现autoprefix
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-09-01 09:24:49" itemprop="dateCreated datePublished" datetime="2018-09-01T09:24:49+08:00">2018-09-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/09/01/201809/webpack-and-autoprefix/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/09/01/201809/webpack-and-autoprefix/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>##１希望能够让开发者写代码更轻松</p>
+<p>以往没有引入postcss autoprefixer之前，我们为了css相关特性能够在各个浏览器上的兼容，引入了scss，利用它的mixins来实现prefix。但是每一个mixin　都有一个自己的语法。</p>
+<p>比如以往，如果我们我们想要写一条</p>
+<pre><code>div &#123;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+&#125;
+</code></pre>
+<p>为了各个相对早期浏览器的prefix，我们需要mixin，然后这样写</p>
+<pre><code>import &#39;common/flexbox&#39;;
+
+div &#123;
+    @include flexbox;
+    @flex(1);
+    @justify-content(center);
+&#125;
+</code></pre>
+<p>然后按照这样的约定，来加上需要的prefix。</p>
+<p>这当然是一个方法，但是对于开发者来讲，实际上增加了一些学习成本，而且相当于将标准放到了一边，去使用另外一套标准。</p>
+<p>我们之前的mixin，由于已经有好几年的历史。当时为了兼容市面上那些还有很大市场份额的浏览器，prefix写的很全。比如下面这个mixin　flexbox到代码:</p>
+<pre><code>@mixin flexbox &#123;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+&#125;
+</code></pre>
+<p>为了写这篇博客，我又确认了一下，那个mixin flexbox的开源库来自于2013年，距离现在已经五年了,五年的时间，淘汰了很多过时的浏览器，五年前可能需要兼容到ie8，现在移动端开发甚至完全可以无需理睬IE的存在，所以这样的一套prefix就显得有些过时了。那位说了，我更新我的mixin不就好了，比如在2018年做移动端开发，也许我只需要将上面的代码改写成:</p>
+<pre><code>@mixin flexbox &#123;
+    display: -webkit-flex;
+    display: flex;
+&#125;
+</code></pre>
+<p>但是我们也许需要想地更远一些，也许再过两年，我们甚至不需要对-webkit-的支持了。那时候，难道我们又要改一遍这个mixin吗？</p>
+<p>postcss解决了这样一个痛点，可以直接书写标准的css（现在是css3，但是过几年也可能就是css4了），我们有了这样的工具，再指定一个浏览器兼容表，就能够实现自动prefix，而这相比于sass&#x2F;scss　mixin的方式，维护起来更加简单，应该是一个很好的实践。</p>
+<h2 id="２对用户更友好"><a href="#２对用户更友好" class="headerlink" title="２对用户更友好"></a>２对用户更友好</h2><p>这当然也是显而易见的，以前我们可能为了兼容更多浏览器，而写更多的prefix，可是随着时间的推移，很多prefix完全并不需要。我们通过postcss来处理，简单明了，缩小了生成的css文件的体积，最后反映到用户那里，会快上一丢丢！</p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><p>1 安装postcss-loader ,postcss-preset-env</p>
+<pre><code>yarn add -D postcss-loader  postcss-preset-env
+</code></pre>
+<p>安装postcss-preset-env，无需再安装autoprefixer，由于postcss-preset-env已经内置了相关功能。</p>
+<p>２　添加.browserlistrc　文件到项目根目录</p>
+<blockquote>
+<p>1% in CN<br>android &gt;&#x3D; 4.4<br>ios &gt;&#x3D; 8<br>not ie &lt;&#x3D; 11</p>
+</blockquote>
+<p>这个需要根据项目的世纪情况来自由选择，我是考虑我们的项目是移动端项目，且确实有用户在用Android４.4　或者ios８，但是再很难看到低于这些版本之下的系统了。</p>
+<p>３配置postcss.config.js</p>
+<pre><code>module.exports = &#123;
+  loader: &#39;postcss-loader&#39;,  
+  plugins: &#123;
+      &#39;postcss-preset-env&#39;: &#123;&#125;,
+    &#125;
+&#125;
+</code></pre>
+<p>4　配置webpack.config.js</p>
+<pre><code>&#123;
+test: /\.scss$/,
+use:[ 
+    MiniCssExtractPlugin.loader,
+    &#123;
+        loader: &#39;css-loader&#39;,
+            options: &#123;
+                root: &#39;static&#39;,
+                minimize: true,
+                importLoaders: 1
+            &#125;
+    &#125;,
+    &#39;postcss-loader&#39;,
+    &#39;sass-loader&#39;,
+]
+&#125;,
+&#123;
+test: /\.css$/,
+use: [
+    MiniCssExtractPlugin.loader,
+    &#123;
+        loader: &#39;css-loader&#39;,
+            options: &#123;
+                root: &#39;static&#39;,
+                minimize: true,
+                importLoaders: 1
+            &#125;
+    &#125;,
+    &#39;postcss-loader&#39;
+]
+&#125;
+</code></pre>
+<p>由于我们的项目中使用了scss，因此需要sass-loader。这里需要注意各个loader的顺序，一开始我的顺序是MiniCssExtractPlugin.loader,css-loader，sass-loader，　postcss-loader，结果发现并没有能够autoprefix，原因是如果想让postcss-loader认识并且处理，需要先用sass-loader进行处理，转化成postcss-loader可以认识的代码。</p>
+<p>另外需要注意的是，我们这里还在使用css-loader v0.28，目前已经有了v1.0，版本改动很大，以至于我们暂时不能升级。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/webpack/" rel="tag"># webpack</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/08/09/201808/babel-and-polifill/" rel="prev" title="babel 与 polyfill两三事">
+      <i class="fa fa-chevron-left"></i> babel 与 polyfill两三事
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/12/01/201812/oauth/" rel="next" title="闲话OAUTH">
+      闲话OAUTH <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9C%80%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%92%E5%AF%B9%E7%94%A8%E6%88%B7%E6%9B%B4%E5%8F%8B%E5%A5%BD"><span class="nav-number">1.1.</span> <span class="nav-text">２对用户更友好</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">步骤</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

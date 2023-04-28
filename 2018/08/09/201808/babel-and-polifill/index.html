@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="熟悉前端开发的朋友，应该对 Babel这个项目并不陌生，早在两年多以前，阮一峰大大就已经写过文章《Babel 入门教程》 对他进行了介绍，那个时候，其实Babel应该已经算得上是网红开源前端库了。这两年，Babel其实也一直在发展，我这里想说的是我看到的Babel的成长 babel-preset-env首先是babel-preset-env，详细的介绍文档在这里：https:&#x2F;&#x2F;www.babel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="babel 与 polyfill两三事">
+<meta property="og:url" content="http://hktkdy.com/2018/08/09/201808/babel-and-polifill/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="熟悉前端开发的朋友，应该对 Babel这个项目并不陌生，早在两年多以前，阮一峰大大就已经写过文章《Babel 入门教程》 对他进行了介绍，那个时候，其实Babel应该已经算得上是网红开源前端库了。这两年，Babel其实也一直在发展，我这里想说的是我看到的Babel的成长 babel-preset-env首先是babel-preset-env，详细的介绍文档在这里：https:&#x2F;&#x2F;www.babel">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-08-09T01:24:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.094Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hktkdy.com/2018/08/09/201808/babel-and-polifill/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>babel 与 polyfill两三事 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2018/08/09/201808/babel-and-polifill/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          babel 与 polyfill两三事
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-08-09 09:24:49" itemprop="dateCreated datePublished" datetime="2018-08-09T09:24:49+08:00">2018-08-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/08/09/201808/babel-and-polifill/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/08/09/201808/babel-and-polifill/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>熟悉前端开发的朋友，应该对 <code>Babel</code>这个项目并不陌生，早在两年多以前，阮一峰大大就已经写过文章<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/01/babel.html">《Babel 入门教程》</a> 对他进行了介绍，那个时候，其实<code>Babel</code>应该已经算得上是网红开源前端库了。这两年，<code>Babel</code>其实也一直在发展，我这里想说的是我看到的<code>Babel</code>的成长</p>
+<h1 id="babel-preset-env"><a href="#babel-preset-env" class="headerlink" title="babel-preset-env"></a>babel-preset-env</h1><p>首先是<code>babel-preset-env</code>，详细的介绍文档在这里：<a target="_blank" rel="noopener" href="https://www.babeljs.cn/docs/plugins/preset-env/">https://www.babeljs.cn/docs/plugins/preset-env/</a></p>
+<p>我也并不会去介绍怎么去用这个，只是想谈谈自己的体会。我记得刚开始使用babel的时候，的确有时候会用上一些stage-2,stage-3 的特性，那时候还为了了解这些所谓的stage去看了ECMASCRIPT 新版本发布的<a target="_blank" rel="noopener" href="https://github.com/tc39/proposals">流程</a>，觉得也很有意思。但是虽然有意思，但是配置起来却的确繁琐，有时候，你的确需要为了配置这样一个<code>Babel</code>看好多相关文档，这无疑算是一个痛点了。现在好了，就如同文档里面所提到的：</p>
+<blockquote>
+<p>在没有任何配置选项的情况下，babel-preset-env 与 babel-preset-latest（或者babel-preset-es2015，babel-preset-es2016和babel-preset-es2017一起）的行为完全相同。</p>
+</blockquote>
+<h1 id="babel-polyfill"><a href="#babel-polyfill" class="headerlink" title="babel-polyfill"></a>babel-polyfill</h1><h2 id="为什么你这么大"><a href="#为什么你这么大" class="headerlink" title="为什么你这么大"></a>为什么你这么大</h2><p>我们都知道，<code>Babel</code>为了存心让我们配置起来更困难，故意将他的功能分拆成了两部分，其一是语法上的转化，这个默认情况下他自会帮我们处理。而另外一部分，就是新API的polyfill，需要我们引入<code>babel-polyfill</code>来完成。当然，我前面说，<code>Babel</code>是存心折腾开发者的确是开玩笑的，毕竟并不是所有的时候我们都需要polyfill的。这有点像是React项目也有两个核心包,<code>React</code>和<code>ReactDOM</code>类似。</p>
+<pre><code>    import React from &#39;react&#39;;  
+    import ReactDOM from &#39;react-dom&#39;;
+</code></pre>
+<p> babel-polyfill是好东西，能够将新API作用在老的浏览器上，但是我们要注意不要滥用。比如我们随便在百度上搜索一篇文章，讲解如何使用 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/princesong/p/6728250.html">babel-polyfill的引用和使用</a>,往往都会看到有这样的描述：</p>
+<pre><code>module.exports = &#123;entry: [&quot;babel-polyfill&quot;, &quot;./app/js&quot;]&#125;;
+</code></pre>
+<p>这样做，从功能实现上来看当然是没有错的。但是，如果我们原来的入口是</p>
+<pre><code>module.exports = &#123;entry: [&quot;./app/js&quot;]&#125;;
+</code></pre>
+<p>那么很容易就能够发现由于入口处增加了<code>babel-polyfill</code>，导致webpack在处理之后，最终的到的入口核心js文件比原来增加了有100kb左右。对于这个问题，也已经有<a target="_blank" rel="noopener" href="https://github.com/babel/babel-loader/issues/163">issue</a>,不过很奇怪这位网友把issue提到了babel-loader这个项目下。</p>
+<p>然后针对这个问题，有老外网友介绍到了<code>transform-runtime</code>等。但是经过我的测试，这也并不是一个很好的实践。</p>
+<h2 id="动态识别"><a href="#动态识别" class="headerlink" title="动态识别"></a>动态识别</h2><p>为了polyfill 这件事情，其实是有两种思路可循的。第一个思路是根据浏览器缺失哪些特性来补全哪些特性，这个思路的代表是  <a target="_blank" rel="noopener" href="https://polyfill.io/v2/docs/">polyfill-service</a>,这个<a target="_blank" rel="noopener" href="https://github.com/Financial-Times/polyfill-service">项目</a> 。它能够根据浏览器的UA来判断当前浏览器缺失哪些特性，进而进行补强。但是经过我的调研，这个项目在天朝可能还存在水土不服的问题，一个很明显的事实是将安卓微信内置的QQ浏览器X5交给这个库来处理，它会认为当前的浏览器是safari，原因大概是因为UA上有safari这个字段。考虑到我们天朝还有类似微信这样很怪异的UA，我认为并不适合在当前这个时间来对此进行实践。(在这里多说两句，polyfill-service这个库和另外一个知名项目fastclick同属于英国金融时报，而最近我发现fastclick在现代浏览器上也有一些tricky的地方，在他们的issue区有能够找到一些吐槽，然而，这个库已经两年多没有人维护了)</p>
+<p>把polyfill-service仍在一边，我们接下来说另一个思路。能不能根据我使用了多少新API，来决定我引入多少polyfill的内容呢？比如我只在我的项目中使用了ES6的<code>set</code>，没有使用其他新API。那么我引入polyfill的时候，能不能只引入set的polyfill呢？答案当然是可以的，这就是babel-7的新特性，没错，由于当前稳定版是babel-6，因此这个特性还处在测试阶段。但是根据我自己的测试，表现很多。</p>
+<p>不过有趣的是，虽然还只是Beta版，Babel却将之写入了正式版的文档当中，结果当时我为了测试这个新特性，都已经测试到怀疑人生了。文档戳<a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/babel-preset-env/#usebuiltins">这里</a>,感兴趣的同学可以去看看。总之，实际上只是对babel增加一项配置。</p>
+<pre><code>      &quot;useBuiltIns&quot;: &quot;usage&quot;
+</code></pre>
+<p>不过由于涉及到升级<code>Babel</code>，当时我在测试的时候，还是有些不顺的。但是一旦迁移成功，应用上<code>useBuiltIns</code>的这项配置，的确能够让polyfill的体积大幅度减小。</p>
+<h1 id="browserlist"><a href="#browserlist" class="headerlink" title="browserlist"></a>browserlist</h1><p>前面的动态polyfill，的确可以让webpack生成的js文件体积更小，但是能不能再小一些呢？毕竟我们前端开发的目的就是极致的用户体验，当然可以。这个时候browserlist能够帮到我们。</p>
+<p>关于这个话题，网路上相关的文章非常多，我就不再多谈了。</p>
+<p>感兴趣的同学，可以看看<code>ant-design</code>项目中使用的browserlist。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ant-design/antd-tools/blob/master/lib/getBabelCommonConfig.js">https://github.com/ant-design/antd-tools/blob/master/lib/getBabelCommonConfig.js</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/08/07/201808/react-7-better-ec-index/" rel="prev" title="React开发实践7--首页优化的过程">
+      <i class="fa fa-chevron-left"></i> React开发实践7--首页优化的过程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/09/01/201809/webpack-and-autoprefix/" rel="next" title="在webpack项目中配置postcss，实现autoprefix">
+      在webpack项目中配置postcss，实现autoprefix <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#babel-preset-env"><span class="nav-number">1.</span> <span class="nav-text">babel-preset-env</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#babel-polyfill"><span class="nav-number">2.</span> <span class="nav-text">babel-polyfill</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E8%BF%99%E4%B9%88%E5%A4%A7"><span class="nav-number">2.1.</span> <span class="nav-text">为什么你这么大</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%AF%86%E5%88%AB"><span class="nav-number">2.2.</span> <span class="nav-text">动态识别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#browserlist"><span class="nav-number">3.</span> <span class="nav-text">browserlist</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="需求自从在本单位工作之后，大部分时候做的都是移动开发。因此，也就不可避免地会遇到很多移动开发的坑。这些坑来源于真实的业务场景，因此，简单总结一下。 第一个坑是关于导航栏的，我们知道市面上的大部分国产APP，它的iOS版本和Android版本，在UI设计上几乎都没有区别，我们做的APP也是如此。因此，也是会在APP的底部有一个导航栏。 这个时候，有意思的事情就出现了。如果是H5页面的话，通常情况">
+<meta property="og:type" content="article">
+<meta property="og:title" content="薛定谔的导航栏">
+<meta property="og:url" content="http://hktkdy.com/2018/05/30/201805/footer/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="需求自从在本单位工作之后，大部分时候做的都是移动开发。因此，也就不可避免地会遇到很多移动开发的坑。这些坑来源于真实的业务场景，因此，简单总结一下。 第一个坑是关于导航栏的，我们知道市面上的大部分国产APP，它的iOS版本和Android版本，在UI设计上几乎都没有区别，我们做的APP也是如此。因此，也是会在APP的底部有一个导航栏。 这个时候，有意思的事情就出现了。如果是H5页面的话，通常情况">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/javascript.png">
+<meta property="article:published_time" content="2018-05-30T10:24:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.094Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/javascript.png">
+
+<link rel="canonical" href="http://hktkdy.com/2018/05/30/201805/footer/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>薛定谔的导航栏 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2018/05/30/201805/footer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          薛定谔的导航栏
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-05-30 18:24:49" itemprop="dateCreated datePublished" datetime="2018-05-30T18:24:49+08:00">2018-05-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/05/30/201805/footer/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/05/30/201805/footer/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/javascript.png"></p>
+<hr>
+<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>自从在本单位工作之后，大部分时候做的都是移动开发。因此，也就不可避免地会遇到很多移动开发的坑。这些坑来源于真实的业务场景，因此，简单总结一下。</p>
+<p>第一个坑是关于导航栏的，我们知道市面上的大部分国产APP，它的iOS版本和Android版本，在UI设计上几乎都没有区别，我们做的APP也是如此。因此，也是会在APP的底部有一个导航栏。</p>
+<p>这个时候，有意思的事情就出现了。如果是H5页面的话，通常情况下，这个底部导航栏都是通过fixed定位来实现的。而由于移动终端虚拟键盘的作用，Android和iOS对此的反应又并不相同，因此，就出现了这个坑。</p>
+<p>我看了很多APP，比如美团，微信，孩子王等APP，当光标聚集到输入框上面的时候，往往会有一个动画，然后将这个搜索页全屏处理。且不论这些APP是否是内嵌H5的，但这样的交互，如果在H5上面也如是一样，就能避免上面提到的由于fixed定位产生的坑。</p>
+<h1 id="这个坑的详细表现"><a href="#这个坑的详细表现" class="headerlink" title="这个坑的详细表现"></a>这个坑的详细表现</h1><p>在iOS上面的表现：</p>
+<blockquote>
+<p>软键盘唤起后，页面的 fixed 元素将失效（即无法浮动，也可以理解为变成了 absolute 定位），所以当页面超过一屏且滚动时，失效的 fixed 元素就会跟随滚动了。（ 来自<a target="_blank" rel="noopener" href="http://efe.baidu.com/blog/mobile-fixed-layout/">Web移动端Fixed布局的解决方案
+</a> ）</p>
+</blockquote>
+<p>而在Android上面的表现是:</p>
+<p> 软键盘唤起后，页面的 fixed 元素并没有失效，但是视窗的高度将重新被计算。(原来的视窗高度-虚拟键盘的高度)</p>
+<p>所以，如果我们仍然要把底部导航栏和<input/>元素放在一个页面上，就需要着手进行改造。不然，就非常影响用户体验。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p><a target="_blank" rel="noopener" href="http://efe.baidu.com/blog/mobile-fixed-layout/">Web移动端Fixed布局的解决方案
+</a> 提到的当然是一种解决方案，但是，我试着总是不能符合我的要求。</p>
+<p>这就说会到我这篇文的题目《薛定谔的导航栏》，我的想法是这样的：如果弹出了虚拟键盘，则将导航栏的样式设置为<code> display:none</code>，反之，如果隐藏了虚拟键盘，则将导航栏的样式设置为<code>display:block; position:fixed</code>。所以，一个小白，如果看到了弹出虚拟键盘的页面，你问他，现在到底页面上存在不存在导航栏呢？</p>
+<p>假如他回答存在，你把这个虚拟键盘隐藏掉，结果当然是有的。可是当时有没有呢？并没有吧。</p>
+<p>加入他回答不存在，你把这个虚拟键盘隐藏点，结果却是有的，很明显又和实际看到的不一样了。</p>
+<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><p>所以接下来和核心问题，就是如何在iOS上和Android上去检测虚拟键盘的弹出和隐藏了。</p>
+<p>下面进入直接贴代码说明问题环节，这里要说明一下，由于我使用了React框架，因此，实际上，我下面写的代码都是JSX文件的一部分</p>
+<h2 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h2><pre><code>addIosKeyboardHandler = () =&gt; &#123;  // IOS上，弹出输入框后，同样隐藏底部导航。
+    document.addEventListener(&#39;focus&#39;, this.IosFocusHandler, true);
+    document.addEventListener(&#39;focusout&#39;, this.focusoutHandler, true);
+&#125;
+
+removeKeyboardHandler = () =&gt; &#123;
+    document.removeEventListener(&#39;focus&#39;, this.IosFocusHandler, true);
+    document.removeEventListener(&#39;focusout&#39;, this.focusoutHandler, true);
+&#125;
+
+IosFocusHandler = () =&gt; &#123;
+    if (document.activeElement.tagName === &#39;INPUT&#39; || document.activeElement.tagName === &#39;TEXTAREA&#39;) &#123;
+        window.scrollTo(0, 0);
+        const footer = document.getElementById(&#39;footer&#39;);
+        footer.classList.remove(&#39;fixed&#39;);
+        footer.classList.add(&#39;hidden&#39;);
+        window.setTimeout(() =&gt; &#123;
+            document.activeElement.scrollIntoViewIfNeeded();
+        &#125;, 100);
+    &#125;
+&#125;
+focusoutHandler =() =&gt; &#123;
+    window.scrollTo(0, 0);
+    const footer = document.getElementById(&#39;footer&#39;);
+    footer.classList.add(&#39;fixed&#39;);
+    footer.classList.remove(&#39;hidden&#39;);
+&#125;
+</code></pre>
+<p>这里有几个点需要注意：</p>
+<ul>
+<li>focus事件需要通过捕获(capture: true)的形式才能触发，在document上面的监听</li>
+<li>focusout要比blur事件在描述虚拟键盘隐藏这件事情上更加准确，blur事件不会冒泡</li>
+<li>当弹出输入法准备敲击时，先将页面滚动到顶部</li>
+</ul>
+<h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><p>Android 上和IOS上又有一些不同，主要的不同点在于：当弹出虚拟键盘后，通过点击返回键，隐藏掉虚拟键盘，这个时候，如果我们对此不做任何处理的话，那么光标还是会在输入框里面，换句话说，此时对于输入框俩说，并没有发生blur事件，因为很显然，光标还在输入框里面。</p>
+<p>因此还是根据Android上的表现来做判断，既然弹出虚拟键盘会让视窗的高度变小，而收起虚拟键盘又会让视窗的高度变大，那么我们就从这里着手。</p>
+<pre><code>addAndroidKeyboardHandler = () =&gt; &#123;
+    this.maxHeight = document.documentElement.clientHeight;
+    window.addEventListener(&#39;resize&#39;, this.AndroidKeyboardHandler.bind(this, this.maxHeight));
+    document.addEventListener(&#39;focusout&#39;, this.focusoutHandler, true);
+&#125;
+
+removeAndroidKeyboardHandler = () =&gt; &#123;
+    window.removeEventListener(&#39;resize&#39;, this.AndroidKeyboardHandler.bind(this, this.maxHeight));
+    document.removeEventListener(&#39;focusout&#39;, this.focusoutHandler, true);
+&#125;
+
+AndroidKeyboardHandler = maxHeight =&gt; &#123; // 解决 Android 弹出输入框时，底部导航一同浮起的问题。隐藏底部导航
+    const presentHeight = window.innerHeight;
+    const footer = document.getElementById(&#39;footer&#39;);
+    if (document.activeElement.tagName === &#39;INPUT&#39; || document.activeElement.tagName === &#39;TEXTAREA&#39;) &#123;
+        if (presentHeight &lt; maxHeight) &#123; // 隐藏底部导航
+            footer.classList.remove(&#39;fixed&#39;);
+            footer.classList.add(&#39;hidden&#39;);
+            window.setTimeout(() =&gt; &#123;
+                document.activeElement.scrollIntoViewIfNeeded();
+            &#125;, 100);
+        &#125; else &#123;
+            document.activeElement.blur();
+            footer.classList.add(&#39;fixed&#39;);
+            footer.classList.remove(&#39;hidden&#39;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="小提示"><a href="#小提示" class="headerlink" title="小提示"></a>小提示</h2><p>这个时候只需要把我上面代码中的addIosKeyboardHandler 方法在<code>componentDidMount</code>的时候，进行触发即可。</p>
+<p>当然，这里可能要补充一个小知识点，由于<code>componentDidMount</code>的时候，通过<code>React</code>渲染的dom已经处于loaded的状态，因此无需再像以往通过<code>window.onload</code>或者jq的<code>$(document).ready</code>去添加事件处理程序。</p>
+<h2 id="下面的问题"><a href="#下面的问题" class="headerlink" title="下面的问题"></a>下面的问题</h2><p>这样的方法可以解决大部分的问题。但是还是会有一些历史遗留代码与此方案相处地并不融洽。</p>
+<p>比如在购物车页面，会有一个输入框，可以改变选定商品的数量。购物车的结算button是fixed的定位，当时考虑到在他下面还有导航栏，因此，提前计算好了导航栏的高度。于是这个部分的样式大概是这样的：</p>
+<pre><code>  display: fixed;
+  bottom: 1.4rem;
+</code></pre>
+<p>恩，我们使用了rem布局。结果就会造成由于我前面的处理，只会在出现虚拟键盘的时候将footer（底部导航栏）隐藏掉，并不会对结算button进行处理，因此，如果看Android上的表现，这个时候，这个button所在的部分就会和键盘之间有1.4rem的间距。而诡异的是，结算button部分还是处于fixed的状态，而这，并非我所期待的。</p>
+<p>这就是另外一个问题了。</p>
+<p>所以，还是说回来。这也是为什么之前看到其他一些人有一些友情提示：<strong>在做移动开发的时候，不要将input元素和其他fixed的元素放在一起</strong>。而像我这种更要命，我直接在页面底部放了两个fixed的元素。</p>
+<p>我目前的措施是针对这种情况，单独处理。毕竟，这也只是特例。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/05/29/201805/react-practice-4/" rel="prev" title="React开发实践--4嵌套路由的应用">
+      <i class="fa fa-chevron-left"></i> React开发实践--4嵌套路由的应用
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/05/31/201805/react-practice-5/" rel="next" title="React开发实践--5React-router 的 updateBlocker是个什么东东">
+      React开发实践--5React-router 的 updateBlocker是个什么东东 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9C%80%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%99%E4%B8%AA%E5%9D%91%E7%9A%84%E8%AF%A6%E7%BB%86%E8%A1%A8%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">这个坑的详细表现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS"><span class="nav-number">3.1.</span> <span class="nav-text">iOS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android"><span class="nav-number">3.2.</span> <span class="nav-text">Android</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E6%8F%90%E7%A4%BA"><span class="nav-number">3.3.</span> <span class="nav-text">小提示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.4.</span> <span class="nav-text">下面的问题</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

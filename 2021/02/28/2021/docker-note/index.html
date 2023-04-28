@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="docker笔记，一些常用的命令，对我来说差不多了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker笔记">
+<meta property="og:url" content="http://hktkdy.com/2021/02/28/2021/docker-note/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="docker笔记，一些常用的命令，对我来说差不多了">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-28T03:41:16.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.098Z">
+<meta property="article:author" content="Zhangolve">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://hktkdy.com/2021/02/28/2021/docker-note/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>docker笔记 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2021/02/28/2021/docker-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          docker笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-28 11:41:16" itemprop="dateCreated datePublished" datetime="2021-02-28T11:41:16+08:00">2021-02-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/02/28/2021/docker-note/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/02/28/2021/docker-note/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <div class="post-description">docker笔记，一些常用的命令，对我来说差不多了</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="初识"><a href="#初识" class="headerlink" title="初识"></a>初识</h1><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=isr6cPKy8eg&pbjreload=102">玩转Dockerの第一弹，入门篇。原理及背景知识</a></p>
+<p>这个视频带我入门</p>
+<h1 id="我用到的一些常用命令"><a href="#我用到的一些常用命令" class="headerlink" title="我用到的一些常用命令"></a>我用到的一些常用命令</h1><h2 id="docker-pull"><a href="#docker-pull" class="headerlink" title="docker pull"></a>docker pull</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull user/repo</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>拉取镜像，这里要注意国内源可能很慢，需要换源</p>
+<h2 id="docker-build"><a href="#docker-build" class="headerlink" title="docker build"></a>docker build</h2><p>本地测试，需要进行docker build 生成image</p>
+<h2 id="docker-images"><a href="#docker-images" class="headerlink" title="docker images"></a>docker images</h2><p>查看生成的docker image</p>
+<h2 id="docker-rm-vs-docker-image-rm"><a href="#docker-rm-vs-docker-image-rm" class="headerlink" title="docker rm vs docker image rm"></a>docker rm vs docker image rm</h2><p>前者是移除容器，如果容器在运行当中，可以使用docker rm container_id -f 的命令。 后者是移除镜像。后者也可以简写为 <code>docker rmi</code></p>
+<p>移除所有的没有用到的image 镜像：</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/33913020/docker-remove-none-tag-images">https://stackoverflow.com/questions/33913020/docker-remove-none-tag-images</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker rmi $(docker images --filter &quot;dangling=true&quot; -q --no-trunc) -f</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>那么又为什么会出现none镜像呢？</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/53221412/why-the-none-image-appears-in-docker-and-how-can-we-avoid-it">https://stackoverflow.com/questions/53221412/why-the-none-image-appears-in-docker-and-how-can-we-avoid-it</a></p>
+<h2 id="docker-run-options"><a href="#docker-run-options" class="headerlink" title="docker run options"></a>docker run options</h2><h3 id="–restart-简写-r"><a href="#–restart-简写-r" class="headerlink" title="–restart 简写-r"></a>–restart 简写-r</h3><p>There are four restart policies you can choose from — Off, On-failure, Unless-stopped, and Always. As the terms state, ‘Off’ means that the container won’t be restarted if it fails or stops. ‘On-failure’ ensures the container restarts only in the case of a failure that’s not caused by the user. ‘Unless-stopped’ restarts the container only when any user executes a command to stop the container, not when it fails because of an error. ‘Always’ restarts the container whether the it’s caused by an error, or is executed by a user, or if Docker is restarted.</p>
+<h3 id="–volume简写-v"><a href="#–volume简写-v" class="headerlink" title="–volume简写 -v"></a>–volume简写 -v</h3><p>卷的概念要清楚</p>
+<p>local_path:docker_path</p>
+<p>对path进行映射</p>
+<h3 id="–port-简写-p"><a href="#–port-简写-p" class="headerlink" title="–port 简写 -p"></a>–port 简写 -p</h3><p>端口号进行映射</p>
+<h3 id="–name-简写-n"><a href="#–name-简写-n" class="headerlink" title="–name 简写 -n"></a>–name 简写 -n</h3><p>给docker 容器起一个名字，便于以后进行管理</p>
+<h2 id="docker-ps"><a href="#docker-ps" class="headerlink" title="docker ps"></a>docker ps</h2><p>查看所有容器的状态，包括容器名称，id，运行时常，运行状态等等。</p>
+<h3 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h3><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/37471929/docker-container-keeps-on-restarting-again-on-again/37473466">https://stackoverflow.com/questions/37471929/docker-container-keeps-on-restarting-again-on-again/37473466</a></p>
+<p>容器一直重启</p>
+<p>一个原因是容器设置了restart选项为always。 而容器又发生了错误，根本起不来，于是就陷入了往复重启之中。我自己遇到的问题，就是我的容器，在build的时候，只支持了x86平台，而不支持ARM平台，导致在我的笔记本上容器能够跑起来，但是在我的另外一台机器上，就跑不起来容器，一直重启。这个时候，需要注意的是，由于我当时给容器设置的选项是后台run，不看日志，所以一直处于一脸懵逼的状态，直到我把容器在前台启动，才显示错误日志，通过错误日志才发现原来是因为build平台有问题。</p>
+<p>如果想要看docker log可以运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs --tail 50 --follow --timestamps mediawiki_web_1</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/59000007/standard-init-linux-go207-exec-user-process-caused-exec-format-error">https://stackoverflow.com/questions/59000007/standard-init-linux-go207-exec-user-process-caused-exec-format-error</a></p>
+<p>看起来是因为build的系统不同引起的。</p>
+<h2 id="docker-help"><a href="#docker-help" class="headerlink" title="docker help"></a>docker help</h2><h3 id="docker-run-–help"><a href="#docker-run-–help" class="headerlink" title="docker run –help"></a>docker run –help</h3><p>对于每一个子的功能，都可以通过docker xxx –help查看详细的使用说明</p>
+<p>查看帮助信息</p>
+<h1 id="使用docker-镜像"><a href="#使用docker-镜像" class="headerlink" title="使用docker 镜像"></a>使用docker 镜像</h1><p>需要注意，一定要看支持的OS的架构，一般来说如果你的机器是X86架构，那么一般的web应用应该都能支持，这个时候你需要注意的是那些Loi，也就是物联网应用是否支持。同理，如果你的机器是ARM架构的，你需要看那个web应用是否支持ARM。</p>
+<p>我们可以在dockerhub上很方便地查看到这些信息。如果支持x86，会标注linux&#x2F;amd64。如果支持ARM，会标注linux&#x2F;arm64。</p>
+<p>如果是我们自己编译build image，更需要注意这一点了</p>
+<p>通过GitHub actions编译，可以使用v2，带platforms参数的actions进行编译。</p>
+<h1 id="使用watchtower-自动更新container"><a href="#使用watchtower-自动更新container" class="headerlink" title="使用watchtower 自动更新container"></a>使用watchtower 自动更新container</h1><p><a target="_blank" rel="noopener" href="https://containrrr.dev/watchtower/arguments/#poll_interval">https://containrrr.dev/watchtower/arguments/#poll_interval</a></p>
+<p>docker run –run-once -d <br>    –name watchtower2  <br>    -v &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock <br>    containrrr&#x2F;watchtower</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Scheduling¶</span><br><span class="line">Cron expression in 6 fields (rather than the traditional 5) which defines when and how often to check for new images. Either --interval or the schedule expression can be defined, but not both. An example: --schedule &quot;0 0 4 * * *&quot;</span><br><span class="line"></span><br><span class="line">Argument: --schedule, -s</span><br><span class="line">Environment Variable: WATCHTOWER_SCHEDULE</span><br><span class="line">Type: String</span><br><span class="line">Default: -</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Poll interval¶</span><br><span class="line">Poll interval (in seconds). This value controls how frequently watchtower will poll for new images. Either --schedule or a poll interval can be defined, but not both.</span><br><span class="line"></span><br><span class="line">Argument: --interval, -i</span><br><span class="line">Environment Variable: WATCHTOWER_POLL_INTERVAL</span><br><span class="line">Type: Integer</span><br><span class="line">Default: 86400 (24 hours)</span><br></pre></td></tr></table></figure>
+
+
+<p>如果想要立刻更新某个容器，可以使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm \</span><br><span class="line">    -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">    containrrr/watchtower \</span><br><span class="line">    --run-once \</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/25/2021/%E6%96%B0%E9%97%BB%E5%85%B3%E6%B3%A8%E7%82%B9%E7%9A%84%E6%94%B9%E5%8F%98/" rel="prev" title="我新闻关注点的改变">
+      <i class="fa fa-chevron-left"></i> 我新闻关注点的改变
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/06/2021/%E9%97%B2%E8%AF%9D%E4%BA%94%E4%B8%80/" rel="next" title="闲话五一">
+      闲话五一 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9D%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">初识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%91%E7%94%A8%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">我用到的一些常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-pull"><span class="nav-number">2.1.</span> <span class="nav-text">docker pull</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-build"><span class="nav-number">2.2.</span> <span class="nav-text">docker build</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-images"><span class="nav-number">2.3.</span> <span class="nav-text">docker images</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-rm-vs-docker-image-rm"><span class="nav-number">2.4.</span> <span class="nav-text">docker rm vs docker image rm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-run-options"><span class="nav-number">2.5.</span> <span class="nav-text">docker run options</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%80%93restart-%E7%AE%80%E5%86%99-r"><span class="nav-number">2.5.1.</span> <span class="nav-text">–restart 简写-r</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%80%93volume%E7%AE%80%E5%86%99-v"><span class="nav-number">2.5.2.</span> <span class="nav-text">–volume简写 -v</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%80%93port-%E7%AE%80%E5%86%99-p"><span class="nav-number">2.5.3.</span> <span class="nav-text">–port 简写 -p</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%80%93name-%E7%AE%80%E5%86%99-n"><span class="nav-number">2.5.4.</span> <span class="nav-text">–name 简写 -n</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-ps"><span class="nav-number">2.6.</span> <span class="nav-text">docker ps</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B8%A9%E5%9D%91"><span class="nav-number">2.6.1.</span> <span class="nav-text">踩坑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-help"><span class="nav-number">2.7.</span> <span class="nav-text">docker help</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-run-%E2%80%93help"><span class="nav-number">2.7.1.</span> <span class="nav-text">docker run –help</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8docker-%E9%95%9C%E5%83%8F"><span class="nav-number">3.</span> <span class="nav-text">使用docker 镜像</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8watchtower-%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0container"><span class="nav-number">4.</span> <span class="nav-text">使用watchtower 自动更新container</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

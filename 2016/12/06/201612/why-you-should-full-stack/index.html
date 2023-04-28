@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="最近几年，我们开始给开发者划分两种不同的职业路径：前端和后端。但是我们总是忘记了第三种选择：全栈 全栈开发已经被提出有一段时间了，它曾经被直接叫做“开发”。 但是由于开发工作的复杂性持续增长，我们的UI（用户界面）需要从其背后的逻辑中解耦出来。于是，现在，我们也就有了两个不同的领域，前端和后端。 让我们探索全栈开发，看看当考虑到各方面与之关联的挑战时，沿着这样一条路径走下去，是不是行得通。 我在一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么你需要成为一个全栈开发工程师？">
+<meta property="og:url" content="http://hktkdy.com/2016/12/06/201612/why-you-should-full-stack/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="最近几年，我们开始给开发者划分两种不同的职业路径：前端和后端。但是我们总是忘记了第三种选择：全栈 全栈开发已经被提出有一段时间了，它曾经被直接叫做“开发”。 但是由于开发工作的复杂性持续增长，我们的UI（用户界面）需要从其背后的逻辑中解耦出来。于是，现在，我们也就有了两个不同的领域，前端和后端。 让我们探索全栈开发，看看当考虑到各方面与之关联的挑战时，沿着这样一条路径走下去，是不是行得通。 我在一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/hero.gif">
+<meta property="article:published_time" content="2016-12-06T05:16:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.094Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="译文">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/hero.gif">
+
+<link rel="canonical" href="http://hktkdy.com/2016/12/06/201612/why-you-should-full-stack/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>为什么你需要成为一个全栈开发工程师？ | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2016/12/06/201612/why-you-should-full-stack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          为什么你需要成为一个全栈开发工程师？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-06 13:16:49" itemprop="dateCreated datePublished" datetime="2016-12-06T13:16:49+08:00">2016-12-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2016/12/06/201612/why-you-should-full-stack/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2016/12/06/201612/why-you-should-full-stack/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>最近几年，我们开始给开发者划分两种不同的职业路径：<strong>前端</strong>和<strong>后端</strong>。但是我们总是忘记了第三种选择：<strong>全栈</strong></p>
+<p>全栈开发已经被提出有一段时间了，它曾经被直接叫做“开发”。</p>
+<p>但是由于开发工作的复杂性持续增长，我们的UI（用户界面）需要从其背后的逻辑中解耦出来。于是，现在，我们也就有了两个不同的领域，前端和后端。</p>
+<p>让我们探索全栈开发，看看当考虑到各方面与之关联的挑战时，沿着这样一条路径走下去，是不是行得通。</p>
+<p>我在一家名叫<a target="_blank" rel="noopener" href="http://fortech.ro/">Fortech</a> 的公司担任全栈开发工程师，我工作的一大部分是来领导一支全栈开发工程师团队。</p>
+<p>在我们的团队里，如果需要的话，每个人都能够在前端和后端之间切换，我们团队的文化也基于此。</p>
+<span id="more"></span>
+
+<h3 id="但是什么是全栈呢？"><a href="#但是什么是全栈呢？" class="headerlink" title="但是什么是全栈呢？"></a>但是什么是全栈呢？</h3><p>全栈不特指网页开发，或者任何其他形式的开发工作。</p>
+<p>全栈意味着你能够献身于一个系统的每一个层面。无论这个子系统被分割地怎样支离破碎，你都能够看到更广阔的图景。</p>
+<p>今天，你可能在做一个酷炸天的下拉菜单组件。到了明天，你可能要做一个适应这个下拉菜单的接口出来，可是到了后天，你可能又要不得不潜入到数据库中，来提高你的接口获取数据的能力。</p>
+<p>在技术分享会上，我和很多人都探讨过全栈开发，我注意到越来越多的开发者对全栈开发持怀疑态度。</p>
+<p>反对全栈开发的人说，为了能够在各方面都有所涉猎，你首先需要在一个特定的子领域成为专家。</p>
+<p>我不同意他们的观点。</p>
+<p>我认为技术是以一种让我们更加易于开发的方式来进化的，只要我们首先能够掌握一整套正确的技术栈。</p>
+<h3 id="对怀疑者的一些回答"><a href="#对怀疑者的一些回答" class="headerlink" title="对怀疑者的一些回答"></a>对怀疑者的一些回答</h3><p>前面，我已经解释了为什么我认为全栈开发是一条可选择的道路，至少还是一条很不错的道路。</p>
+<h3 id="问题-1-一支全栈开发的团队有哪些优势？"><a href="#问题-1-一支全栈开发的团队有哪些优势？" class="headerlink" title="问题 #1: 一支全栈开发的团队有哪些优势？"></a>问题 #1: 一支全栈开发的团队有哪些优势？</h3><p>作为一个全栈开发者，你可以很容易地从你的应用程序的一部分跳到另外一部分，当设计新的功能时，这会是巨大的优势。</p>
+<p>当你能够明白一个功能背后的业务需求然后据此着手工作时，全栈开发真正的价值才得以提升。</p>
+<p>有一支多面手的团队也意味着，当新的机遇出现的时候，你能够快速地分配任务。</p>
+<p>有一支多面手的团队也意味着，开发者们在一起工作的时间越长，在你的团队内部产生的化学反应越良好。即使一个项目是从构建一个API接口开始的，然后逐渐拓展到移动端和网页端，这群人也能够一起完成整个过程。</p>
+<h3 id="问题-2-我怎么抽时间来一直跟上这么多技术和框架的脚步？"><a href="#问题-2-我怎么抽时间来一直跟上这么多技术和框架的脚步？" class="headerlink" title="问题 #2 :我怎么抽时间来一直跟上这么多技术和框架的脚步？"></a>问题 #2 :我怎么抽时间来一直跟上这么多技术和框架的脚步？</h3><p>我认为即便只是跟上前端或者后端开发潮流都是不可能的。所以让我们暂时放下追逐潮流，专注于当前你能够做到的。</p>
+<p>任何一个好的全栈开发工程师都从掌握一整套的开发技术做起。你应该能够完成这些基本的任务：写一个cookie，连接到一个REST接口(REST endpoint)，完成一个数据库序列，等等。</p>
+<p>随着时间的推移，你能够在这些技术之上，通过添加一些新的工具和逻辑，来构建起一个完整的项目。</p>
+<p><strong>追逐技术潮流并不是你表现出色的标志，真正地能看出你水平的是：你有能力在需要一项技术的时候快速跟进，学习它，应用它。</strong></p>
+<h3 id="问题-3：是否一个全栈开发工程师需要将他们的工作平均分到前端和后端"><a href="#问题-3：是否一个全栈开发工程师需要将他们的工作平均分到前端和后端" class="headerlink" title="问题 #3：是否一个全栈开发工程师需要将他们的工作平均分到前端和后端"></a>问题 #3：是否一个全栈开发工程师需要将他们的工作平均分到前端和后端</h3><p>不。你需要根据你的项目需求来进行划分。这都是要有语境的，要具体问题，具体分析。</p>
+<p>你需要能够在一个项目的任何时间点接入到这个项目的任何一个部分，这在今天这个敏捷开发时代尤为重要。</p>
+<h3 id="问题-4-有选择地偏好一种类型的开发工作可以吗？"><a href="#问题-4-有选择地偏好一种类型的开发工作可以吗？" class="headerlink" title="问题 #4: 有选择地偏好一种类型的开发工作可以吗？"></a>问题 #4: 有选择地偏好一种类型的开发工作可以吗？</h3><p>当然没问题。大多数人都会有所侧重。</p>
+<p>有些时候，你会专注于系统中的某一部分，并且需要掌握它的生态，但是不要对该系统的其他部分完全视而不见。</p>
+<p>我认为这关乎个人的选择，并不是其他人强加的。有些人就很享受前端开发的工作，那么他就做得越来越好，与此相应的，有些人就热爱后端开发。</p>
+<p>就像是学习怎样使用<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/The_Force_%28Star_Wars%29">「原力」(the Force)</a>,你首先要学会怎样光剑(lightsaber)的启动和停止。当你已经熟练了这些操作之后，你再决定是学习 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=GO_xfR64qSk">意念控制</a>还是  <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Zzs-OvfG8tE">迫使别人窒息</a>.</p>
+<p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/hero.gif"> </p>
+<p>作为一个软件工程师，这正是与星球大战的相似之处。</p>
+<h3 id="但是不要停在代码上"><a href="#但是不要停在代码上" class="headerlink" title="但是不要停在代码上"></a>但是不要停在代码上</h3><p>我们往往将我们的技术实体化，就是我们工作中用到的编程语言或者我们用过的编程工具。</p>
+<p>但是一个更好的方式来思考技术，是从全栈的角度来看待，是将你能够承担的责任进行评估，是把这种评估作为你工作的一部分。</p>
+<p>你能够完成基本的UI(用户界面)开发任务，架构设置，数据分析吗？你能够参与到产品本身的开发流程当中吗？</p>
+<p>我的团队和我们的客户密切配合。我们发现我们的开发者们投入到业务流程之中是非常有用的，一旦开发者们明白了客户的问题所在，他们就开始跃跃欲试想要解决客户们的问题了。</p>
+<p>这个时候，每一个人都能够为一个已知的问题提供一个解决方案，不会出现一个特定的问题只能找特定的人去解决。</p>
+<p>我并不是说我们的整个团队都是开发者才行，而是说要赋予开发者们更多的责任，而不是只让他们负责编写代码，这样一来，他们能够在这样一个灵活的环境下受益更多。</p>
+<p>这样也能够有助于我们将思维方式从单纯地想要解决问题过渡到专注于问题本身。你从一开始就认识到了问题的本质所在，而不只是它的表现特征，那么你就也能够据此设计出最优的方案来解决问题了。</p>
+<h3 id="最后一点说明"><a href="#最后一点说明" class="headerlink" title="最后一点说明"></a>最后一点说明</h3><p>全栈开发意味着跳出你的舒适区，为了产品的成功接受挑战。</p>
+<p>肯定有很多好的论点反对全栈开发文化，但是我希望这篇文章已经反驳了其中那些毫无说服力的观点。</p>
+<p>实现全栈并不总是最好的策略。许多产品大到任何一个个人都不能完全理解。比如，谷歌的代码库里面有20亿行代码。在这个层面上，有所专攻是必要的。</p>
+<p>全栈开发应该是处理问题的方法，而不是一种死板的思维方式。</p>
+<p>你如何看待未来的全栈开发？在下面评论中留下你的观点吧。</p>
+<blockquote>
+<p>本文转载自：<a target="_blank" rel="noopener" href="http://www.zcfy.cc/">众成翻译</a><br>译者：<a target="_blank" rel="noopener" href="http://www.zcfy.cc/@zhangolve">zhangolve</a><br>链接：<a target="_blank" rel="noopener" href="http://www.zcfy.cc/article/1878">http://www.zcfy.cc/article/1878</a><br>原文：<a target="_blank" rel="noopener" href="https://medium.freecodecamp.com/full-stack-between-reality-and-wishful-thinking-43110005f2a2#.vmvlzet2z">https://medium.freecodecamp.com/full-stack-between-reality-and-wishful-thinking-43110005f2a2#.vmvlzet2z</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AF%91%E6%96%87/" rel="tag"># 译文</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/12/02/201612/HandBook/" rel="prev" title="从git下载到本地调试代码的全流程">
+      <i class="fa fa-chevron-left"></i> 从git下载到本地调试代码的全流程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/12/13/201612/react-stateless-functional-components-nine-wins-you-might-have-overlooked/" rel="next" title="【译】九个你忽略的React 无状态组件的优势">
+      【译】九个你忽略的React 无状态组件的优势 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%86%E6%98%AF%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%A8%E6%A0%88%E5%91%A2%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">但是什么是全栈呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%80%80%E7%96%91%E8%80%85%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9B%9E%E7%AD%94"><span class="nav-number">2.</span> <span class="nav-text">对怀疑者的一些回答</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-1-%E4%B8%80%E6%94%AF%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91%E7%9A%84%E5%9B%A2%E9%98%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BC%98%E5%8A%BF%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">问题 #1: 一支全栈开发的团队有哪些优势？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-2-%E6%88%91%E6%80%8E%E4%B9%88%E6%8A%BD%E6%97%B6%E9%97%B4%E6%9D%A5%E4%B8%80%E7%9B%B4%E8%B7%9F%E4%B8%8A%E8%BF%99%E4%B9%88%E5%A4%9A%E6%8A%80%E6%9C%AF%E5%92%8C%E6%A1%86%E6%9E%B6%E7%9A%84%E8%84%9A%E6%AD%A5%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">问题 #2 :我怎么抽时间来一直跟上这么多技术和框架的脚步？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-3%EF%BC%9A%E6%98%AF%E5%90%A6%E4%B8%80%E4%B8%AA%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9C%80%E8%A6%81%E5%B0%86%E4%BB%96%E4%BB%AC%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%9D%87%E5%88%86%E5%88%B0%E5%89%8D%E7%AB%AF%E5%92%8C%E5%90%8E%E7%AB%AF"><span class="nav-number">5.</span> <span class="nav-text">问题 #3：是否一个全栈开发工程师需要将他们的工作平均分到前端和后端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-4-%E6%9C%89%E9%80%89%E6%8B%A9%E5%9C%B0%E5%81%8F%E5%A5%BD%E4%B8%80%E7%A7%8D%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%BC%80%E5%8F%91%E5%B7%A5%E4%BD%9C%E5%8F%AF%E4%BB%A5%E5%90%97%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">问题 #4: 有选择地偏好一种类型的开发工作可以吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%86%E6%98%AF%E4%B8%8D%E8%A6%81%E5%81%9C%E5%9C%A8%E4%BB%A3%E7%A0%81%E4%B8%8A"><span class="nav-number">7.</span> <span class="nav-text">但是不要停在代码上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E4%B8%80%E7%82%B9%E8%AF%B4%E6%98%8E"><span class="nav-number">8.</span> <span class="nav-text">最后一点说明</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

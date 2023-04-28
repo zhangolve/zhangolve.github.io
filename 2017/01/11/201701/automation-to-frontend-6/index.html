@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="毕业就是失业上回说到了我16年的五月份独自一人到北京找工作，虽然没有得到一份让我很满意的工作，但这次经历的确让我认识到了自己做得还很不够。因此，北京之行结束之后，我回到学校，离毕业答辩还有不到半个多月的时间，我开始准备毕业答辩了。 我比较顺利地通过了毕业答辩，16年的6月8号，也就是高考的日子，我迎来了我的毕业答辩，之后我其实可以直接回家，但并不舍得离开生活了将近四年的地方，于是耗到了六月中旬">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我一个自动化本科生怎么就做了前端呢？(6)">
+<meta property="og:url" content="http://hktkdy.com/2017/01/11/201701/automation-to-frontend-6/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="毕业就是失业上回说到了我16年的五月份独自一人到北京找工作，虽然没有得到一份让我很满意的工作，但这次经历的确让我认识到了自己做得还很不够。因此，北京之行结束之后，我回到学校，离毕业答辩还有不到半个多月的时间，我开始准备毕业答辩了。 我比较顺利地通过了毕业答辩，16年的6月8号，也就是高考的日子，我迎来了我的毕业答辩，之后我其实可以直接回家，但并不舍得离开生活了将近四年的地方，于是耗到了六月中旬">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/qianduan4.jpg">
+<meta property="article:published_time" content="2017-01-11T08:55:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.094Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="回忆记忆">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="自动化，改行记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/qianduan4.jpg">
+
+<link rel="canonical" href="http://hktkdy.com/2017/01/11/201701/automation-to-frontend-6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>我一个自动化本科生怎么就做了前端呢？(6) | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2017/01/11/201701/automation-to-frontend-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          我一个自动化本科生怎么就做了前端呢？(6)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-11 16:55:49" itemprop="dateCreated datePublished" datetime="2017-01-11T16:55:49+08:00">2017-01-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%9E%E5%BF%86%E8%AE%B0%E5%BF%86/" itemprop="url" rel="index"><span itemprop="name">回忆记忆</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2017/01/11/201701/automation-to-frontend-6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2017/01/11/201701/automation-to-frontend-6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/qianduan4.jpg" alt="春天来了"></p>
+<hr>
+<h1 id="毕业就是失业"><a href="#毕业就是失业" class="headerlink" title="毕业就是失业"></a>毕业就是失业</h1><p>上回说到了我16年的五月份独自一人到北京找工作，虽然没有得到一份让我很满意的工作，但这次经历的确让我认识到了自己做得还很不够。因此，北京之行结束之后，我回到学校，离毕业答辩还有不到半个多月的时间，我开始准备毕业答辩了。</p>
+<p>我比较顺利地通过了毕业答辩，16年的6月8号，也就是高考的日子，我迎来了我的毕业答辩，之后我其实可以直接回家，但并不舍得离开生活了将近四年的地方，于是耗到了六月中旬。当我拿到毕业证和学位证的时候，觉得一切都顺其自然，只是，我毕业了，也失业了。</p>
+<hr>
+<span id="more"></span>
+
+<h1 id="失业的日子"><a href="#失业的日子" class="headerlink" title="失业的日子"></a>失业的日子</h1><p>我很感谢我的父母，在我没找到工作的时候，给了我很大的耐心。从六月中旬我回到家，到九月初正式到岗上班，我在家足足养了两个多月的时间。在这两个多月里，每天也一些时间来学习，来充实自己的技术栈。每天也会看看各大招聘网站的招聘信息，也在掂量着自己是几斤几两，在面向JD学习。</p>
+<p>当我看到很多的JD（招聘条件）中都要求至少会一种JS框架的时候，我没有再继续跟着FreeCodeCamp的学习(这个时候已经开始涉及node后端了)，而是开始自学React，我之所以会选择React说来，还是因为从JD上得到的信息，然后就开始找React的视频教程，开始在github上开源代码拿来看。前面提到过，我没有学习Dom和Bom操作，而直接学习了jQuery,导致我在学习React 的时候思想上总是转不过弯来，还好多看，多练，也就慢慢习惯了。</p>
+<p>长话短说，我从八月一号开始正式投简历，找工作，当时给自己的最后一条路是：如果在一个月内不能找到工作，就考虑去上前端培训班。后来的事情比我想象中其实要顺利很多，毕竟已经有了五月份独闯京城时候的经验，如何写简历，如何面试都有了自己的一些体会，我在半个月的时间内，陆续面了三四家公司，前期也是并不顺利，但是做简单的面试题已经没问题了，只是由于种种原因并未谈成，最终来到了现在我所在的这家公司。而能够来到这家公司，很大程度上也是因为该公司有项目要用到React.js，而我又恰好在这两个月里学习了React，并能回答上来面试官提出的简单问题。</p>
+<hr>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>毕竟这段经历在我个人很值得纪念，这个系列从我九月份入职之后没多久就开始筹划，16年的9月25日完成了<a href="http://hktkdy.com/2016/09/25/201609/automation-to-frontend-1/">这个系列的第一篇</a> ，到今天这个系列结束，将近五个月的时间，这五个月的时间里，我实践了之前自学时的技能，也进一步拓宽了自己的技术栈（并不展开讲了，可以看<a target="_blank" rel="noopener" href="https://github.com/zhangolve">我的Github</a>和其他博文），作为一个!985&amp;&amp;!211毕业的普通学子，我很庆幸自己虽然在职业选择上经历了一些思想上的斗争，但最终也没有去培训班，而是通过自己的自学能力获得了一份工作。到这里，我终于可以回答整个系列的这个问题了：我一个自动化本科生怎么就做了前端呢？！！</p>
+<p>整个系列写下来，我也一直在想它的意义。对我而言，这段经历是我的宝贵财富。而如果它能够对那些迷茫的朋友们有一些帮助的话，那我也会很高兴，这也便是我五个月拖拖拉拉也这几篇小文的意义了。</p>
+<hr>
+<p>下面是前几章：</p>
+<p><a href="http://hktkdy.com/2016/09/25/201609/automation-to-frontend-1/">我一个自动化本科生怎么就做了前端呢？(1)关上一扇扇门</a><br><a href="http://hktkdy.com/2016/09/25/201609/automation-to-frontend-2/">我一个自动化本科生怎么就做了前端呢？(2)把通向自动化的路的门关掉</a><br><a href="http://hktkdy.com/2016/11/26/201611/automation-to-frontend-3/">我一个自动化本科生怎么就做了前端呢？(3)有时候觉得像插队</a><br><a href="http://hktkdy.com/2016/12/21/201612/automation-to-frontend-4/">我一个自动化本科生怎么就做了前端呢？(4)入门和试错</a><br><a href="http://hktkdy.com/2016/12/28/201612/automation-to-frontend-5/">我一个自动化本科生怎么就做了前端呢？(5)独闯北京</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%9E%E5%BF%86%E8%AE%B0%E5%BF%86/" rel="tag"># 回忆记忆</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%EF%BC%8C%E6%94%B9%E8%A1%8C%E8%AE%B0/" rel="tag"># 自动化，改行记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/01/07/201701/tianjin/" rel="prev" title="天津游记--天津这个大农村">
+      <i class="fa fa-chevron-left"></i> 天津游记--天津这个大农村
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/01/22/201701/context-about-automation-to-frontend/" rel="next" title="我一个自动化本科生怎么就做了前端呢？（只是一个目录）">
+      我一个自动化本科生怎么就做了前端呢？（只是一个目录） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%95%E4%B8%9A%E5%B0%B1%E6%98%AF%E5%A4%B1%E4%B8%9A"><span class="nav-number">1.</span> <span class="nav-text">毕业就是失业</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%B1%E4%B8%9A%E7%9A%84%E6%97%A5%E5%AD%90"><span class="nav-number">2.</span> <span class="nav-text">失业的日子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="嵌套路由的应用 我们知道React-router v4中，可以实现嵌套路由。有了这样一个机制，我们不必将所有的路由完全放到一个统一的位置进行管理，而可以根据情况去对路由进行拆分。坦白讲，我一直认为在一个地方统一管理，要比四散开来维护起来更加简单（可能有点像中央集权和诸侯国各自为政的感觉）。但是最近有个实际应用，让我发现，嵌套路由的价值还是很大的。只是以前我们一直没有合理使用。 先说一下实际使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React开发实践--4嵌套路由的应用">
+<meta property="og:url" content="http://hktkdy.com/2018/05/29/201805/react-practice-4/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="嵌套路由的应用 我们知道React-router v4中，可以实现嵌套路由。有了这样一个机制，我们不必将所有的路由完全放到一个统一的位置进行管理，而可以根据情况去对路由进行拆分。坦白讲，我一直认为在一个地方统一管理，要比四散开来维护起来更加简单（可能有点像中央集权和诸侯国各自为政的感觉）。但是最近有个实际应用，让我发现，嵌套路由的价值还是很大的。只是以前我们一直没有合理使用。 先说一下实际使用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/react.png">
+<meta property="article:published_time" content="2018-05-29T10:24:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.094Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/react.png">
+
+<link rel="canonical" href="http://hktkdy.com/2018/05/29/201805/react-practice-4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>React开发实践--4嵌套路由的应用 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2018/05/29/201805/react-practice-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React开发实践--4嵌套路由的应用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-05-29 18:24:49" itemprop="dateCreated datePublished" datetime="2018-05-29T18:24:49+08:00">2018-05-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/05/29/201805/react-practice-4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/05/29/201805/react-practice-4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/react.png"></p>
+<hr>
+<p>嵌套路由的应用</p>
+<p>我们知道React-router v4中，可以实现嵌套路由。有了这样一个机制，我们不必将所有的路由完全放到一个统一的位置进行管理，而可以根据情况去对路由进行拆分。坦白讲，我一直认为在一个地方统一管理，要比四散开来维护起来更加简单（可能有点像中央集权和诸侯国各自为政的感觉）。但是最近有个实际应用，让我发现，嵌套路由的价值还是很大的。只是以前我们一直没有合理使用。</p>
+<h1 id="先说一下实际使用场景。"><a href="#先说一下实际使用场景。" class="headerlink" title="先说一下实际使用场景。"></a>先说一下实际使用场景。</h1><p>我做的电商应用中，有一个叫做“爱逛店”的功能。（由于该应用主打线上线下融合，线下发展其实更好），每次从首页点击“爱逛店”图标进入“爱逛店”的门店展示列表，由于展示门店列表的过程是：</p>
+<p>获取当前用户地理位置坐标&#x3D;》后端根据地理位置远近排序&#x3D;》将排好序的门店列表给到前端&#x3D;》前端展示</p>
+<p>造成展示门店列表的过程其实是相对比较慢的。为了能够有一个尽量好的体验，我们在展示门店列表前，会有一个loading的动画效果。而由于采用路由统一管理的机制，原来的门店列表的组件和门店详情的组件之间是并列关系，导致每次从某一个门店详情页面返回到门店列表页面，都会造成门店详情页面组件生命周期结束，门店列表页面进入下一个生命周期。进入下一个生命周期意味着什么呢？意味着它又需要重新走一遍上面的流程，尽管有了这个loading的动画效果，但是体验上还是会差很多。而且，更影响用户体验的是：这个loading效果本来是好意，能够让用户在等待期间看到些东西，但是由于浏览器的机制，这个时候，浏览器判定你初始页面高度只有100%（屏幕高度）这么高，则一旦门店列表列出来之后，浏览器不会再将页面滚动到上一次这个页面滚动到的位置了。这意味着，你从门店详情页面返回到门店列表页面，每次先看到loading效果，然后每次看到的都是最顶上的三五个门店，而不是你上次浏览到的门店，这体验，当然就更差了。</p>
+<p>有什么解决办法吗？当然了。使用嵌套路由，上面的问题就都不是问题了啊。</p>
+<p>首先明确我们的需求，由于我们的用户看到的门店列表是基于地理位置的，他的大致地理位置短时间内是不会改变的。（我指的是用户点进门店详情页面时在北京，点返回后就来到了上海），门店的数量短时间内也是几乎不会改变的。（我指的是用户点进门店详情页面时有100家门店，点返回后就有105家）。正是基于这样的一个判断，我们或者可以将这些门店的数据暂时存储起来。每次用的时候，直接取出来用就好了。那么这个时候问题来了，我们应该将这些门店的数据存储在哪里呢？浏览器的本地存储（localStorage，sessionStorage）? 又或者是代码里？</p>
+<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>不绕圈子了。我的办法是不如增加一个”爱逛店”管理组件。采用嵌套路由的方式来实现，门店数据的存储。先在主路由配置处（我的项目是app.js）写上：</p>
+<pre><code>        &lt;RouteWithLayout path=&quot;/stores&quot; hideFooter=&#123;false&#125; loader=&#123;() =&gt; import(&#39;./Store/Store&#39;)&#125; /&gt;
+</code></pre>
+<p>然后先看下面这段代码：</p>
+<pre><code>        &lt;Store&gt;
+                &lt;Switch&gt;
+                    &lt;RouteWithLayout exact path=&#123;`$&#123;this.props.match.url&#125;`&#125; hideFooter=&#123;false&#125; loader=&#123;() =&gt; import(&#39;./StoreList&#39;)&#125; stores=&#123;this.state.data&#125; withLayout=&#123;false&#125; /&gt;
+                    &lt;RouteWithLayout exact path=&#123;`$&#123;this.props.match.url&#125;/:storeId`&#125; hideFooter=&#123;false&#125; loader=&#123;() =&gt; import(&#39;./StoreDetail&#39;)&#125;  withLayout=&#123;false&#125; /&gt;
+                &lt;/Switch&gt;
+        &lt;/Store&gt;
+</code></pre>
+<p>从上面代码我们可以看出来，无论用户想要浏览某一个门店（StoreDetail），还是说想要浏览门店列表（StoreList），都需要先进入Store这个管理组件。我可以用这个管理组件来做什么呢？很简单，以前没有这个管理组件的时候，从<code>/stores</code>这个路由切换到<code>/stores:storeId</code>这个路由，第一个组件生命周期结束，第二个组件生命周期开始。而由于我把获取门店列表的方法写在了<code>StoreList</code>这个组件里，因此每次从门店详情页点返回都会重新去找门店列表。现在，我要做的是，把获取门店列表的方法提到上一层，提到Store这个组件当中。</p>
+<p>这个时候，我们再来看看。如果<code>/stores</code>这个路由切换到<code>/stores:storeId</code>这个路由</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>生命周期</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Store</td>
+<td>didupdate</td>
+</tr>
+<tr>
+<td>StoreList</td>
+<td>unmount</td>
+</tr>
+<tr>
+<td>StoreDetail</td>
+<td>didmount</td>
+</tr>
+</tbody></table>
+<p>而如果<code>/stores:storeId</code>这个路由切换到<code>/stores</code>这个路由呢？</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>生命周期</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Store</td>
+<td>didupdate</td>
+</tr>
+<tr>
+<td>StoreList</td>
+<td>didmount</td>
+</tr>
+<tr>
+<td>StoreDetail</td>
+<td>unmount</td>
+</tr>
+</tbody></table>
+<p>没错，无论哪种场景，<code>Store</code>这个组件都只会update，而不会进入下一个生命周期。因为在一开始我就配置好了。</p>
+<pre><code>        &lt;RouteWithLayout path=&quot;/stores&quot; hideFooter=&#123;false&#125; loader=&#123;() =&gt; import(&#39;./Store/Store&#39;)&#125; /&gt;
+</code></pre>
+<p>因为在<code>/stores</code>这个路由的模糊匹配下，我任意切换路由，都只会让Store这个组件更新，不会触发didmount，那么我干脆把获取门店列表的方法写到他的componentDidMount()之中不就好了么，然后门店列表作为一个state值存储在这个组件的状态里，之后每次切换路由都能够立刻获取门店列表，无需loading，浏览器也能够记住上次这个页面滚动到的位置，返回后，还是原来的位置。</p>
+<p>那位又说了，可是我要是直接在浏览器上输入某个门店的url，直接访问某个门店。你是不是还要把这个门店列表也给我获取到呢？那是不是得不偿失，更加影响用户体验呢？说的很对，所以我的策略是，在获取门店列表的方法中进行判断，只有<code>exact match path=&quot;/stores&quot;</code>这个路由的时候，我才去从服务端获取门店列表。那位又说了，那你这时候如果，如果点击页面上的返回导航，你回到门店列表页，由于在<code>Store</code>组件<code>didmount</code>阶段你没有获取门店列表，这个时候肯定会出错啊。是的，那我就不返回门店列表呗。反正用户你也不是从门店列表进入的我某个门店页面的，我直接让你回我的APP 首页就好了嘛！</p>
+<p>除了用户体验的提升外，另外的好处是：随着你项目的扩大，这个对路由的分拆也能够便于管理。毕竟如果你的主路由配置里有一两百行路由配置，看起来也会很不舒服，类似的哲学是从中央不直接管辖所有的地级市（中国有338个地级市）而将这些市根据地理位置，由省来管理。中央只管理省一级。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>前面说的很具体，具体的东西好处是便于理解。坏处可能就是，不能做到举一反三。所以我这还是来总结一下。</p>
+<p><strong>如果你有一个应用场景：数据不会频繁更新，数据的请求过程影响用户体验，你的用户需要频繁地从子路由到孙子路由或孙子路由到子路由之间来还切换。那么可以考虑在子路由组件中，进行嵌套路由的配置，将请求数据的方法写在子路由组件当中，这样一来，用户体验会有一个很好的提高。</strong></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/05/28/201805/react-practice-3/" rel="prev" title="React开发实践--3对象引用的误区">
+      <i class="fa fa-chevron-left"></i> React开发实践--3对象引用的误区
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/05/30/201805/footer/" rel="next" title="薛定谔的导航栏">
+      薛定谔的导航栏 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%88%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%AE%9E%E9%99%85%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">先说一下实际使用场景。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">解决办法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

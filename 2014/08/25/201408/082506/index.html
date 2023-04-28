@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="2016.11.27更新：   试看将来的环球，必是云的世界  为什么要构建个人云端信息库我总是试图构建一个个人云端信息库，把关于自己的一切可以放到云端的东西放到云端。而这一切，也不过就是写过的文字，做过的视频，照过的相片，看过的电影，图书，听过的音乐，记录的学习中学过的知识，遇到的问题。生活中的点滴。 当然你可能会问，为什么一定要放到云端呢，那么不安全！这里需要指出的是云端的好处。云端的好处是可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="构建一个个人云端信息库">
+<meta property="og:url" content="http://hktkdy.com/2014/08/25/201408/082506/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="2016.11.27更新：   试看将来的环球，必是云的世界  为什么要构建个人云端信息库我总是试图构建一个个人云端信息库，把关于自己的一切可以放到云端的东西放到云端。而这一切，也不过就是写过的文字，做过的视频，照过的相片，看过的电影，图书，听过的音乐，记录的学习中学过的知识，遇到的问题。生活中的点滴。 当然你可能会问，为什么一定要放到云端呢，那么不安全！这里需要指出的是云端的好处。云端的好处是可">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://hktkdy.qiniudn.com/cloud.jpg">
+<meta property="article:published_time" content="2014-08-25T09:27:16.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.086Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="网络">
+<meta property="article:tag" content="分享">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hktkdy.qiniudn.com/cloud.jpg">
+
+<link rel="canonical" href="http://hktkdy.com/2014/08/25/201408/082506/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>构建一个个人云端信息库 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2014/08/25/201408/082506/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          构建一个个人云端信息库
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-08-25 17:27:16" itemprop="dateCreated datePublished" datetime="2014-08-25T17:27:16+08:00">2014-08-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2014/08/25/201408/082506/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2014/08/25/201408/082506/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>2016.11.27更新：</p>
+<p><img src="http://hktkdy.qiniudn.com/cloud.jpg"></p>
+<blockquote>
+<p>试看将来的环球，必是云的世界</p>
+</blockquote>
+<h1 id="为什么要构建个人云端信息库"><a href="#为什么要构建个人云端信息库" class="headerlink" title="为什么要构建个人云端信息库"></a>为什么要构建个人云端信息库</h1><p><strong>我总是试图构建一个个人云端信息库，把关于自己的一切可以放到云端的东西放到云端。而这一切，也不过就是写过的文字，做过的视频，照过的相片，看过的电影，图书，听过的音乐，记录的学习中学过的知识，遇到的问题。生活中的点滴。</strong></p>
+<p>当然你可能会问，为什么一定要放到云端呢，那么不安全！这里需要指出的是云端的好处。云端的好处是可以随时同步你的那些信息，信息不容易丢失，搜索某个信息时相对比较方便。我曾经很羡慕蒋介石能够将毕生记录在他的日记中，但是对现在社会的我们来说，纸质的日记已经跟不上时代了，社会高速发展，我们的要求已不仅仅是文字方面的，还有影音方面的。而那些，我们又不能够仅仅靠电脑上的硬盘，这时候我们需要「云」。</p>
+<h1 id="具体来讲是这样的"><a href="#具体来讲是这样的" class="headerlink" title="具体来讲是这样的:"></a>具体来讲是这样的:</h1><h2 id="文字"><a href="#文字" class="headerlink" title="文字"></a>文字</h2><h3 id="闲言碎语"><a href="#闲言碎语" class="headerlink" title="闲言碎语"></a>闲言碎语</h3><p>针对一些突然的想法，每天发生的改变，每天的有趣的事情，一些小的零碎的学习，将之记录在<a target="_blank" rel="noopener" href="https://twitter.com/zhangolve">推特</a> 上面。另外，为了不切断与以往同学朋友们的联系，每周在朋友圈发一到三次状态。</p>
+<p>十分隐私的东西比如自己的月花销，银行卡密码等账户信息，可以记在印象上面。</p>
+<p>从2016年开始已经逐渐放弃使用新浪微博作为记录生活点滴的手段，主要原因还是他很容易占据我太多的碎片化时间，然而又没有太多实际用处。</p>
+<h3 id="长篇宏论"><a href="#长篇宏论" class="headerlink" title="长篇宏论"></a>长篇宏论</h3><p>一些大段的对自己的总结，自己关于学习的总结，自己的一些其他有趣的分享，别人遇到的问题我的解读等，将这些记录在知乎上，自己的读书笔记记录在印象笔记上面，适合公开的可以考虑转存到我的博客上。</p>
+<h3 id="资料论文等"><a href="#资料论文等" class="headerlink" title="资料论文等"></a>资料论文等</h3><p>存储在google drive或者dropbox上面，这样方便查找。一个典型的例子是最近在找之前写的自动化的材料就没有看到合适的。这个时候千万不能放到百度云了，一个是不安全，一个是自己现在用的少了，而且文档资料放到google drive或者dropbox显然要比百度云要方便一些，google drive的文件编辑功能也很赞。</p>
+<h3 id="学术方向整理的资料（20150406更新）"><a href="#学术方向整理的资料（20150406更新）" class="headerlink" title="学术方向整理的资料（20150406更新）"></a>学术方向整理的资料（20150406更新）</h3><p>把这些放到google docs上面，这样通过它强大的搜索功能（可以搜索文档内部的文字，方便查找想要的信息。）</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>公司的代码放到公司的私有仓库里(这不是显然的嘛)，个人的练习作品和可开源作品放到github上，所以也要多多熟练git的基本操作。</p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>针对自己用手机拍摄的比较好的相片，可以上传到instagram上面，至于手机上的其他一些可能比较隐私或者效果不好的图片，利用Google Photos的自动同步来同步到云端。<br>Google Photos在最近两年有了非常大的进步，已经是必备的同步图片的工具了。</p>
+<h2 id="图书影音"><a href="#图书影音" class="headerlink" title="图书影音"></a>图书影音</h2><p>1 针对自己看过的书籍，电影，选择豆瓣来进行记录签到。以年份作为标签来告知这部电影，这本书是哪一年看过的。其实还应该有华语电影，美国电影，韩国电影之分，可以考虑加上国别的标签，也可以加上类型片的标签，方便整理。如果是看过的英文原版图书，也可以记录到gooodreads这个网站上，毕竟英文书籍的推荐，这个网站更加强大和准确一些。</p>
+<p>2 <del>针对自己看过的电子书，采用google play books和多看阅读将之同步到云端，以期以后可能的第二次观看。这个好处是第二次观看时就已经有了自己在电子书上所勾画的重点。另外，将一些比较好的书的笔记导出到evernote并记录在博客中。</del></p>
+<p>买了kindle后，可以是在kindle上做出标记，然后用工具上传标记的文本文档，整理，将笔记最后再整理到evernote或印象笔记。</p>
+<p>每年年末的时候整理evernote读书笔记及blog文章，成册，自己弄出一本电子书，方便查看。</p>
+<p>3 针对自己拍摄，制作或者从youtobe上面下载的视频，可以将之上传到youku甚至是B站。</p>
+<p>4 针对自己喜欢的音乐，将之同步到网易云音乐。手机电脑都能用，而且歌单功能很赞啊！可以按照歌曲风格建立自己的歌单，根据喜好按照歌单听音乐。</p>
+<h2 id="健身情况"><a href="#健身情况" class="headerlink" title="健身情况"></a>健身情况</h2><p>针对自己的锻炼情况（此处特指跑步了），用Endomando 来记录。</p>
+<p>2016年九月份买了小米手环，也正在用小米手环来记录健身情况。</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>当然，所有的这些都是在保护个人隐私和尽可能完善这些息息的平衡之下进行的。一定要保护好自己的信息，防止他们被其他人所利用。 当这个信息库初具规模的时候，你可以想一想，是不是很美好。</p>
+<p>附：李敖读书方法</p>
+<blockquote>
+<p>李敖说他看书只跳看一遍，“所谓跳看，是每页的重点让它跳出来给你看，而不是逐字逐句地死读，也不是所谓连读。连读的方法我看像小和尚念经——有口无心，是骗人的。 ”<br>     这个方法可以加强读书效率，但却不是每个人都能做到。我觉得“跳看”必须有两个基础：一是对相关问题已具备相当认识，才能有拨云见月之功，轻易找出重点；二是带有目的去读，知道该向哪个方向寻索重点。而且“跳看”只适用于查阅资料，不能用在文学欣赏。</p>
+</blockquote>
+<pre><code>&gt; 李敖读书方法的第二个重点是眼到手到，“重点部分立即用色笔勾出，剪刀剪下或刀片割下。这样子随看随动手，再把‘分尸’下来的分类处理。这样一来，这本书就跑不掉了。它永远为你所用，并且拈之则来，不易忘记。”这确实是好办法，尤其对年事稍长者。
+
+
+ &gt;第三个重点是同步通读，同个主题串起来读。他说在跳读过程中，对重点有兴趣，会找来其他相关的书同步钻研。“这时候，不是每次只看一本书了，而是触类旁通，互相印证与补充。这样子折腾下来，书才真正为我所用。”这个层次的读书已经不是单纯读书，而是在做研究了。不过这个方法确实可以加强读书的深度与兴趣。 
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag"># 网络</a>
+              <a href="/tags/%E5%88%86%E4%BA%AB/" rel="tag"># 分享</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2014/08/25/201408/082507/" rel="prev" title="关于罗永浩，我知道的不多">
+      <i class="fa fa-chevron-left"></i> 关于罗永浩，我知道的不多
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2014/08/25/201408/082508/" rel="next" title="光荣日之后">
+      光荣日之后 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E4%BA%91%E7%AB%AF%E4%BF%A1%E6%81%AF%E5%BA%93"><span class="nav-number">1.</span> <span class="nav-text">为什么要构建个人云端信息库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E6%9D%A5%E8%AE%B2%E6%98%AF%E8%BF%99%E6%A0%B7%E7%9A%84"><span class="nav-number">2.</span> <span class="nav-text">具体来讲是这样的:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E5%AD%97"><span class="nav-number">2.1.</span> <span class="nav-text">文字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD"><span class="nav-number">2.1.1.</span> <span class="nav-text">闲言碎语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%BF%E7%AF%87%E5%AE%8F%E8%AE%BA"><span class="nav-number">2.1.2.</span> <span class="nav-text">长篇宏论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%84%E6%96%99%E8%AE%BA%E6%96%87%E7%AD%89"><span class="nav-number">2.1.3.</span> <span class="nav-text">资料论文等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E6%9C%AF%E6%96%B9%E5%90%91%E6%95%B4%E7%90%86%E7%9A%84%E8%B5%84%E6%96%99%EF%BC%8820150406%E6%9B%B4%E6%96%B0%EF%BC%89"><span class="nav-number">2.1.4.</span> <span class="nav-text">学术方向整理的资料（20150406更新）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87"><span class="nav-number">2.3.</span> <span class="nav-text">图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E4%B9%A6%E5%BD%B1%E9%9F%B3"><span class="nav-number">2.4.</span> <span class="nav-text">图书影音</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%A5%E8%BA%AB%E6%83%85%E5%86%B5"><span class="nav-number">2.5.</span> <span class="nav-text">健身情况</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-number">3.</span> <span class="nav-text">说明</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

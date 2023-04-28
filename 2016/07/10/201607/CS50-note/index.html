@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hktkdy.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言维基百科对CS50的介绍：  CS50 (Computer Science 50) is an on-campus and online introductory course on computer science from Harvard and, as of 2015, Yale Universities. The course material is available for fre">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哈佛公开课CS50  2015学习笔记">
+<meta property="og:url" content="http://hktkdy.com/2016/07/10/201607/CS50-note/index.html">
+<meta property="og:site_name" content="海阔天空的云">
+<meta property="og:description" content="前言维基百科对CS50的介绍：  CS50 (Computer Science 50) is an on-campus and online introductory course on computer science from Harvard and, as of 2015, Yale Universities. The course material is available for fre">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lh3.googleusercontent.com/QVB6mULD3fu3GJU_6JEJrkxp5kJCIcHwAy2cY_9RhKxlEd5yDleID9zBmwc8K2bonOCM9ZmmOF10fLa8JQ_FD6vYN1MH10sHiCOnHbo4Gf0ez2xJDdcw2zo_-zxUHyNXF7EBSJdE2abMSkZYKazvlHraB-PTKwta_UhC2KdbQ3COToCbM9euVSuvf0VWssoU-2GsutfUepB23opvsh7g3lCKreqE90lHzIZLqeUwl4mM0YTSj92f2TY_iuamT1BkldJayijKm_DjtAF7g3nAd4fnwozMyhTxieCFU4Vhb_JmVZ2Qjoxf9IcKhsKRc58szD0COoyDcRQpAjx7nQr2QqRAU4-gp_LWcY_fL8b9WJaiL5NsSpNcRWzDf3Z-pujNmDmarxPIS9vs6mkbrlonflyBvE5NUwAV0gt5AYctoJyuj6X0cJFMUgflDT5oXcU9uzRMkHInXteMdJezPQEY7Mhy5Gf4LjNB7dx9TD4S4Cfhbuvm2QktdEECmVPQ1_wrljZoZ5OLzLjo7Liwxjk2P_m7wK9nvk6vQvMGCD9DKJlsBbASKJQ70UrHBq3HxroU_Lvf33ddPq0a88XdKjBHrpapRcsCfuWa=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/6soiNjYM3TMFQfC1Ge48aAGMCbDOnClrmvDzftSndKe2pHGr2fMtxVlX8XmdOU2UXWllJaz5Xe7OvKjioXq8GGnUDQRcD5xYEpA_8ZSaXR_36TIA7kOxLuVsfKVTIm8a7L4ig_l5DonztWvZmpYp9wZPQ2fFhLvWxdGMH9eg7v9lZEE66HD43RE8SNJpVALu7nW-y-gBuW7Fqoonnub2JbGNc6PduRHPtMGi_cEh74pyb4HBIkQS3yc52Cp4SxeHFUYJTS0CBANHrLXDIeKyjpwwEuQ3BBWI0d-jTRI-w9eb1vUwSBCVPxZ9LkakfKUKdWU8rcSUJ2jMklgKuMZB5bWKypm7IP9A00JKxgNtS2V6_SBsV0H6tjR9QZc0R84wBumjsfAg8Du-_Gd7mQqpiSFOzyqXSraxRx15ZyETU2oe06jYlYBPYeHipLW3sZYUclcjjXJcLAZKFFAED8NMxPtIRWSfEDmO4sR4QXVtbYZuTkXD5BlQVFUuW-G87-e-rFb5AkdHa_nglIuhz_aNNCPKCuYrIm6-1mxtBCU7e8hAZViaQyku-o-PaMbS2ipedKTllUxbevvBuVoNyp4wMEws-Q2kI7pD=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/vaPDE-F87oJsP2T6kI2aoNmKuN70gDq1R5ed5I9JC8r5RKZoW9bCn8Nvf1RxXH1w0zUTXoHnZf1WCrWqIQW01huCvW07Hu8QOKmBdNtxpz15_dEYp3bXgNTvfd9I6jPVqPdWF5dmJr96y5O5HX2m8YKDO6E2JJv9w_FHlRI83E5eDbSTUsPjkezdr3DjPqozQuWuMYNYRMx_M0K3ftT3Nef_B1imQANxR6-x9GV7C5Gqwp5gf7hoB3bfcOJr0GIF3TOCXNO4mgmVBvQLGfzpcIQxTm2yBlPt9kGr4R5wOw2yzpYdq6x5uMLfXIfNzY4193y-M6J1x-mhT2VSxyaY4CkoUQOJ_vSP_xS6n14O4NZ_mWqDJ4L-9ab8giHRDsS22Kjaf9bahhik6MahRKnspPenD83B0DaJWqoKU00vrLXf8q9f9okdyTPxACn7LkaX4q_QKanvANe1UhdKuKHJACBXv6Mauv1KTFeellaU_M4aeijYf_SyXrtPzbWFSy83QPSOuyb06IvNHYD0JdFZu5Xo70FZHOP5yjtL58zrJIwX_WdImY9qU4U9MQat1EQZodE0hw7_FpzODYp_CZ6JcxSFN2on6n9W=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/78mV-P_vi3Pgrp2ONjNJfnvcgZ2go5eo4nb6G-Ehqt2dN_vL1oxKELei-VycKS0ywBaQLTkZi7m59sSjURrHQiR_fBI_KSnvC6yOrwnc2j5OR3HaljbteSixdO_FlhlwyXI6D9gz1ExTQZpRVnrJp-gZdYAF-58vzk__xvi-J3SSnaDCFWxLSZaEyYY_zVXlAWPSB_x3BAGWz5N6pPL9Q6TzuMnFcK1f3_jiMSSZmYWR-r_p6eM5tVsVDlbD-_wOy6xvz6ExEn6j4nqxAebXehWoI1YDScI4QWJd1LVE-u1tdulWlY3IjI2EjO03ovIAtSRkAZrI_tEsSdhUBwZh4waJ1WFkpzbjwKicipg8gmXC09a5kkBSbTNejuOWywPbteisREnWJrBZpNzURhk8jFdeMcHSGAmU2YWFl-0KeBxIrsyxi5NGu7ULMHCKnoGVx_vfVBCMIz_ulzqVgRs6Fe3935FO7DQ1dnwOYw8BwjiVrI545KwaDMNW159D9sCR26bodaKd7wTu32ghzKOK5dCB2JJRWplR5Iutql7scOzMuS_M1J5GbQzbgLISrmF6LKAvIFsw1Ab7V5NyEMvEj9IQ7aVvz6mS=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/ihUHLIBCKRYQdWh50pbyYERFkt7JdVCiPU-dVgnOI1mel6ZoOBaAKJAUsY96Gfa6fhxs9YbzQl-pJnjoY7JEEU_JGkaRyNUX1Uu56DT_CEY7I88XF1fO0hn70_3vmji-b4cr-DcZF8_5LL2KobHZ9DNzmMQgGUzOJau29_spNS0NCX5u1A2Y8R1nKBxZ2KC_ISI45jUPIfy-vbj0OKPJ1gMHxUJuEIz8CHqRI-9netFrO_If70HL7pE-7-iQ62hfGbB0B1dwk7-UHdlP_xKDnzSHamG2kcll1cDs9dl1EIuZKruSI2mFjml0xvbfqnSamDSMgO7Qz5flK1rMJrWMkTuvHnQf8ert0xmRiqou5ilVowMfqF18o5gUYnQqF74nWgIyeo4jgG-YZ5qhNp4p_AG7a7dLkfsqmI0H924k6lm7KHVlxR3iGpA37z4Q_Fv_W-LMiJ0cnxRygGMimDxAZWHGMvum7udu2U_kHVoVLev941e5GSNLy5VAEduJtcMJ9MMbuOdDZx9edLlXEcspsRGFp6NtHMO_U0tme4RJO2HPRXu3GSDZiAYPkArlYkm535poCKhOzxpeGO5pxQcDBkQjBvgn9q_2=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/zp6fT2tgJ5UXNpq13BgfYE2Ex9O3QTyVCmqq-wcMcDhw6sqSC__9pOm1dUYlhH7slp8m4_RBqkZJG92z6iqdck97JIbzkVkEV1ZD60T56QQEBQIzQOt3dho9EnK0ZLxOhY-Ln9wjb0jinHUxYtQIyAGZKy5Etce1T4bDTW-HHW0ySrrbRX_mVbyOd7p6GzVFWefVDc-X2oIaCiMr_rcsd806TYGXK8jrT9rZ9gae07Zt6Ml-ncOs3FPZf7eykzlN3q-U3BqsXZI7hYiP0bQieD8HYW-B_xRl1xYNjMDNg5LmsK3W-fo-F2XimmFKIa0rxGo3zpfzg0nPbJW_bNC8lOLqFZqQ-BMSI15DMBW_K6Of6h8jDzQ8UfG4RnVgRsRniUTau0EU7qLzw8jZTwGIFXJUhULGm0CgjxrVYDvxwb3ZOU6V4NVcS4qos04Imf-Pt2VmTPbLH5c3JTm3f9s_96L7MeZPDgX0uWjAz8IEd1jSZR6_23FrAF6KvKHlxl4VGdZmz0e5iiPgmZfJg0aM2brPjscdmETuqBw2t9Wmtw2ZnQbevfTfVz-ggcImBLzIZXqkXslGkYIDhcYL3ut8n3HjmHD24Cv6=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/hoA6eCa6NhzrvOyfVHt95ffjs6Bz_LTPGvJe8iBQUqLwoILV8Piaw5JDa1kBJ0kIDb7c21O0zy4w24VwOyR3f0uYVoJt12uuTY29I4uR_Hos3DPSVsESDN3v4v8VanVAlIEIDwWaKPSMGz99ZDzdEIMWeoocli38ViykTICZpTShZ761sDPpvaEMKw_EevNNcYQ5ZjCFjwfHKzFEV4TWZLf1FpO-nKL4A0Ae411CteKHyoqf8lqTUlQhX_fkmth8pCq3obMgiapQH8BVnmzNMmkDHlazjyHoOhf5LgZ6mStNuMeDctMzgUUwCMLAxNXJvpNrFdyVTw1OAO6kBlkNrnQRHUfCpYUux4S_qj-Zy9bDcOzeDnzqOmfcrjJwan__4ywL7nYCZcXw645NKIYdKOp-X78Wh4p1NIln0YrKT1reVFWN6sVjFnnF17pOmRRXceSll3P9w-L17v--DsYm86BV7odTqGSqqTfoQTjj-mWTTp05TwN5MF8k-AR42RpqicAO0w5oucfokT2BWqAN6E2-lldWJmVj2Kd5KEMkpWEZ_2DxHO4xmN_YpIYwtJByZLUG5hVIcTO4lttdx44Qi6omBb2Ypckr=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/UQ8izKp6A3DDUFxdIqocDal78pz0TSJbeNZu-dYThKZT3QbShQDTt9zKtbAcUIln7qY9tqOD8IAVdLyfbyqF8KQ7FOhHXkofnDyLlhHwNghpBY0dMwPZSkAsT7VQeR3kSs5i-L30wJskiCtJ8wG2Od2rTeDengNQ0Y8cKYTbdvQU7QVamV0zmmmVUgbqVSy9ap39Jmywb602l88EUjZ3MWtcWTzkmiUIZmlhwtdaz8VDrUfmGMzLcLTl3bxecofOrem53eLQNkXZmXBWBRzNU4NZflIA25lTQi8ON1FEos-Vj20Uno09GDuSaBMS28TrqsmviVmaMoR4CQKitdKbJGzIdWqFXm2NaI1mcPJhBU1kiu6VKFSYeS6aMEt6oHWo8AJenFTAdI5PFJBOtiL6lic9W2OKHlIflRu5uvI7jwUfvuPcE2PW-QG8lK5k8EcJQrG0KSA7wPJ2RCpZiFKt03U_uGHSxr6cjpcqGhPq6WGfS4AsAmIiB1wyAKwSHwdjNuUnexWMM19rrE0JxTa0T4ESySqVpbmedi3f89yB5HuMbn6wAjZKRgf60A2xUtB-wwaZCbiEYsuVYp08gDYfrWhpL-UcfyY0=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/x_gepI5ef_6Wh4kjn5zinsk9tYKs3hyhuARgcJhsp0GnkrM_TM6EeLUYRs7pAb7eCaIJJxerbxaP0-8heJ7DbnpCFtS9nZWIHmXeGqckfvkRKlyLti7r87t_8kQ1notcu449cGClqhjUIHXDNqS-sSDV7VtYih1_L_nM_ByHnLi8OsDk2QJTNFXjAtjcg-08kHKaC2emMtrnWjdsV5_sjypEtE-eKnCZxIPAa5MQdwVBLMPeb_7Zwz84QzOwxe2Vd8gT34CMg-eKwBPmbvE_NdlZbsEpFpYg3MQP4Y_17nX--T-j1MubIJVdycao3oar7ialm1ohgjU8eonBogr859lM96F8Ymmv3FFDNAM86Fb3cGugJNxQ6feQCUlDID9yoCRofXLkR3gIyMNv6fm1sEH8EjE9bPpHfyMHi-Yew-oB8hFZOMQbjHfvilmGcBXxKStftW1byaUSpqOGdPxba9QC4_hErirF3LZtase-cWcRTkHcGJsrIv5qXTl02mwUmjC8gOE-X7rvY4C-IaFdt36eE6mn_0DApmHNjgyfFpluKkjUP5yX2ntfCyDe5H8wJYqMrKD7ku8Kr6yoFZ1NWKBOEsnyltIP=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/uGKTZHwHYjz-we9EBoEBmVIp8-qvYCh5U7Xcg5jlWZaHtkNxWjuUzry_6tB7xHZKWKX2nUvU7IZtUaISFm6-0BRvPnEGQYoURQWL_0rVi03hgjwDpmy9kniWABKT0p1NmNR3LVbPi3sJk9iWT__aVeDAFl7JHX_mXxxb_TTr-bCe7WS80481cLelYM0-ICFAxdFpmGu3s0We0hOyiV7hOYM-g71VjGLjB4rDflPCbLQ-LIghDvx8qxac-Nsn_RZisj0EBwxV4Fh8ayQlsfp7peYqWCWlYK_Bjdda5-fq-ayGJkLgF09K7W-QwwHsdy2d3BhAXwpW-OR8Q1NzphVEphT08vVa6_01QoVJw90Pz5nuBOYmIahh5ofhyeNcIjH1J0X-l1t5xgMOH-6WCj6h_6skaRX0-jhB5d_O3RxWHrows2HA8I1bW4xIMW92H0pk5X5lJZHlM1NtEBYzaL5PQcAoqNToDRhfApjOY01HP0nSXmb_-ndC69x4-S6owEuPXK8h4GvZVdIXq5zj5kK-9FMEHCvOQ3Fi4owHHYpNYLKpS1Ukt9jIOiuLy1hRmc5bc02lBBdjr8K1gJmWfYC_0z65eqCvcrkW=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/e5-3n_co6suOswcfVNLCTX_lSeg4VJ6MFZqbw9PcLrGDXfTXbGHDc06Px9lpGIbZy80ZwWb4AFLKiMvk0Z4aDvKtpR_zPskYuGlIZEsIN01Thz3rGco917e8Y-R41vFO3X29UAULTbWchPyAOnB-rFMeQU2XyI5dcHX7WlYbvc5uKNByr8ROnTEDp5ZlGLk-mZS8PeKAf7PNMtFIWekDJu8oUmtoE75yFNiU3QgD9cVgqRDCMMRf-m1SgT5pIZDuz-XCPzexQTrxyQwe_Fewf1lLXdMp5l4r9YpryhymnxFSITBRlZkr2wCrsm_bxWEylIr-1ZJYOG3RcFWBGzYvZv2-kdBTvmDQazdrAZIYJs7kOU0wNHWamzLc4IakwTuaORrUo0CpXzui3zTvz0rXHw2X168SA2SWAOMHrGakjZw_m_wlKxncf28XazF3d7dbKmhlf4zNWUxaEtvv-ynGO9cHnbLppI6HXxG0yWS_22U7oilS1uTXmWrxXuDWVmdOuN8jzN12slQBxuA1vvw2hBSNrWu_XhfKd_YhbHJAMXQEGCmqfRqF8wM2g46pb0cfJqpIuprgixYj_i9cXwdSkAPW8iu4vcaI=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-_p-ImXuh9_bZAPHIGQTkvoQpBhtfFNW7NzBnwBfp35CZKITCet3k72uNG_OT4tWBpRF1HX0nrVB9SMlw6ZzbuP3mCXi6B6Tl1IYIhr9930uVHbAGVZLJ1DgfdhZ6fI3S5Ej4Pz4Fv1adNAKI3oxuegoaUbQ_qcL7HFewDCstNRPUH3ssk0r1zjtnT8JtzNRGPZG5zk4SDsito5aRSSBEzAdJIsEQbVpn15NFylcDf-QhJzJF1AbIJCM7DL3bwWwqWzbmXxsDo47K8ZoVyQRzUIZCiSJhvgtu3wVmKbn9tRIxUZF_brDATnAW9NAHpecXeXZTuSusCYMvg6v7JyDcBk1fCWJMRw4OXCgLEBpNQYoxDXSbDMd_WxCaRUEnkxDhqcd7tw5CFyNR8Ma0x8FYTfUUfV5jRXG0Y3MCaVjen-rCaMwXQfjDt8Q6L9OS0H8h2UCryAtoEv_xwGGXBSk36kI3Ca3fcyCnhKTL3bpWZUbINvlMLZdf2T3fSauoNKFFtBL7iu_aJbOoFJYK0KZGxqfAGR7eVqfpbyGAw7zrlD1gZcl-sp3NwAlN8gs6tg8RwhbSh_aXYtBlYXPdx2d0MNwrM5Wt1Y2=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/0Nc7Htsw7w0NxBqMnN-Uba_bQqnvgsGlB-XugX-PgWMNFZwk5ybW4LwApFefVLmZu-fFHs7qrh5-pUV2lNWfTUdnb-wMmjtFKouEUzW6zSukCvCrQI0CoEL5ANvGkDwl3VrXd9fNRiUF02zKlQvNh1Pv9OLlTUvO9bu7DTnNH5-9_NEJoLf0iL7a9jr2mUSTYd-1kubQ9B0vVNn8kFJlBB2csFJuOdXUmnYReTv80GiyikLv63mOd61nPt-wlEI3xIB5zfzUFxLxHZtJJDuAB9UXZKMNAtNpOqXkPKweS2nOhQzvstp_i3C-CVOh7qI7p4Ux-G38vE0BhbUIVDga4poQpcAaL_drpTQtxNPpyPY4o8MMv1FIgHW66I36-V1r7Xe_a0ZF_CjL_zK2p0cJTJ10Q_yjNwwEYDJ-ka6QwKZh7FIRCl7tvvMl6KK8Kybnq6z5ZflBy8VMB2R1Ztb8oYUFwb3JxVDcELOb-HO8vYp1C4HVlI-9iz92CMZYAMYY3VPvB0foevbO8QhV0QaBvNJtU8yNgOkMy4OiRacCBAzlCAqVmqL7B4u9Epq764bFksXtcKjTSmQWtD4aHGaJO_a5TF2QB4zg=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/aLJUZymTdPpvmYsM9HlOTlC8E3ID2XhGFKoHqVUeMZ0rqMXldSkF4ufbir0JkXrpv5XUA803DGb2VW0YFDv49RddNA2_yYphbdXNZ9TNvoX2gfJvejFF5gxN8kwe7ajpEQa4YUXrPqF7q9GEja-KAKuYCup8NrvXiIhmHKHTkmN5djMatLOakuYaNd3Zp1VYSnqdXNx4SSaNJmVVnZebIlPiXFQlPTACcCOsSErMXoUkMJdzzHsgd80Xa98qx3WI2KJaHjEV-r-l6uXvsxoxconbmVzaZd2bFvKWUNjX2yNkOa6Qm-wm0N4-Kwd-Su_9YMsko4eEif-Fg6Y58X_Ejm3m5uQCG5FrcVqzdQyFJuBcQYkmzIuN3JlKo6JTg85IWFZCVwi1EZxSZLPwvxU7G8t9KcjNeIBFgvKDK-0O-HGAZ3GZPItCrmoqXRz6JPka0w685bDPGMazN6-L8rPmWbqaouDL2bcCTMEnnzXiVBvNBgsbpbVYKnm4cLLt4kRLfIciALR8ZLjilT6cZcARYXp6Bc6hXpXOSCz0bNuf4ZfF0yEWnPkI4xPcA43t_zmniSMHjOPidnCt_JzfctoTImggA36tFjB3=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/YFeyY73TI0akLeI6lSayhVC4HEiSIo-NcWg6xYlsTXvCJnWpL2dGI8xXCA1frvg8mKE_xTJK-HMffK6_iy7Kf4YGxfjGwv0p663iS921_BuGUaDImIwHU8WSBehJH1MLVgnQsqAvmYf9Rpg6UYlPnkl3V3_xuhYZXT4J3_LkfvSRSDBjBnga-j1OqsbPqVb6XQrjnxvRiKAAWN_fevR5ns3UH0cAKdw2sgnhDeaO7YMGpueePs30XZYpxxYb148IAx2iBCo7dQR27yw6kRxZOYPYzPsvgTqwpyONNPYwTSnDPbQ62PB2X08gfzwKABiPVUzhsk0FtFjg1-VDr7L-iZVBSyK36_otSYT6amzJInFceKKcP4mFsw0O8eDekRoXzD88dfUZHPfQNMfE6JPzeOIkeCt5RbyCqHWoTxsxbvCDhHW_v7qPExMimtDTQSJYD-1zAUndgW676_zq80bRNi37JDVG_hVPF4UBM0ZEKAOEuFCyz-x3i93iq5ooE78pQ__-GBamkL2TX0R3QTYnePqUEENwDbyWJ8JB9AjgmYgSwgCjSexD2_ForyiYR2gIa3g67Zu2WUErnRlm38Jf70PpcwULRGOz=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/g-rUVf-v0P7meXoVrjBWQwbYK_l0zfDahJOU6D_Hm93svFFbOk05JknlWXIf3fNakZxZpD3_AYb38zaCNVXUPMVsOeRmrmNdsyAYYU5PfGFZJfdKVCiXEpvyRfpYhO_pt84LGLo70jaiBszkgjkfFKVp_SEnU25LYQKbmchFDTKdXLk5snMcLtBNJeCfnkfSL2MHYaPWNediZFBgy4KEHJTl-El6LT6gzG5805XC-B69p_XzNQpsj0XI1kXMWihtn9ybV0rJ9U6ZA5t80jIOVV0Ny9sWwRFTtYT6FxZHlmlyShq3A4OB1hWtXn7FHLF4j2iT_01rV_xovNsqUKP8d-QO4WPZWAGrEOecx01adwDByAFwFwDv9T_6EJarJ4i9eVu16Ie1tHLLoKsYMk6yJdKdB8dz96JITtgWhnSkBEsvsgsv530kEaJcVOijrZ8G7uT0nMZAwbCbTIb6sTKmkC0PVpZyk52s_JnsHbMJGCXTu7UHRgY51BTkyQNSmWjaporGn-a_2A99H8DVgQJVArdgguOWqESWsCUR-gU5UGewOyZTd4qmY9DnfWWBPQ0q8Y3d2E5x0iKS2O_PF6xOEFkui0b0nSGA=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/UkQjO-9GGbRVpuzNYL7oj_JHbxzFP7cXqm3kYxpVLZoaCeBsfvZWbG1deOZ0FKA0fDJgROigD7OWB6ajA1VGSv_z4BqCQf6RMuo9xB6jTAUQfxWkaxzUsGDD-8Xzf3Yg9t9v8MklthCr2Lvu9bcIsxuyosZt7Gsq73ocr73IQ2Y-QcsU7C7o254CXyy2-wNUtSSZw2P0gk07SlOc2p0Cj4tVQAnOiK9urbupcDjEqystDgaDeSBWHhSetAd8wcthmp-2f8Q7NhdUKGrESA0jylvqLlUzFPdsi_JZwfUjTMh0kAbNqX3XhMDvp3a1wU_O3PUK74piCoYQ06a9Tboe2QhJKzg2BO2zmHy_MdUxW9P6EqHUf1r-iZU7uN38umQu4nGuPgJJ1BShjDIj9uVJNF7gS3W8xcjp6Q1WxXsZhkLr6RvTRe4W9zokigZjdl9gnkseQav8DxUE0GQocxIcxpVlrpNnK_adIDovyW53FlWKrzArgfq0KBC78Vo9PFfYqrx0ErmrkpueNcRGJn0YzRL3t1pijJ8fVCV2PoKX7rOBr6bySt-diUN_Jq346krDGFTuoSYlP_G4qvd_Xw5nt0QjXebqUBbt=w543-h306-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/Ub88pVh2amRTt2YX4u9FkXMKvhMkcQP3uq0qdcfcrVQ3wA3oKOuaov5vmJo5fRt6qE_JApWX2qqQV-tCSJxJJR2EyYXXTaM9ssv4lTHc5TbIOb1tju6C2m1Ugj1-C31e4_Mhv9GH1nzs8BGIInUJWsX4AXkH6dDWHdS9U2Ar1h08y58GDB3Se5g0zX6VkVdhjRDHeG6YnfVA2pT2ndzUtvZ_fdzfXSL8d5NF9U5t1GSKT6ssN-WhmuG7HJCRjFXEjeRRiw_qq906njKbiPXu80jao_qMLF1Znu9tRW8Jq2_XbRsk-iZ1EBwzBqyjpFVyCf0dntTSFabONsPfQGV_-6KDmr5mLOv_SjIh_cXsg0QdsgzTIrlInEf2p4LyW1eebTHDbyEJ4sVGOUnH3VZwoaCIe4tM39bswcfSlzRk1bKYcjxjr19j6aQcqJYKq5pTTckekFZbQu84TrCsSd51wySDa0GNj_HZtBaccOnh7g0V0PZ0dQvRRQoll_4xlU_v2hkmMTWD-tigSEzOZL4YcCgSZe_N--wU_TVvTGJnbCjpvj2awQkEV1uBHbDG02-k-kg_SAAqXx-sX78o0IWyRka0OxrUc-6z=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/R4sOXzTqgKKnagWyA-3HT8XFWILZS6fuQNeK46jIld_mDY4rtro4hNU9fuEx5XDk1nVV9I-8oqhkoJYlxlC8dkk79TlkIaymEHr0D4Aue4_siWGBBiMh11QVO9Da75sn34nyW2qxq1hnqN_eRi6h8w7DJhQbja4nkKcHVlutbARsVDmr6ZttN-Xkzj3voT2v4IIJD-NzTR_um-gwB7K1DRIegQCkdBT1HVAnwbBtSKFFq3aw-l3axf_uIgFg795ExF3q_PjAiS7FRmaNkfOEgNYy_CiUXig57pikrLV67rwz0lkz3n6Lc0l4W_EaMiEXfREC9458NF07FILYdbOhFsqGcuUcBDa92YV9nIKAEusFbIy9yp1GKR2BPhoWtbmEzGzSbBY0r1ELq7Rie4W9xijuVdjEEJq36W2mve5ZOLapOKDULf4IP8swSkDb-Y_kIel8fTJJ_YbruhS8M6FgoqOJNCbtjWCqlVP7H8E1NUF_1j7WdMohfwQ4NYytmKKPXy2j4RWBbML6UIuVR7X39WSvZCL2E0vA-iJqvqn8P3DtC5BXtbtuBUY2FS3dzJLRHjHIpcU6dG-MrMteMQmZXeyjMD7PSkyU=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/kl609_e0P8WfcYDq-DemKMWgsU73trfZe81pK8O8zmKZj3u8nqW5YtFBApQNWErlgvv2SEv0xIh4J9GdVi1PMkYuHYwlO43Pldb4FDmbhJm_9FcIi3Hu66f3SKla-uxFPXJrtkwGMoxNFIOxl7TaHWfHjJDIgKNweGHMffwzjpfVYMyGN4_WIIRfw0RkjIheqt4nTnmpY4WXpq5oMlHlat4gJgsrGiWlaNfG10jbtzss04w5FChkIz0IX_nUhqwPtoenmljP2Rk28OYq06jpmF-_gxPf8cgDBx2CwP4hG_qHzgzsqqYZfMozz1QZMb70ZNygkuxP6AFaCaWLw_kOwubBs4n9fumrtmAK8WiootFQQsJYHVF0QD1juZLmPRcLQ8jwMqxbnZCxbJ-x7vQCrxVQs8eRQKJymS8m4T2wlcKLeO1RCqberJVNgFrbaUIRGnt5kWDPUY0RdVSjDR1dn61ro5SX0iRd8rwMgO8N4UPxU85YQ-XoWtNtr44xyyFSAG8LOETMcGQgTl4mmLn7OGp66M8TA0fx3Rwb4e-g5KrfZXvr6LvqmNkPJDtJwZY0ykTfOmq_kjcQz3WZizhazKdVhcFnZ-h9=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/eE6sr3QVyflxersPB7oOhioF7fbKZ3V0j-j-MXYHWJx8oe7Lf5jghN3tm1i8hRS5LpNjweUnlZFl3vyv9A7Q-YWUKIBHFvDvkIIBuHoboy0tQ-2o6TKUNScEmXKcDpK2I0D40t0cPxW_AjYh9mVZhlDmq7bfJlQHVfWXhXdd7BmwjDVSNRz1ujPChJ6SjQGgDKxjboizcGdxbSZSB2ENpQpZzKPFLGKub2R41ziik5qvrswa4QRL_DFYtP9J0e23pzi3LikuVl0nxrRK4orC2gka5_vXilX_HfTrFGckiQPiztXHL5l9s3hi284j0i7GjRmS1jh5GBHz0sNC5lF8s9LxO4znsg8B3IKq9rRNs7pkyDhi9isCEE4e0_RCImDhtIcszYqgQQbuS6dbDU18d9CBXNN9bxz0dfped5Qht3YmqCP-tG9VDfW6-R3rDFKnIBp4TrRmq5MNBtWUKWIsmvHqttG4VKzqNttVORDFD2M1z8g03xxTHfqDDc2FCaIvTtniqPs06CmUvFs0LnqfpIWzE2oR89SBDDjsai0e6Ai8_MqzNZ2VJcG6_pUyN8VjsnONmFQDnQvUmXMQw8dePovMsrSDYyff=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/WdfjVSsxAu5EcqMqaLfl44IPnokLd1KwjRBnmq4rS6v4X521oVPLW7K2ko3Ln8HUYpG6TMetMaijY9ITMSPgczvQYS3MzrV2VB8eVNmMd-vRAmTEWEUVZ_OGjW_k58ZSwdbYb-NMu5ZOUzgvPOC5Kv0n8ehw8zxfbU3RxpWVjhU6JWWplWFC-wf5y5SMJw-Mhl34Q2BQ1JYuoUUdtErgfwZiavDL5hXePy-bgfCXAh4WSFC6hVM1xPr_33_3od2ZIe7N3AxYSFMlhfhQeCA0KlsyO2j_ieKoeOYMq0eHbkkoqKhUHYjVEy966NeGkDy576tx_hM5oHKb8H8CcVpiRNXqlqfBKRTvbALWhN0uTNi8YVwoAeDFusYV2v03Qfl4Ux8oGRUOEc1oNFSi-d08jjvZZQZHhYGj-SFh6XZHSV51vxZOqA9Ab9tAWrlJRN04am3FHh2hfJRkb1NkFxngMWfZrxcX8aasYSjwE_eZT10OK1A1I74Wwa4DDqi8IuBZprl5UttCkWGTaExAY4vXKo74T0hKht3Nu50wJRYuYAEGdJqpyicnzwyqbE9fE78y_58lpus5GXNzrzVP47hcZY1XmrMTlM39=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/_lLwvRF3B-zH2qAO_xyWs8yHi10yTxA5-x-WV9Z6XQP4TC3qsL5DaVHqKrVvloqr43GZhgro3JAps-0q0S8mM6ue_FwKEcpkpZkWuAhEmz6__YlkJG-AOQPDgE0O57HboB0fd9Noxr09w8Nv078DxBBBoIaqGlpIpvrhQxs8Y3Sut635z-GnagR3KSNsAXu6jEdZ0gXAAT6vjUceZuWD3GFoEyGHosNhOQ6EJQUBAFHZwdCh4txNo9QXs7zujyO4YeKnA_zG8y1TtjUYbO0rrcYNdHjPte32SWes_PxZKYwegTlqBoZ1Gx37J0CYjGx4nS1RmFDxjD6K4dOKlAOJzjI1qnQl32z8TsZ2g0VjAQDL-vj_Eh2aQFsjcZyA64Fjmf2I_geW8vzLtdcGIJdA4MDfwRGHTXGLpGj4Rji5aDE53p1lqqC3_9UzW5SVJ2oGaV7ZfflH1J40aKYC-eByJwuRGD9SPYEZclVvYJt7OLb0-9e7cz3kgoNX3WMpUs8oHree-F8eNWq_VcW8UvtSYivBQFQZ0JkGT9OaeSrF4Y5HE8YkUFhDCWTw8UP8BRC6RYbLxNf0BUZqokLe5hZNoHg7FNej8C0R=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/bKppauWMNyjuAQVvsEzJV4HTDpF_8-u6FM2zZ8eFSLdXg2qKATlMpiHKI_w_QXBvguhrhJ1XoDL7bIkpXgN-cfreoU-hW8xEEdDpr1LfkICos8-yVvvro8w2GCo0f76r0WaU0Bg-JjvFHtHAkMvd5qUSZXARmiXzIltTXFxOldGCb7g0DJOOjxtixtkzZocvX3e8Rku43QAw7yqHw4HxP1RSfjt7R4ACuzYgUNQmIG6C40L8L7sCGyB4QF3d7Tw_EDH-cUNjLhOGC_Nek5xcaP_fKq8b1--WyXmumpuebD4zsb_zLfSZxNXXfUYy4CQioBMfEUDoTf0SQUDmc_niY4e8PGVKKmcZmRPDCZPl8hS3iuAwJ00I-F7nHJM1b7u7k0kQhVwPfzz-jxnQn7K5vv7BwA1d2J9CfxzwBrzJYHATc48dDBfHtggX9BpVuDyDXFCsmgfH8gB-KOOYYVOdYzt6EvMWYg03IkyAkh-MVdU1lRIli7WmzFV6iIngP4e-_8rd9msWprbstPNrnLygJL10onF_sZOZNxZ9MgO3CGudm6Hj-uIM5qXVaY6JPLja7QcmVO7pLnoz4USrAWHCtqDs1W7xVmSv=w1155-h650-no">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/CS50901.png">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/google-art.png">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/google-art-info.png">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/cookies.png">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/cookies-zhihu.png">
+<meta property="og:image" content="https://lh3.googleusercontent.com/RiFeKw-YBEu5bcXwxIzPQvl_9P4mjrw1GfBcKzcAM-RqqXnwYDpvpwYvBFizz_zhGzxl5S2IwltJRvoDAro5-KKrvaEhmOZNJTIjsdMi9tMSiCvPr9P266S6mEhhHccwRvgI4f5pZhfjAQit_D6c2vV5v1yxDMv5_8INsCW67SYtke_v8ftjp37pCHimUmbyhIjRDJjcOViiasxAZNWvzFqcTrEqhKdpEz4ia0j3Qf8jG6cobxDEt-V6WqFLH4JHZrMGy_11Co4uX1chvYKz2kaqHKTQWL6cBHFupNTgUkOAnEjaT_pYc7h4PuLc6-P1R067WR9e1HlCW-_uYFT9ndQx5XdTO_er-NvxkCdDgjKLnAAEG53a9KLmIgA6BeQ_fn0PSjQ7FDeTCf4WIWT0-isGTjH45hm6yfmOlWMy6zkgwEQKBDfewgA4Zhub0gQB_9YOzNty-DlxUVVoKiFmfy-vaCNWpk4EzXvN0EcHC_Ef5rbf8MwacYqaeQXzADFGSKMsIHysRzq1cA1pTEmipHTQR590buHIACOIU6lPcRU87rTTS3quM7Sc8-ddQTmqcbKZd162llSAyfJtB178UINCFuhmPo-j=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/ujLg4e-eKi6WFMfbK8w4usdocHHf-FcjDT1Q9qX6Kmo2aBQ7wba0vICC7cGwnRL6om0UC0ZNbOKGlCzM76eyPILSkj_C7Nn4tLpdsbigMBJjb8KJru9bOHds0Ptn8XK8Llo2z7OC9WJRS0y7Sw76dl0r1A8xjWG_msvDVDk6rthh1qpdDeqCEG0amNVKF77NRp7zjvWCg8LkrKueAZZTkN6yc1VTbA_OsZHnETJNa7GjTzmPwfUufYyiQp8QZskxnCV7ugNiElXQcdSxh6mo-p-dOqe7EfzK7VnopgwOUqI9_FcbgL2w5gLxBITQ2wcU3DUFJKt8ldhLNVdqp_FCpjxIRCI-HFX1WteXRj5Be4A5AFx6z9kIhrH33GJAvumSMaa5oA2qj3NcgHr3jk2kuti0qpsNwRoKpdaW4DvhJGf7-QwijlJJYAfb5l3_EDkuHeAn_KbYN9HTzKDWbl_wwvE24zBJzbPbc4NjdZuMKG-zzIfDadyNJT-LJK9tN_UyGIRZR65slL64oPSrzkoDA7EFaT9gqNl7qkq-w70W6MHTkQ5N58VFWRLfnDiiAd0lNWzlo1_-Lg-aK1VGB5P3u2gAwuc91_7i=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/kuV3FTcE7VIIvzUksmJqhAVLLRVrMR4g1uuCcRa5PQE3w8rRGe86DmkxHmqvTcJ6vA4gDJilWzBEs_yeaX8bNoi7YYafC1jpdEZgLa9i2M5ePU9-V0PAOWXbvXxS9pOENI6hF8Ji3KirO2EvRPsvoIcKw4I29zF2qYagnYXIj9tElfVL0H5AIebrVru3V5SI5mEVq1IJRO5nOT_2nHvC7ldYJbJq2dY6ExFHe_a2LykE03hSN1_hn8SOlH5Zq-DQrUp3KCQjzI2JbYQ91VK_rOB65gljWKmsAQe9d8JbYAPAI93G3gPIh7H76m82fm8HqqTcJE5ZGJ_zFMN7t0wQnQa_fWmMnGdsaAj3cksUlorxEk5lB1F9y_wi572gBP3xG_KrAsspEau4Dx1Ncfynwe3pMGfAExCbAtP5cgyIKohB1AFoudIxT3WSS7IGGtm8hV52U5E91VxV8rBei-TMVRT9ET4hqYXUB3SzpIf2-ih0b49uFsJ200_kCFZsQOxki6baMj8TXjouERpZ7jETNys-C1xh2SkBYEsOjJ_hADSEe3_NfcWLJ-xEoU6PetuGV4BXa4n6UxedTBmK42S57Gmn69B7B507=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/yNjtRxEPVoTrHlC96zCSsJR2S6AbfSFMe7fM0ya36W2WOjg45pdU-uAzPoLu2UjDiEOPkVBCSQ-uGs6kkLBhhvxaganbGmKLh8FtCdrWzgz9988GnvMy2rRIoRxZzM3nckwhqzDThyNz3zlya4EXwAPQ0Zpan3xbdDgfZQxON7wHACQ5eQrzPuM96kLpEv4_bT6HbOPLBfYbAxq3V2sLSMZRNMBVZx-kyWMuKeQTxWzUiVV2tWiQGXhiYVBRgRJF-6QSQnGznqk0dbYuK4QHr2jXzH7j1m9VWCh2oXdwQajYFZiyy_cHx60RyvA5dFmQ9f9z06C_M56CZj1jyU4CsI9pXhETzkKGZe5-v-S6SwnaUfJTg9dbiSVp93s5X2GkXr3Aw_Sx-fHK6AFeRxJNJbBfwbOXtIaAqHfCDXbigflKef-cyN6MSm6qK2rXuKd5kz3DPS1OHLoGmnrTbPNxZ3a2NZnCPz0bIuN05OEKooCYZDGvrLltU_YOMhXDyPCwy8UT42iw3ON3fR7D-97WlJtNzxtmD6oiyCpzipRJMU_NhkaTCN0tgZSZa1CVnnm2ti6PFmJL_ty3djP0bvFxyH7NRYSj-2Ir=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/kLZTEQPF5N6RGY6k40VOnVcX3Ayfix6TFoLAPEKuigfqtBozmJjA9oBc6LKoKOtQdxyoefFPwYtlGt5QlIgqQcjLO1iq5Je8JCUkF4Wlxk1GhTAiEu2B2oz550JdJf8_9Umlc-umRiakZZy4XVVu-hUkZ040j0dEtGF3g4soHIJukpKr5B86MvMlfWYD0eWMw3ozW03kS1k65hDSEsRwZ-igwK4-JSv_j-KsWNH30645Vob_lxf7joxs7JlOdowtMnBVJ6segkYBwE3qZ4JUkZ4lgO2mfuu5rkGstaKoTwLGIYuVyo1MGWq4-iihtnd6SYuxPptD5tNrFg9wj5kJg1M1pnbewbdZ1PYzUtLHzOxkX0UyjHwlT9G1QdESn5dW_9H9WQwNDuRnMBQVaSsuyYPxFb7XSmW7v_7K9vUxID8KJ3JfH62miDDz9HTJmguEy7Z9WfVfo7gJNSnbczblFN3sPfYW2fSfFODdFDDKKuvEfvy1sW_UvPW5ZR_rKu4AazDeYkwXglpYOiub7mHCVdHhCTvsgW7QDygdHyhE8AaTdFcIBDnfHw7oz2FEYf4AcC_hQfqLpJ_a2thMnzYAwWffBNINz0qW=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/cQD2Nhruo3raVgwtWRpJGY7-E15d8xsBOeouVh0PQFL9o5frXa2SaDivYnv462ySFaNq_r3uNbkifSqoFO_qDAXaZtMz1dAnez7G638xCx5BRqGRczxcj3SMLT-wPeJk6tJm6IeqbEuU-52mpifVIjQk1qsNYEBV0TkNQzpJZRqqNy3RkujV5I0Xy1z4uTT9ApczdYnqzEMOB1ECeEKGwDNo0_d_KRXjPFWldO3LIwRbe33fmKe7WVvl26QpLoR0im-tMBzAOYnww4QstHvfEzfEVsNAqllk9m09cgW7TtBNuVvQZ_A5OrrRLazoCkB5vzwW_uBw1fuZUfFbKQbz2qN0YnbY1R2Do7GNvDwXbz6bo3Fgn7nCueNHXDwya73paB-TMByvrjNN0EwP8d_4dAOZIJ54xkVzqVg3EG9XKq5lNIv4FDcBGjnrYMnYrfRGRdqkc982zurZuyeDGdLLpfSBCFxFsx0yxuO8NuS_06kpi_OaT4UW9Zx4bE_JhgaL_ObzDH5PfpPrp1RELoklipE91Ys9mfUysKAU7kJZ-Z65zCbwduEgR89SEEtZNvHZDg-CKnKjIUkDUw3gHVc8C3SouTuLcYMM=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/_VSZQWZuLqNH2CHPbjVRmt1JLM5JgF9IZObmw45oCGScclHOGctnIqqgC4maqH69mqgWZpUeHoR1O9x1uK68uap-zbWk_EQV1fU06svWBbM84m2RHf0Jk_fgFkNaz5OJKMzYNkxQq10csFH7gFKGKqs_y14pgOnGJ5ak-yDHrmq3XxblCGrzwOzsKmFy2EzmDt_TpYXpHCXGNVuv7gvGA9r-ExWJxVTyFwU7IkV9TDqjeQnH_eLCc0AhT_cNmfwGB3DB_RJOkThilemF3PIIlg4VlSnspWjmB4zADtbbc9H9d5WXZV9I4xjtc3b68rspmsKJkJbaIteYCaf8wMN9ASbZ_gg_hSPjqq7Ao12cmF_X6WDhtTIys-UBwvlO6f2QLa7EamrGfN6c7iU1ZZn6Dv1JgoyGPqmYfSsVugXhvRJF21_GJuBtK-eCOrGRfLKfEm2twEfj-pvGTe6aKhZPmmEkhoWS4n9vpo6cjOmt-YckbNNfR85XrP16dgZX9HTWEXvM8uFOXBs_PtlMKZI80ntgAVvI1NXpoNM0EZhHOQY7IZT1WIKD3iwUfynJk_9Xfx-u5WC2h7xWaT0iLKMm5UAJVCAdCGgw=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-I6cp3VzBEaHIBY2Qmxo2EArp7I6rqRSqm2CnLxSrAmTMhrJ2mRLw724eUAFpJfVR3m6PWQOpJLOD9aR8eqdVXmsk_DM7XGNfNFcpEkQla7VG_xS-QkoXiNLBaQj5xc7fKFpVmP9-LTWlxMh9YpyBo2eSQFLtm48uLi_2z_E2vy7xc43I7WZN266rk7pxmQoiWoq6-VWO19yQR7Li6Tpj0qLoSdWQmbLdkVOvxmoPta1wbIYpnyogWZoMyRlR7-C8qTtzM5GWy3NyOinoId9ZGa9A_9zD1zVrAThr5eHKwRb3z9KUSuyNVdG3-1lNSDJK8A8lGeWu7BGULD9LsoRkkyV1AFWelGeXWNW4TwrEciLG6iaVOMiRmMa8eIOctuH2drniwuTPRXRe88FBG_wI8S1awISAQv9cMySQQj7WbameVHLHPeG25ym5gcLtJirHCGcwBEulZ6d26lUrjuvrLhv4yfAv2eefGYES9AL7ZuQWFrBLwDzh94oZgl8dI-XcmcogcWmxEfzsJaVAaQ4qyH3VzbeIcpYxDxRag9KMCql603VJezR36zxtpZdicEzVU_sax4FiRxSAIVAk2Ajej_Xqas_oekP=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/nBtcu9LhaoNRlsmPOtmLJvitTl2FNSTBkQw1Z-kb_g1WInG3OG82G5GeaFHJc1wRyZYf3SXa0faPFHPPZtGrNbCggm81vySz7RSdyAiz9l-tiL0Eu7XTt-z_SOWqJFcPKgAXCrgvLjiSZBUUU1hWIiF_nHrM3hm5cNolowcbSwPJotT3mrLGUBIwD4wjyP7mhK6l4OCwJ7dB19wpfJ7uGl0xN40AQYfIPgG5xX57jPXC9a6X3Jzlyad-zfO6u-gw8lIOhhVFtSp0nn8M3JKIJ5yp3VtNx0z27djvA9J7fHudOVThAza8pdvay7blDi9yKAetYCDde7QO82O68Y7WK_UR2CLqc-a6bj0N4l4q_XMAcZjbjYULe03vYAQBXzcCsjmDNzYp2rlod8MY2L_SlCOfgnMqlnCHRx1WNga9rJmovNZpkIRxXUIewrrmVxjs8VWMAIXzVhV5aNqTuHZ2h-4rYi8ZdDHy8bdSDdOvQll54OZFFcH9kBrgwSTy16HT0ZAPG0HS0sCztEYegldngmKuclnhCuYNPFGicQmqydb2CXCM87e-RZptsnrEoAU3G-amjoyITU-GMFdzKHCnLsS8zj591fzy=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/tN4d3jmMqWOz2_29BgZDcqFJ5cNJ6uWv00fS45tX2cdsOCRl5LDN_bC7hgEI4STDPEBQP3bokKwOkRTFrEMWlZZFdH8QoNgAaD6SkiEsOVESsGd-ku7uLZrBuAmSMpoubdtzn6mFlnm7iJqwh1Ndth9PAYYC5XLk7C7NSPRu81cB4xFxurB6Zv2wPW7g_jg2hYjjtql33AUrUbljvIeCsXYLgooXE2GFgsGttNVPVWGuHQB9NICi5XEhqcVO30wcB3gYDeeUAdo1Nh5saC_LrliEARtkmCAamOEp_yxh9hGRlItV7FTFG31kAd6A8RZwFmK-ibm-0l93ygyfW4kfu_JqmC9x7JCkgtWt3TknYJDEV__DW_HgyUserarDmnkKiZZ0ogq8nrT9C3v68IVKybSrWZYatcvGhN323cMqqK395xZy9PW9dP_n3ejRz1vnJgyJRQ9149j-JRUW6M7MJsh7YBsqM7c2d3AIq4p3SomeTCYNumAGS49azXmJQINXDjwrfAVDc_hu0bmYHlISbCR2YB-OfgZIgmSWwxvA5xnHBSgUnAXG-ZtZ24goKSevPkTggQLr7-n7M-5mqmxs7SsRolqcolmI=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/On1tMv3KW7ibNP_hd5zC1M0khp31U5wH5OnA1jJOXL2ewpoBoM8JUNRdwbOeeS1eH4IJoz2hzUGfOEb_-LyVKKaF5ei_2faeRYe1DOpfQZ0NLRdMOTWlxxSU8uUQk3MzL7bD6iDxDEZhgH3UwNyheyLnPY1SwXmGXRq0uXNstyhZi4YmwXHeAwVBK2fSIPqKmNBlRXx8G-EbwUmYdaCAWDSQ3LSvtzORIXwhHE2K8k3Bh1JYKKDl7ihO37fS2epAdIQ1pXJQ7qzlsjWMuPKxAcuGZXn3jRTpD2aCBjHpOya6qkonmrNSzsAz16IJm70voieeP_oxhgsemM3VJZUOmzcyJTmvr0S6ktQve75cI-4UgLqOj6WHEhF3b05Oe-MY6gHYmO8HW-T9KxUg_Wr-JTHtfYpXZe8BFPrrQj60UGpp1UmJGcXEQ0TmdfZELhRprRbrPZIq36Xg85k6K1XCKXmh_YovniDSx9kR_kr5k6vXx6dgErDR7sbsyH2fO4izvSmQZwCU2mHeZLzWZt99PFPenduZuROm14tp8wYE4Kr6hfS2ZboBfZiBgds55cJZadXx79z4jSAmbLCAartj5QzJr6fvMt_a=w1155-h650-no">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/Tic-Tac-Toe2-1.png">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/Tic-Tac-Toe2.png">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/Tic-Tac-Toe2-1.png">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/Tic-Tac-Toe1.png">
+<meta property="og:image" content="http://7ktu2f.com1.z0.glb.clouddn.com/Tic-Tac-Toe3.png">
+<meta property="og:image" content="https://lh3.googleusercontent.com/8MqRiyk4Lbh6TP68vrBQ045WWShOH2RijDrDFSG08Ht5500orivGg9im_J7x-f9cEIKf15165UBlHa6JLU-qcnb5GKtYioWeJseqY1v6lEt3v7QVNERDwyee8LmX-wCMW8h0fxfjnIXqC3EYBZ_ao-IQCjj0xwa9UREVcyCo7fdWabTqOFHviFNJOO96JCoqp2Pd85XY0OXeLH0xfbJTWTrTLAWlgRBRDHLqub8pdd41ZQjhvHhZ89dzm1kwygOAe7wx3pnpx5OwCx51hPmZOr9Bl96LLCn3ZV43_LjfICEyjL_m7Gd_9ZX-ezavMb_yq-Idav7iaservikY8ErIs83muFb-qK9-E3wa7ARnRp9NSXvwUcqn1hTchIyxKp1acsuOiXp44Y-MahkS1Lv9LrC17Qu4Jwj0S9bgjdO121Rk7ExeLw6GvePLQ4480VLei32YC76uF_soLXml-M3Xm076VQcHz0UldEypWzjfTrK5NS0dJ2ibBoAjRti4zN1ATryAJYeZ6LsUDITl9Q91E0IB-kIJIh6eSybXPqgEW8QPL1tR80bh7PTJyEKETjdp-FlGT4DTCM2o9wv49fA23AYQcFlFM0xt=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/k1qEFkNDbEiDDgpUgCGSa5BoPaawu3e_N-_-hX4fIvJYFv7o2ghW7ZfYTssfAvuT8tW3CPU8GoPqQRdvzawq71XAINgADH1E01S4_mEVAotJ8vAxEioy67j-ZgjIMytpXx9HpXw3u5O_nrzxcoVKg2rHv7CMIyVMwrwu2CHLWWJvJTwszAMxUwyrE1wIYnU-5n4qM1UEp7gQIYLt9BuNp6R3AhN7ZojY0h7Ic_KMhyrKAXpVsmHPOoNLwJYnaXb_dO1bQ-0TXsVqISBUehkQ8DBSGXfRXH2inoDhwm4GtE4UcnXiaDu-4dFvdx4X5lhlTVvO-WjTsijGIzwkh3Oere0RU-Hx49lJPJmmpPwC30Yx4m_ny1lAu21u0gw4_ku8U2nL55pTldaGmrJMbYIcEE7Bfam8nQSxHkrEngJWYTfSTayzsYEp18QLRALP5Q3I1rrFPYBTAS5p-ggP9AkV8CMyr4TYXmhmeT2pnVa5cysYHMyZ8aNXy25GCRCo02fCcfVNGb0k892aaEx2dEMoy-WO9zZ_EAcJSC3uUjZ0g2K9CUcFxB5m4RU2AIuQDAjqM-Yhhs12s_eUMo9AtDlPHU2IFMLKtwn-=w1155-h650-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/5ybIvk-IAgDYsKBqGf06V0PaIj3zwekVYu2wKZCMeZiaBjVSz8kqhjpfcfjib9x4rXI_31FZPODGHk0MFFZC0L8Jpa4rISWXnzZTfkdXBB_mDJJThTij1xHB3hWlPv9kDm0b0YwRjI7QyhHTfT0QB7p1EKgbXxkl9m4mk7tYEZfHjWfQa5ohXMviR61eBudwbAN3UlWZdWRsai_gw4wY00Vjk6QgU208THZC_-JwiqtN2voICJMsVMzB2CLlH7WxKdDHUu2L19ukHq7gYQkk5WByAyq0cU9Ao4x81XXC96YqFVcFpyaQ3m71QVLoYSNPS6F_qd952AzObqWLCmOzqBjlCxDyKN4ydTNqZMVHx6w5Z0pP_1zPLRg713vf5_MQpxpznxgJCS_nLV-3jBapnPA4Cy1Fa4YmTOcHLmERasL0yURxOykTKjRPgfsC1e78jAN2YuogjaBsqcGZiIFVqnQwL0I8WikV29NX4HhGKiOb8Oc---5EKIQ14SQJzZ3YAheErmuuh60Q9Dsp9tsLjuHMxXp-aZIBhal-gPr9J1FmwVvPU1jnkyyi9rqs2ITEWTndinH_PkXMqiLOGF6HgXTB4_gwkh5a=w1155-h650-no">
+<meta property="article:published_time" content="2016-07-10T04:42:49.000Z">
+<meta property="article:modified_time" content="2023-04-28T06:33:22.090Z">
+<meta property="article:author" content="Zhangolve">
+<meta property="article:tag" content="公开课">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/QVB6mULD3fu3GJU_6JEJrkxp5kJCIcHwAy2cY_9RhKxlEd5yDleID9zBmwc8K2bonOCM9ZmmOF10fLa8JQ_FD6vYN1MH10sHiCOnHbo4Gf0ez2xJDdcw2zo_-zxUHyNXF7EBSJdE2abMSkZYKazvlHraB-PTKwta_UhC2KdbQ3COToCbM9euVSuvf0VWssoU-2GsutfUepB23opvsh7g3lCKreqE90lHzIZLqeUwl4mM0YTSj92f2TY_iuamT1BkldJayijKm_DjtAF7g3nAd4fnwozMyhTxieCFU4Vhb_JmVZ2Qjoxf9IcKhsKRc58szD0COoyDcRQpAjx7nQr2QqRAU4-gp_LWcY_fL8b9WJaiL5NsSpNcRWzDf3Z-pujNmDmarxPIS9vs6mkbrlonflyBvE5NUwAV0gt5AYctoJyuj6X0cJFMUgflDT5oXcU9uzRMkHInXteMdJezPQEY7Mhy5Gf4LjNB7dx9TD4S4Cfhbuvm2QktdEECmVPQ1_wrljZoZ5OLzLjo7Liwxjk2P_m7wK9nvk6vQvMGCD9DKJlsBbASKJQ70UrHBq3HxroU_Lvf33ddPq0a88XdKjBHrpapRcsCfuWa=w1155-h650-no">
+
+<link rel="canonical" href="http://hktkdy.com/2016/07/10/201607/CS50-note/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>哈佛公开课CS50  2015学习笔记 | 海阔天空的云</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="海阔天空的云" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">海阔天空的云</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我们在自己的世界里独自狂欢</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hktkdy.com/2016/07/10/201607/CS50-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhangolve">
+      <meta itemprop="description" content="分享是一种快乐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海阔天空的云">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          哈佛公开课CS50  2015学习笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-07-10 12:42:49" itemprop="dateCreated datePublished" datetime="2016-07-10T12:42:49+08:00">2016-07-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-28 14:33:22" itemprop="dateModified" datetime="2023-04-28T14:33:22+08:00">2023-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2016/07/10/201607/CS50-note/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2016/07/10/201607/CS50-note/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>维基百科对CS50的介绍：</p>
+<blockquote>
+<p><strong>CS50</strong> (<strong>Computer Science 50</strong>) is an on-campus and online introductory course on <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Computer_science">computer science</a> from <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Harvard">Harvard</a> and, as of 2015, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Yale">Yale</a> Universities. The course material is available for free with a range of certificates available for a fee. The on-campus version is Harvard’s largest class with 800 students, 102 staff and up to 2,200 participants in their regular <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hackathon">hackathons</a></p>
+</blockquote>
+<p>这是我个人的学习笔记，多数内容为自己的理解，不保证内容的正确性，如果您在阅读的过程中，发现了其中的一些问题，还请不吝赐教，我也感激不尽。</p>
+<span id="more"></span>
+
+<h1 id="CS50-week-2"><a href="#CS50-week-2" class="headerlink" title="CS50 week 2"></a>CS50 week 2</h1><p><img src="https://lh3.googleusercontent.com/QVB6mULD3fu3GJU_6JEJrkxp5kJCIcHwAy2cY_9RhKxlEd5yDleID9zBmwc8K2bonOCM9ZmmOF10fLa8JQ_FD6vYN1MH10sHiCOnHbo4Gf0ez2xJDdcw2zo_-zxUHyNXF7EBSJdE2abMSkZYKazvlHraB-PTKwta_UhC2KdbQ3COToCbM9euVSuvf0VWssoU-2GsutfUepB23opvsh7g3lCKreqE90lHzIZLqeUwl4mM0YTSj92f2TY_iuamT1BkldJayijKm_DjtAF7g3nAd4fnwozMyhTxieCFU4Vhb_JmVZ2Qjoxf9IcKhsKRc58szD0COoyDcRQpAjx7nQr2QqRAU4-gp_LWcY_fL8b9WJaiL5NsSpNcRWzDf3Z-pujNmDmarxPIS9vs6mkbrlonflyBvE5NUwAV0gt5AYctoJyuj6X0cJFMUgflDT5oXcU9uzRMkHInXteMdJezPQEY7Mhy5Gf4LjNB7dx9TD4S4Cfhbuvm2QktdEECmVPQ1_wrljZoZ5OLzLjo7Liwxjk2P_m7wK9nvk6vQvMGCD9DKJlsBbASKJQ70UrHBq3HxroU_Lvf33ddPq0a88XdKjBHrpapRcsCfuWa=w1155-h650-no">  </p>
+<p>这次课 ，是讲的数组的概念，这个当然也并不陌生，但是这里将电脑（computer）的内存RAM 与之结合在一起来讲，这就很有意思了。</p>
+<p>内存的分配，一个字节（byte）也就是八个比特（bit），它是内存中的最小的单位。计算机所谓的二进制运算的最底层，也就是这里了。每一个bit都有0和1的划分，这样，八个bit就组成了一个byte，通过bit的变换组合，就能够形成2^8，256种不同的形式的表示，我们再人为地将这256种表示赋以不同的意义，这也就是ASCII码的由来了。</p>
+<p>这也让我想起来，之前看过的一本书，《code》，这本书的开头部分，就是讲的一个两个小男孩之间如何进行无声的交流，从此而引出了电报，又从电报引向了计算机的发明，其实还是一脉相承的。</p>
+<p>数组很重要，通过使用数组，能够将很复杂的数组进行很简单地表示，如果我们想要10000个数字，我们不必每一个都逐一赋值，而只需要一个数组[10000] 即可啦。</p>
+<p>在内存中的存储之中，空格当然也是要有存储空间的，就像是ASCII码里面也是有空格（space）的对应位置的，这里也解释了原因，如果说字符串A为”abc”，字符串B为”defg”，他们两个字符串在内存之中是紧紧相邻的话，那么如果没有空格的话，也就会造成将这两个字符串看成一个字符串。</p>
+<h1 id="week-3"><a href="#week-3" class="headerlink" title="week 3"></a>week 3</h1><p>第三周讲的是算法，开头讲各种排序。</p>
+<p>排序当然很重要，有多重要呢？</p>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p><img src="https://lh3.googleusercontent.com/6soiNjYM3TMFQfC1Ge48aAGMCbDOnClrmvDzftSndKe2pHGr2fMtxVlX8XmdOU2UXWllJaz5Xe7OvKjioXq8GGnUDQRcD5xYEpA_8ZSaXR_36TIA7kOxLuVsfKVTIm8a7L4ig_l5DonztWvZmpYp9wZPQ2fFhLvWxdGMH9eg7v9lZEE66HD43RE8SNJpVALu7nW-y-gBuW7Fqoonnub2JbGNc6PduRHPtMGi_cEh74pyb4HBIkQS3yc52Cp4SxeHFUYJTS0CBANHrLXDIeKyjpwwEuQ3BBWI0d-jTRI-w9eb1vUwSBCVPxZ9LkakfKUKdWU8rcSUJ2jMklgKuMZB5bWKypm7IP9A00JKxgNtS2V6_SBsV0H6tjR9QZc0R84wBumjsfAg8Du-_Gd7mQqpiSFOzyqXSraxRx15ZyETU2oe06jYlYBPYeHipLW3sZYUclcjjXJcLAZKFFAED8NMxPtIRWSfEDmO4sR4QXVtbYZuTkXD5BlQVFUuW-G87-e-rFb5AkdHa_nglIuhz_aNNCPKCuYrIm6-1mxtBCU7e8hAZViaQyku-o-PaMbS2ipedKTllUxbevvBuVoNyp4wMEws-Q2kI7pD=w1155-h650-no"></p>
+<p>冒泡排序算法，这个当初在某公司面试的时候，面试官有问过我，但是当然还是记忆不清。这里看CS50的课程，还是比较好理解的，所谓的冒牌，就是交换排序，在上面的课程截图可以看出来，每一个志愿者（volunteer）手里都拿着一张贴着一个数字的纸，老师正在演示的就是冒牌的过程。</p>
+<p>冒泡算法(bubble sort)的核心是交换顺序，如果是要求后面的数比前面的数大的话，那么从当前的第一个数开始判断，如果该数比他后面那个数要大的话，交换顺序，这样进行过一轮之后，还是不行，要进行N-1轮才能够最终确定。</p>
+<p>我自己使用JS写的冒泡算法如下所示：</p>
+<p>    function bubblesort(arr) {</p>
+<p>      </p>
+<p>     for(var j&#x3D;0;j&lt;arr.length;j++)</p>
+<p>       {</p>
+<p>         bubble(arr);</p>
+<p>         </p>
+<p>       }</p>
+<p>      return arr;</p>
+<p>    }</p>
+<p>    </p>
+<p>     function bubble(arr){</p>
+<p>      for (var i &#x3D; 0; i &lt; arr.length; i++) {</p>
+<p>        if (arr[i] &gt; arr[i + 1])</p>
+<p>          {</p>
+<p>          var a &#x3D; arr[i + 1];</p>
+<p>          arr[i + 1] &#x3D; arr[i];</p>
+<p>          arr[i] &#x3D; a;</p>
+<p>          }</p>
+<p>      }</p>
+<p>      return arr;</p>
+<p>      }</p>
+<p>    </p>
+<p>    </p>
+<p>    bubblesort([2, 3, 7,5, 4,3,6,8,4,34,56,34,23,6]);</p>
+<p>我在之前的<a href="http://hktkdy.com/2016/05/18/201605/sort-and-find-position/">JS入门（12）插空排序问题 </a> 这一篇里也提到过，在javascript中有对应的排序的方法，可以直接调用。</p>
+<p>    function bubblesort(arr) {</p>
+<p>      arr.sort(function(a,b)</p>
+<p>              {</p>
+<p>        </p>
+<p>        return a-b;</p>
+<p>      }</p>
+<p>                   </p>
+<p>              );</p>
+<p>      return arr;</p>
+<p>      }</p>
+<p>    </p>
+<p>    </p>
+<p>    bubblesort([2, 3, 7,54,34,56,34,23,6]);</p>
+<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p>这里也就接着引入了时间复杂度的概念：</p>
+<p><img src="https://lh3.googleusercontent.com/vaPDE-F87oJsP2T6kI2aoNmKuN70gDq1R5ed5I9JC8r5RKZoW9bCn8Nvf1RxXH1w0zUTXoHnZf1WCrWqIQW01huCvW07Hu8QOKmBdNtxpz15_dEYp3bXgNTvfd9I6jPVqPdWF5dmJr96y5O5HX2m8YKDO6E2JJv9w_FHlRI83E5eDbSTUsPjkezdr3DjPqozQuWuMYNYRMx_M0K3ftT3Nef_B1imQANxR6-x9GV7C5Gqwp5gf7hoB3bfcOJr0GIF3TOCXNO4mgmVBvQLGfzpcIQxTm2yBlPt9kGr4R5wOw2yzpYdq6x5uMLfXIfNzY4193y-M6J1x-mhT2VSxyaY4CkoUQOJ_vSP_xS6n14O4NZ_mWqDJ4L-9ab8giHRDsS22Kjaf9bahhik6MahRKnspPenD83B0DaJWqoKU00vrLXf8q9f9okdyTPxACn7LkaX4q_QKanvANe1UhdKuKHJACBXv6Mauv1KTFeellaU_M4aeijYf_SyXrtPzbWFSy83QPSOuyb06IvNHYD0JdFZu5Xo70FZHOP5yjtL58zrJIwX_WdImY9qU4U9MQat1EQZodE0hw7_FpzODYp_CZ6JcxSFN2on6n9W=w1155-h650-no"></p>
+<p>如上图所示，所谓的时间复杂度，在这里，老师表明了，就是说你假设是最复杂的情况之下，比如对8个数字排序，那么最好的情况肯定是正序排好的，那么对应的，最坏的情况一定是完全相反的逆序排列了。</p>
+<p>如果是上面提到的最坏的情况的话，那么进行的步骤数目就是</p>
+<blockquote>
+<p>n^2&#x2F;2-n&#x2F;2</p>
+</blockquote>
+<p>数学上的知识告诉我们，当N趋近于无穷的时候，上面这个式子趋近于n的平方。因此：</p>
+<p><img src="https://lh3.googleusercontent.com/78mV-P_vi3Pgrp2ONjNJfnvcgZ2go5eo4nb6G-Ehqt2dN_vL1oxKELei-VycKS0ywBaQLTkZi7m59sSjURrHQiR_fBI_KSnvC6yOrwnc2j5OR3HaljbteSixdO_FlhlwyXI6D9gz1ExTQZpRVnrJp-gZdYAF-58vzk__xvi-J3SSnaDCFWxLSZaEyYY_zVXlAWPSB_x3BAGWz5N6pPL9Q6TzuMnFcK1f3_jiMSSZmYWR-r_p6eM5tVsVDlbD-_wOy6xvz6ExEn6j4nqxAebXehWoI1YDScI4QWJd1LVE-u1tdulWlY3IjI2EjO03ovIAtSRkAZrI_tEsSdhUBwZh4waJ1WFkpzbjwKicipg8gmXC09a5kkBSbTNejuOWywPbteisREnWJrBZpNzURhk8jFdeMcHSGAmU2YWFl-0KeBxIrsyxi5NGu7ULMHCKnoGVx_vfVBCMIz_ulzqVgRs6Fe3935FO7DQ1dnwOYw8BwjiVrI545KwaDMNW159D9sCR26bodaKd7wTu32ghzKOK5dCB2JJRWplR5Iutql7scOzMuS_M1J5GbQzbgLISrmF6LKAvIFsw1Ab7V5NyEMvEj9IQ7aVvz6mS=w1155-h650-no"></p>
+<p>另外我们也能够看到一些其他的时间复杂度，比如O(n)，也就是进行N次步骤了，这里举例是，如果从1-10十个数字中找出来5这个数字，那么随机地取数字，直到找到这个数字为止，那么最多进行十步了。而O(1)也举出了相应的实例，当要求printf(“c”)，这显然就是一个O(1)了。（实例用到的是C语言）</p>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>这里插入排序的思路是找出每一个value对应的index。将每一个value放入到对应的index之中。</p>
+<p>按照维基百科的说法则是：</p>
+<blockquote>
+<p>它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。</p>
+</blockquote>
+<p>    function insertsort(arr) {</p>
+<p>       </p>
+<p>      for( var j&#x3D;0;j&lt;arr.length;j++){</p>
+<p>      </p>
+<p>        for(var i&#x3D;j+1;i&lt;arr.length;i++)</p>
+<p>          {</p>
+<p>            </p>
+<p>            if(arr[i]&lt;arr[j])</p>
+<p>               {</p>
+<p>               arr[j]&#x3D;arr[i]; </p>
+<p>                </p>
+<p>              }</p>
+<p>            </p>
+<p>            </p>
+<p>          }</p>
+<p>        </p>
+<p>      </p>
+<p>      }</p>
+<p>      return arr;</p>
+<p>      </p>
+<p>      }</p>
+<p>    </p>
+<p>    insertsort([2, 734,56,34]); </p>
+<p>    </p>
+<p>这种情况是错误的，理由是没有进行交换顺序。正确的算法应该是：</p>
+<p>    function insertsort(arr) {</p>
+<p>       </p>
+<p>      for( var j&#x3D;0;j&lt;arr.length;j++){</p>
+<p>      </p>
+<p>        for(var i&#x3D;j+1;i&lt;arr.length;i++)</p>
+<p>          {</p>
+<p>            </p>
+<p>            if(arr[i]&lt;arr[j])</p>
+<p>               {</p>
+<p>               var middle;  </p>
+<p>               middle&#x3D;arr[i];</p>
+<p>               arr[i]&#x3D;arr[j];</p>
+<p>               arr[j]&#x3D;middle;</p>
+<p>                </p>
+<p>              }</p>
+<p>            </p>
+<p>            </p>
+<p>          }</p>
+<p>        </p>
+<p>      </p>
+<p>      }</p>
+<p>      return arr;</p>
+<p>      </p>
+<p>      }</p>
+<p>    </p>
+<p>    </p>
+<p>    bubblesort([2, 734,56,45,87,3,4,6,84,34]); </p>
+<p> </p>
+<p>插入排序的时间复杂度同样是O(n^2)，依然是从最复杂的情况来考量。</p>
+<h1 id="week-4"><a href="#week-4" class="headerlink" title="week 4"></a>week 4</h1><h2 id="软件并非如它所称的在执行任务"><a href="#软件并非如它所称的在执行任务" class="headerlink" title="软件并非如它所称的在执行任务"></a>软件并非如它所称的在执行任务</h2><p>这一讲其实内容比较杂了，一开始以最近的大众汽车召回案为例，介绍软件程序的不可控性，如果一个软件程序，我们不能知道他的源代码，那么我们又怎么能够确定这个软件所执行的就是这个软件声称在做的事情呢？</p>
+<p><img src="https://lh3.googleusercontent.com/ihUHLIBCKRYQdWh50pbyYERFkt7JdVCiPU-dVgnOI1mel6ZoOBaAKJAUsY96Gfa6fhxs9YbzQl-pJnjoY7JEEU_JGkaRyNUX1Uu56DT_CEY7I88XF1fO0hn70_3vmji-b4cr-DcZF8_5LL2KobHZ9DNzmMQgGUzOJau29_spNS0NCX5u1A2Y8R1nKBxZ2KC_ISI45jUPIfy-vbj0OKPJ1gMHxUJuEIz8CHqRI-9netFrO_If70HL7pE-7-iQ62hfGbB0B1dwk7-UHdlP_xKDnzSHamG2kcll1cDs9dl1EIuZKruSI2mFjml0xvbfqnSamDSMgO7Qz5flK1rMJrWMkTuvHnQf8ert0xmRiqou5ilVowMfqF18o5gUYnQqF74nWgIyeo4jgG-YZ5qhNp4p_AG7a7dLkfsqmI0H924k6lm7KHVlxR3iGpA37z4Q_Fv_W-LMiJ0cnxRygGMimDxAZWHGMvum7udu2U_kHVoVLev941e5GSNLy5VAEduJtcMJ9MMbuOdDZx9edLlXEcspsRGFp6NtHMO_U0tme4RJO2HPRXu3GSDZiAYPkArlYkm535poCKhOzxpeGO5pxQcDBkQjBvgn9q_2=w1155-h650-no"></p>
+<p>所谓的大众汽车召回案，在这里老师侧重于讲述软件程序中的作弊。<a target="_blank" rel="noopener" href="http://www.bbc.com/zhongwen/simp/business/2015/10/151007_vw_recall_start_january">作为欧洲最大的汽车制造商，大众此前承认全球有1100万辆汽车都装有所谓的尾气排放作弊装置。</a> </p>
+<h2 id="开源的好处"><a href="#开源的好处" class="headerlink" title="开源的好处"></a>开源的好处</h2><p>由前面对大众召回门这个热门事件的探讨，转向了对开源的介绍。一个软件，如果我们能够知道他的底层源代码，那么也就意味着它是已经呈现在阳光之下的，如果你能力足够，我们可以对这个软件一清二楚，那么也就不会出现类似大众事件中汽车尾气作弊这样的事情。在这里，老师注重介绍了UNIX和LINIX，在开源方面这的确是始祖级的。</p>
+<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><p><img src="https://lh3.googleusercontent.com/zp6fT2tgJ5UXNpq13BgfYE2Ex9O3QTyVCmqq-wcMcDhw6sqSC__9pOm1dUYlhH7slp8m4_RBqkZJG92z6iqdck97JIbzkVkEV1ZD60T56QQEBQIzQOt3dho9EnK0ZLxOhY-Ln9wjb0jinHUxYtQIyAGZKy5Etce1T4bDTW-HHW0ySrrbRX_mVbyOd7p6GzVFWefVDc-X2oIaCiMr_rcsd806TYGXK8jrT9rZ9gae07Zt6Ml-ncOs3FPZf7eykzlN3q-U3BqsXZI7hYiP0bQieD8HYW-B_xRl1xYNjMDNg5LmsK3W-fo-F2XimmFKIa0rxGo3zpfzg0nPbJW_bNC8lOLqFZqQ-BMSI15DMBW_K6Of6h8jDzQ8UfG4RnVgRsRniUTau0EU7qLzw8jZTwGIFXJUhULGm0CgjxrVYDvxwb3ZOU6V4NVcS4qos04Imf-Pt2VmTPbLH5c3JTm3f9s_96L7MeZPDgX0uWjAz8IEd1jSZR6_23FrAF6KvKHlxl4VGdZmz0e5iiPgmZfJg0aM2brPjscdmETuqBw2t9Wmtw2ZnQbevfTfVz-ggcImBLzIZXqkXslGkYIDhcYL3ut8n3HjmHD24Cv6=w1155-h650-no"></p>
+<p>接着却又讲了另外一个截然不同的主题，递归。并且使用了一个例程来做演示，递归对我来讲倒是并不陌生。</p>
+<p>在这里，使用的递归函数的作用是叠加。原函数是使用的C语言进行编写的。在这里我使用Javascript另外写了一个同样能够达到递归叠加之目的：</p>
+<p>    function sigma(a) {</p>
+<p>          if(a&lt;&#x3D;0){</p>
+<p>            return 0;</p>
+<p>            </p>
+<p>          }</p>
+<p>          else {</p>
+<p>            return a+sigma(a-1);</p>
+<p>            </p>
+<p>          }</p>
+<p>        </p>
+<p>        </p>
+<p>        }</p>
+<p>        sigma(6)  ;  &#x2F;&#x2F;result：21</p>
+<p>对上面的叠加递归稍作改动，就可以改变成递归阶乘</p>
+<p>    function sigma(a) {</p>
+<p>          if(a&lt;&#x3D;1){</p>
+<p>            return 1;</p>
+<p>            </p>
+<p>          }</p>
+<p>          else {</p>
+<p>            return a*sigma(a-1);</p>
+<p>            </p>
+<p>          }</p>
+<p>        </p>
+<p>        </p>
+<p>        }</p>
+<p>        sigma(5)  ;  &#x2F;&#x2F;result：120</p>
+<h2 id="交换"><a href="#交换" class="headerlink" title="交换"></a>交换</h2><p><img src="https://lh3.googleusercontent.com/hoA6eCa6NhzrvOyfVHt95ffjs6Bz_LTPGvJe8iBQUqLwoILV8Piaw5JDa1kBJ0kIDb7c21O0zy4w24VwOyR3f0uYVoJt12uuTY29I4uR_Hos3DPSVsESDN3v4v8VanVAlIEIDwWaKPSMGz99ZDzdEIMWeoocli38ViykTICZpTShZ761sDPpvaEMKw_EevNNcYQ5ZjCFjwfHKzFEV4TWZLf1FpO-nKL4A0Ae411CteKHyoqf8lqTUlQhX_fkmth8pCq3obMgiapQH8BVnmzNMmkDHlazjyHoOhf5LgZ6mStNuMeDctMzgUUwCMLAxNXJvpNrFdyVTw1OAO6kBlkNrnQRHUfCpYUux4S_qj-Zy9bDcOzeDnzqOmfcrjJwan__4ywL7nYCZcXw645NKIYdKOp-X78Wh4p1NIln0YrKT1reVFWN6sVjFnnF17pOmRRXceSll3P9w-L17v--DsYm86BV7odTqGSqqTfoQTjj-mWTTp05TwN5MF8k-AR42RpqicAO0w5oucfokT2BWqAN6E2-lldWJmVj2Kd5KEMkpWEZ_2DxHO4xmN_YpIYwtJByZLUG5hVIcTO4lttdx44Qi6omBb2Ypckr=w1155-h650-no"></p>
+<p>接着就是将交换的算法实现。这在现在的我看来，偶尔还是会有一点懵。但是这老师给出的例子是非常好理解的。拿出两个杯子，一个杯子里是橙汁，一个杯子里是白水，要求将两个杯子里的饮料调换，这让志愿者有点犯难，接着老师拿出来另外的一个空杯子，一切就迎刃而解了。</p>
+<p>先将橙汁倒入到空杯子里，然后把白水倒入到原来盛着橙汁的杯子里，最后把橙汁导入到原来盛着白水的杯子。</p>
+<p>抽象的实物不容易理解，倒是实体的却非常容易理解，类比是一门学问。</p>
+<p>这也让我想到了之前做过的一道题：两个不规则的容器，一个能盛3升水，一个能盛5升水，要求倒出4升水来。</p>
+<p>这其实也是一个很经典的题目了。<a target="_blank" rel="noopener" href="http://zhidao.baidu.com/question/28954271.html">具体的步骤</a>应该是：</p>
+<p>1、将5升的瓶子装满，倒满3升的瓶子。此时，5升的瓶子里有2升水。</p>
+<p>2、将3升的瓶子的水倒掉，将5升瓶子里的2升水倒入3升的瓶子。</p>
+<p>3、将5升的瓶子装满水，向3升的瓶子中倒，倒满为止。此时，5升的瓶子中的水就是4升。</p>
+<p>抽象的算法可以借由实体事物来方便地理解，实体事物也可以考察对算法的理解。</p>
+<h2 id="地址和指针"><a href="#地址和指针" class="headerlink" title="地址和指针"></a>地址和指针</h2><p><img src="https://lh3.googleusercontent.com/UQ8izKp6A3DDUFxdIqocDal78pz0TSJbeNZu-dYThKZT3QbShQDTt9zKtbAcUIln7qY9tqOD8IAVdLyfbyqF8KQ7FOhHXkofnDyLlhHwNghpBY0dMwPZSkAsT7VQeR3kSs5i-L30wJskiCtJ8wG2Od2rTeDengNQ0Y8cKYTbdvQU7QVamV0zmmmVUgbqVSy9ap39Jmywb602l88EUjZ3MWtcWTzkmiUIZmlhwtdaz8VDrUfmGMzLcLTl3bxecofOrem53eLQNkXZmXBWBRzNU4NZflIA25lTQi8ON1FEos-Vj20Uno09GDuSaBMS28TrqsmviVmaMoR4CQKitdKbJGzIdWqFXm2NaI1mcPJhBU1kiu6VKFSYeS6aMEt6oHWo8AJenFTAdI5PFJBOtiL6lic9W2OKHlIflRu5uvI7jwUfvuPcE2PW-QG8lK5k8EcJQrG0KSA7wPJ2RCpZiFKt03U_uGHSxr6cjpcqGhPq6WGfS4AsAmIiB1wyAKwSHwdjNuUnexWMM19rrE0JxTa0T4ESySqVpbmedi3f89yB5HuMbn6wAjZKRgf60A2xUtB-wwaZCbiEYsuVYp08gDYfrWhpL-UcfyY0=w1155-h650-no"></p>
+<p>表面上看上去是同样的字符串mom，但是却因为存放在不同的地址而出现程序错误。这也是我们需要进一步理解的。</p>
+<p>在后来的课程中，对这一问题进行了解释。提到了指针的巨大作用（pointer）</p>
+<p><img src="https://lh3.googleusercontent.com/x_gepI5ef_6Wh4kjn5zinsk9tYKs3hyhuARgcJhsp0GnkrM_TM6EeLUYRs7pAb7eCaIJJxerbxaP0-8heJ7DbnpCFtS9nZWIHmXeGqckfvkRKlyLti7r87t_8kQ1notcu449cGClqhjUIHXDNqS-sSDV7VtYih1_L_nM_ByHnLi8OsDk2QJTNFXjAtjcg-08kHKaC2emMtrnWjdsV5_sjypEtE-eKnCZxIPAa5MQdwVBLMPeb_7Zwz84QzOwxe2Vd8gT34CMg-eKwBPmbvE_NdlZbsEpFpYg3MQP4Y_17nX--T-j1MubIJVdycao3oar7ialm1ohgjU8eonBogr859lM96F8Ymmv3FFDNAM86Fb3cGugJNxQ6feQCUlDID9yoCRofXLkR3gIyMNv6fm1sEH8EjE9bPpHfyMHi-Yew-oB8hFZOMQbjHfvilmGcBXxKStftW1byaUSpqOGdPxba9QC4_hErirF3LZtase-cWcRTkHcGJsrIv5qXTl02mwUmjC8gOE-X7rvY4C-IaFdt36eE6mn_0DApmHNjgyfFpluKkjUP5yX2ntfCyDe5H8wJYqMrKD7ku8Kr6yoFZ1NWKBOEsnyltIP=w1155-h650-no"></p>
+<p>不过话说回来，在JS之中其实并没有int* a 这样的语法，在JS之中所谓的指针其实是this。</p>
+<p>关于C语言中指针的重要性，也看到知乎上有回答：</p>
+<blockquote>
+<p>C 语言只有值的传递，无法直接传递引用，要想传递引用必须通过指针间接实现。</p>
+</blockquote>
+<blockquote>
+<p>如果 C 语言没有指针，一切都通过值传递，参数将永远只有输入参数，所有的结构体只要参与运算都具有极高的开销，因为每传递进函数参数一次就必须全体复制一次。</p>
+</blockquote>
+<p>这样的解释，其实也是和老师前面所讲述的不谋而合的。</p>
+<p><img src="https://lh3.googleusercontent.com/uGKTZHwHYjz-we9EBoEBmVIp8-qvYCh5U7Xcg5jlWZaHtkNxWjuUzry_6tB7xHZKWKX2nUvU7IZtUaISFm6-0BRvPnEGQYoURQWL_0rVi03hgjwDpmy9kniWABKT0p1NmNR3LVbPi3sJk9iWT__aVeDAFl7JHX_mXxxb_TTr-bCe7WS80481cLelYM0-ICFAxdFpmGu3s0We0hOyiV7hOYM-g71VjGLjB4rDflPCbLQ-LIghDvx8qxac-Nsn_RZisj0EBwxV4Fh8ayQlsfp7peYqWCWlYK_Bjdda5-fq-ayGJkLgF09K7W-QwwHsdy2d3BhAXwpW-OR8Q1NzphVEphT08vVa6_01QoVJw90Pz5nuBOYmIahh5ofhyeNcIjH1J0X-l1t5xgMOH-6WCj6h_6skaRX0-jhB5d_O3RxWHrows2HA8I1bW4xIMW92H0pk5X5lJZHlM1NtEBYzaL5PQcAoqNToDRhfApjOY01HP0nSXmb_-ndC69x4-S6owEuPXK8h4GvZVdIXq5zj5kK-9FMEHCvOQ3Fi4owHHYpNYLKpS1Ukt9jIOiuLy1hRmc5bc02lBBdjr8K1gJmWfYC_0z65eqCvcrkW=w1155-h650-no"></p>
+<p>在上面的图例中，x是作为地址的，y也是作为地址的，当这两个地址同时指向13时，就达到了传递值的作用。这个时候我们再回过头来看C语言中的scanf函数：</p>
+<p><img src="https://lh3.googleusercontent.com/e5-3n_co6suOswcfVNLCTX_lSeg4VJ6MFZqbw9PcLrGDXfTXbGHDc06Px9lpGIbZy80ZwWb4AFLKiMvk0Z4aDvKtpR_zPskYuGlIZEsIN01Thz3rGco917e8Y-R41vFO3X29UAULTbWchPyAOnB-rFMeQU2XyI5dcHX7WlYbvc5uKNByr8ROnTEDp5ZlGLk-mZS8PeKAf7PNMtFIWekDJu8oUmtoE75yFNiU3QgD9cVgqRDCMMRf-m1SgT5pIZDuz-XCPzexQTrxyQwe_Fewf1lLXdMp5l4r9YpryhymnxFSITBRlZkr2wCrsm_bxWEylIr-1ZJYOG3RcFWBGzYvZv2-kdBTvmDQazdrAZIYJs7kOU0wNHWamzLc4IakwTuaORrUo0CpXzui3zTvz0rXHw2X168SA2SWAOMHrGakjZw_m_wlKxncf28XazF3d7dbKmhlf4zNWUxaEtvv-ynGO9cHnbLppI6HXxG0yWS_22U7oilS1uTXmWrxXuDWVmdOuN8jzN12slQBxuA1vvw2hBSNrWu_XhfKd_YhbHJAMXQEGCmqfRqF8wM2g46pb0cfJqpIuprgixYj_i9cXwdSkAPW8iu4vcaI=w1155-h650-no"></p>
+<p>scanf函数也是通过在查找到x的地址之后对x地址上的值进行修改的，或者说是copy（复制）过来。在英语中，scan的本身意思就是扫描，因此机器实际上也是处在持续地等待扫描状态，一旦键盘上有key输入，就将键盘的输入值copy到对应的地址上。这里需要说明的是，我们虽然在输入之前尚不知道x的具体值，但是由于已经用int x来定义了他，也就相应对产生了他的地址。</p>
+<h2 id="图形的二进制表示"><a href="#图形的二进制表示" class="headerlink" title="图形的二进制表示"></a>图形的二进制表示</h2><p>在好莱坞的电影里面，我们经常能够看到这样的场景；</p>
+<p>警察包括但不限于FBI.CIA等通过录像锁定了嫌疑人，这个时候嫌疑人的面部还是很模糊的，于是警察下达指令，放大图像、增强图像，嫌疑人的面部就变得越来越清晰，最终通过这种高科技找到了嫌疑人。</p>
+<p>但是真实的世界是怎样的呢？每一张数字化的图片都是由像素点组合而成，这些图片放到之后并非可以通过增强而实现清晰化，而是像下图这样：</p>
+<p><img src="https://lh3.googleusercontent.com/-_p-ImXuh9_bZAPHIGQTkvoQpBhtfFNW7NzBnwBfp35CZKITCet3k72uNG_OT4tWBpRF1HX0nrVB9SMlw6ZzbuP3mCXi6B6Tl1IYIhr9930uVHbAGVZLJ1DgfdhZ6fI3S5Ej4Pz4Fv1adNAKI3oxuegoaUbQ_qcL7HFewDCstNRPUH3ssk0r1zjtnT8JtzNRGPZG5zk4SDsito5aRSSBEzAdJIsEQbVpn15NFylcDf-QhJzJF1AbIJCM7DL3bwWwqWzbmXxsDo47K8ZoVyQRzUIZCiSJhvgtu3wVmKbn9tRIxUZF_brDATnAW9NAHpecXeXZTuSusCYMvg6v7JyDcBk1fCWJMRw4OXCgLEBpNQYoxDXSbDMd_WxCaRUEnkxDhqcd7tw5CFyNR8Ma0x8FYTfUUfV5jRXG0Y3MCaVjen-rCaMwXQfjDt8Q6L9OS0H8h2UCryAtoEv_xwGGXBSk36kI3Ca3fcyCnhKTL3bpWZUbINvlMLZdf2T3fSauoNKFFtBL7iu_aJbOoFJYK0KZGxqfAGR7eVqfpbyGAw7zrlD1gZcl-sp3NwAlN8gs6tg8RwhbSh_aXYtBlYXPdx2d0MNwrM5Wt1Y2=w1155-h650-no"></p>
+<p>这就引出了对图片格式的说明：bitmap、jpeg、jpg等图片格式。如果我们还是不能够理解为什么像素点可以组成变化的图片，那么下面这张图能够帮助我们理解：</p>
+<p><img src="https://lh3.googleusercontent.com/0Nc7Htsw7w0NxBqMnN-Uba_bQqnvgsGlB-XugX-PgWMNFZwk5ybW4LwApFefVLmZu-fFHs7qrh5-pUV2lNWfTUdnb-wMmjtFKouEUzW6zSukCvCrQI0CoEL5ANvGkDwl3VrXd9fNRiUF02zKlQvNh1Pv9OLlTUvO9bu7DTnNH5-9_NEJoLf0iL7a9jr2mUSTYd-1kubQ9B0vVNn8kFJlBB2csFJuOdXUmnYReTv80GiyikLv63mOd61nPt-wlEI3xIB5zfzUFxLxHZtJJDuAB9UXZKMNAtNpOqXkPKweS2nOhQzvstp_i3C-CVOh7qI7p4Ux-G38vE0BhbUIVDga4poQpcAaL_drpTQtxNPpyPY4o8MMv1FIgHW66I36-V1r7Xe_a0ZF_CjL_zK2p0cJTJ10Q_yjNwwEYDJ-ka6QwKZh7FIRCl7tvvMl6KK8Kybnq6z5ZflBy8VMB2R1Ztb8oYUFwb3JxVDcELOb-HO8vYp1C4HVlI-9iz92CMZYAMYY3VPvB0foevbO8QhV0QaBvNJtU8yNgOkMy4OiRacCBAzlCAqVmqL7B4u9Epq764bFksXtcKjTSmQWtD4aHGaJO_a5TF2QB4zg=w1155-h650-no"></p>
+<p>在上图之中，每一个像素点只能由0和1来组成，因此上图是一张黑白的图片。那么，如果每一个像素点，我们给他更多的内存，也就能够让每一个像素点显示更多种类的颜色了，那么图片就可以是彩色的了。每一张图片的像素点越多，我们就说这张图片的分辨率越高。</p>
+<p>这时候就又引出了Color Hex Color Codes的概念。事实上，当我在学习CSS、PHOTOSHOP的时候，也是频繁地在和它打交道。不过这里的原理其实是三原色，也就是R(red 红)、G（green 绿）、B（blue 蓝）。在自然世界中，通过按照不同的比例混合这三种不同的颜色，可以组合成不同的颜色。我们将每一个原色切分成256份，再通过16进制的方式加以组合。</p>
+<p>因此，可以很显然的得出来：</p>
+<p>#FF0000</p>
+<p>上面表达的自然是red（红色）了，因为#FF0000的第一部分是FF，G和B的部分是空的，则表示只混合了R色。</p>
+<p>类似的#00FF00就是表达的绿色，#0000FF就是表达的蓝色了。</p>
+<p>#FFFFFF表达的是三原色按照相同比例混合，是为白色。</p>
+<p>P.S在写作过程中，由于使用的Markdown进行编辑，在输入#FF0000这样的color code时，如果直接输入#FF0000，就会被Markdown误判为一级标题，这时候需要使用转义字符\，类似于其他计算机语言对特殊字符进行转义。</p>
+<h1 id="week-5"><a href="#week-5" class="headerlink" title="week 5"></a>week 5</h1><h2 id="内存溢出和buffer"><a href="#内存溢出和buffer" class="headerlink" title="内存溢出和buffer"></a>内存溢出和buffer</h2><p>wikipedia中对于data buffer的定义：</p>
+<blockquote>
+<p>In computer science, a data buffer (or just buffer) is a region of a physical memory storage used to temporarily store data while it is being moved from one place to another.</p>
+</blockquote>
+<blockquote>
+<p>Typically, the data is stored in a buffer as it is retrieved from an input device (such as a microphone) or just before it is sent to an output device (such as speakers). However, a buffer may be used when moving data between processes within a computer. This is comparable to buffers in telecommunication. Buffers can be implemented in a fixed memory location in hardware—or by using a virtual data buffer in software, pointing at a location in the physical memory. In all cases, the data stored in a data buffer are stored on a physical storage medium. A majority of buffers are implemented in software, which typically use the faster RAM to store temporary data, due to the much faster access time compared with hard disk drives. Buffers are typically used when there is a difference between the rate at which data is received and the rate at which it can be processed, or in the case that these rates are variable, for example in a printer spooler or in online video streaming.</p>
+</blockquote>
+<p><img src="https://lh3.googleusercontent.com/aLJUZymTdPpvmYsM9HlOTlC8E3ID2XhGFKoHqVUeMZ0rqMXldSkF4ufbir0JkXrpv5XUA803DGb2VW0YFDv49RddNA2_yYphbdXNZ9TNvoX2gfJvejFF5gxN8kwe7ajpEQa4YUXrPqF7q9GEja-KAKuYCup8NrvXiIhmHKHTkmN5djMatLOakuYaNd3Zp1VYSnqdXNx4SSaNJmVVnZebIlPiXFQlPTACcCOsSErMXoUkMJdzzHsgd80Xa98qx3WI2KJaHjEV-r-l6uXvsxoxconbmVzaZd2bFvKWUNjX2yNkOa6Qm-wm0N4-Kwd-Su_9YMsko4eEif-Fg6Y58X_Ejm3m5uQCG5FrcVqzdQyFJuBcQYkmzIuN3JlKo6JTg85IWFZCVwi1EZxSZLPwvxU7G8t9KcjNeIBFgvKDK-0O-HGAZ3GZPItCrmoqXRz6JPka0w685bDPGMazN6-L8rPmWbqaouDL2bcCTMEnnzXiVBvNBgsbpbVYKnm4cLLt4kRLfIciALR8ZLjilT6cZcARYXp6Bc6hXpXOSCz0bNuf4ZfF0yEWnPkI4xPcA43t_zmniSMHjOPidnCt_JzfctoTImggA36tFjB3=w1155-h650-no"></p>
+<p>当我们的buffer有限，而需求较大时，就会造成内存溢出。</p>
+<p><img src="https://lh3.googleusercontent.com/YFeyY73TI0akLeI6lSayhVC4HEiSIo-NcWg6xYlsTXvCJnWpL2dGI8xXCA1frvg8mKE_xTJK-HMffK6_iy7Kf4YGxfjGwv0p663iS921_BuGUaDImIwHU8WSBehJH1MLVgnQsqAvmYf9Rpg6UYlPnkl3V3_xuhYZXT4J3_LkfvSRSDBjBnga-j1OqsbPqVb6XQrjnxvRiKAAWN_fevR5ns3UH0cAKdw2sgnhDeaO7YMGpueePs30XZYpxxYb148IAx2iBCo7dQR27yw6kRxZOYPYzPsvgTqwpyONNPYwTSnDPbQ62PB2X08gfzwKABiPVUzhsk0FtFjg1-VDr7L-iZVBSyK36_otSYT6amzJInFceKKcP4mFsw0O8eDekRoXzD88dfUZHPfQNMfE6JPzeOIkeCt5RbyCqHWoTxsxbvCDhHW_v7qPExMimtDTQSJYD-1zAUndgW676_zq80bRNi37JDVG_hVPF4UBM0ZEKAOEuFCyz-x3i93iq5ooE78pQ__-GBamkL2TX0R3QTYnePqUEENwDbyWJ8JB9AjgmYgSwgCjSexD2_ForyiYR2gIa3g67Zu2WUErnRlm38Jf70PpcwULRGOz=w1155-h650-no"></p>
+<p>内存溢出并不少见，这也让我想起来我自己的电脑程序以及我自己曾经写过的程序。在我的电脑上，最常出现崩溃的软件程序是Firefox,他也经常是在运行之中崩溃，接着是重启。而我将笔记本的操作系统更新到win10之后，由于我的电脑ram不足4GB，也常常出现系统的卡顿和崩溃重启，在这里我也意识到RAM的重要性，以后买笔记本或者以后对笔记本升级RAM也是需要重点考虑的啦。</p>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p><img src="https://lh3.googleusercontent.com/g-rUVf-v0P7meXoVrjBWQwbYK_l0zfDahJOU6D_Hm93svFFbOk05JknlWXIf3fNakZxZpD3_AYb38zaCNVXUPMVsOeRmrmNdsyAYYU5PfGFZJfdKVCiXEpvyRfpYhO_pt84LGLo70jaiBszkgjkfFKVp_SEnU25LYQKbmchFDTKdXLk5snMcLtBNJeCfnkfSL2MHYaPWNediZFBgy4KEHJTl-El6LT6gzG5805XC-B69p_XzNQpsj0XI1kXMWihtn9ybV0rJ9U6ZA5t80jIOVV0Ny9sWwRFTtYT6FxZHlmlyShq3A4OB1hWtXn7FHLF4j2iT_01rV_xovNsqUKP8d-QO4WPZWAGrEOecx01adwDByAFwFwDv9T_6EJarJ4i9eVu16Ie1tHLLoKsYMk6yJdKdB8dz96JITtgWhnSkBEsvsgsv530kEaJcVOijrZ8G7uT0nMZAwbCbTIb6sTKmkC0PVpZyk52s_JnsHbMJGCXTu7UHRgY51BTkyQNSmWjaporGn-a_2A99H8DVgQJVArdgguOWqESWsCUR-gU5UGewOyZTd4qmY9DnfWWBPQ0q8Y3d2E5x0iKS2O_PF6xOEFkui0b0nSGA=w1155-h650-no"></p>
+<p>上图图例是在C语言中的结构体，结构体的特点是能够将多个属性划归到一个对象上，因此在我看来其实在面向对象的编程中更好用吧，所以我们也看到了在JSON（javascript object notation）中有这样的表达。</p>
+<p>每一种数据结构都对应的有他自己无可替代的优势。接着老师讲到了链表，所以我们也来看看数组和链表的<a target="_blank" rel="noopener" href="http://www.cnblogs.com/pre_con/archive/2009/05/27/1490745.html">优缺点比较</a>：</p>
+<blockquote>
+<p>1）数组在内存中是逐个存放的，也就是说倘若数组的第一个元素在地址A,则数组第二个元素就在地址A+1。</p>
+</blockquote>
+<blockquote>
+<p>而链表则不是，链表每个节点没有相对固定的位置关系。某个节点在地址A其后的节点不一定是A+1,而在内存的其他空闲区域，呈现一种随机的状态。</p>
+</blockquote>
+<blockquote>
+<p>2）数组一旦显式的被申明后，其大小就固定了，不能动态进行扩充。而链表则可以，可以动态生成节点并且添加到已有的链表后面。</p>
+</blockquote>
+<blockquote>
+<p>3）链表灵活，但是空间和时间额外耗费较大；数组大小固定，元素位置固定，但是操作不灵活，且容易浪费空间，但是时间耗费较小，尤其是元素变化不大的时候效率很高。双向链表比单向的更灵活，但是空间耗费也更大</p>
+</blockquote>
+<h1 id="week-6"><a href="#week-6" class="headerlink" title="week 6"></a>week 6</h1><h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>维基百科对哈希表（散列表）的定义：</p>
+<blockquote>
+<p>散列表（Hash table，也叫哈希表），是根据键（Key）而直接访问在内存存储位置的数据结构。也就是说，它通过计算一个关于键值的函数，将所需查询的数据映射到表中一个位置来访问记录，这加快了查找速度。这个映射函数称做散列函数，存放记录的数组称做散列表。</p>
+</blockquote>
+<blockquote>
+<p>一个通俗的例子是，为了查找电话簿中某人的号码，可以创建一个按照人名首字母顺序排列的表（即建立人名 x {\displaystyle x} x到首字母 F ( x ) {\displaystyle F(x)} F(x)的一个函数关系），在首字母为W的表中查找“王”姓的电话号码，显然比直接查找就要快得多。这里使用人名作为关键字，“取首字母”是这个例子中散列函数的函数法则 F ( ) {\displaystyle F()} F()，存放首字母的表对应散列表。关键字和函数法则理论上可以任意确定。</p>
+</blockquote>
+<p>在这次课上，老师也举了一个类似的例子。</p>
+<p>接着讲道了加密技术，但也只是普及性质的，事实上，由于哈希表具有key-value的性质，能够通过一个key来查找相应的value，因此可以利用哈希进行加密解密等。</p>
+<p><img src="https://lh3.googleusercontent.com/UkQjO-9GGbRVpuzNYL7oj_JHbxzFP7cXqm3kYxpVLZoaCeBsfvZWbG1deOZ0FKA0fDJgROigD7OWB6ajA1VGSv_z4BqCQf6RMuo9xB6jTAUQfxWkaxzUsGDD-8Xzf3Yg9t9v8MklthCr2Lvu9bcIsxuyosZt7Gsq73ocr73IQ2Y-QcsU7C7o254CXyy2-wNUtSSZw2P0gk07SlOc2p0Cj4tVQAnOiK9urbupcDjEqystDgaDeSBWHhSetAd8wcthmp-2f8Q7NhdUKGrESA0jylvqLlUzFPdsi_JZwfUjTMh0kAbNqX3XhMDvp3a1wU_O3PUK74piCoYQ06a9Tboe2QhJKzg2BO2zmHy_MdUxW9P6EqHUf1r-iZU7uN38umQu4nGuPgJJ1BShjDIj9uVJNF7gS3W8xcjp6Q1WxXsZhkLr6RvTRe4W9zokigZjdl9gnkseQav8DxUE0GQocxIcxpVlrpNnK_adIDovyW53FlWKrzArgfq0KBC78Vo9PFfYqrx0ErmrkpueNcRGJn0YzRL3t1pijJ8fVCV2PoKX7rOBr6bySt-diUN_Jq346krDGFTuoSYlP_G4qvd_Xw5nt0QjXebqUBbt=w543-h306-no"></p>
+<p>一种常见的哈希算法SHA1，这也是一种很广泛的加密算法。除此之外，还有MD4,MD5等哈希加密算法等。</p>
+<p>MD5之前有过一定的了解，所谓的种子洗白，很重要的一点就是修改它的MD5值，让服务器不能够识别。</p>
+<h2 id="TCP-x2F-IP"><a href="#TCP-x2F-IP" class="headerlink" title="TCP&#x2F;IP"></a>TCP&#x2F;IP</h2><p>这一讲主要是将TCP&#x2F;IP</p>
+<h3 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h3><p>首先介绍了IP的概念，IPv4，IPv6等，这个已经很熟悉了。之后是介绍私有ip，所谓的私有IP是利用路由器而生成的，通过路由器的线路转换，处在同一个路由器之下的这个局域网中的用户所使用的是同一个ip地址。</p>
+<p>接着讲述了用户请求从发出到接受数据的整个过程。用户端发出请求到服务器端，服务器接收数据根据要求发出相应的数据返回到客户端。这里也解释了物理实在的构成—光纤。如果想要从中国上服务器设置在美国的网站，换句话说客户机在中国，服务器在美国，这时候就需要有海底电缆（undersea cable）这样的物理介质了。</p>
+<p><img src="https://lh3.googleusercontent.com/Ub88pVh2amRTt2YX4u9FkXMKvhMkcQP3uq0qdcfcrVQ3wA3oKOuaov5vmJo5fRt6qE_JApWX2qqQV-tCSJxJJR2EyYXXTaM9ssv4lTHc5TbIOb1tju6C2m1Ugj1-C31e4_Mhv9GH1nzs8BGIInUJWsX4AXkH6dDWHdS9U2Ar1h08y58GDB3Se5g0zX6VkVdhjRDHeG6YnfVA2pT2ndzUtvZ_fdzfXSL8d5NF9U5t1GSKT6ssN-WhmuG7HJCRjFXEjeRRiw_qq906njKbiPXu80jao_qMLF1Znu9tRW8Jq2_XbRsk-iZ1EBwzBqyjpFVyCf0dntTSFabONsPfQGV_-6KDmr5mLOv_SjIh_cXsg0QdsgzTIrlInEf2p4LyW1eebTHDbyEJ4sVGOUnH3VZwoaCIe4tM39bswcfSlzRk1bKYcjxjr19j6aQcqJYKq5pTTckekFZbQu84TrCsSd51wySDa0GNj_HZtBaccOnh7g0V0PZ0dQvRRQoll_4xlU_v2hkmMTWD-tigSEzOZL4YcCgSZe_N--wU_TVvTGJnbCjpvj2awQkEV1uBHbDG02-k-kg_SAAqXx-sX78o0IWyRka0OxrUc-6z=w1155-h650-no"></p>
+<p>这里也介绍了最早的跨越大西洋的海底电缆建设于19世纪50年代，是为了从加拿大的纽芬兰发送电报到爱尔兰的。</p>
+<p>我们需要有IP地址，但是IP地址往往很难以记忆，这个时候就需要有DNS，也就是域名的管理系统，通过它，我们就可以将每一个IP地址指向到对应的域名（需要注意的是，一个域名可以有多个IP地址指向），有了DNS，有了域名，以后我们只需要在浏览器的地址栏输入相应的域名即可得到相应的website。而等到出现了搜索引擎之后，我们甚至不需要记忆相应的URL，只需要记住唯一一个域名<a target="_blank" rel="noopener" href="http://www.google.com也是可以完成几乎任意网站的浏览的.(所谓的暗网或者深网不在讨论范围之内)/">www.google.com也是可以完成几乎任意网站的浏览的。(所谓的暗网或者深网不在讨论范围之内)</a></p>
+<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>IP是互联网的传输协议（Internet Protocol），而TCP则是传输协议，是客户端和服务端两方面之前传输的协议。数据以包（packet）的形式来发送，在这一讲中，老师使用了一个例子，就是将一张打印了某人头像的纸撕成四部分，放入信封之中，在信封上写上发件人和收件人。这里的每一部分撕成的纸都是一个包（packet），而信封上的发件人就是客户，收件人就是服务端。TCP协议是需要做出反馈的，这封信是不是已经发送出去，信里面的内容是否完好无损等，这些信息还要传达回客户端。当出现问题时2，客户端需要根据这些反馈信息采取相应的措施。</p>
+<p>所以，我们也能够看到状态码</p>
+<p><img src="https://lh3.googleusercontent.com/R4sOXzTqgKKnagWyA-3HT8XFWILZS6fuQNeK46jIld_mDY4rtro4hNU9fuEx5XDk1nVV9I-8oqhkoJYlxlC8dkk79TlkIaymEHr0D4Aue4_siWGBBiMh11QVO9Da75sn34nyW2qxq1hnqN_eRi6h8w7DJhQbja4nkKcHVlutbARsVDmr6ZttN-Xkzj3voT2v4IIJD-NzTR_um-gwB7K1DRIegQCkdBT1HVAnwbBtSKFFq3aw-l3axf_uIgFg795ExF3q_PjAiS7FRmaNkfOEgNYy_CiUXig57pikrLV67rwz0lkz3n6Lc0l4W_EaMiEXfREC9458NF07FILYdbOhFsqGcuUcBDa92YV9nIKAEusFbIy9yp1GKR2BPhoWtbmEzGzSbBY0r1ELq7Rie4W9xijuVdjEEJq36W2mve5ZOLapOKDULf4IP8swSkDb-Y_kIel8fTJJ_YbruhS8M6FgoqOJNCbtjWCqlVP7H8E1NUF_1j7WdMohfwQ4NYytmKKPXy2j4RWBbML6UIuVR7X39WSvZCL2E0vA-iJqvqn8P3DtC5BXtbtuBUY2FS3dzJLRHjHIpcU6dG-MrMteMQmZXeyjMD7PSkyU=w1155-h650-no"></p>
+<p>我们一般常用到的是404，403，500等，这些是需要记忆的。在使用TCP&#x2F;IP协议的过程中，有时候，并不只是通过HTTP来传输的，因此还要有</p>
+<p><img src="https://lh3.googleusercontent.com/kl609_e0P8WfcYDq-DemKMWgsU73trfZe81pK8O8zmKZj3u8nqW5YtFBApQNWErlgvv2SEv0xIh4J9GdVi1PMkYuHYwlO43Pldb4FDmbhJm_9FcIi3Hu66f3SKla-uxFPXJrtkwGMoxNFIOxl7TaHWfHjJDIgKNweGHMffwzjpfVYMyGN4_WIIRfw0RkjIheqt4nTnmpY4WXpq5oMlHlat4gJgsrGiWlaNfG10jbtzss04w5FChkIz0IX_nUhqwPtoenmljP2Rk28OYq06jpmF-_gxPf8cgDBx2CwP4hG_qHzgzsqqYZfMozz1QZMb70ZNygkuxP6AFaCaWLw_kOwubBs4n9fumrtmAK8WiootFQQsJYHVF0QD1juZLmPRcLQ8jwMqxbnZCxbJ-x7vQCrxVQs8eRQKJymS8m4T2wlcKLeO1RCqberJVNgFrbaUIRGnt5kWDPUY0RdVSjDR1dn61ro5SX0iRd8rwMgO8N4UPxU85YQ-XoWtNtr44xyyFSAG8LOETMcGQgTl4mmLn7OGp66M8TA0fx3Rwb4e-g5KrfZXvr6LvqmNkPJDtJwZY0ykTfOmq_kjcQz3WZizhazKdVhcFnZ-h9=w1155-h650-no"></p>
+<p>TCP协议中的一些端口，这些端口有各自的作用。例如port：21的作用是文件传输，port：25是邮件的发送，上面所列的也是常见的一些TCP协议端口。</p>
+<p>接着继续讲TCP协议，在TCP协议之中，还要有很多的指令。比如：</p>
+<p><img src="https://lh3.googleusercontent.com/eE6sr3QVyflxersPB7oOhioF7fbKZ3V0j-j-MXYHWJx8oe7Lf5jghN3tm1i8hRS5LpNjweUnlZFl3vyv9A7Q-YWUKIBHFvDvkIIBuHoboy0tQ-2o6TKUNScEmXKcDpK2I0D40t0cPxW_AjYh9mVZhlDmq7bfJlQHVfWXhXdd7BmwjDVSNRz1ujPChJ6SjQGgDKxjboizcGdxbSZSB2ENpQpZzKPFLGKub2R41ziik5qvrswa4QRL_DFYtP9J0e23pzi3LikuVl0nxrRK4orC2gka5_vXilX_HfTrFGckiQPiztXHL5l9s3hi284j0i7GjRmS1jh5GBHz0sNC5lF8s9LxO4znsg8B3IKq9rRNs7pkyDhi9isCEE4e0_RCImDhtIcszYqgQQbuS6dbDU18d9CBXNN9bxz0dfped5Qht3YmqCP-tG9VDfW6-R3rDFKnIBp4TrRmq5MNBtWUKWIsmvHqttG4VKzqNttVORDFD2M1z8g03xxTHfqDDc2FCaIvTtniqPs06CmUvFs0LnqfpIWzE2oR89SBDDjsai0e6Ai8_MqzNZ2VJcG6_pUyN8VjsnONmFQDnQvUmXMQw8dePovMsrSDYyff=w1155-h650-no"></p>
+<p>像上面就是客户端在发送请求到服务端。</p>
+<p><img src="https://lh3.googleusercontent.com/WdfjVSsxAu5EcqMqaLfl44IPnokLd1KwjRBnmq4rS6v4X521oVPLW7K2ko3Ln8HUYpG6TMetMaijY9ITMSPgczvQYS3MzrV2VB8eVNmMd-vRAmTEWEUVZ_OGjW_k58ZSwdbYb-NMu5ZOUzgvPOC5Kv0n8ehw8zxfbU3RxpWVjhU6JWWplWFC-wf5y5SMJw-Mhl34Q2BQ1JYuoUUdtErgfwZiavDL5hXePy-bgfCXAh4WSFC6hVM1xPr_33_3od2ZIe7N3AxYSFMlhfhQeCA0KlsyO2j_ieKoeOYMq0eHbkkoqKhUHYjVEy966NeGkDy576tx_hM5oHKb8H8CcVpiRNXqlqfBKRTvbALWhN0uTNi8YVwoAeDFusYV2v03Qfl4Ux8oGRUOEc1oNFSi-d08jjvZZQZHhYGj-SFh6XZHSV51vxZOqA9Ab9tAWrlJRN04am3FHh2hfJRkb1NkFxngMWfZrxcX8aasYSjwE_eZT10OK1A1I74Wwa4DDqi8IuBZprl5UttCkWGTaExAY4vXKo74T0hKht3Nu50wJRYuYAEGdJqpyicnzwyqbE9fE78y_58lpus5GXNzrzVP47hcZY1XmrMTlM39=w1155-h650-no"></p>
+<p>相应的，服务端在接受到客户端的请求之后，也要做出相应的响应。服务端会将文件以html文件的方式发送回客户端。</p>
+<p>这时候就会产生一些问题，前面已经提到过当TCP的状态码是200的时候，是说明能够正常的接受和发送数据。但是还有一些情况是不能相应的，比如在地址栏输入一个错误的URL，那就会产生一个404的错误，我们也方便根据这样的错误来对问题进行排查。</p>
+<h3 id="信息安全"><a href="#信息安全" class="headerlink" title="信息安全"></a>信息安全</h3><p><img src="https://lh3.googleusercontent.com/_lLwvRF3B-zH2qAO_xyWs8yHi10yTxA5-x-WV9Z6XQP4TC3qsL5DaVHqKrVvloqr43GZhgro3JAps-0q0S8mM6ue_FwKEcpkpZkWuAhEmz6__YlkJG-AOQPDgE0O57HboB0fd9Noxr09w8Nv078DxBBBoIaqGlpIpvrhQxs8Y3Sut635z-GnagR3KSNsAXu6jEdZ0gXAAT6vjUceZuWD3GFoEyGHosNhOQ6EJQUBAFHZwdCh4txNo9QXs7zujyO4YeKnA_zG8y1TtjUYbO0rrcYNdHjPte32SWes_PxZKYwegTlqBoZ1Gx37J0CYjGx4nS1RmFDxjD6K4dOKlAOJzjI1qnQl32z8TsZ2g0VjAQDL-vj_Eh2aQFsjcZyA64Fjmf2I_geW8vzLtdcGIJdA4MDfwRGHTXGLpGj4Rji5aDE53p1lqqC3_9UzW5SVJ2oGaV7ZfflH1J40aKYC-eByJwuRGD9SPYEZclVvYJt7OLb0-9e7cz3kgoNX3WMpUs8oHree-F8eNWq_VcW8UvtSYivBQFQZ0JkGT9OaeSrF4Y5HE8YkUFhDCWTw8UP8BRC6RYbLxNf0BUZqokLe5hZNoHg7FNej8C0R=w1155-h650-no"></p>
+<p>这时候就又牵扯到了信息安全的问题，如果我们使用HTTP方式的话，如果我们和别人处在同一个私有网络之下（比如接入了同一个wifi网络），那么事实上，我们的信息实际上是不安全的，处在同一个网络之下的人可以很容易地窃取（hack）你所上网络的账号密码等。</p>
+<p>这个时候，VPN就派上了用场了，所谓的VPN是虚拟私有网络，他能够作为一个数据的中转站，这个时候即便是处在同一个网络之内，其他人看到的也只是你不断地在向某个IP地址请求数据，和这个IP地址返回数据，而这个IP地址这个过程中做了什么他是无从知道的。VPN有点像黑箱，通过他来保护我们的信息安全。</p>
+<p>在这一讲里面，也介绍了GFW，讲到了我们如果跨越防火墙。我们只需要连接一个VPN，通过这个VPN来得到数据和返回数据，只要保证这个VPN所在的IP没有被墙，那么就能够确保跨越，只是说，通过中间加上这一个过程，必然也会延长从请求数据到得到数据的这一个过程，这也是我们要付出的代价。</p>
+<h1 id="week-7"><a href="#week-7" class="headerlink" title="week 7"></a>week 7</h1><p>第七周开始讲的是HTML、CSS等的常识知识，本身都比较浅显，只是作为这个课程的系统中的组成部分来看，要说细节，倒也没有太多，之前我也较系统地学习了这方面的知识，因此不再赘述。</p>
+<p>第七周的第二次课讲的是基础的PHP，老师在这里讲了CS50对待PHP的态度，即不要求在CS50这个课程中学会使用PHP，但要将他在哪里应用，为什么要应用，PHP对于CS这个课程体系的重要性有所了解。</p>
+<p>PHP是一门后端开发语言，我们在填写表单，处理数据的时候会用到它。</p>
+<p>在这里老师也比较了PHP和C的区别，除了数组(array)的可扩展性，$操作符、非强制类型等很明显的区别之外，PHP作为一种高级语言，它所承受的代价就是运行速度相对于C来说一定会减慢，而C是可以直接编译成机器码的，就像是汇编语言那样（汇编是比C还要低级的计算机语言）。而PHP、JAVA、JAVASCRIPT等高级语言则是interpret language（解释语言），需要进行转换，才能够被机器识别。</p>
+<p>我对PHP并不熟悉，在这里老师在命令行中应用的指令是：</p>
+<p>    PHP hello.php</p>
+<p>我之前学习JAVA，JAVA程序的编译也是类似，在命令行中要有相应的指令，除此之外，还需要预先设置好JAVA的环境变量，无论是windows系统还是linux系统、macos都是如此。</p>
+<p>在这堂课上，主要的任务是利用PHP语言实现自动化地给一个CSV文件中的所有同学发送短信。</p>
+<p>整个的思路是这样的：</p>
+<p>-  了解CSV文件，所谓的CSV文件（Comma-Separated Values），如果用记事本打开的话，就可以很清楚地看到CSV文件中每一行（ROW）都是以逗号作为分隔符。当使用Microsoft excel来打开的时候，就是每一个逗号分隔出来的value占据一个单元格。</p>
+<p>- 发送信息使用了PHP中对应的mail library。这个有点像我之前做过的python发送邮件。</p>
+<p>- PHP使用fopen，fget读取到每一个电话号码和他的运营商，然后就是自动化地循环发送邮件的操作了。在这里使用的是gmail，其实我们还是可以看到gmail在这方面做得很好，像QQ、sina等国内邮箱都需要所谓的验证，而gmail只需要提供用户名和密码即可实现PHP发送邮件的操作。</p>
+<p><img src="https://lh3.googleusercontent.com/bKppauWMNyjuAQVvsEzJV4HTDpF_8-u6FM2zZ8eFSLdXg2qKATlMpiHKI_w_QXBvguhrhJ1XoDL7bIkpXgN-cfreoU-hW8xEEdDpr1LfkICos8-yVvvro8w2GCo0f76r0WaU0Bg-JjvFHtHAkMvd5qUSZXARmiXzIltTXFxOldGCb7g0DJOOjxtixtkzZocvX3e8Rku43QAw7yqHw4HxP1RSfjt7R4ACuzYgUNQmIG6C40L8L7sCGyB4QF3d7Tw_EDH-cUNjLhOGC_Nek5xcaP_fKq8b1--WyXmumpuebD4zsb_zLfSZxNXXfUYy4CQioBMfEUDoTf0SQUDmc_niY4e8PGVKKmcZmRPDCZPl8hS3iuAwJ00I-F7nHJM1b7u7k0kQhVwPfzz-jxnQn7K5vv7BwA1d2J9CfxzwBrzJYHATc48dDBfHtggX9BpVuDyDXFCsmgfH8gB-KOOYYVOdYzt6EvMWYg03IkyAkh-MVdU1lRIli7WmzFV6iIngP4e-_8rd9msWprbstPNrnLygJL10onF_sZOZNxZ9MgO3CGudm6Hj-uIM5qXVaY6JPLja7QcmVO7pLnoz4USrAWHCtqDs1W7xVmSv=w1155-h650-no"></p>
+<p>上图就是美国version公司的电话号码的电子邮箱形式了，通过Gmail可以手动发送邮件，也可以使用PHP通过stmp填入Gmail用户名及密码程序化完成。</p>
+<p>- 我们知道正常情况下是用邮箱来发送邮件的，但是这里的要求是发送邮件即可发送到指定的电话号码短信息。在美国，这有移动运营商的作用，每个运营商都有一个邮箱，<a target="_blank" rel="noopener" href="http://zh.wikihow.com/%E4%BB%8E%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1">对应的用户名是他们的号码</a>，这样就可以实现发送了但是好像在中国大陆，无论是中国联通、移动还是电信都没有提供这样的接收短信的方式。这又牵扯到另一个问题，在中国如何群发短信，因为服务端经常会遇到发送验证码的情况，这个时候肯定是不能手动操作了。</p>
+<p>实际上美国那边利用的是短信网关，<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/19591770">而在中国这边，三大运营商也是提供这个短信网关的，只是说要收取一定费用，他的使用也往往是集团化的商用，通过调用API来实现。</a>，当然这也可以理解，如果这样的技术公开，也很容易造成垃圾短信的泛滥。</p>
+<h1 id="week-8"><a href="#week-8" class="headerlink" title="week 8"></a>week 8</h1><p> </p>
+<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>所谓的MVC是指由M（model）、V（view）、C(controller)构成的一个系统。在MVC系统之中，V既是网站的前端界面，M既是该网站的数据库等后端支持、C既是作为控制器，客户端下达请求到服务端的控制器，控制器根据请求内容选择view，将这些内容发送回客户端。</p>
+<p>前面所了解的内容是为前端，因此接下来也要对后端的内容做一些认识。</p>
+<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><p>我们知道PHP语言的代码是这样的呈现方式：</p>
+<p>    </p>
+<p>    &lt;?php</p>
+<p>    </p>
+<p>    ?&gt;</p>
+<p>在处理网站表单时，PHP语言要和SQL语言发挥更大的作用。PHP可以用来分析数据，SQL可以用来存储数据。</p>
+<p>所谓的SQL，也就是structure query language，中文是结构化数组语言。他和微软的excel，谷歌的spreadsheet，苹果的number在性质上作用是相同的，都是起到存储数据的目的。</p>
+<p>这里提到了一个细节，在早期的Excel中，每一个表单最多只能够到达65535行，这个限制也使得当有大规模的数据存储时，受到了严格的限制。我们试想一下淘宝的商品数据库，即便是一个门类上，也不止65535种商品。而在这一方面，SQL做得就非常好了。</p>
+<p>接着结合管理软件phpMyadmin介绍SQL，做一个简单的归纳就是：</p>
+<p>- 在SQL中，每一个值都有他的一个类型，我们要结合使用场景，给他一个权衡，达到最优化。这里举例，如果要建一个学生数据库，那么对于学生的id就可以设置为int类型，他的最高位数可以设置为10位。</p>
+<p>- 对于每一个表格，我们都要求有唯一的一个值，来保证它是独一无二的。在上面的例子中，显然使用ID是一个很好的选择。而如果我们再拓宽想一下，也会发现，在QQ的系统中，昵称并不是唯一的，我的QQ昵称是「海阔天空」，可能全国有几千几万个昵称是「海阔天空」的人，在QQ系统数据库中，是将QQ号的数字编码作为独一无二的身份验证凭据的。  </p>
+<p>- PHP与SQL的关系。在处理表单方面，PHP负责将用户填写的表单填入到SQL，数据库之中。PHP也会对数据是否在数据库之中进行检查，数据库中数据的增添删减检查都可以通过使用PHP来完成。</p>
+<h1 id="week-9"><a href="#week-9" class="headerlink" title="week 9"></a>week 9</h1><p>第九周讲的是JS的基本语法和使用案例，由于此前学的很多了，也就没有仔细看。在第九周的最后，一个来自哈佛大学考古系的教授也上台来，讲述了技术与文化之间的密切联系，这一点很有趣，所以我这次也就将这部分的感谢贴在这里。</p>
+<p>该教授讲述了古埃及金字塔的一些故事，讲述了现代考古学之父George Reisner （哈佛大学教授）为了探索古埃及金字塔所做的努力。到了当代，这位教授希望利用技术来实现3D的金字塔重构，让古代的建筑通过技术重新展现在人们眼前。</p>
+<p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/CS50901.png"></p>
+<p>教授也提供了一个网址，能够在线地查看埃及金字塔的考古发现</p>
+<p><a target="_blank" rel="noopener" href="http://giza3d.3ds.com/#discover">http://giza3d.3ds.com/#discover</a></p>
+<p>将技术与文化艺术结合在一起，也并不是新鲜事了。很早的时候，我就知道有<a target="_blank" rel="noopener" href="https://www.google.com/culturalinstitute/beta/">google art project</a></p>
+<p>我写这个笔记的时候是16年7月4日，也就是美国建国日，这一天发生了著名的波士顿倾茶事件。所以也看到了google art里面有相应的<a target="_blank" rel="noopener" href="https://www.google.com/culturalinstitute/beta/exhibit/wREVqalS">专题</a>来介绍美国的近现代史。</p>
+<p>比如有下面的一幅画：</p>
+<p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/google-art.png"></p>
+<p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/google-art-info.png"></p>
+<p>值得一提的是，在google art上，处于版权的考虑，在该网站上的艺术作品及其所有文字介绍都是不能复制粘贴的，我上面的图片也只是截屏出来的。从这也能够看出来，前端技术在不同场景中的使用区别。</p>
+<p>关于如何实现「文字不可复制，不可选择」，可以看</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/dudu/archive/2012/04/09/css_unselectable_uncopyable.html">http://www.cnblogs.com/dudu/archive/2012/04/09/css_unselectable_uncopyable.html</a></p>
+<p>或者是：</p>
+<p><a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting">http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting</a></p>
+<p>上面两个对该实现的介绍，也都是使用的CSS来实现的。</p>
+<p>不过，道高一尺，魔高一丈。能够限制复制粘贴，也就能够破解。比如，使用Firefox 的油猴脚本<a target="_blank" rel="noopener" href="https://greasyfork.org/zh-CN/scripts/14146-%E7%BD%91%E9%A1%B5%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4">网页限制解除</a> 就可以实现解除限制。我自己之前还曾经为了下载flickr上的一张图片而实现一个脚本来实现破解。</p>
+<p>而这些扩展，其实也都是JS程序代码罢了，这也证明着JS的锋利。</p>
+<p>除了google art项目之外，Google的街景服务也是一个将技术应用于生活的典型案例，就如该教授所说，有了这样的技术，我们甚至不用买飞机票而特意去某个地点旅行了。我自己就曾经使用google earth配合街景服务到美国洛杉矶的斯台普斯中心游览了一番，哈哈哈。</p>
+<p> </p>
+<h1 id="week-10"><a href="#week-10" class="headerlink" title="week 10"></a>week 10</h1><h2 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h2><p>本周，开头讲的是网络安全问题。</p>
+<p>关于网络安全，首先需要注意的无疑就是各个网络服务的密码（password）了，一旦密码被破解（crack），那么相应地就会造成一定的损失。我自己的亲身经历是新浪微博账号被别人登录并且发送多条垃圾信息，原因是我自己在公共场所登录新浪微博而没有及时地退出账号，并不是密码被别人破解了，所以我后来更换了微博的密码。</p>
+<h3 id="这里面牵扯到cookies的问题。"><a href="#这里面牵扯到cookies的问题。" class="headerlink" title="这里面牵扯到cookies的问题。"></a>这里面牵扯到cookies的问题。</h3><p>下面是<a target="_blank" rel="noopener" href="https://support.google.com/chrome/answer/95647?co=GENIE.Platform=Desktop&hl=en">Chrome 帮助页面</a>对于cookies的介绍：</p>
+<blockquote>
+<p>What cookies are</p>
+</blockquote>
+<p>Cookies are files created by websites you’ve visited. Cookies store browsing information, like your site preferences or profile information. There are two types of cookies:</p>
+<blockquote>
+<p>First-party cookies are set by the site shown in the address bar.</p>
+</blockquote>
+<p>Third-party cookies come from other sites that have things like ads or images embedded on the page you’re visiting.</p>
+<p>Not all cookies are bad. For example, cookies help the website remember your preferred settings so it can reload them when you revisit the site next week. Cookies can also help a website remember your location, so it can provide you with locally relevant content, like weather.</p>
+<p>网站是可以储存一些信息的，它并不总是怀的，有了cookies，我们就不必每次都需要输入账号密码了。我们也可以利用Chrome dev 来查看某个网站储存的cookies信息，比如：</p>
+<p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/cookies.png"></p>
+<p>上图是我个人知乎网站上的cookies信息部分截图。当然，前面已经提到过，有了cookies之后，我们就不必在下次访问某个网站的时候再次输入账号密码了，因此cookies中也一定储存了账号密码的信息，不过这些信息是加密的。</p>
+<p> 使用 Chrome 浏览器添加扩展程序<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/cookies/iphcomljdfghbkdcfndaijbokpgddeno?utm_source=chrome-app-launcher-info-dialog">cookies</a> ,也可以使用扩展来方便地查看每一个网站的cookies信息，仍然以知乎为例：</p>
+<p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/cookies-zhihu.png"></p>
+<p>后来我做了一个小实验，将这个Name为login的cookie删除掉，重启浏览器，结果chrome显示个人资料将丢失，不能执行，打开知乎之后仍然能够自动登录。</p>
+<h3 id="如何破解密码："><a href="#如何破解密码：" class="headerlink" title="如何破解密码："></a>如何破解密码：</h3><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=SgEC3xzSdFA">https://www.youtube.com/watch?v=SgEC3xzSdFA</a></p>
+<p>这是说的改变你的个人电脑的密码，这在我看来很「标题党」，我个人电脑的密码我无须破解吧。而别人的个人电脑从一开始我可能就打不开，如果打开了我也没有必要再破解了。</p>
+<h3 id="安全措施"><a href="#安全措施" class="headerlink" title="安全措施"></a>安全措施</h3><p>为了让我们的网络账户更加安全，也就引入了两步验证机制。</p>
+<p><img src="https://lh3.googleusercontent.com/RiFeKw-YBEu5bcXwxIzPQvl_9P4mjrw1GfBcKzcAM-RqqXnwYDpvpwYvBFizz_zhGzxl5S2IwltJRvoDAro5-KKrvaEhmOZNJTIjsdMi9tMSiCvPr9P266S6mEhhHccwRvgI4f5pZhfjAQit_D6c2vV5v1yxDMv5_8INsCW67SYtke_v8ftjp37pCHimUmbyhIjRDJjcOViiasxAZNWvzFqcTrEqhKdpEz4ia0j3Qf8jG6cobxDEt-V6WqFLH4JHZrMGy_11Co4uX1chvYKz2kaqHKTQWL6cBHFupNTgUkOAnEjaT_pYc7h4PuLc6-P1R067WR9e1HlCW-_uYFT9ndQx5XdTO_er-NvxkCdDgjKLnAAEG53a9KLmIgA6BeQ_fn0PSjQ7FDeTCf4WIWT0-isGTjH45hm6yfmOlWMy6zkgwEQKBDfewgA4Zhub0gQB_9YOzNty-DlxUVVoKiFmfy-vaCNWpk4EzXvN0EcHC_Ef5rbf8MwacYqaeQXzADFGSKMsIHysRzq1cA1pTEmipHTQR590buHIACOIU6lPcRU87rTTS3quM7Sc8-ddQTmqcbKZd162llSAyfJtB178UINCFuhmPo-j=w1155-h650-no"></p>
+<p>除此之外，当我们的网络账户数量庞杂的时候，切忌不要使用一个密码来针对所有的账户，否则一点击破，所有的账户也都会失陷。这里推荐的方法是使用像lastpass或者是1password这样的应用来进行管理，我们同样只需要记住一个密码即可。</p>
+<p>在前面的学习中，也已经了解到，由于http协议是公开的，传输过程之中，运营商很有可能会添加一些其他信息，比如广告，也或者得到一些信息，比如Ip,访问的站点等，这也是不安全的，这时候就需要https了。</p>
+<p><img src="https://lh3.googleusercontent.com/ujLg4e-eKi6WFMfbK8w4usdocHHf-FcjDT1Q9qX6Kmo2aBQ7wba0vICC7cGwnRL6om0UC0ZNbOKGlCzM76eyPILSkj_C7Nn4tLpdsbigMBJjb8KJru9bOHds0Ptn8XK8Llo2z7OC9WJRS0y7Sw76dl0r1A8xjWG_msvDVDk6rthh1qpdDeqCEG0amNVKF77NRp7zjvWCg8LkrKueAZZTkN6yc1VTbA_OsZHnETJNa7GjTzmPwfUufYyiQp8QZskxnCV7ugNiElXQcdSxh6mo-p-dOqe7EfzK7VnopgwOUqI9_FcbgL2w5gLxBITQ2wcU3DUFJKt8ldhLNVdqp_FCpjxIRCI-HFX1WteXRj5Be4A5AFx6z9kIhrH33GJAvumSMaa5oA2qj3NcgHr3jk2kuti0qpsNwRoKpdaW4DvhJGf7-QwijlJJYAfb5l3_EDkuHeAn_KbYN9HTzKDWbl_wwvE24zBJzbPbc4NjdZuMKG-zzIfDadyNJT-LJK9tN_UyGIRZR65slL64oPSrzkoDA7EFaT9gqNl7qkq-w70W6MHTkQ5N58VFWRLfnDiiAd0lNWzlo1_-Lg-aK1VGB5P3u2gAwuc91_7i=w1155-h650-no"></p>
+<h2 id="AI-人工智能"><a href="#AI-人工智能" class="headerlink" title="AI(人工智能)"></a>AI(人工智能)</h2><p>在这一讲中，提到的人工智能侧重于Google Now的原理类。</p>
+<h3 id="文字类AI"><a href="#文字类AI" class="headerlink" title="文字类AI"></a>文字类AI</h3><p>![](<a target="_blank" rel="noopener" href="https://lh3.googleusercontent.com/4rHdsdyr_OqE7pUMd1mpRcn1CpEnwDz9OcqCdQxn1wW7qNuUCBouwknmja7lRxraqAROgVi3-kLblDScGGU_K_GufurCJbG4_-TmCXPm8w2FiImb1YpUZnJtiyvsY88BokGBnfe2UsCWBdBEqcMjUooUArAXLuZXW23KiMT07SZ2jvCkPNhzjD9kDfDHc3kvcuhStw6FZiW-aWEZPdfX24dAiBLC7q19uvWw_AofkO6IymQfx_hcXZUMObg9YK9vtafAR3n0Dg79x3YhsQY8Rf1OYF6Qd1u3tpQ2sZFgNE2OF8rruznayoSiX9OXUxhk8dSolGRVs5AKrhA-%E6%9C%BA%E5%AF%B9%E8%AF%9DAI%EF%BC%8C%E5%AE%83%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E6%98%AF%E6%A8%A1%E5%9D%97%E5%8C%B9%E9%85%8D%E3%80%82">https://lh3.googleusercontent.com/4rHdsdyr_OqE7pUMd1mpRcn1CpEnwDz9OcqCdQxn1wW7qNuUCBouwknmja7lRxraqAROgVi3-kLblDScGGU_K_GufurCJbG4_-TmCXPm8w2FiImb1YpUZnJtiyvsY88BokGBnfe2UsCWBdBEqcMjUooUArAXLuZXW23KiMT07SZ2jvCkPNhzjD9kDfDHc3kvcuhStw6FZiW-aWEZPdfX24dAiBLC7q19uvWw_AofkO6IymQfx_hcXZUMObg9YK9vtafAR3n0Dg79x3YhsQY8Rf1OYF6Qd1u3tpQ2sZFgNE2OF8rruznayoSiX9OXUxhk8dSolGRVs5AKrhA-机对话AI，它的基本原理是模块匹配。</a></p>
+<p>下图是简单的模块匹配的应用：</p>
+<p><img src="https://lh3.googleusercontent.com/kuV3FTcE7VIIvzUksmJqhAVLLRVrMR4g1uuCcRa5PQE3w8rRGe86DmkxHmqvTcJ6vA4gDJilWzBEs_yeaX8bNoi7YYafC1jpdEZgLa9i2M5ePU9-V0PAOWXbvXxS9pOENI6hF8Ji3KirO2EvRPsvoIcKw4I29zF2qYagnYXIj9tElfVL0H5AIebrVru3V5SI5mEVq1IJRO5nOT_2nHvC7ldYJbJq2dY6ExFHe_a2LykE03hSN1_hn8SOlH5Zq-DQrUp3KCQjzI2JbYQ91VK_rOB65gljWKmsAQe9d8JbYAPAI93G3gPIh7H76m82fm8HqqTcJE5ZGJ_zFMN7t0wQnQa_fWmMnGdsaAj3cksUlorxEk5lB1F9y_wi572gBP3xG_KrAsspEau4Dx1Ncfynwe3pMGfAExCbAtP5cgyIKohB1AFoudIxT3WSS7IGGtm8hV52U5E91VxV8rBei-TMVRT9ET4hqYXUB3SzpIf2-ih0b49uFsJ200_kCFZsQOxki6baMj8TXjouERpZ7jETNys-C1xh2SkBYEsOjJ_hADSEe3_NfcWLJ-xEoU6PetuGV4BXa4n6UxedTBmK42S57Gmn69B7B507=w1155-h650-no"></p>
+<p>这里很重要的一点语法，也就是人称与时态等等转化。比如人是A，机器是B</p>
+<p>当人的输入语句中有I want 时，机器回答的匹配词汇是 WHY DO YOU WANT。这样的匹配不至于说错话，但是也都是废话，无关痛痒，因此这一阶段的AI谈不上有多高级。</p>
+<p><img src="https://lh3.googleusercontent.com/yNjtRxEPVoTrHlC96zCSsJR2S6AbfSFMe7fM0ya36W2WOjg45pdU-uAzPoLu2UjDiEOPkVBCSQ-uGs6kkLBhhvxaganbGmKLh8FtCdrWzgz9988GnvMy2rRIoRxZzM3nckwhqzDThyNz3zlya4EXwAPQ0Zpan3xbdDgfZQxON7wHACQ5eQrzPuM96kLpEv4_bT6HbOPLBfYbAxq3V2sLSMZRNMBVZx-kyWMuKeQTxWzUiVV2tWiQGXhiYVBRgRJF-6QSQnGznqk0dbYuK4QHr2jXzH7j1m9VWCh2oXdwQajYFZiyy_cHx60RyvA5dFmQ9f9z06C_M56CZj1jyU4CsI9pXhETzkKGZe5-v-S6SwnaUfJTg9dbiSVp93s5X2GkXr3Aw_Sx-fHK6AFeRxJNJbBfwbOXtIaAqHfCDXbigflKef-cyN6MSm6qK2rXuKd5kz3DPS1OHLoGmnrTbPNxZ3a2NZnCPz0bIuN05OEKooCYZDGvrLltU_YOMhXDyPCwy8UT42iw3ON3fR7D-97WlJtNzxtmD6oiyCpzipRJMU_NhkaTCN0tgZSZa1CVnnm2ti6PFmJL_ty3djP0bvFxyH7NRYSj-2Ir=w1155-h650-no" alt="文字AI部分程序"></p>
+<h3 id="语音类AI"><a href="#语音类AI" class="headerlink" title="语音类AI"></a>语音类AI</h3><p>除了文字类的AI之外，明显有着更广泛应用的是语音类AI。我们常见的有Google Now，Siri，Amazon Echo 等。</p>
+<p>针对语音类的AI，有三个层次上的研究：</p>
+<p>分别是<strong>语音模型</strong>, <strong>单词模型</strong>, <strong>语言模型</strong></p>
+<p><img src="https://lh3.googleusercontent.com/kLZTEQPF5N6RGY6k40VOnVcX3Ayfix6TFoLAPEKuigfqtBozmJjA9oBc6LKoKOtQdxyoefFPwYtlGt5QlIgqQcjLO1iq5Je8JCUkF4Wlxk1GhTAiEu2B2oz550JdJf8_9Umlc-umRiakZZy4XVVu-hUkZ040j0dEtGF3g4soHIJukpKr5B86MvMlfWYD0eWMw3ozW03kS1k65hDSEsRwZ-igwK4-JSv_j-KsWNH30645Vob_lxf7joxs7JlOdowtMnBVJ6segkYBwE3qZ4JUkZ4lgO2mfuu5rkGstaKoTwLGIYuVyo1MGWq4-iihtnd6SYuxPptD5tNrFg9wj5kJg1M1pnbewbdZ1PYzUtLHzOxkX0UyjHwlT9G1QdESn5dW_9H9WQwNDuRnMBQVaSsuyYPxFb7XSmW7v_7K9vUxID8KJ3JfH62miDDz9HTJmguEy7Z9WfVfo7gJNSnbczblFN3sPfYW2fSfFODdFDDKKuvEfvy1sW_UvPW5ZR_rKu4AazDeYkwXglpYOiub7mHCVdHhCTvsgW7QDygdHyhE8AaTdFcIBDnfHw7oz2FEYf4AcC_hQfqLpJ_a2thMnzYAwWffBNINz0qW=w1155-h650-no"></p>
+<p><img src="https://lh3.googleusercontent.com/cQD2Nhruo3raVgwtWRpJGY7-E15d8xsBOeouVh0PQFL9o5frXa2SaDivYnv462ySFaNq_r3uNbkifSqoFO_qDAXaZtMz1dAnez7G638xCx5BRqGRczxcj3SMLT-wPeJk6tJm6IeqbEuU-52mpifVIjQk1qsNYEBV0TkNQzpJZRqqNy3RkujV5I0Xy1z4uTT9ApczdYnqzEMOB1ECeEKGwDNo0_d_KRXjPFWldO3LIwRbe33fmKe7WVvl26QpLoR0im-tMBzAOYnww4QstHvfEzfEVsNAqllk9m09cgW7TtBNuVvQZ_A5OrrRLazoCkB5vzwW_uBw1fuZUfFbKQbz2qN0YnbY1R2Do7GNvDwXbz6bo3Fgn7nCueNHXDwya73paB-TMByvrjNN0EwP8d_4dAOZIJ54xkVzqVg3EG9XKq5lNIv4FDcBGjnrYMnYrfRGRdqkc982zurZuyeDGdLLpfSBCFxFsx0yxuO8NuS_06kpi_OaT4UW9Zx4bE_JhgaL_ObzDH5PfpPrp1RELoklipE91Ys9mfUysKAU7kJZ-Z65zCbwduEgR89SEEtZNvHZDg-CKnKjIUkDUw3gHVc8C3SouTuLcYMM=w1155-h650-no"></p>
+<p><img src="https://lh3.googleusercontent.com/_VSZQWZuLqNH2CHPbjVRmt1JLM5JgF9IZObmw45oCGScclHOGctnIqqgC4maqH69mqgWZpUeHoR1O9x1uK68uap-zbWk_EQV1fU06svWBbM84m2RHf0Jk_fgFkNaz5OJKMzYNkxQq10csFH7gFKGKqs_y14pgOnGJ5ak-yDHrmq3XxblCGrzwOzsKmFy2EzmDt_TpYXpHCXGNVuv7gvGA9r-ExWJxVTyFwU7IkV9TDqjeQnH_eLCc0AhT_cNmfwGB3DB_RJOkThilemF3PIIlg4VlSnspWjmB4zADtbbc9H9d5WXZV9I4xjtc3b68rspmsKJkJbaIteYCaf8wMN9ASbZ_gg_hSPjqq7Ao12cmF_X6WDhtTIys-UBwvlO6f2QLa7EamrGfN6c7iU1ZZn6Dv1JgoyGPqmYfSsVugXhvRJF21_GJuBtK-eCOrGRfLKfEm2twEfj-pvGTe6aKhZPmmEkhoWS4n9vpo6cjOmt-YckbNNfR85XrP16dgZX9HTWEXvM8uFOXBs_PtlMKZI80ntgAVvI1NXpoNM0EZhHOQY7IZT1WIKD3iwUfynJk_9Xfx-u5WC2h7xWaT0iLKMm5UAJVCAdCGgw=w1155-h650-no"></p>
+<p>这时候，就用到了<strong>概率统计</strong></p>
+<p>这也让我想到了之前阅读的吴军博士的<a target="_blank" rel="noopener" href="https://book.douban.com/subject/10750155/">《数学之美》</a> ,这本书一个重要的思想，就是介绍了当前的包括推荐系统，语音识别，图像识别等都广泛应用着<strong>概率统计</strong>，而不是利用的所谓的语法规则等。</p>
+<p>在这里，也提到了能够为医疗行业服务的企业级AI，IBM公司的WATSON。这也让我想起来早在去年10月的时候，我本人就曾经翻译过一篇<a href="http://hktkdy.com/2015/10/24/201510/102404/">《未来十年，当我们谈起自动化及就业市场，我们在谈什么》</a>  ，这篇文章是讲AI对人类就业市场产生的影响。其中有这样一段：</p>
+<blockquote>
+<p>一些研究人员相信小规模的数据传递同样适用此道，安德罗斯.康奈（ Andras Kornai ）表示，“IBM当前正将watson电脑系统应用到医疗卫生领域，我期待相同的事情能够在法律领域发生” 。尽管“机器学习”有可能会用于诊断癌症或者其他疾病上，这些技术现在看起来仍然不太可能取代医生。</p>
+</blockquote>
+<h1 id="week-11"><a href="#week-11" class="headerlink" title="week 11"></a>week 11</h1><p>这一讲仍然是讲的AI，但是侧重点已经从类Google Now的人机对话，转移到了Google 公司Alpha-Go的基本原理。</p>
+<h2 id="航班选择问题"><a href="#航班选择问题" class="headerlink" title="航班选择问题"></a>航班选择问题</h2><p><img src="https://lh3.googleusercontent.com/-I6cp3VzBEaHIBY2Qmxo2EArp7I6rqRSqm2CnLxSrAmTMhrJ2mRLw724eUAFpJfVR3m6PWQOpJLOD9aR8eqdVXmsk_DM7XGNfNFcpEkQla7VG_xS-QkoXiNLBaQj5xc7fKFpVmP9-LTWlxMh9YpyBo2eSQFLtm48uLi_2z_E2vy7xc43I7WZN266rk7pxmQoiWoq6-VWO19yQR7Li6Tpj0qLoSdWQmbLdkVOvxmoPta1wbIYpnyogWZoMyRlR7-C8qTtzM5GWy3NyOinoId9ZGa9A_9zD1zVrAThr5eHKwRb3z9KUSuyNVdG3-1lNSDJK8A8lGeWu7BGULD9LsoRkkyV1AFWelGeXWNW4TwrEciLG6iaVOMiRmMa8eIOctuH2drniwuTPRXRe88FBG_wI8S1awISAQv9cMySQQj7WbameVHLHPeG25ym5gcLtJirHCGcwBEulZ6d26lUrjuvrLhv4yfAv2eefGYES9AL7ZuQWFrBLwDzh94oZgl8dI-XcmcogcWmxEfzsJaVAaQ4qyH3VzbeIcpYxDxRag9KMCql603VJezR36zxtpZdicEzVU_sax4FiRxSAIVAk2Ajej_Xqas_oekP=w1155-h650-no"></p>
+<p>上图给出了从波士顿（Boston）出发前往旧金山（san Fransico）的树状图，通过使用树状的排列搜索，我们就能够找出来波士顿到旧金山的所有可能的航班。这个时候，我们只需要对比所有可能的航班的价格和时间，再做一个权衡（Trade off），就能够找到最优解。</p>
+<p>由此，我们也能够看出来，在实际的应用之中，树状结构（Tree）是很有用处的，像二叉树等知识作为算法，将能够提高效率。</p>
+<h2 id="对抗问题"><a href="#对抗问题" class="headerlink" title="对抗问题"></a>对抗问题</h2><p>从前面的Search Trees引入到对抗搜索之中，仍然是先简单而后复杂的思路。</p>
+<p>首先就是讲解了3×3连子棋（Tic-Tac-Toe），人机对抗时的计算机运算过程，这个时候，由于本身棋盘只有3×3的大小，因此计算机完全可以从树的开始到树的最底端来找到所有可能的情况，并根据可能的情况来找出一个最优解。</p>
+<p><img src="https://lh3.googleusercontent.com/nBtcu9LhaoNRlsmPOtmLJvitTl2FNSTBkQw1Z-kb_g1WInG3OG82G5GeaFHJc1wRyZYf3SXa0faPFHPPZtGrNbCggm81vySz7RSdyAiz9l-tiL0Eu7XTt-z_SOWqJFcPKgAXCrgvLjiSZBUUU1hWIiF_nHrM3hm5cNolowcbSwPJotT3mrLGUBIwD4wjyP7mhK6l4OCwJ7dB19wpfJ7uGl0xN40AQYfIPgG5xX57jPXC9a6X3Jzlyad-zfO6u-gw8lIOhhVFtSp0nn8M3JKIJ5yp3VtNx0z27djvA9J7fHudOVThAza8pdvay7blDi9yKAetYCDde7QO82O68Y7WK_UR2CLqc-a6bj0N4l4q_XMAcZjbjYULe03vYAQBXzcCsjmDNzYp2rlod8MY2L_SlCOfgnMqlnCHRx1WNga9rJmovNZpkIRxXUIewrrmVxjs8VWMAIXzVhV5aNqTuHZ2h-4rYi8ZdDHy8bdSDdOvQll54OZFFcH9kBrgwSTy16HT0ZAPG0HS0sCztEYegldngmKuclnhCuYNPFGicQmqydb2CXCM87e-RZptsnrEoAU3G-amjoyITU-GMFdzKHCnLsS8zj591fzy=w1155-h650-no"></p>
+<p>而查找这个最优解的基本原则是：</p>
+<p><img src="https://lh3.googleusercontent.com/tN4d3jmMqWOz2_29BgZDcqFJ5cNJ6uWv00fS45tX2cdsOCRl5LDN_bC7hgEI4STDPEBQP3bokKwOkRTFrEMWlZZFdH8QoNgAaD6SkiEsOVESsGd-ku7uLZrBuAmSMpoubdtzn6mFlnm7iJqwh1Ndth9PAYYC5XLk7C7NSPRu81cB4xFxurB6Zv2wPW7g_jg2hYjjtql33AUrUbljvIeCsXYLgooXE2GFgsGttNVPVWGuHQB9NICi5XEhqcVO30wcB3gYDeeUAdo1Nh5saC_LrliEARtkmCAamOEp_yxh9hGRlItV7FTFG31kAd6A8RZwFmK-ibm-0l93ygyfW4kfu_JqmC9x7JCkgtWt3TknYJDEV__DW_HgyUserarDmnkKiZZ0ogq8nrT9C3v68IVKybSrWZYatcvGhN323cMqqK395xZy9PW9dP_n3ejRz1vnJgyJRQ9149j-JRUW6M7MJsh7YBsqM7c2d3AIq4p3SomeTCYNumAGS49azXmJQINXDjwrfAVDc_hu0bmYHlISbCR2YB-OfgZIgmSWwxvA5xnHBSgUnAXG-ZtZ24goKSevPkTggQLr7-n7M-5mqmxs7SsRolqcolmI=w1155-h650-no"></p>
+<p>极小化极大算法：选出让你的对手处在最坏处境的一步棋</p>
+<p>完整的<a target="_blank" rel="noopener" href="http://bbs.chinaunix.net/thread-1375630-1-1.html">算法步骤</a>是：</p>
+<p>1. 设博弈双方中一方为MAX，另一方为MIN。然后为其中的一方(计算机)找一个最佳走法。</p>
+<p>1. 为了找到当前棋局的最优走法，需要对各个可能的走法所产生的后续棋局进行比较，同时也要考虑对方可能的走法，并对后续棋局赋予一定的权值（或者称之为分数）。也就是说，以当前棋局为根节点生成一棵博弈树，N步后的棋局作为树的叶子节点。同时从树根开始轮流给每层结点赋予Max和Min的称号</p>
+<p>1. 用一个评估函数来分析计算各个后续棋局（即叶子节点）的权值，估算出来的分数为静态估值</p>
+<p>1. 当端节点的估值计算出来后，再推算出父节点的得分。推算的方法是：对于处于MAX层的节点，选其子节点中一个最大的得分作为父节点的得分，这是为了使自己在可供选择的方案中选一个对自己最有利的方案；对处于MIN层的节点，选其子节点中一个最小的得分作为父节点的得分，这是为了立足于最坏的情况，这样计算出的父节点的得分为倒推值。</p>
+<p>５. 如此反推至根节点下的第一层孩子，如果其中某个孩子能获得较大的倒推值，则它就是当前棋局最好的走法。当端节点的估值计算出来后，再推算出父节点的得分。推算的方法是：对于处于MAX层的节点，选其子节点中一个最大的得分作为父节点的得分，这是为了使自己在可供选择的方案中选一个对自己最有利的方案；对处于MIN层的节点，选其子节点中一个最小的得分作为父节点的得分，这是为了立足于最坏的情况，这样计算出的父节点的得分为倒推值。</p>
+<p><img src="https://lh3.googleusercontent.com/On1tMv3KW7ibNP_hd5zC1M0khp31U5wH5OnA1jJOXL2ewpoBoM8JUNRdwbOeeS1eH4IJoz2hzUGfOEb_-LyVKKaF5ei_2faeRYe1DOpfQZ0NLRdMOTWlxxSU8uUQk3MzL7bD6iDxDEZhgH3UwNyheyLnPY1SwXmGXRq0uXNstyhZi4YmwXHeAwVBK2fSIPqKmNBlRXx8G-EbwUmYdaCAWDSQ3LSvtzORIXwhHE2K8k3Bh1JYKKDl7ihO37fS2epAdIQ1pXJQ7qzlsjWMuPKxAcuGZXn3jRTpD2aCBjHpOya6qkonmrNSzsAz16IJm70voieeP_oxhgsemM3VJZUOmzcyJTmvr0S6ktQve75cI-4UgLqOj6WHEhF3b05Oe-MY6gHYmO8HW-T9KxUg_Wr-JTHtfYpXZe8BFPrrQj60UGpp1UmJGcXEQ0TmdfZELhRprRbrPZIq36Xg85k6K1XCKXmh_YovniDSx9kR_kr5k6vXx6dgErDR7sbsyH2fO4izvSmQZwCU2mHeZLzWZt99PFPenduZuROm14tp8wYE4Kr6hfS2ZboBfZiBgds55cJZadXx79z4jSAmbLCAartj5QzJr6fvMt_a=w1155-h650-no"></p>
+<h2 id="井字棋"><a href="#井字棋" class="headerlink" title="井字棋"></a>井字棋</h2><p>相比之下3×3连子棋（也叫做井字棋，英文名：<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Tic-tac-toe">Tic-Tac-Toe</a>）其实还并不算复杂，3×3的棋盘最多可以放9个棋子，先下棋的人最多可以下5颗棋子，也就是说机器最多可以预推出接下来的9步的所有可能性。</p>
+<p>如果不考虑游戏规则的话，井字棋总共有 19,683种可能的棋面布局，也就是说在棋盘上的9个位置分别都可以防止黑棋，白棋或者不放置任何棋子（3^9），所有的棋局可能是362880(如果不把追求获胜的判定算进去的话，9步下完，第一步是有9个格子选择，第二步是有8个格子选择……：9!&#x3D;362880)，但是考虑到</p>
+<p>-  一旦有一方连成三子，则此局棋结束</p>
+<p>-  如若白棋先走，则棋局之中，总是白棋比黑棋多一子或白棋黑棋数量相同。</p>
+<p>实际的可能情况会小很多，只有138种棋局了。91种棋局是执先者胜，44种棋局是执后者胜，而只有3种情况是平局。（而在实际的棋局过程中，出现平局的概率是非常高的，但是出现平局概率高并不意味着平局的花样就多），我们甚至可以将这三种平局的局面列出来。</p>
+<p>下面两幅图都是在<a target="_blank" rel="noopener" href="http://playtictactoe.org/">http://playtictactoe.org/</a> 网站上实际对战过程中出现的棋局：</p>
+<p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/Tic-Tac-Toe2-1.png" alt="棋局一"></p>
+<p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/Tic-Tac-Toe2.png" alt="棋局二"></p>
+<p>实际上这两幅图中棋局外表看似不同，但其实是互为镜像的，如果将下面的图旋转180度，就能够得到如上面图一样的棋局。</p>
+<p>因此实际上平局的所有可能 棋局只有</p>
+<p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/Tic-Tac-Toe2-1.png" alt="棋局一"></p>
+<p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/Tic-Tac-Toe1.png" alt="棋局二"></p>
+<p><img src="http://7ktu2f.com1.z0.glb.clouddn.com/Tic-Tac-Toe3.png" alt="棋局三"></p>
+<h2 id="Alpha-Go"><a href="#Alpha-Go" class="headerlink" title="Alpha-Go"></a>Alpha-Go</h2><p>三月份的时候，有一场李世石对阵AlphaGo的比赛轰动全球，而这次课程也提到了AlphaGo，值得注意的是这次课程的时间是15年的11月份。</p>
+<p>这里首先需要说明的是在英语里面Go还有一个意思，那就是「围棋」，而我在之前了解到AlphaGo这个名字的时候，还以为这里的Go是取自于Google这个单词。</p>
+<p>来看一下围棋的复杂度</p>
+<p><img src="https://lh3.googleusercontent.com/8MqRiyk4Lbh6TP68vrBQ045WWShOH2RijDrDFSG08Ht5500orivGg9im_J7x-f9cEIKf15165UBlHa6JLU-qcnb5GKtYioWeJseqY1v6lEt3v7QVNERDwyee8LmX-wCMW8h0fxfjnIXqC3EYBZ_ao-IQCjj0xwa9UREVcyCo7fdWabTqOFHviFNJOO96JCoqp2Pd85XY0OXeLH0xfbJTWTrTLAWlgRBRDHLqub8pdd41ZQjhvHhZ89dzm1kwygOAe7wx3pnpx5OwCx51hPmZOr9Bl96LLCn3ZV43_LjfICEyjL_m7Gd_9ZX-ezavMb_yq-Idav7iaservikY8ErIs83muFb-qK9-E3wa7ARnRp9NSXvwUcqn1hTchIyxKp1acsuOiXp44Y-MahkS1Lv9LrC17Qu4Jwj0S9bgjdO121Rk7ExeLw6GvePLQ4480VLei32YC76uF_soLXml-M3Xm076VQcHz0UldEypWzjfTrK5NS0dJ2ibBoAjRti4zN1ATryAJYeZ6LsUDITl9Q91E0IB-kIJIh6eSybXPqgEW8QPL1tR80bh7PTJyEKETjdp-FlGT4DTCM2o9wv49fA23AYQcFlFM0xt=w1155-h650-no"></p>
+<p>在上面这张表中，也记录了机器人在国际象棋领域首次战胜世界大师这件事。</p>
+<p>面对如此复杂的实现，就不能仅仅使用minimax算法了，还有另外加上一些条件。</p>
+<p><img src="https://lh3.googleusercontent.com/k1qEFkNDbEiDDgpUgCGSa5BoPaawu3e_N-_-hX4fIvJYFv7o2ghW7ZfYTssfAvuT8tW3CPU8GoPqQRdvzawq71XAINgADH1E01S4_mEVAotJ8vAxEioy67j-ZgjIMytpXx9HpXw3u5O_nrzxcoVKg2rHv7CMIyVMwrwu2CHLWWJvJTwszAMxUwyrE1wIYnU-5n4qM1UEp7gQIYLt9BuNp6R3AhN7ZojY0h7Ic_KMhyrKAXpVsmHPOoNLwJYnaXb_dO1bQ-0TXsVqISBUehkQ8DBSGXfRXH2inoDhwm4GtE4UcnXiaDu-4dFvdx4X5lhlTVvO-WjTsijGIzwkh3Oere0RU-Hx49lJPJmmpPwC30Yx4m_ny1lAu21u0gw4_ku8U2nL55pTldaGmrJMbYIcEE7Bfam8nQSxHkrEngJWYTfSTayzsYEp18QLRALP5Q3I1rrFPYBTAS5p-ggP9AkV8CMyr4TYXmhmeT2pnVa5cysYHMyZ8aNXy25GCRCo02fCcfVNGb0k892aaEx2dEMoy-WO9zZ_EAcJSC3uUjZ0g2K9CUcFxB5m4RU2AIuQDAjqM-Yhhs12s_eUMo9AtDlPHU2IFMLKtwn-=w1155-h650-no"></p>
+<p>通过过滤掉那些完全不可能的实现过程，来缩短算法的实现时间，但是即便如此，其计算量还是不可想象的。也正因此，DeepMind的AlphaGo挑战李世石并且最终战胜了他，才是那样的了不起。</p>
+<h2 id="游戏设计"><a href="#游戏设计" class="headerlink" title="游戏设计"></a>游戏设计</h2><p>这一部分只是简单介绍而已，提到了4X理念。</p>
+<p><img src="https://lh3.googleusercontent.com/5ybIvk-IAgDYsKBqGf06V0PaIj3zwekVYu2wKZCMeZiaBjVSz8kqhjpfcfjib9x4rXI_31FZPODGHk0MFFZC0L8Jpa4rISWXnzZTfkdXBB_mDJJThTij1xHB3hWlPv9kDm0b0YwRjI7QyhHTfT0QB7p1EKgbXxkl9m4mk7tYEZfHjWfQa5ohXMviR61eBudwbAN3UlWZdWRsai_gw4wY00Vjk6QgU208THZC_-JwiqtN2voICJMsVMzB2CLlH7WxKdDHUu2L19ukHq7gYQkk5WByAyq0cU9Ao4x81XXC96YqFVcFpyaQ3m71QVLoYSNPS6F_qd952AzObqWLCmOzqBjlCxDyKN4ydTNqZMVHx6w5Z0pP_1zPLRg713vf5_MQpxpznxgJCS_nLV-3jBapnPA4Cy1Fa4YmTOcHLmERasL0yURxOykTKjRPgfsC1e78jAN2YuogjaBsqcGZiIFVqnQwL0I8WikV29NX4HhGKiOb8Oc---5EKIQ14SQJzZ3YAheErmuuh60Q9Dsp9tsLjuHMxXp-aZIBhal-gPr9J1FmwVvPU1jnkyyi9rqs2ITEWTndinH_PkXMqiLOGF6HgXTB4_gwkh5a=w1155-h650-no"></p>
+<p>wikipedia对于4X的介绍：</p>
+<p>- Explore means players send scouts across a map to reveal surrounding territories.</p>
+<p>- Expand means players claim new territory by creating new settlements, or sometimes by extending the influence of existing settlements.</p>
+<p>- Exploit means players gather and use resources in areas they control, and improve the efficiency of that usage.</p>
+<p>- Exterminate means attacking and eliminating rival players. Since in some games all territory is eventually claimed, eliminating a rival’s presence may be the only way to achieve further expansion.</p>
+<p>我们很快就可以想到几个即时战略类游戏，比如红色警戒，是有着这样的一套规律的：玩家可以探索地图上的未知区域，玩家可以在领土之上建立起新的工事，玩家可以收集和利用领土上的一些资源，玩家还可以与敌人展开争斗。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>整个课程学习下来，觉得还是很有收获的，总结起来，应该是这样几个方面。</p>
+<ul>
+<li>整个课程，总共是13周的时间，总计是24次课，每节课大约1小时，时常总计约24小时，内容也十分紧凑，从CS的概括讲到了C语言，又从C语言讲到数据结构、从数据结构讲到了WEB开发中的前端（HTML\CSS\JS）、后端(PHP)，后来是网络安全和人工智能，甚至是游戏设计在这个课程中也有所涉及，内容真的是十分丰富。</li>
+<li>尽管内容丰富，但是毕竟这只是一个介绍性课程（<strong>introductory course</strong> ），因此他的知识深度并不够。虽然如此，但还是能够将它作为学习CS的一条线索，也能够用它来对一些普遍问题进行了解。</li>
+<li>课程十分有趣，很多比较抽象复杂的问题，都能够通过游戏的方式来解决，印象最深的当属解释冒泡算法（bubble-sort）的时候，请上台来几位同学，每人举一个标有数字的小牌子。</li>
+<li>这应该也是我第二个几乎所有课一次不落的学习完毕的公开课课程，上一个也是哈佛公开课，是那个更为人熟知的《幸福课》。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%85%AC%E5%BC%80%E8%AF%BE/" rel="tag"># 公开课</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/07/10/201607/summer-palace/" rel="prev" title="十年前后的颐和园">
+      <i class="fa fa-chevron-left"></i> 十年前后的颐和园
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/07/13/201607/Roman-Numeral-Converter/" rel="next" title="【JS】阿拉伯数字到罗马数字转换">
+      【JS】阿拉伯数字到罗马数字转换 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CS50-week-2"><span class="nav-number">2.</span> <span class="nav-text">CS50 week 2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#week-3"><span class="nav-number">3.</span> <span class="nav-text">week 3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="nav-number">3.1.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">3.2.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="nav-number">3.3.</span> <span class="nav-text">插入排序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#week-4"><span class="nav-number">4.</span> <span class="nav-text">week 4</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%B9%B6%E9%9D%9E%E5%A6%82%E5%AE%83%E6%89%80%E7%A7%B0%E7%9A%84%E5%9C%A8%E6%89%A7%E8%A1%8C%E4%BB%BB%E5%8A%A1"><span class="nav-number">4.1.</span> <span class="nav-text">软件并非如它所称的在执行任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E6%BA%90%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-number">4.2.</span> <span class="nav-text">开源的好处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%92%E5%BD%92"><span class="nav-number">4.3.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2"><span class="nav-number">4.4.</span> <span class="nav-text">交换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E5%92%8C%E6%8C%87%E9%92%88"><span class="nav-number">4.5.</span> <span class="nav-text">地址和指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA"><span class="nav-number">4.6.</span> <span class="nav-text">图形的二进制表示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#week-5"><span class="nav-number">5.</span> <span class="nav-text">week 5</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%92%8Cbuffer"><span class="nav-number">5.1.</span> <span class="nav-text">内存溢出和buffer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">5.2.</span> <span class="nav-text">数据结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#week-6"><span class="nav-number">6.</span> <span class="nav-text">week 6</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="nav-number">6.1.</span> <span class="nav-text">哈希表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">6.1.1.</span> <span class="nav-text">定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-x2F-IP"><span class="nav-number">6.2.</span> <span class="nav-text">TCP&#x2F;IP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IP"><span class="nav-number">6.2.1.</span> <span class="nav-text">IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP"><span class="nav-number">6.2.2.</span> <span class="nav-text">TCP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8"><span class="nav-number">6.2.3.</span> <span class="nav-text">信息安全</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#week-7"><span class="nav-number">7.</span> <span class="nav-text">week 7</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#week-8"><span class="nav-number">8.</span> <span class="nav-text">week 8</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC"><span class="nav-number">8.1.</span> <span class="nav-text">MVC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL"><span class="nav-number">8.2.</span> <span class="nav-text">SQL</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#week-9"><span class="nav-number">9.</span> <span class="nav-text">week 9</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#week-10"><span class="nav-number">10.</span> <span class="nav-text">week 10</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8"><span class="nav-number">10.1.</span> <span class="nav-text">网络安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%99%E9%87%8C%E9%9D%A2%E7%89%B5%E6%89%AF%E5%88%B0cookies%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82"><span class="nav-number">10.1.1.</span> <span class="nav-text">这里面牵扯到cookies的问题。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%A0%B4%E8%A7%A3%E5%AF%86%E7%A0%81%EF%BC%9A"><span class="nav-number">10.1.2.</span> <span class="nav-text">如何破解密码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%8E%AA%E6%96%BD"><span class="nav-number">10.1.3.</span> <span class="nav-text">安全措施</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AI-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD"><span class="nav-number">10.2.</span> <span class="nav-text">AI(人工智能)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E5%AD%97%E7%B1%BBAI"><span class="nav-number">10.2.1.</span> <span class="nav-text">文字类AI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E9%9F%B3%E7%B1%BBAI"><span class="nav-number">10.2.2.</span> <span class="nav-text">语音类AI</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#week-11"><span class="nav-number">11.</span> <span class="nav-text">week 11</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%88%AA%E7%8F%AD%E9%80%89%E6%8B%A9%E9%97%AE%E9%A2%98"><span class="nav-number">11.1.</span> <span class="nav-text">航班选择问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E6%8A%97%E9%97%AE%E9%A2%98"><span class="nav-number">11.2.</span> <span class="nav-text">对抗问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%95%E5%AD%97%E6%A3%8B"><span class="nav-number">11.3.</span> <span class="nav-text">井字棋</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Alpha-Go"><span class="nav-number">11.4.</span> <span class="nav-text">Alpha-Go</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1"><span class="nav-number">11.5.</span> <span class="nav-text">游戏设计</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">12.</span> <span class="nav-text">后记</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhangolve</p>
+  <div class="site-description" itemprop="description">分享是一种快乐</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangolve</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HfDBPvTz5vS7thoY9gHJFRYV-gzGzoHsz',
+      appKey     : 'WmbqlggY1zbg57bzcbjuYA8n',
+      placeholder: "anything",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
